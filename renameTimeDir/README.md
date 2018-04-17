@@ -7,6 +7,10 @@ convert every time dir in `processor{0..31}`which has a `.` to the regular forma
 it doesn't end with 0 nor `.`
 
 ## Line
+```python
+os.rename(path+dir_before[i], path+dir_after[i])
+# converting path+dir_before[i] to path+dir_after[i]
+```
 
 ## Developpment Approacheseses
 
