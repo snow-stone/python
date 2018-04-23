@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import check_data3 as data_check
 import settings
 
+import reference_database as db
+
+
 def chart(chunkSizeList):
     N = len(chunkSizeList)
     
@@ -39,6 +42,65 @@ def chart(chunkSizeList):
     xlabels = ['C'+str(i+1) for i in range(N)]
     ax.set_xticklabels(tuple(xlabels),fontsize=settings.sizeLabel)
 
+def getChunkedMean(data,chunkStep):
+    print "#############\n"
+    chunkSum=np.zeros(data[0].shape)
+    chunkSizeList=[]
+    chunkedMean=[]
+    for i in range(0, len(data), chunkStep):
+        print "i = ", i
+        k=0
+        chunkSum=0
+        for j in range(i, i+chunkStep):
+            if j < len(data):            
+                chunkSum+=data[j]
+                k=k+1
+        chunkSizeList.append(k)
+        chunkedMean.append(chunkSum/k)
+    return chunkSizeList, chunkedMean
+
+def getChunkedStd(data,chunkStep,chunkedMean):
+    print "#############\n"
+    chunkVar=np.zeros(data[0].shape)
+    numChunk=0
+    chunkSizeList=[]
+    chunkedStd=[]
+    for i in range(0, len(data), chunkStep):
+        print "i = ", i
+        k=0
+        chunkVar=0
+        for j in range(i, i+chunkStep):
+            if j < len(data):            
+                chunkVar+=(data[j]-chunkedMean[numChunk])**2
+                k=k+1
+        numChunk+=1
+        print ' k = ',k
+        print '  numChunk = ', numChunk
+        chunkSizeList.append(k)
+        chunkedStd.append(np.sqrt(chunkVar/k))
+    return chunkSizeList, chunkedStd
+
+def getChunkedStd1(data,chunkStep,GlobalMean):
+    print "#############\n"
+    chunkVar=np.zeros(data[0].shape)
+    numChunk=0
+    chunkSizeList=[]
+    chunkedStd=[]
+    for i in range(0, len(data), chunkStep):
+        print "i = ", i
+        k=0
+        chunkVar=0
+        for j in range(i, i+chunkStep):
+            if j < len(data):            
+                chunkVar+=(data[j]-GlobalMean)**2
+                k=k+1
+        numChunk+=1
+        print ' k = ',k
+        print '  numChunk = ', numChunk
+        chunkSizeList.append(k)
+        chunkedStd.append(np.sqrt(chunkVar/numChunk))
+    return chunkSizeList, chunkedStd
+
 def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
 
 #==============================================================================
@@ -68,18 +130,8 @@ def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
         mean+=data[i]
     mean/=dataSize
     
-    print "#############\n"
-    chunckSum=np.zeros(data[0].shape)
-    for i in range(0, dataSize, chunkStep):
-        print "i = ", i
-        k=0
-        chunckSum=0
-        for j in range(i, i+chunkStep):
-            if j < len(data):            
-                chunckSum+=data[j]
-                k=k+1
-        chunkSizeList.append(k)
-        chunkedMean.append(chunckSum/k)
+    chunkSizeList, chunkedMean = getChunkedMean(data,chunkStep)
+    
     # xcoord
     x=mean[:,0]/R
     for i in range(nb_chunk):
@@ -119,24 +171,14 @@ def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     var/=dataSize
     std=np.sqrt(var)
 
+    chunkSizeList1, chunkedStd = getChunkedStd(data,chunkStep,chunkedMean)
+#    chunkSizeList1, chunkedStd = getChunkedStd1(data,chunkStep,mean)
     
-    print "#############\n"
-    chunkVar=np.zeros(data[0].shape)
-    numChunk=0
-    for i in range(0, dataSize, chunkStep):
-        print "i = ", i
-        k=0
-        chunkVar=0
-        for j in range(i, i+chunkStep):
-            if j < len(data):            
-                chunkVar+=(data[j]-chunkedMean[numChunk])**2
-                k=k+1
-        numChunk+=1
-        print ' k = ',k
-        print '  numChunk = ', numChunk
-        chunkSizeList.append(k)
-        chunkedStd.append(np.sqrt(chunkVar/numChunk))
-
+    try:
+        if chunkSizeList1 == chunkSizeList :
+            print "chunkSizeList1 = chunkSizeList"
+    except:
+        print "chunkSizeList1 != chunkSizeList. No good sign."
     #print chunkedStd[0]
 
     fig2,ax2 = plt.subplots()
@@ -146,100 +188,13 @@ def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     # or data will not fit at all
     rPlus=-x+1
     rPlus=rPlus[::-1]*R*uTau/nu
-    #ax2.plot(rPlus,std[:,3][::-1],label='simu',color='red',marker='^')
+    ax2.plot(rPlus,std[:,3][::-1],label='simu',color='red',marker='^')
     if ifPlotAllTimes:
         for i in range(nb_chunk):
-#            ax2.plot(x,chunkedStd[i][:,3],label=str(i+1))
             ax2.plot(rPlus,chunkedStd[i][:,3][::-1],label=str(i+1),linewidth=1.5)
             
     return ax, ax2
 
-def data_Niewstadt1995_pipe():
-    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UzRMS.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-
-    x = data[:,0]
-    y = data[:,1]
-    
-    return x, y
-    
-def data_Eggels_pipe_DNS():
-    string='/home/hluo/Pictures/Thesis.Eggels1994/pipe/Fig4.7/DNS_Eggels.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-
-    x = data[:,0]
-    y = data[:,1]
-    
-    return x, y
-    
-def data_Eggels_pipe_LDA():
-    string='/home/hluo/Pictures/Thesis.Eggels1994/pipe/Fig4.7/EXP_LDA.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-
-    x = data[:,0]
-    y = data[:,1]
-    
-    return x, y
-    
-def data_Eggels_pipe_PIV():
-    string='/home/hluo/Pictures/Thesis.Eggels1994/pipe/Fig4.7/EXP_PIV.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-
-    x = data[:,0]
-    y = data[:,1]
-    
-    return x, y
-    
-def data_Eggels_pipe_HWA():
-    string='/home/hluo/Pictures/Thesis.Eggels1994/pipe/Fig4.7/EXP_HWA.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-
-    x = data[:,0]
-    y = data[:,1]
-    
-    return x, y
-
-def dataFitting_Niewstadt1995_pipe(deg,samplingSize):
-    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UzRMS.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-    
-    x = data[:,0]
-    y = data[:,1]
-    
-    z = np.polyfit(x, y, deg)
-    functionPolynome = np.poly1d(z)
-    
-    x_polyFit = np.linspace(min(x),max(x),samplingSize)
-    
-    return x_polyFit, functionPolynome(x_polyFit)
-
-def analytic_Uz_meanProfile(uTau,samplingSize):
-    nu=1e-6
-#    viscousLayer()
-#    bufferLayer()
-#    logLayer()
-    def viscousLayer(yPlus):
-        return yPlus
-    def bufferLayer(yPlus):
-        return 5.0 * np.log(yPlus) - 3.05
-    def logLayer(yPlus):
-        return 2.5 * np.log(yPlus) + 5.5
-        
-    yPlus=np.linspace(0,170,samplingSize)
-    y=yPlus*nu/uTau
-    Uz=np.zeros(len(y))
-    for i in range(len(y)):
-        if yPlus[i] < 5:
-            Uz[i] = uTau * viscousLayer(yPlus[i])
-        elif yPlus[i] >= 5 and yPlus[i] < 30:
-            Uz[i] = uTau * bufferLayer(yPlus[i])
-        else:
-            Uz[i] = uTau * logLayer(yPlus[i])
-            
-#    fig,ax = plt.subplots()
-#    ax.set_xscale('log')
-#    ax.plot(yPlus,Uz/uTau,label='mean',color='red')
-    return yPlus, Uz/uTau
 
 def main():
     uTau=0.0473
@@ -258,19 +213,19 @@ def main():
 #    y_=-y_+1
 #    ax.plot(y_[::-1],UzPlus[::-1],label='mean objectif function',color='blue',linewidth=2)
 #    ax.set_xlim(0.,1)
-    yPlus, UzPlus = analytic_Uz_meanProfile(uTau,100)
+    yPlus, UzPlus = db.analytic_Uz_meanProfile(uTau,100)
     ax.plot(yPlus, UzPlus, label='mean objectif function', color='blue', linewidth=2)
     
-    x1a, y1a = data_Eggels_pipe_DNS()
+    x1a, y1a = db.data_Eggels_pipe_DNS()
     ax.plot(x1a, y1a, label='DNS_Eggels', linewidth=2)
     
-    x1b, y1b = data_Eggels_pipe_PIV()
+    x1b, y1b = db.data_Eggels_pipe_PIV()
 #    ax.plot(x1b, y1b, label='EXP_PIV', linewidth=2,marker='o')
     
-    x1c, y1c = data_Eggels_pipe_LDA()
+    x1c, y1c = db.data_Eggels_pipe_LDA()
 #    ax.plot(x1c, y1c, label='EXP_LDA', linewidth=2,marker='^')
     
-    x1d, y1d = data_Eggels_pipe_HWA()
+    x1d, y1d = db.data_Eggels_pipe_HWA()
 #    ax.plot(x1d, y1d, label='EXP_HWA', linewidth=2,marker='s')
     
     ax.set_xscale('log')
@@ -284,7 +239,7 @@ def main():
     #ax2.set_xscale('log')
     
     deg=6
-    x_PolyFit, y_PolyFit = dataFitting_Niewstadt1995_pipe(deg=deg,samplingSize=60)
+    x_PolyFit, y_PolyFit = db.dataFitting_Niewstadt1995_pipe(deg=deg,samplingSize=60)
     ax2.plot(x_PolyFit, y_PolyFit, label='polynomial fitting data of degree %d'%(deg), marker='o')
 #    ax2.set_ylim(0,5)
     #ax2.set_xlim(0,300)
