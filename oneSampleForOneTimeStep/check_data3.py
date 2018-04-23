@@ -26,7 +26,7 @@ def check_data_shape(startTime,endTime,N,dataShape):
     
     for i in range(N):
         # load the data
-        fileName="../postProcessing/sets/"+convert2TimeDirName(timeList[i])+"/central_line" + "_U.xy"
+        fileName="../../postProcessing/sets/"+convert2TimeDirName(timeList[i])+"/central_line" + "_U.xy"
         data.append(np.genfromtxt(fileName))
         # check array shapes 
         if data[i].shape == dataShape: #(200,4):

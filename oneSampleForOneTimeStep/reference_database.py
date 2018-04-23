@@ -9,6 +9,15 @@ def data_Niewstadt1995_pipe():
     
     return x, y
     
+def Niewstadt1995_pipe_Fig9():
+    string='/home/hluo/Pictures/Niewstadt1995_pipe/Fig9/Fig9.csv'
+    data=np.genfromtxt(string,skip_header=1,delimiter=',')
+
+    x = data[:,0]
+    y = data[:,1]    
+    
+    return x, y
+    
 def data_Eggels_pipe_DNS():
     string='/home/hluo/Pictures/Thesis.Eggels1994/pipe/Fig4.7/DNS_Eggels.csv'
     data=np.genfromtxt(string,skip_header=1,delimiter=',')
