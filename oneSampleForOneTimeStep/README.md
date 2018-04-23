@@ -27,7 +27,7 @@ one Plot on rms of Uz (based on the first plot on average Uz)
 ## How
 
 ## Improvement
-add module `reference_database`
+add import from `../` functionality, seperating from main module
 
 ## Limit
 Didn't see how to merge this one-sample-per-timeStep tool with the big-sampleSizde-spatialAverage-at-only-one-timeStep.
