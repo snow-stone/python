@@ -4,10 +4,14 @@ import matplotlib.pyplot as plt
 #from scipy import integrate
 
 import check_data3 as data_check
-import settings
-
 import reference_database as db
-
+#==============================================================================
+# for import settings in parent dir
+import sys
+sys.path.insert(0,'..')
+ 
+import settings
+#==============================================================================
 
 def chart(chunkSizeList):
     N = len(chunkSizeList)
@@ -192,8 +196,16 @@ def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     if ifPlotAllTimes:
         for i in range(nb_chunk):
             ax2.plot(rPlus,chunkedStd[i][:,3][::-1],label=str(i+1),linewidth=1.5)
-            
-    return ax, ax2
+    
+
+    fig3,ax3 = plt.subplots()
+#    ax3.plot(rPlus,std[:,3][::-1],label='division here')
+#    ax3.plot(rPlus,mean[:,3][::-1],label='division here')
+#    ax3.plot(rPlus,chunkedMean[5][:,3][::-1],label='division here',color='purple')
+    ax3.plot(rPlus,std[:,3][::-1]/mean[:,3][::-1],label='simu',color='red')
+    ax3.set_xlim(0,20)
+        
+    return ax, ax2, ax3
 
 
 def main():
@@ -202,7 +214,7 @@ def main():
     
     l = data_check.check_data_shape(startTime=127.9,endTime=150.4,N=501,dataShape=(200,4))
     
-    ax, ax2 = sampleLinesStatistics1d(validDataList=l,chunkStep=100,uTau=uTau,ifPlotAllTimes=True)
+    ax, ax2, ax3 = sampleLinesStatistics1d(validDataList=l,chunkStep=100,uTau=uTau,ifPlotAllTimes=True)
     
 #    settings.sizeLabel = 15
     ax.set_xlabel(r'$r^+$'+' from wall to center',fontsize=settings.sizeLabel)
@@ -213,7 +225,7 @@ def main():
 #    y_=-y_+1
 #    ax.plot(y_[::-1],UzPlus[::-1],label='mean objectif function',color='blue',linewidth=2)
 #    ax.set_xlim(0.,1)
-    yPlus, UzPlus = db.analytic_Uz_meanProfile(uTau,100)
+    yPlus, UzPlus = db.analytic_Uz_meanProfile(uTau,samplingSize=100)
     ax.plot(yPlus, UzPlus, label='mean objectif function', color='blue', linewidth=2)
     
     x1a, y1a = db.data_Eggels_pipe_DNS()
@@ -239,12 +251,26 @@ def main():
     #ax2.set_xscale('log')
     
     deg=6
-    x_PolyFit, y_PolyFit = db.dataFitting_Niewstadt1995_pipe(deg=deg,samplingSize=60)
+    x_PolyFit, y_PolyFit = db.dataFitting_Niewstadt1995_pipe(deg=deg,samplingSize=100)
     ax2.plot(x_PolyFit, y_PolyFit, label='polynomial fitting data of degree %d'%(deg), marker='o')
 #    ax2.set_ylim(0,5)
     #ax2.set_xlim(0,300)
     ax2.legend(bbox_to_anchor=(1.5, 1.2), ncol=1, fancybox=True, shadow=True)
     
-
+    #fig,ax3 = plt.subplots()
+#    print "len(yPlus),len(x_PolyFit)"
+#    print len(yPlus),len(x_PolyFit)
+#    print yPlus
+#    print x_PolyFit
+#    ax3.plot(yPlus, UzPlus, label='mean objectif function', color='blue', linewidth=2)
+#    ax3.plot(x_PolyFit, y_PolyFit, label='polynomial fitting data of degree %d'%(deg), marker='o')
+    ax3.plot(yPlus, y_PolyFit/UzPlus, label='analytic', linewidth=2) 
+    x3, y3 = db.Niewstadt1995_pipe_Fig9()
+    ax3.plot(x3, y3, label='Eggels', linewidth=2)    
+    
+    ax3.set_xlim(0,20)
+    ax3.set_xlabel(r'$r^+$'+' from wall to center',fontsize=settings.sizeLabel)
+    ax3.set_ylabel(r'$rmsU_z^+/U_z^+$',fontsize=settings.sizeLabel)
+    ax3.legend(bbox_to_anchor=(1.5, 1.2), ncol=1, fancybox=True, shadow=True)
 
 main()
