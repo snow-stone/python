@@ -1,4 +1,4 @@
-# sampleLinesStatistics3.py
+# sampleLinesStatistics4.py
 
 ## source
 
@@ -27,7 +27,7 @@ one Plot on rms of Uz (based on the first plot on average Uz)
 ## How
 
 ## Improvement
-add import from `../` functionality, seperating from main module
+add import from `../` functionality, seperating from main module (settings.py reference_database.py)
 
 ## Limit
 Didn't see how to merge this one-sample-per-timeStep tool with the big-sampleSizde-spatialAverage-at-only-one-timeStep.
