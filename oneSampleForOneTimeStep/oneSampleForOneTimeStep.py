@@ -1,26 +1,57 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-#from scipy import integrate
 
-import check_data3 as data_check
-import reference_database as db
-#==============================================================================
-# for import settings in parent dir
+
 import sys
 sys.path.insert(0,'..')
- 
-import settings
-#==============================================================================
+
+
+import general_settings as gs
+
+def convert2TimeDirName(string):
+    if '.' in string:
+        while string[-1] == '0':
+            string = string[:-1] # remove the trailing '0'
+        while string[-1] == '.': # then after that, remove the trailing '.'
+            string = string.rstrip('.')
+    else:
+        print 'Integer timeStep here :', string
+    return string
+
+def pre_check(startTime,endTime,N,dataShape):
+    data=[]
+    validDataList=[]
+    invalidDataList=[]
+    timeArray=np.linspace(startTime, endTime, N)
+    timeList=[str(x) for x in timeArray]
+    
+    for i in range(N):
+        # load the data
+        fileName="../../postProcessing/sets/"+convert2TimeDirName(timeList[i])+"/central_line" + "_U.xy"
+        data.append(np.genfromtxt(fileName))
+        # check array shapes 
+        if data[i].shape == dataShape: #(200,4):
+            validDataList.append(fileName)
+        else :
+            invalidDataList.append(fileName)
+    
+    print "\n"
+    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+    print "            Report Here on pre_check             \n"
+    print "Input sampling size : ", N, " Eligable sampling size : ", len(validDataList), "\n"
+    print "Non-eligable fileName list :"
+    print invalidDataList    
+    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+    return validDataList
+
 
 def chart(chunkSizeList):
     N = len(chunkSizeList)
     
     ind = np.arange(N)  # the x locations for the groups
     width = 0.35       # the width of the bars
-    
-    fig, ax = plt.subplots()
-    
+
     def autolabel(rects):
         """
         Attach a text label above each bar displaying its height
@@ -29,8 +60,9 @@ def chart(chunkSizeList):
             height = rect.get_height()
             ax.text(rect.get_x() + rect.get_width()/2., 1.02*height,
                     '%d' % int(height),
-                    ha='center', va='bottom')    
+                    ha='center', va='bottom')
     
+    fig, ax = plt.subplots()
     
     rects = ax.bar(ind, chunkSizeList, width, color='r')
     autolabel(rects)
@@ -39,12 +71,12 @@ def chart(chunkSizeList):
     print "First/Max rectangle height of all histograms : ", maxHeight
     
     # add some text for labels, title and axes ticks
-    ax.set_ylabel('sample Nb in every chunk. C for Chunk',fontsize=settings.sizeLabel)
-    ax.set_ylim(0,maxHeight+5)
+    ax.set_ylabel('sample Nb in every chunk. C for Chunk',fontsize=gs.sizeLabel)
+    ax.set_ylim(0,maxHeight*1.1)
     ax.set_title('sample Nb by chunk')
     ax.set_xticks(ind + width / 2)
     xlabels = ['C'+str(i+1) for i in range(N)]
-    ax.set_xticklabels(tuple(xlabels),fontsize=settings.sizeLabel)
+    ax.set_xticklabels(tuple(xlabels),fontsize=gs.sizeLabel)
 
 def getChunkedMean(data,chunkStep):
     print "#############\n"
@@ -78,8 +110,8 @@ def getChunkedStd(data,chunkStep,chunkedMean):
                 chunkVar+=(data[j]-chunkedMean[numChunk])**2
                 k=k+1
         numChunk+=1
-        print ' k = ',k
-        print '  numChunk = ', numChunk
+#        print ' k = ',k
+#        print '  numChunk = ', numChunk
         chunkSizeList.append(k)
         chunkedStd.append(np.sqrt(chunkVar/k))
     return chunkSizeList, chunkedStd
@@ -99,13 +131,13 @@ def getChunkedStd1(data,chunkStep,GlobalMean):
                 chunkVar+=(data[j]-GlobalMean)**2
                 k=k+1
         numChunk+=1
-        print ' k = ',k
-        print '  numChunk = ', numChunk
+#        print ' k = ',k
+#        print '  numChunk = ', numChunk
         chunkSizeList.append(k)
         chunkedStd.append(np.sqrt(chunkVar/numChunk))
     return chunkSizeList, chunkedStd
 
-def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
+def process(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
 
 #==============================================================================
     R =0.004
@@ -122,8 +154,6 @@ def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     #uTau=0.0469
 
     nb_chunk=dataSize/chunkStep
-    print "chunk size : ", chunkStep
-    print "Number of complete chunks : ", nb_chunk
     
     for validData in validDataList:
         data.append(np.genfromtxt(validData))
@@ -180,6 +210,7 @@ def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     
     try:
         if chunkSizeList1 == chunkSizeList :
+            print "Important check!!\n"
             print "chunkSizeList1 = chunkSizeList"
     except:
         print "chunkSizeList1 != chunkSizeList. No good sign."
@@ -206,71 +237,3 @@ def sampleLinesStatistics1d(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     ax3.set_xlim(0,20)
         
     return ax, ax2, ax3
-
-
-def main():
-    uTau=0.0473
-    R=0.004    
-    
-    l = data_check.check_data_shape(startTime=127.9,endTime=150.4,N=501,dataShape=(200,4))
-    
-    ax, ax2, ax3 = sampleLinesStatistics1d(validDataList=l,chunkStep=100,uTau=uTau,ifPlotAllTimes=True)
-    
-#    settings.sizeLabel = 15
-    ax.set_xlabel(r'$r^+$'+' from wall to center',fontsize=settings.sizeLabel)
-    ax.set_ylabel(r'$<U_z^+>$',fontsize=settings.sizeLabel)
-    
-#    y_, UzPlus = analytic_Uz_meanProfile(uTau,100)
-#    y_=y_/R
-#    y_=-y_+1
-#    ax.plot(y_[::-1],UzPlus[::-1],label='mean objectif function',color='blue',linewidth=2)
-#    ax.set_xlim(0.,1)
-    yPlus, UzPlus = db.analytic_Uz_meanProfile(uTau,samplingSize=100)
-    ax.plot(yPlus, UzPlus, label='mean objectif function', color='blue', linewidth=2)
-    
-    x1a, y1a = db.data_Eggels_pipe_DNS()
-    ax.plot(x1a, y1a, label='DNS_Eggels', linewidth=2)
-    
-    x1b, y1b = db.data_Eggels_pipe_PIV()
-#    ax.plot(x1b, y1b, label='EXP_PIV', linewidth=2,marker='o')
-    
-    x1c, y1c = db.data_Eggels_pipe_LDA()
-#    ax.plot(x1c, y1c, label='EXP_LDA', linewidth=2,marker='^')
-    
-    x1d, y1d = db.data_Eggels_pipe_HWA()
-#    ax.plot(x1d, y1d, label='EXP_HWA', linewidth=2,marker='s')
-    
-    ax.set_xscale('log')
-    ax.set_xlim(1,200)
-    ax.legend(bbox_to_anchor=(1.7, 1.5), ncol=1, fancybox=True, shadow=True)
-    
-    #x2, y2 = data_Niewstadt1995_pipe()
-    #ax2.plot(x2, y2, label='data Niewstadt1995_pipe', marker='o')
-    ax2.set_xlabel(r'$r^+$'+' from wall to center',fontsize=settings.sizeLabel)
-    ax2.set_ylabel(r'$rmsU_z^+$',fontsize=settings.sizeLabel)
-    #ax2.set_xscale('log')
-    
-    deg=6
-    x_PolyFit, y_PolyFit = db.dataFitting_Niewstadt1995_pipe(deg=deg,samplingSize=100)
-    ax2.plot(x_PolyFit, y_PolyFit, label='polynomial fitting data of degree %d'%(deg), marker='o')
-#    ax2.set_ylim(0,5)
-    #ax2.set_xlim(0,300)
-    ax2.legend(bbox_to_anchor=(1.5, 1.2), ncol=1, fancybox=True, shadow=True)
-    
-    #fig,ax3 = plt.subplots()
-#    print "len(yPlus),len(x_PolyFit)"
-#    print len(yPlus),len(x_PolyFit)
-#    print yPlus
-#    print x_PolyFit
-#    ax3.plot(yPlus, UzPlus, label='mean objectif function', color='blue', linewidth=2)
-#    ax3.plot(x_PolyFit, y_PolyFit, label='polynomial fitting data of degree %d'%(deg), marker='o')
-    ax3.plot(yPlus, y_PolyFit/UzPlus, label='analytic', linewidth=2) 
-    x3, y3 = db.Niewstadt1995_pipe_Fig9()
-    ax3.plot(x3, y3, label='Eggels', linewidth=2)    
-    
-    ax3.set_xlim(0,20)
-    ax3.set_xlabel(r'$r^+$'+' from wall to center',fontsize=settings.sizeLabel)
-    ax3.set_ylabel(r'$rmsU_z^+/U_z^+$',fontsize=settings.sizeLabel)
-    ax3.legend(bbox_to_anchor=(1.5, 1.2), ncol=1, fancybox=True, shadow=True)
-
-main()
