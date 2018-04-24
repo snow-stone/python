@@ -8,6 +8,43 @@ def data_Niewstadt1995_pipe():
     y = data[:,1]
     
     return x, y
+
+def Niewstadt1995_pipe_UrRMS():
+    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UrRMS.csv'
+    data=np.genfromtxt(string,skip_header=1,delimiter=',')
+
+    x = data[:,0]
+    y = data[:,1]
+    
+    return x, y
+
+def dataFitting_Niewstadt1995_pipe(deg,samplingSize):
+    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UzRMS.csv'
+    data=np.genfromtxt(string,skip_header=1,delimiter=',')
+    
+    x = data[:,0]
+    y = data[:,1]
+    
+    z = np.polyfit(x, y, deg)
+    functionPolynome = np.poly1d(z)
+    
+    x_polyFit = np.linspace(min(x),max(x),samplingSize)
+    
+    return x_polyFit, functionPolynome(x_polyFit)
+
+def dataFitting_Niewstadt1995_pipe_UrRMS(deg,samplingSize):
+    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UrRMS.csv'
+    data=np.genfromtxt(string,skip_header=1,delimiter=',')
+    
+    x = data[:,0]
+    y = data[:,1]
+    
+    z = np.polyfit(x, y, deg)
+    functionPolynome = np.poly1d(z)
+    
+    x_polyFit = np.linspace(min(x),max(x),samplingSize)
+    
+    return x_polyFit, functionPolynome(x_polyFit)
     
 def Niewstadt1995_pipe_Fig9():
     string='/home/hluo/Pictures/Niewstadt1995_pipe/Fig9/Fig9.csv'
@@ -53,20 +90,6 @@ def data_Eggels_pipe_HWA():
     y = data[:,1]
     
     return x, y
-
-def dataFitting_Niewstadt1995_pipe(deg,samplingSize):
-    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UzRMS.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-    
-    x = data[:,0]
-    y = data[:,1]
-    
-    z = np.polyfit(x, y, deg)
-    functionPolynome = np.poly1d(z)
-    
-    x_polyFit = np.linspace(min(x),max(x),samplingSize)
-    
-    return x_polyFit, functionPolynome(x_polyFit)
 
 def analytic_Uz_meanProfile(uTau,samplingSize):
     nu=1e-6
