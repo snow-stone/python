@@ -4,8 +4,7 @@
 convertToCylindrical   
 writeSampleDict3.py : write(append mode) to `system/sampleDict_lines`   
 sample -dict system/sampleDict_lines -time '**'   
-sampleLinesStatistics3_Ur.py : Ur
-sampleLinesStatistics3_Uz.py : Uz
+sampleLinesStatistics4_UrUz.py : work for Ur and Uz
 
 ## source
 
@@ -23,6 +22,10 @@ sampleLinesStatistics3_Uz.py : Uz
 ## How
 
 ## Improvement
+module pre_check and process seperated from plot manipulations   
+module general_settings renamed   
+module reference_database renamed   
+main module combines Ur and Uz in a simple but more readable manner
 
 ## Limit
 

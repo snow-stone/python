@@ -90,34 +90,31 @@ def data_Eggels_pipe_HWA():
     y = data[:,1]
     
     return x, y
-
-def analytic_Uz_meanProfile(uTau,samplingSize):
-    nu=1e-6
-#    viscousLayer()
-#    bufferLayer()
-#    logLayer()
-    def viscousLayer(yPlus):
-        return yPlus
-    def bufferLayer(yPlus):
-        return 5.0 * np.log(yPlus) - 3.05
-    def logLayer(yPlus):
-        return 2.5 * np.log(yPlus) + 5.5
-        
-    yPlus=np.linspace(0,170,samplingSize)
-    y=yPlus*nu/uTau
-    Uz=np.zeros(len(y))
-    for i in range(len(y)):
-        if yPlus[i] < 5:
-            Uz[i] = uTau * viscousLayer(yPlus[i])
-        elif yPlus[i] >= 5 and yPlus[i] < 30:
-            Uz[i] = uTau * bufferLayer(yPlus[i])
-        else:
-            Uz[i] = uTau * logLayer(yPlus[i])
-            
-#    fig,ax = plt.subplots()
-#    ax.set_xscale('log')
-#    ax.plot(yPlus,Uz/uTau,label='mean',color='red')
-    return yPlus, Uz/uTau
+#
+#def analytic_Uz_meanProfile(uTau,samplingSize):
+#    nu=1e-6
+##    viscousLayer()
+##    bufferLayer()
+##    logLayer()
+#    def viscousLayer(yPlus):
+#        return yPlus
+#    def bufferLayer(yPlus):
+#        return 5.0 * np.log(yPlus) - 3.05
+#    def logLayer(yPlus):
+#        return 2.5 * np.log(yPlus) + 5.5
+#        
+#    yPlus=np.linspace(0,170,samplingSize)
+#    y=yPlus*nu/uTau
+#    Uz=np.zeros(len(y))
+#    for i in range(len(y)):
+#        if yPlus[i] < 5:
+#            Uz[i] = uTau * viscousLayer(yPlus[i])
+#        elif yPlus[i] >= 5 and yPlus[i] < 30:
+#            Uz[i] = uTau * bufferLayer(yPlus[i])
+#        else:
+#            Uz[i] = uTau * logLayer(yPlus[i])
+#            
+#    return yPlus, Uz/uTau
     
 def analytic_Uz_meanProfile(ifwallcoor, uTau,samplingSize):
     nu=1e-6
@@ -142,9 +139,6 @@ def analytic_Uz_meanProfile(ifwallcoor, uTau,samplingSize):
         else:
             Uz[i] = uTau * logLayer(yPlus[i])
             
-#    fig,ax = plt.subplots()
-#    ax.set_xscale('log')
-#    ax.plot(yPlus,Uz/uTau,label='mean',color='red')
     if not ifwallcoor :
         return y, Uz/uTau
     elif ifwallcoor :

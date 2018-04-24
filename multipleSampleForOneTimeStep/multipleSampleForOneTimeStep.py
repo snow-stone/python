@@ -1,92 +1,87 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import integrate
 
-def readLines(location,baseName,i):
-    data=np.genfromtxt(
-                        location
-                        +baseName
-                        +str(i)
-                        +'_U'
-                        +'.xy'
-                        ,delimiter=' ')
-    return data
-        
-def main():
-    Nb_lines=160
+def pre_check(N,rightDataShape):
+    #N : Input number of data files 
+    #rightDataShape : 2darray's shape : a tuple like (200,4)
     data=[]
-    for i in range(Nb_lines):
-        #data[i] = readLines('../postProcessing/sets/1/','line',i)  ## list index out of range
-        data.append(readLines('../postProcessing/sets/1/','line',i))
-    #print data[1].shape
-    #print data[0]
-    #print type(data),type(data[1])
+    validDataList=[]
+    invalidDataList=[]
     
-    #print data[0][:2]    
+    for i in range(N):
+        # load the data
+        fileName="../../../postProcessing/sets/150.4/line" + str(i) + "_Ucyl.xy"
+        data.append(np.genfromtxt(fileName))
+        # check array shapes 
+        if data[i].shape == rightDataShape:
+            validDataList.append(fileName)
+        else :
+            invalidDataList.append(fileName)
     
-    #print data[0][:,0],type(data[0][:,0])
-    #print data[0][:,1]
-    
-    #print data[0],data[0].shape
-    #print data[0][:,:2],type(data[0][:,:2]),data[0][:,:2].shape
-    
-    mean=np.zeros(data[0].shape)
-    for i in range(Nb_lines):
-        mean+=data[i]
-    mean/=Nb_lines
-    
-    fig,ax = plt.subplots()
+    print "\n"
+    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+    print "            Report Here on pre_check             \n"
+    print "Input sampling size : ", N, " Eligable sampling size : ", len(validDataList), "\n"
+    print "Non-eligable fileName list :"
+    print invalidDataList    
+    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+    return validDataList
+        
+def process(rightDataShape,validDataList,uTau,ifPlotAllTimes=False,colonNb=3):
+    #rightDataShape : 2darray's shape : a tuple like (200,4)
+    #validDataList : list : output from pre_check
+    #uTau : float : friction velocity
+    #ifPlotAllTimes : bool : if plotting or not the sample, not just the mean
+    #colonNb : integer : colon = 1 or colon = 3 (Ur or Uz)
+#==============================================================================
     R =0.004
-    #Ub=0.6625
-    Ub=0.05
-    #Ub=1
+    nu=1.0e-6    
+#==============================================================================
+    
+    data=[]
+    validDataListSize=len(validDataList)
+    for validData in validDataList:
+        data.append(np.genfromtxt(validData))
+    
+    mean=np.zeros(rightDataShape)
+    for i in range(validDataListSize):
+        mean+=data[i]
+    mean/=validDataListSize
+    
+    # xcoord
     x=mean[:,0]/R
-    mean[:,1:]=mean[:,1:]/Ub
-    for i in range(Nb_lines):
-        data[i][:,1:]=data[i][:,1:]/Ub
+    mean[:,1:]=mean[:,1:]/uTau
+    for i in range(validDataListSize):
+        data[i][:,1:]=data[i][:,1:]/uTau
     
-    r=-x+1
-    r=r[::-1]
-    integral_1D = integrate.simps(mean[:,3],r)
-    integral_2D = integrate.simps((2*np.pi)*mean[:,3]*r,r)
-    print "integrate the mean profile 1D cartesian : ", integral_1D
-    print "average velocity : ", Ub * integral_1D / 1.0
-    print "integrate the mean profile 2D polar : ", integral_2D
-    print "average velocity : ", Ub * integral_2D / (np.pi * 1.0**2)
-    ax.plot(-x+1,mean[:,3],label='mean',color='red')
-    for i in range(Nb_lines):
-        #ax.plot(x,data[i][:,3],label='0')
-        continue
-    sizeLabel = 15
-    ax.set_xlabel(r'$r$',fontsize=sizeLabel)
-    ax.set_ylabel(r'$<U>^+$',fontsize=sizeLabel)
+#    r=-x+1
+#    r=r[::-1]
+#    integral_1D = integrate.simps(mean[:,3],r)
+#    integral_2D = integrate.simps((2*np.pi)*mean[:,3]*r,r)
+#    print "integrate the mean profile 1D cartesian : ", integral_1D
+#    print "average velocity : ", uTau * integral_1D / 1.0
+#    print "integrate the mean profile 2D polar : ", integral_2D
+#    print "average velocity : ", uTau * integral_2D / (np.pi * 1.0**2)
+    fig,ax = plt.subplots()
+    ax.plot(x,mean[:,colonNb],label='mean',color='red',linewidth=2)
+    ax.plot(x,mean[:,colonNb]*uTau/(uTau*0.85),label='mean -15%',linewidth=2)
+    ax.plot(x,mean[:,colonNb]*uTau/(uTau*1.15),label='mean +15%',linewidth=2)
+    if ifPlotAllTimes:
+        for i in range(0, validDataListSize, 20):
+            ax.plot(x,data[i][:,colonNb],label=str(i))
     
-    var=np.zeros(data[0].shape)
-    for i in range(Nb_lines):
+    var=np.zeros(rightDataShape)
+    for i in range(validDataListSize):
         var+=(data[i]-mean)**2
-    var/=Nb_lines
+    var/=validDataListSize
     std=np.sqrt(var)
-    #std=var.sqrt()
-    
-#==============================================================================
-#     fig1,ax1 = plt.subplots()
-#     ax1.plot(x,var[:,3],label='var',color='red')
-#==============================================================================
     
     fig2,ax2 = plt.subplots()
-    ax2.plot(x*R*Ub/1.0e-6,std[:,3],label='simu',color='red',marker='^')
-    sizeLabel = 15
-    ax2.set_xlabel(r'$y^+$',fontsize=sizeLabel)
-    ax2.set_ylabel(r'$rmsU_z^+$',fontsize=sizeLabel)
-    ax2.set_xscale('log')
-    
-    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UzRMS.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
+    # rPlus is defined to be zero at wall
+    # thus need to reverse the second plotting dimension too !
+    # or data will not fit at all
+    rPlus=-x+1
+    rPlus=rPlus[::-1]*R*uTau/nu
+    ax2.plot(rPlus,std[:,colonNb][::-1],label='simu',color='red',marker='^')
 
-    x2 = [iterator[0] for iterator in data]
-    y2 = [iterator[1] for iterator in data]
-    ax2.plot(x2, y2, label='data to fit Niewstadt1995_pipe', marker='o')
-    ax2.legend(bbox_to_anchor=(1, 1.2), ncol=2, fancybox=True, shadow=True)
-    
-main()
+    return ax, ax2
