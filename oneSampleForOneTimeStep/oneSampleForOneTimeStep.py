@@ -207,13 +207,12 @@ def process(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
 
     chunkSizeList1, chunkedStd = getChunkedStd(data,chunkStep,chunkedMean)
 #    chunkSizeList1, chunkedStd = getChunkedStd1(data,chunkStep,mean)
-    
-    try:
-        if chunkSizeList1 == chunkSizeList :
-            print "Important check!!\n"
-            print "chunkSizeList1 = chunkSizeList"
-    except:
-        print "chunkSizeList1 != chunkSizeList. No good sign."
+
+    if chunkSizeList1 == chunkSizeList :
+        print "Important check!!\n"
+        print "chunkSizeList1 = chunkSizeList"
+    else :
+        sys.exit("chunkSizeList1 == chunkSizeList"+" check didn't pass")
     #print chunkedStd[0]
 
     fig2,ax2 = plt.subplots()
