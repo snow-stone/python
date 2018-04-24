@@ -3,7 +3,31 @@ import numpy as np
 import matplotlib.pyplot as plt
 #from scipy import integrate
 
-import check_data3 as data_check
+#import check_data3 as data_check
+
+import sys
+sys.path.insert(0,'..')
+
+import reference_database as db
+
+def check_data_shape(N):
+    N=160
+    data=[]
+    validDataList=[]
+    
+    for i in range(N):
+        # load the data
+        fileName="../../postProcessing/sets/150.4/line" + str(i) + "_Ucyl.xy"
+        data.append(np.genfromtxt(fileName))
+        # check array shapes 
+        if data[i].shape == (200,4):
+            validDataList.append(fileName)
+        else :
+            print "#################################################\n"
+            print "data file " + fileName + " has a different dimension to ", (200, 4)
+            print "remove it from validDataList"
+
+    return validDataList
         
 def sampleLinesStatistics2d(validDataList,uTau,ifPlotAllTimes=False):
     
@@ -40,8 +64,8 @@ def sampleLinesStatistics2d(validDataList,uTau,ifPlotAllTimes=False):
     fig,ax = plt.subplots()
     ax.plot(x,mean[:,3],label='mean',color='red',linewidth=2)
     if ifPlotAllTimes:
-        for i in range(sampleSize):
-            ax.plot(x,data[i][:,3],label='0')
+        for i in range(0, sampleSize, 20):
+            ax.plot(x,data[i][:,3],label=str(i))
     
     var=np.zeros(data[0].shape)
     for i in range(sampleSize):
@@ -59,83 +83,32 @@ def sampleLinesStatistics2d(validDataList,uTau,ifPlotAllTimes=False):
 
     return ax, ax2
 
-def data_Niewstadt1995_pipe():
-    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UzRMS.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-
-    x = data[:,0]
-    y = data[:,1]
-    
-    return x, y
-
-def dataFitting_Niewstadt1995_pipe(deg,samplingSize):
-    string='/home/hluo/Pictures/Niewstadt1995_pipe/rmsProfile_velocity/pipeFlow_UzRMS.csv'
-    data=np.genfromtxt(string,skip_header=1,delimiter=',')
-    
-    x = data[:,0]
-    y = data[:,1]
-    
-    z = np.polyfit(x, y, deg)
-    functionPolynome = np.poly1d(z)
-    
-    x_polyFit = np.linspace(min(x),max(x),samplingSize)
-    
-    return x_polyFit, functionPolynome(x_polyFit)
-
-def analytic_Uz_meanProfile(uTau,samplingSize):
-    nu=1e-6
-#    viscousLayer()
-#    bufferLayer()
-#    logLayer()
-    def viscousLayer(yPlus):
-        return yPlus
-    def bufferLayer(yPlus):
-        return 5.0 * np.log(yPlus) - 3.05
-    def logLayer(yPlus):
-        return 2.5 * np.log(yPlus) + 5.5
-        
-    yPlus=np.linspace(0,170,samplingSize)
-    y=yPlus*nu/uTau
-    Uz=np.zeros(len(y))
-    for i in range(len(y)):
-        if yPlus[i] < 5:
-            Uz[i] = uTau * viscousLayer(yPlus[i])
-        elif yPlus[i] >= 5 and yPlus[i] < 30:
-            Uz[i] = uTau * bufferLayer(yPlus[i])
-        else:
-            Uz[i] = uTau * logLayer(yPlus[i])
-            
-#    fig,ax = plt.subplots()
-#    ax.set_xscale('log')
-#    ax.plot(yPlus,Uz/uTau,label='mean',color='red')
-    return y, Uz/uTau
-
 def main():
     
-    l = data_check.check_data_shape(160)
-    ax, ax2 = sampleLinesStatistics2d(validDataList=l,uTau=0.0469,ifPlotAllTimes=False)
+    l = check_data_shape(160)
+    ax, ax2 = sampleLinesStatistics2d(validDataList=l,uTau=0.0469,ifPlotAllTimes=True)
     sizeLabel = 15
     
     ax.set_xlabel(r'$r$'+' from center to wall',fontsize=sizeLabel)
     ax.set_ylabel(r'$<U_z>^+$',fontsize=sizeLabel)
     
-    uTau=0.0469
+    uTau=0.0473
     R=0.004
-    y_, UzPlus = analytic_Uz_meanProfile(uTau,100)
+    y_, UzPlus = db.analytic_Uz_meanProfile(False,uTau,100)
     y_=y_/R
     y_=-y_+1
     ax.plot(y_[::-1],UzPlus[::-1],label='mean objectif function',color='blue',linewidth=2)
     ax.set_xlim(0,1)
-    ax.legend(bbox_to_anchor=(1, 1.2), ncol=1, fancybox=True, shadow=True)
+    ax.legend(bbox_to_anchor=(1.7, 1.2), ncol=1, fancybox=True, shadow=True)
     
-    x2, y2 = data_Niewstadt1995_pipe()
+    x2, y2 = db.data_Niewstadt1995_pipe()
     ax2.plot(x2, y2, label='data Niewstadt1995_pipe', marker='o')
     ax2.set_xlabel(r'$r^+$'+' from wall to center',fontsize=sizeLabel)
     ax2.set_ylabel(r'$rmsU_z^+$',fontsize=sizeLabel)
     ax2.set_xscale('log')
     
     deg=6
-    x_PolyFit, y_PolyFit = dataFitting_Niewstadt1995_pipe(deg=deg,samplingSize=60)
+    x_PolyFit, y_PolyFit = db.dataFitting_Niewstadt1995_pipe(deg=deg,samplingSize=60)
     ax2.plot(x_PolyFit, y_PolyFit, label='polynomial fitting data of degree %d'%(deg), marker='o')
     ax2.set_ylim(0,5)
     ax2.set_xlim(0,300)
