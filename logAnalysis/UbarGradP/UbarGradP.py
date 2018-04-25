@@ -5,7 +5,6 @@ Created on Thu Mar 22 14:50:51 2018
 @author: hluo
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
