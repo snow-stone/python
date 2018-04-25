@@ -8,7 +8,11 @@ Created on Thu Mar 22 14:50:51 2018
 import matplotlib.pyplot as plt
 import sys
 
-def getUbarGradP(logFile,n):
+sys.path.insert(0,'../..')
+
+import general_settings as gs
+
+def reader(logFile,n):
     #logFile : relative postion of logFile : string
     #n : number of Ubar (GradP) output in logFile : integer
     timeList=[]
@@ -17,7 +21,6 @@ def getUbarGradP(logFile,n):
     
     with open(logFile,'r') as fin:
         print "READING file : "+logFile+"\n"
-        print "..."
         for line in fin:
             if line.startswith("Time = "):
                 #print line
@@ -35,6 +38,7 @@ def getUbarGradP(logFile,n):
 #    Ubar=np.array(Ubar).astype(np.float64)
 #    gradP=np.array(gradP).astype(np.float64)
     
+    print "len(timeList),len(Ubar),len(gradP)"
     print len(timeList),len(Ubar),len(gradP)
     
     if n*len(timeList) == len(Ubar) and n*len(timeList) == len(gradP) :
@@ -42,37 +46,42 @@ def getUbarGradP(logFile,n):
     else:
         sys.exit(str(n)+"*len(timeList) == len(Ubar) and "+str(n)+"*len(timeList) == len(gradP)"+"check didn't pass")
     
-    ## first figure
+    return timeList, Ubar, gradP
+    
+
+def Fig1_firstTimeSteps(n, timeStepEnd, timeList, Ubar, gradP):
     fig1,ax1 = plt.subplots()
-    end1=1000
-    ax1.plot(timeList[:end1:],Ubar[:end1*3:3],linewidth=1.5,label='uncorrected velocity',color='red')
+    timeStepEnd=1000
+    ax1.plot(timeList[:timeStepEnd:],Ubar[:timeStepEnd*n:n],linewidth=1.5,label='uncorrected velocity',color='red')
     ax2 = ax1.twinx()
-    ax2.plot(timeList[:end1:],gradP[:end1*3:3],linewidth=1.5,label='gradP',color='blue')
-    #global sizeLabel
-    sizeLabel = 15
-    ax1.set_xlabel(r'$t$',fontsize=sizeLabel)
-    ax1.set_ylabel(r'$Ubar$',fontsize=sizeLabel)
+    ax2.plot(timeList[:timeStepEnd:],gradP[:timeStepEnd*n:n],linewidth=1.5,label='gradP',color='blue')
+    ax1.set_xlabel(r'$t$',fontsize=gs.sizeLabel)
+    ax1.set_ylabel(r'$Ubar$',fontsize=gs.sizeLabel)
     ax1.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
     #ax1.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
     #ax1.tick_params(colors='r')
-    ax2.set_ylabel(r'$gradP$',fontsize=sizeLabel)
+    ax2.set_ylabel(r'$gradP$',fontsize=gs.sizeLabel)
     ax2.tick_params(colors='b')
     ax2.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
-    ax1.set_title('First %d time steps : PID controler'%(end1),y=1.1)
+    ax1.set_title('First %d time steps'%(timeStepEnd),y=1.1)
     
-    ## second figure
-    fig2,ax3 = plt.subplots()
-    ax3.plot(timeList[100::],Ubar[300::3],linewidth=1.5,label='uncorrected velocity',color='red')
-    ax4 = ax3.twinx()
-    ax4.plot(timeList[100::],gradP[300::3],linewidth=1.5,label='gradP',color='blue')
-    #global sizeLabel
-    sizeLabel = 15
-    ax3.set_xlabel(r'$t$',fontsize=sizeLabel)
-    ax3.set_ylabel(r'$Ubar$',fontsize=sizeLabel)
-    ax3.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
-    ax3.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
+def Fig2_lastTimeSteps(n, timeStepStart, timeList, Ubar, gradP):
+    fig,ax1 = plt.subplots()
+    ax1.plot(timeList[timeStepStart::],Ubar[n*timeStepStart::n],linewidth=1.5,label='uncorrected velocity',color='red')
+    ax2 = ax1.twinx()
+    ax2.plot(timeList[timeStepStart::],gradP[n*timeStepStart::n],linewidth=1.5,label='gradP',color='blue')
+    ax1.set_xlabel(r'$t$',fontsize=gs.sizeLabel)
+    ax1.set_ylabel(r'$Ubar$',fontsize=gs.sizeLabel)
+#    ax2.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+#    ax1.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
     #ax1.tick_params(colors='r')
-    ax4.set_ylabel(r'$gradP$',fontsize=sizeLabel)
-    ax4.tick_params(colors='b')
-    
-getUbarGradP('../logSimulation2',3)
+    ax2.set_ylabel(r'$gradP$',fontsize=gs.sizeLabel)
+    ax2.tick_params(colors='b')
+    ax1.set_title('from time steps %d to the end'%(timeStepStart),y=1.1)
+
+def getUbarGradP(logFile,n):
+    timeList, Ubar, gradP = reader(logFile,n)
+    Fig1_firstTimeSteps(n, 1000, timeList, Ubar, gradP)
+    Fig2_lastTimeSteps(n, 1000, timeList, Ubar, gradP)
+
+getUbarGradP('../../logSimulation2',3)
