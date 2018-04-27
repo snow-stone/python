@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def pre_check(N,rightDataShape):
+def pre_check(N,rightDataShape,timeStep,relativePathToData):
     #N : Input number of data files 
     #rightDataShape : 2darray's shape : a tuple like (200,4)
     data=[]
@@ -10,7 +10,7 @@ def pre_check(N,rightDataShape):
     
     for i in range(N):
         # load the data
-        fileName="../postProcessing/sets/150.4/line" + str(i) + "_Ucyl.xy"
+        fileName=relativePathToData+"postProcessing/sets/"+str(timeStep)+"/line" + str(i) + "_Ucyl.xy"
         data.append(np.genfromtxt(fileName))
         # check array shapes 
         if data[i].shape == rightDataShape:
@@ -26,55 +26,77 @@ def pre_check(N,rightDataShape):
     print invalidDataList    
     print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
     return validDataList
+
+def getMean(rightDataShape,data):
+    mean=np.zeros(rightDataShape)
+    for i in range(len(data)):
+        mean+=data[i]
+    mean/=len(data)
+    return mean
+    
+def getStd(rightDataShape,data,mean):
+    std=np.zeros(rightDataShape)
+    for i in range(len(data)):
+        std+=(data[i]-mean)**2
+    std/=len(data)
+    std=np.sqrt(std)
+    return std
         
-def process(rightDataShape,validDataList,uTau,ifPlotAllTimes=False,colonNb=3):
+def process(R,nu,rightDataShape,validDataList,uTau,ifPlotSample=False,colonNb=3):
     #rightDataShape : 2darray's shape : a tuple like (200,4)
     #validDataList : list : output from pre_check
     #uTau : float : friction velocity
-    #ifPlotAllTimes : bool : if plotting or not the sample, not just the mean
+    #ifPlotSample : bool : if plotting or not the sample, not just the mean
     #colonNb : integer : colon = 1 or colon = 3 (Ur or Uz)
 #==============================================================================
-    R =0.004
-    nu=1.0e-6    
-#==============================================================================
-    
-    data=[]
+#   initialization
+#   if ifPlotSample == True
+    samplePrintInterval=40    
+    dataList=[]
     validDataListSize=len(validDataList)
+#==============================================================================
+#   preparation
     for validData in validDataList:
-        data.append(np.genfromtxt(validData))
-    
-    mean=np.zeros(rightDataShape)
-    for i in range(validDataListSize):
-        mean+=data[i]
-    mean/=validDataListSize
-    
-    # rbyR : r/R
+        dataList.append(np.genfromtxt(validData))
+#   mind that dataList contains also coord information so that mean and std here
+#   only have a meaning for colon 1,2,3
+    mean = getMean(rightDataShape,dataList)
+    std = getStd(rightDataShape,dataList,mean)    
+#==============================================================================
+#   preparing for plot
+#   coordinate system    
+    # rbyR
     rbyR=mean[:,0]/R
     # rPlus is defined to be zero at wall
     # thus need to reverse the second plotting dimension too !
     # or data will not fit at all
     rPlus=-rbyR+1
     rPlus=rPlus[::-1]*R*uTau/nu
-#    # data and mean by uTau
-#    mean[:,1:]=mean[:,1:]/uTau
-#    for i in range(validDataListSize):
-#        data[i][:,1:]=data[i][:,1:]/uTau
+    
+    print "\n"
+    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+    print "         Resume on coordinate system             \n"
+    print "For abssise"
+    print "\t External varible :"
+    print "\t rbyR - r/R from center to wall\n"
+    print "\t Internal/wall varible :"
+    print "\t rPlus - from wall to center"
+    print "\t       - when plotting reverse the ordinate/second dimension\n"
+    print "For ordinate"
+    print "\t For flexibility :"
+    print "\t Only non-dimensionize them when plotting.\n"
+    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+
+#==============================================================================
     
     fig1,ax1 = plt.subplots()
-#    ax1.plot(rPlus,mean[:,colonNb][::-1]/uTau,label='mean',color='black',linewidth=1.5)
-    ax1.plot(rbyR/2.0,mean[:,colonNb]/max(mean[:,colonNb]),label='mean',color='red',linewidth=2)
-    if ifPlotAllTimes:
-        for i in range(0, validDataListSize, 20):
-            ax1.plot(rbyR,data[i][:,colonNb]/uTau,label=str(i))
+    ax1.plot(rbyR/2.0,mean[:,colonNb]/max(mean[:,colonNb]),label='mean',color='red',linewidth=4)
+    if ifPlotSample:
+        for i in range(0, validDataListSize, samplePrintInterval):
+            ax1.plot(rbyR/2.0,dataList[i][:,colonNb]/max(dataList[i][:,colonNb]),label=str(i))
     
-    var=np.zeros(rightDataShape)
-    for i in range(validDataListSize):
-        var+=(data[i]-mean)**2
-    var/=validDataListSize
-    std=np.sqrt(var)
     
     fig2,ax2 = plt.subplots()
-
     ax2.plot(rPlus,std[:,colonNb][::-1]/uTau,label='simu',color='red',marker='^')
 
     return ax1, ax2
