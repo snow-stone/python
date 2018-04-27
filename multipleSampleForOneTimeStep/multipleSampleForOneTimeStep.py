@@ -10,7 +10,7 @@ def pre_check(N,rightDataShape):
     
     for i in range(N):
         # load the data
-        fileName="../../../postProcessing/sets/150.4/line" + str(i) + "_Ucyl.xy"
+        fileName="../postProcessing/sets/150.4/line" + str(i) + "_Ucyl.xy"
         data.append(np.genfromtxt(fileName))
         # check array shapes 
         if data[i].shape == rightDataShape:
@@ -48,27 +48,24 @@ def process(rightDataShape,validDataList,uTau,ifPlotAllTimes=False,colonNb=3):
         mean+=data[i]
     mean/=validDataListSize
     
-    # xcoord
-    x=mean[:,0]/R
-    mean[:,1:]=mean[:,1:]/uTau
-    for i in range(validDataListSize):
-        data[i][:,1:]=data[i][:,1:]/uTau
+    # rbyR : r/R
+    rbyR=mean[:,0]/R
+    # rPlus is defined to be zero at wall
+    # thus need to reverse the second plotting dimension too !
+    # or data will not fit at all
+    rPlus=-rbyR+1
+    rPlus=rPlus[::-1]*R*uTau/nu
+#    # data and mean by uTau
+#    mean[:,1:]=mean[:,1:]/uTau
+#    for i in range(validDataListSize):
+#        data[i][:,1:]=data[i][:,1:]/uTau
     
-#    r=-x+1
-#    r=r[::-1]
-#    integral_1D = integrate.simps(mean[:,3],r)
-#    integral_2D = integrate.simps((2*np.pi)*mean[:,3]*r,r)
-#    print "integrate the mean profile 1D cartesian : ", integral_1D
-#    print "average velocity : ", uTau * integral_1D / 1.0
-#    print "integrate the mean profile 2D polar : ", integral_2D
-#    print "average velocity : ", uTau * integral_2D / (np.pi * 1.0**2)
-    fig,ax = plt.subplots()
-    ax.plot(x,mean[:,colonNb],label='mean',color='red',linewidth=2)
-    ax.plot(x,mean[:,colonNb]*uTau/(uTau*0.85),label='mean -15%',linewidth=2)
-    ax.plot(x,mean[:,colonNb]*uTau/(uTau*1.15),label='mean +15%',linewidth=2)
+    fig1,ax1 = plt.subplots()
+#    ax1.plot(rPlus,mean[:,colonNb][::-1]/uTau,label='mean',color='black',linewidth=1.5)
+    ax1.plot(rbyR/2.0,mean[:,colonNb]/max(mean[:,colonNb]),label='mean',color='red',linewidth=2)
     if ifPlotAllTimes:
         for i in range(0, validDataListSize, 20):
-            ax.plot(x,data[i][:,colonNb],label=str(i))
+            ax1.plot(rbyR,data[i][:,colonNb]/uTau,label=str(i))
     
     var=np.zeros(rightDataShape)
     for i in range(validDataListSize):
@@ -77,11 +74,7 @@ def process(rightDataShape,validDataList,uTau,ifPlotAllTimes=False,colonNb=3):
     std=np.sqrt(var)
     
     fig2,ax2 = plt.subplots()
-    # rPlus is defined to be zero at wall
-    # thus need to reverse the second plotting dimension too !
-    # or data will not fit at all
-    rPlus=-x+1
-    rPlus=rPlus[::-1]*R*uTau/nu
-    ax2.plot(rPlus,std[:,colonNb][::-1],label='simu',color='red',marker='^')
 
-    return ax, ax2
+    ax2.plot(rPlus,std[:,colonNb][::-1]/uTau,label='simu',color='red',marker='^')
+
+    return ax1, ax2
