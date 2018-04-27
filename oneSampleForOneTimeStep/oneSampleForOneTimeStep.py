@@ -79,38 +79,35 @@ def chart(chunkSizeList):
     ax.set_xticklabels(tuple(xlabels),fontsize=gs.sizeLabel)
 
 def getChunkSizeList(rightDataShape,data,chunkStep):
-    chunkSum=np.zeros(rightDataShape)
     chunkSizeList=[]
     for i in range(0, len(data), chunkStep):
         k=0
-        chunkSum=0
         for j in range(i, i+chunkStep):
-            if j < len(data):            
-                chunkSum+=data[j]
+            if j < len(data):
                 k=k+1
         chunkSizeList.append(k)
     return chunkSizeList
 
 def getChunkedMean(rightDataShape,chunkSizeList,data,chunkStep):
-    chunkSum=np.zeros(rightDataShape)
+    tmp_Sum=np.zeros(rightDataShape)
     chunkedMean=[]
     for chunkHead in range(0, len(data), chunkStep):
-        chunkSum=0
+        tmp_Sum=0
         curr_chunk=chunkHead // chunkStep
         for j in range(chunkHead, chunkHead+chunkSizeList[curr_chunk]):
-            chunkSum+=data[j]
-        chunkedMean.append(chunkSum/chunkSizeList[curr_chunk])
+            tmp_Sum+=data[j]
+        chunkedMean.append(tmp_Sum/chunkSizeList[curr_chunk])
     return chunkedMean
 
 def getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean):
-    chunkVar=np.zeros(rightDataShape)
+    tmp_Sum=np.zeros(rightDataShape)
     chunkedStd=[]
     for chunkHead in range(0, len(data), chunkStep):
-        chunkVar=0
+        tmp_Sum=0
         curr_chunk=chunkHead // chunkStep
         for j in range(chunkHead, chunkHead+chunkSizeList[curr_chunk]):
-            chunkVar+=(data[j]-chunkedMean[curr_chunk])**2
-        chunkedStd.append(np.sqrt(chunkVar/chunkSizeList[curr_chunk]))
+            tmp_Sum+=(data[j]-chunkedMean[curr_chunk])**2
+        chunkedStd.append(np.sqrt(tmp_Sum/chunkSizeList[curr_chunk]))
     return chunkedStd
 
 def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
@@ -147,7 +144,6 @@ def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     rbyR=mean[:,0]/R
     for i in range(nb_chunk):
         chunkedMean[i]=chunkedMean[i]/uTau
-    print "rbyR min ",min(rbyR),"rbyR max ",max(rbyR)
     mean[:,1:]=mean[:,1:]/uTau
     for i in range(validDataListSize):
         data[i][:,1:]=data[i][:,1:]/uTau
