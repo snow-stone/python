@@ -1,12 +1,7 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
-
-
 import sys
 sys.path.insert(0,'..')
-
-
 import general_settings as gs
 
 def convert2TimeDirName(string):
@@ -49,7 +44,6 @@ def pre_check(startTime,endTime,N,rightDataShape,relativePathToData):
     print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
     return validDataList
 
-
 def chart(chunkSizeList):
     N = len(chunkSizeList)
     
@@ -67,12 +61,10 @@ def chart(chunkSizeList):
                     ha='center', va='bottom')
     
     fig, ax = plt.subplots()
-    
     rects = ax.bar(ind, chunkSizeList, width, color='r')
     autolabel(rects)
-
+    # get height of first rectangle element
     maxHeight=rects.patches[0].get_height()
-#    print "First/Max rectangle height of all histograms : ", maxHeight
     
     # add some text for labels, title and axes ticks
     ax.set_ylabel('sample Nb in every chunk. C for Chunk',fontsize=gs.sizeLabel)
@@ -83,6 +75,21 @@ def chart(chunkSizeList):
     xlabels = ['C'+str(i+1) for i in range(N)]
     ax.set_xticklabels(tuple(xlabels),fontsize=gs.sizeLabel)
 
+def getMean(rightDataShape,data):
+    mean=np.zeros(rightDataShape)
+    for i in range(len(data)):
+        mean+=data[i]
+    mean/=len(data)
+    return mean
+
+def getStd(rightDataShape,data,mean):
+    std=np.zeros(rightDataShape)
+    for i in range(len(data)):
+        std+=(data[i]-mean)**2
+    std/=len(data)
+    std=np.sqrt(std)
+    return std
+    
 def getChunkSizeList(rightDataShape,data,chunkStep):
     chunkSizeList=[]
     for i in range(0, len(data), chunkStep):
@@ -115,13 +122,10 @@ def getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean):
         chunkedStd.append(np.sqrt(tmp_Sum/chunkSizeList[curr_chunk]))
     return chunkedStd
 
-def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
+def process(R,nu,rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False,colonNb=3):
 
 #==============================================================================
 #   initialization
-    R =0.004
-    nu=1.0e-6
-    
     data=[]
     chunkedMean=[]
     chunkedStd=[]
@@ -133,19 +137,19 @@ def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     
     for validData in validDataList:
         data.append(np.genfromtxt(validData))
-    
-    mean=np.zeros(rightDataShape)
-    for i in range(validDataListSize):
-        mean+=data[i]
-    mean/=validDataListSize
+#   no-chunked mean and std    
+    mean = getMean(rightDataShape,data)
+    std = getStd(rightDataShape,data,mean)
 #==============================================================================
 #   chunk the time series and chart-plot    
     chunkSizeList = getChunkSizeList(rightDataShape,data,chunkStep)
     chart(chunkSizeList)
 #   calculate chunkedMean
     chunkedMean = getChunkedMean(rightDataShape,chunkSizeList,data,chunkStep)
-
+#   calculate chunkedStd
+    chunkedStd = getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean)
 #==============================================================================
+#   preparing for plot
 #   coordinate system    
     # rbyR
     rbyR=mean[:,0]/R
@@ -165,47 +169,25 @@ def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     print "\t rPlus - from wall to center"
     print "\t       - when plotting reverse the ordinate/second dimension\n"
     print "For ordinate"
+    print "\t For flexibility :"
     print "\t Only non-dimensionize them when plotting.\n"
     print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
-    
-    for i in range(nb_chunk):
-        chunkedMean[i]=chunkedMean[i]/uTau
-    mean[:,1:]=mean[:,1:]/uTau
-    for i in range(validDataListSize):
-        data[i][:,1:]=data[i][:,1:]/uTau
-    
+
+#==============================================================================
+#   thus it begins : plots
     fig1,ax1 = plt.subplots()
-#    ax1.plot(rbyR,mean[:,3],label='mean',color='red',linewidth=5)
-
-#    if ifPlotAllTimes:
-#        for i in range(nb_chunk):
-#            ax1.plot(rbyR,chunkedMean[i][:,3],label=str(i+1))
-
+    ax1.plot(rPlus,mean[:,colonNb][::-1]/uTau,label='mean',color='red',linewidth=5)
     if ifPlotAllTimes:
         for i in range(nb_chunk):
-            ax1.plot(rPlus,chunkedMean[i][:,3][::-1],label=str(i+1),linewidth=4)
-    
-    var=np.zeros(rightDataShape)
-    for i in range(validDataListSize):
-        var+=(data[i]-mean)**2
-    var/=validDataListSize
-    std=np.sqrt(var)
-
-    chunkedStd = getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean)
+            ax1.plot(rPlus,chunkedMean[i][:,colonNb][::-1]/uTau,label=str(i+1),linewidth=4)
 
     fig2,ax2 = plt.subplots()
-
-
-    ax2.plot(rPlus,std[:,3][::-1],label='simu',color='red',marker='^')
+    ax2.plot(rPlus,std[:,colonNb][::-1]/uTau,label='simu',color='red',marker='^')
     if ifPlotAllTimes:
         for i in range(nb_chunk):
-            ax2.plot(rPlus,chunkedStd[i][:,3][::-1],label=str(i+1),linewidth=1.5)
+            ax2.plot(rPlus,chunkedStd[i][:,colonNb][::-1]/uTau,label=str(i+1),linewidth=1.5)
     
-
     fig3,ax3 = plt.subplots()
-#    ax3.plot(rPlus,std[:,3][::-1],label='division here')
-#    ax3.plot(rPlus,mean[:,3][::-1],label='division here')
-#    ax3.plot(rPlus,chunkedMean[5][:,3][::-1],label='division here',color='purple')
-    ax3.plot(rPlus,std[:,3][::-1]/mean[:,3][::-1],label='simu',color='red')
+    ax3.plot(rPlus,std[:,colonNb][::-1]/mean[:,colonNb][::-1],label='simu',color='red')
         
     return ax1, ax2, ax3
