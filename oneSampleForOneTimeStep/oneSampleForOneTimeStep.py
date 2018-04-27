@@ -126,7 +126,7 @@ def process(R,nu,rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=Fals
 
 #==============================================================================
 #   initialization
-    data=[]
+    dataList=[]
     chunkedMean=[]
     chunkedStd=[]
     chunkSizeList=[]
@@ -136,18 +136,20 @@ def process(R,nu,rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=Fals
     nb_chunk=validDataListSize // chunkStep
     
     for validData in validDataList:
-        data.append(np.genfromtxt(validData))
-#   no-chunked mean and std    
-    mean = getMean(rightDataShape,data)
-    std = getStd(rightDataShape,data,mean)
+        dataList.append(np.genfromtxt(validData))
+#   no-chunked mean and std
+#   mind that dataList contains also coord information so that mean and std here
+#   only have a meaning for colon 1,2,3
+    mean = getMean(rightDataShape,dataList)
+    std = getStd(rightDataShape,dataList,mean)
 #==============================================================================
 #   chunk the time series and chart-plot    
-    chunkSizeList = getChunkSizeList(rightDataShape,data,chunkStep)
+    chunkSizeList = getChunkSizeList(rightDataShape,dataList,chunkStep)
     chart(chunkSizeList)
 #   calculate chunkedMean
-    chunkedMean = getChunkedMean(rightDataShape,chunkSizeList,data,chunkStep)
+    chunkedMean = getChunkedMean(rightDataShape,chunkSizeList,dataList,chunkStep)
 #   calculate chunkedStd
-    chunkedStd = getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean)
+    chunkedStd = getChunkedStd(rightDataShape,chunkSizeList,dataList,chunkStep,chunkedMean)
 #==============================================================================
 #   preparing for plot
 #   coordinate system    
