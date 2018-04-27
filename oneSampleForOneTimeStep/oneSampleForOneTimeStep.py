@@ -19,7 +19,7 @@ def convert2TimeDirName(string):
         print 'Integer timeStep here :', string
     return string
 
-def pre_check(startTime,endTime,N,rightDataShape):
+def pre_check(startTime,endTime,N,rightDataShape,relativePathToData):
     data=[]
     validDataList=[]
     invalidDataList=[]
@@ -28,7 +28,7 @@ def pre_check(startTime,endTime,N,rightDataShape):
     
     for i in range(N):
         # load the data
-        fileName="../../../postProcessing/sets/"+convert2TimeDirName(timeList[i])+"/central_line" + "_U.xy"
+        fileName=relativePathToData+"postProcessing/sets/"+convert2TimeDirName(timeList[i])+"/central_line" + "_U.xy"
         data.append(np.genfromtxt(fileName))
         # check array shapes 
         if data[i].shape == rightDataShape: #(200,4):
