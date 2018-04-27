@@ -1,8 +1,8 @@
 import sys
-sys.path.insert(0,'python/matplotlib/my_plt_packages/')
+sys.path.insert(0,'my_plt_packages/')
 import general_settings as gs
 import reference_database as rdb
-sys.path.insert(1,'python/matplotlib/multipleSampleForOneTimeStep')
+sys.path.insert(1,'multipleSampleForOneTimeStep')
 import multipleSampleForOneTimeStep
 
 def Ur():
@@ -46,7 +46,7 @@ def Uz():
     raw_sample_size=160
     dataShape=(200,4)
     
-    l = multipleSampleForOneTimeStep.pre_check(raw_sample_size,dataShape,150.4,"../")
+    l = multipleSampleForOneTimeStep.pre_check(raw_sample_size,dataShape,150.4,"../../../")
     ax1, ax2 = \
         multipleSampleForOneTimeStep.process(R,nu,dataShape,validDataList=l,uTau=uTau,ifPlotSample=True,colonNb=3)
     
