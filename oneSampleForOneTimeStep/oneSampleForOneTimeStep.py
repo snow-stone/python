@@ -78,13 +78,10 @@ def chart(chunkSizeList):
     xlabels = ['C'+str(i+1) for i in range(N)]
     ax.set_xticklabels(tuple(xlabels),fontsize=gs.sizeLabel)
 
-def getChunkedMean(data,chunkStep):
-    print "#############\n"
-    chunkSum=np.zeros(data[0].shape)
+def getChunkSizeList(rightDataShape,data,chunkStep):
+    chunkSum=np.zeros(rightDataShape)
     chunkSizeList=[]
-    chunkedMean=[]
     for i in range(0, len(data), chunkStep):
-        print "i = ", i
         k=0
         chunkSum=0
         for j in range(i, i+chunkStep):
@@ -92,62 +89,65 @@ def getChunkedMean(data,chunkStep):
                 chunkSum+=data[j]
                 k=k+1
         chunkSizeList.append(k)
-        chunkedMean.append(chunkSum/k)
-    return chunkSizeList, chunkedMean
+    return chunkSizeList
 
-def getChunkedStd(data,chunkStep,chunkedMean):
-    print "#############\n"
-    chunkVar=np.zeros(data[0].shape)
-    numChunk=0
-    chunkSizeList=[]
+def getChunkedMean(rightDataShape,chunkSizeList,data,chunkStep):
+    chunkSum=np.zeros(rightDataShape)
+    chunkedMean=[]
+    for chunkHead in range(0, len(data), chunkStep):
+        chunkSum=0
+        curr_chunk=chunkHead // chunkStep
+        for j in range(chunkHead, chunkHead+chunkSizeList[curr_chunk]):
+            chunkSum+=data[j]
+        chunkedMean.append(chunkSum/chunkSizeList[curr_chunk])
+    return chunkedMean
+
+def getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean):
+    chunkVar=np.zeros(rightDataShape)
     chunkedStd=[]
-    for i in range(0, len(data), chunkStep):
-        print "i = ", i
-        k=0
+    for chunkHead in range(0, len(data), chunkStep):
         chunkVar=0
-        for j in range(i, i+chunkStep):
-            if j < len(data):            
-                chunkVar+=(data[j]-chunkedMean[numChunk])**2
-                k=k+1
-        numChunk+=1
-#        print ' k = ',k
-#        print '  numChunk = ', numChunk
-        chunkSizeList.append(k)
-        chunkedStd.append(np.sqrt(chunkVar/k))
-    return chunkSizeList, chunkedStd
+        curr_chunk=chunkHead // chunkStep
+        for j in range(chunkHead, chunkHead+chunkSizeList[curr_chunk]):
+            chunkVar+=(data[j]-chunkedMean[curr_chunk])**2
+        chunkedStd.append(np.sqrt(chunkVar/chunkSizeList[curr_chunk]))
+    return chunkedStd
 
 def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
 
 #==============================================================================
+#   initialization
     R =0.004
-    nu=1.0e-6    
-#==============================================================================
+    nu=1.0e-6
     
     data=[]
     chunkedMean=[]
     chunkedStd=[]
     chunkSizeList=[]
-    validDataListSize=len(validDataList)
-
-    nb_chunk=validDataListSize/chunkStep
+    validDataListSize=len(validDataList)    
+#==============================================================================
+#   preparation    
+    nb_chunk=validDataListSize // chunkStep
     
     for validData in validDataList:
         data.append(np.genfromtxt(validData))
     
     mean=np.zeros(rightDataShape)
-    print data[0].shape
     for i in range(validDataListSize):
         mean+=data[i]
     mean/=validDataListSize
-    
-    chunkSizeList, chunkedMean = getChunkedMean(data,chunkStep)
+#==============================================================================
+#   chunk the time series and chart-plot    
+    chunkSizeList = getChunkSizeList(rightDataShape,data,chunkStep)
+    chart(chunkSizeList)
+#   calculate chunkedMean
+    chunkedMean = getChunkedMean(rightDataShape,chunkSizeList,data,chunkStep)
     
     # xcoord
     rbyR=mean[:,0]/R
     for i in range(nb_chunk):
         chunkedMean[i]=chunkedMean[i]/uTau
-    print "rbyR min ",min(rbyR),"rbyR marbyR",max(rbyR)
-    #print rbyR
+    print "rbyR min ",min(rbyR),"rbyR max ",max(rbyR)
     mean[:,1:]=mean[:,1:]/uTau
     for i in range(validDataListSize):
         data[i][:,1:]=data[i][:,1:]/uTau
@@ -164,7 +164,7 @@ def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
         for i in range(nb_chunk):
             ax1.plot(rPlus,chunkedMean[i][:,3][::-1],label=str(i+1),linewidth=4)
             
-    chart(chunkSizeList)
+
     
     var=np.zeros(rightDataShape)
     for i in range(validDataListSize):
@@ -172,13 +172,7 @@ def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     var/=validDataListSize
     std=np.sqrt(var)
 
-    chunkSizeList1, chunkedStd = getChunkedStd(data,chunkStep,chunkedMean)
-
-    if chunkSizeList1 == chunkSizeList :
-        print "Important check!!\n"
-        print "chunkSizeList1 = chunkSizeList"
-    else :
-        sys.exit("chunkSizeList1 == chunkSizeList"+" check didn't pass")
+    chunkedStd = getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean)
 
     fig2,ax2 = plt.subplots()
 
