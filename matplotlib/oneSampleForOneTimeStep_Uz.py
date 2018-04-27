@@ -7,7 +7,7 @@ import reference_database as rdb
 
 def Uz():
     dataShape=(200,4)
-    relativePathToData="../../"
+    relativePathToData="../../../"
     R=0.004
     nu=1.0e-6
     chunkStep=200
