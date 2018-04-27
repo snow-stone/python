@@ -19,7 +19,7 @@ def convert2TimeDirName(string):
         print 'Integer timeStep here :', string
     return string
 
-def pre_check(startTime,endTime,N,dataShape):
+def pre_check(startTime,endTime,N,rightDataShape):
     data=[]
     validDataList=[]
     invalidDataList=[]
@@ -28,10 +28,10 @@ def pre_check(startTime,endTime,N,dataShape):
     
     for i in range(N):
         # load the data
-        fileName="../../postProcessing/sets/"+convert2TimeDirName(timeList[i])+"/central_line" + "_U.xy"
+        fileName="../../../postProcessing/sets/"+convert2TimeDirName(timeList[i])+"/central_line" + "_U.xy"
         data.append(np.genfromtxt(fileName))
         # check array shapes 
-        if data[i].shape == dataShape: #(200,4):
+        if data[i].shape == rightDataShape: #(200,4):
             validDataList.append(fileName)
         else :
             invalidDataList.append(fileName)
@@ -116,28 +116,7 @@ def getChunkedStd(data,chunkStep,chunkedMean):
         chunkedStd.append(np.sqrt(chunkVar/k))
     return chunkSizeList, chunkedStd
 
-def getChunkedStd1(data,chunkStep,GlobalMean):
-    print "#############\n"
-    chunkVar=np.zeros(data[0].shape)
-    numChunk=0
-    chunkSizeList=[]
-    chunkedStd=[]
-    for i in range(0, len(data), chunkStep):
-        print "i = ", i
-        k=0
-        chunkVar=0
-        for j in range(i, i+chunkStep):
-            if j < len(data):            
-                chunkVar+=(data[j]-GlobalMean)**2
-                k=k+1
-        numChunk+=1
-#        print ' k = ',k
-#        print '  numChunk = ', numChunk
-        chunkSizeList.append(k)
-        chunkedStd.append(np.sqrt(chunkVar/numChunk))
-    return chunkSizeList, chunkedStd
-
-def process(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
+def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
 
 #==============================================================================
     R =0.004
@@ -148,79 +127,65 @@ def process(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     chunkedMean=[]
     chunkedStd=[]
     chunkSizeList=[]
-    dataSize=len(validDataList)
-    #dataSize=10
-    #chunkStep=15
-    #uTau=0.0469
+    validDataListSize=len(validDataList)
 
-    nb_chunk=dataSize/chunkStep
+    nb_chunk=validDataListSize/chunkStep
     
     for validData in validDataList:
         data.append(np.genfromtxt(validData))
     
-    mean=np.zeros(data[0].shape)
+    mean=np.zeros(rightDataShape)
     print data[0].shape
-    for i in range(dataSize):
+    for i in range(validDataListSize):
         mean+=data[i]
-    mean/=dataSize
+    mean/=validDataListSize
     
     chunkSizeList, chunkedMean = getChunkedMean(data,chunkStep)
     
     # xcoord
-    x=mean[:,0]/R
+    rbyR=mean[:,0]/R
     for i in range(nb_chunk):
         chunkedMean[i]=chunkedMean[i]/uTau
-    print "x min ",min(x),"x max",max(x)
-    #print x
+    print "rbyR min ",min(rbyR),"rbyR marbyR",max(rbyR)
+    #print rbyR
     mean[:,1:]=mean[:,1:]/uTau
-    for i in range(dataSize):
+    for i in range(validDataListSize):
         data[i][:,1:]=data[i][:,1:]/uTau
     
-#    r=-x+1
-#    r=r[::-1]
-#    integral_1D = integrate.simps(mean[:,3],r)
-#    integral_2D = integrate.simps((2*np.pi)*mean[:,3]*r,r)
-#    print "integrate the mean profile 1D cartesian : ", integral_1D
-#    print "average velocity : ", uTau * integral_1D / 1.0
-#    print "integrate the mean profile 2D polar : ", integral_2D
-#    print "average velocity : ", uTau * integral_2D / (np.pi * 1.0**2)
-    
-    fig,ax = plt.subplots()
-#    ax.plot(x,mean[:,3],label='mean',color='red',linewidth=5)
+    fig1,ax1 = plt.subplots()
+#    ax1.plot(rbyR,mean[:,3],label='mean',color='red',linewidth=5)
 
 #    if ifPlotAllTimes:
 #        for i in range(nb_chunk):
-#            ax.plot(x,chunkedMean[i][:,3],label=str(i+1))
-    rPlus=-x+1
+#            ax1.plot(rbyR,chunkedMean[i][:,3],label=str(i+1))
+    rPlus=-rbyR+1
     rPlus=rPlus[::-1]*R*uTau/nu
     if ifPlotAllTimes:
         for i in range(nb_chunk):
-            ax.plot(rPlus,chunkedMean[i][:,3][::-1],label=str(i+1))
+            ax1.plot(rPlus,chunkedMean[i][:,3][::-1],label=str(i+1),linewidth=4)
             
     chart(chunkSizeList)
     
-    var=np.zeros(data[0].shape)
-    for i in range(dataSize):
+    var=np.zeros(rightDataShape)
+    for i in range(validDataListSize):
         var+=(data[i]-mean)**2
-    var/=dataSize
+    var/=validDataListSize
     std=np.sqrt(var)
 
     chunkSizeList1, chunkedStd = getChunkedStd(data,chunkStep,chunkedMean)
-#    chunkSizeList1, chunkedStd = getChunkedStd1(data,chunkStep,mean)
 
     if chunkSizeList1 == chunkSizeList :
         print "Important check!!\n"
         print "chunkSizeList1 = chunkSizeList"
     else :
         sys.exit("chunkSizeList1 == chunkSizeList"+" check didn't pass")
-    #print chunkedStd[0]
 
     fig2,ax2 = plt.subplots()
 
     # rPlus is defined to be zero at wall
     # thus need to reverse the second plotting dimension too !
     # or data will not fit at all
-    rPlus=-x+1
+    rPlus=-rbyR+1
     rPlus=rPlus[::-1]*R*uTau/nu
     ax2.plot(rPlus,std[:,3][::-1],label='simu',color='red',marker='^')
     if ifPlotAllTimes:
@@ -233,6 +198,5 @@ def process(validDataList,chunkStep,uTau,ifPlotAllTimes=False):
 #    ax3.plot(rPlus,mean[:,3][::-1],label='division here')
 #    ax3.plot(rPlus,chunkedMean[5][:,3][::-1],label='division here',color='purple')
     ax3.plot(rPlus,std[:,3][::-1]/mean[:,3][::-1],label='simu',color='red')
-    ax3.set_xlim(0,20)
         
-    return ax, ax2, ax3
+    return ax1, ax2, ax3
