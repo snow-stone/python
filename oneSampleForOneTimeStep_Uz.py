@@ -1,12 +1,13 @@
-import oneSampleForOneTimeStep
 import sys
-sys.path.insert(0,'..')
+sys.path.insert(0,'oneSampleForOneTimeStep')
+import oneSampleForOneTimeStep
+sys.path.insert(1,'my_plt_packages')
 import general_settings as gs
 import reference_database as rdb
 
 def Uz():
     dataShape=(200,4)
-    relativePathToData="../../../"
+    relativePathToData="../../"
     R=0.004
     nu=1.0e-6
     chunkStep=200
