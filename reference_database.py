@@ -54,6 +54,24 @@ def Niewstadt1995_pipe_Fig9():
     y = data[:,1]    
     
     return x, y
+
+def Eggels1994_thesis_Fig4p5_DNS():
+    string='/home/hluo/Pictures/Thesis.Eggels1994/pipe/Fig4.5/DNS_E.csv'
+    data=np.genfromtxt(string,skip_header=1,delimiter=',')
+
+    x = data[:,0]
+    y = data[:,1]
+    
+    return x, y
+    
+def Eggels1994_thesis_Fig4p5_HWA():
+    string='/home/hluo/Pictures/Thesis.Eggels1994/pipe/Fig4.5/HWA.csv'
+    data=np.genfromtxt(string,skip_header=1,delimiter=',')
+
+    x = data[:,0]
+    y = data[:,1]
+    
+    return x, y
     
 def data_Eggels_pipe_DNS():
     string='/home/hluo/Pictures/Thesis.Eggels1994/pipe/Fig4.7/DNS_Eggels.csv'
