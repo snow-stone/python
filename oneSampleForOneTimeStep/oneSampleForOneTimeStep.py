@@ -39,9 +39,13 @@ def pre_check(startTime,endTime,N,rightDataShape,relativePathToData):
     print "\n"
     print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
     print "            Report Here on pre_check             \n"
-    print "Input sampling size : ", N, " Eligable sampling size : ", len(validDataList), "\n"
+    print "Input sampling size    : ", N
+    print "Eligable sampling size : ", len(validDataList), "\n"
     print "Non-eligable fileName list :"
-    print invalidDataList    
+    print invalidDataList
+    print "\n"
+    print "NOTE : Remind that all line-sampled data must begin"
+    print "from the center to wall or the coordinates won't fit.\n"    
     print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
     return validDataList
 
@@ -68,12 +72,13 @@ def chart(chunkSizeList):
     autolabel(rects)
 
     maxHeight=rects.patches[0].get_height()
-    print "First/Max rectangle height of all histograms : ", maxHeight
+#    print "First/Max rectangle height of all histograms : ", maxHeight
     
     # add some text for labels, title and axes ticks
     ax.set_ylabel('sample Nb in every chunk. C for Chunk',fontsize=gs.sizeLabel)
     ax.set_ylim(0,maxHeight*1.1)
     ax.set_title('sample Nb by chunk')
+    
     ax.set_xticks(ind + width / 2)
     xlabels = ['C'+str(i+1) for i in range(N)]
     ax.set_xticklabels(tuple(xlabels),fontsize=gs.sizeLabel)
@@ -139,9 +144,30 @@ def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
     chart(chunkSizeList)
 #   calculate chunkedMean
     chunkedMean = getChunkedMean(rightDataShape,chunkSizeList,data,chunkStep)
-    
-    # xcoord
+
+#==============================================================================
+#   coordinate system    
+    # rbyR
     rbyR=mean[:,0]/R
+    # rPlus is defined to be zero at wall
+    # thus need to reverse the second plotting dimension too !
+    # or data will not fit at all
+    rPlus=-rbyR+1
+    rPlus=rPlus[::-1]*R*uTau/nu
+    
+    print "\n"
+    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+    print "         Resume on coordinate system             \n"
+    print "For abssise"
+    print "\t External varible :"
+    print "\t rbyR - r/R from center to wall\n"
+    print "\t Internal/wall varible :"
+    print "\t rPlus - from wall to center"
+    print "\t       - when plotting reverse the ordinate/second dimension\n"
+    print "For ordinate"
+    print "\t Only non-dimensionize them when plotting.\n"
+    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+    
     for i in range(nb_chunk):
         chunkedMean[i]=chunkedMean[i]/uTau
     mean[:,1:]=mean[:,1:]/uTau
@@ -154,13 +180,10 @@ def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
 #    if ifPlotAllTimes:
 #        for i in range(nb_chunk):
 #            ax1.plot(rbyR,chunkedMean[i][:,3],label=str(i+1))
-    rPlus=-rbyR+1
-    rPlus=rPlus[::-1]*R*uTau/nu
+
     if ifPlotAllTimes:
         for i in range(nb_chunk):
             ax1.plot(rPlus,chunkedMean[i][:,3][::-1],label=str(i+1),linewidth=4)
-            
-
     
     var=np.zeros(rightDataShape)
     for i in range(validDataListSize):
@@ -172,11 +195,7 @@ def process(rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False):
 
     fig2,ax2 = plt.subplots()
 
-    # rPlus is defined to be zero at wall
-    # thus need to reverse the second plotting dimension too !
-    # or data will not fit at all
-    rPlus=-rbyR+1
-    rPlus=rPlus[::-1]*R*uTau/nu
+
     ax2.plot(rPlus,std[:,3][::-1],label='simu',color='red',marker='^')
     if ifPlotAllTimes:
         for i in range(nb_chunk):
