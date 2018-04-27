@@ -90,7 +90,8 @@ def process(R,nu,rightDataShape,validDataList,uTau,ifPlotSample=False,colonNb=3)
 #==============================================================================
     
     fig1,ax1 = plt.subplots()
-    ax1.plot(rbyR/2.0,mean[:,colonNb]/max(mean[:,colonNb]),label='mean',color='red',linewidth=4)
+#    ax1.plot(rbyR/2.0,mean[:,colonNb]/max(mean[:,colonNb]),label='mean',color='red',linewidth=4)
+    ax1.plot(rPlus,mean[:,colonNb][::-1]/uTau,label='mean',color='red',linewidth=4)
     if ifPlotSample:
         for i in range(0, validDataListSize, samplePrintInterval):
             ax1.plot(rbyR/2.0,dataList[i][:,colonNb]/max(dataList[i][:,colonNb]),label=str(i))
