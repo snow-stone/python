@@ -1,7 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
-sys.path.insert(0,'..')
 import general_settings as gs
 
 def convert2TimeDirName(string):
@@ -14,31 +12,49 @@ def convert2TimeDirName(string):
         print 'Integer timeStep here :', string
     return string
 
-def pre_check(startTime,endTime,N,rightDataShape,relativePathToData):
+def pre_check_spatialAveragedProfiles(paraDict,sampleNaming):
     data=[]
     validDataList=[]
+    invalidDataShapeList=[]
     invalidDataList=[]
-    timeArray=np.linspace(startTime, endTime, N)
-    timeList=[str(x) for x in timeArray]
+    startTime=paraDict['dataEntry']['startTime']
+    endTime=paraDict['dataEntry']['endTime']
+    N=paraDict['dataEntry']['NbOfFiles']
+    rightDataShape=paraDict['sampling']['dataShape']
+    timeArray=np.linspace(startTime,endTime,N)
+#    timeList=[str(x) for x in timeArray]
+#    print timeArray
+#    print timeList
     
     for i in range(N):
         # load the data
-        fileName=relativePathToData+"postProcessing/sets/"+convert2TimeDirName(timeList[i])+"/central_line" + "_U.xy"
+#        fileName=paraDict['dataEntry']['path']+"/"+"postProcessing/spatialAveragedProfiles/"+convert2TimeDirName(str(np.round(timeArray[i], decimals=4)))+"/"+sampleNaming+"_U.xy"
+        fileName=paraDict['dataEntry']['path']+"/"+"postProcessing/spatialAveragedProfiles/"+sampleNaming+"-"+convert2TimeDirName(str(np.round(timeArray[i], decimals=4)))
         data.append(np.genfromtxt(fileName))
         # check array shapes 
         if data[i].shape == rightDataShape: #(200,4):
             validDataList.append(fileName)
         else :
             invalidDataList.append(fileName)
+            if len(invalidDataShapeList)==0 : invalidDataShapeList.append(data[i].shape) # for the first invalid shape
+            for shape in invalidDataShapeList:                                           # then this loop is then executed     
+                if shape != data[i].shape:
+                    invalidDataShapeList.append(data[i].shape)
+                    break
+                else :
+                    continue            
     
     print "\n"
     print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
     print "            Report Here on pre_check             \n"
+    print "For sampling : " + sampleNaming
     print "Input sampling size    : ", N
     print "Eligable sampling size : ", len(validDataList), "\n"
     print "Non-eligable fileName list :"
     print invalidDataList
     print "\n"
+    print "Invalid data shapes are    : ", invalidDataShapeList
+    print "Invalid data are in number : ", len(invalidDataList), "/", N
     print "NOTE : Remind that all line-sampled data must begin"
     print "from the center to wall or the coordinates won't fit.\n"    
     print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
@@ -122,15 +138,20 @@ def getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean):
         chunkedStd.append(np.sqrt(tmp_Sum/chunkSizeList[curr_chunk]))
     return chunkedStd
 
-def process(R,nu,rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False,colonNb=3):
+def process(paraDict,validDataList,colonNb=3):
 
+#==============================================================================
+#   verison : Just read average and rms. There's no scaling !
+#   colonNb : choose which colon to proceed
 #==============================================================================
 #   initialization
     dataList=[]
-    chunkedMean=[]
-    chunkedStd=[]
+    chunkedMeanList=[]
+    chunkedStdList=[]
     chunkSizeList=[]
     validDataListSize=len(validDataList)    
+    chunkStep=paraDict['dataEntry']['chunkStep']
+    rightDataShape=paraDict['sampling']['dataShape']
 #==============================================================================
 #   preparation    
     nb_chunk=validDataListSize // chunkStep
@@ -147,49 +168,30 @@ def process(R,nu,rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=Fals
     chunkSizeList = getChunkSizeList(rightDataShape,dataList,chunkStep)
     chart(chunkSizeList)
 #   calculate chunkedMean
-    chunkedMean = getChunkedMean(rightDataShape,chunkSizeList,dataList,chunkStep)
+    chunkedMeanList = getChunkedMean(rightDataShape,chunkSizeList,dataList,chunkStep)
 #   calculate chunkedStd
-    chunkedStd = getChunkedStd(rightDataShape,chunkSizeList,dataList,chunkStep,chunkedMean)
+    chunkedStdList = getChunkedStd(rightDataShape,chunkSizeList,dataList,chunkStep,chunkedMeanList)
 #==============================================================================
-#   preparing for plot
-#   coordinate system    
-    # rbyR
-    rbyR=mean[:,0]/R
-    # rPlus is defined to be zero at wall
-    # thus need to reverse the second plotting dimension too !
-    # or data will not fit at all
-    rPlus=-rbyR+1
-    rPlus=rPlus[::-1]*R*uTau/nu
-    
-    print "\n"
-    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
-    print "         Resume on coordinate system             \n"
-    print "For abssise"
-    print "\t External varible :"
-    print "\t rbyR - r/R from center to wall\n"
-    print "\t Internal/wall varible :"
-    print "\t rPlus - from wall to center"
-    print "\t       - when plotting reverse the ordinate/second dimension\n"
-    print "For ordinate"
-    print "\t For flexibility :"
-    print "\t Only non-dimensionize them when plotting.\n"
-    print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+    x = mean[:,0]
 
-#==============================================================================
-#   thus it begins : plots
-    fig1,ax1 = plt.subplots()
-    ax1.plot(rPlus,mean[:,colonNb][::-1]/uTau,label='mean',color='red',linewidth=5)
-    if ifPlotAllTimes:
-        for i in range(nb_chunk):
-            ax1.plot(rPlus,chunkedMean[i][:,colonNb][::-1]/uTau,label=str(i+1),linewidth=4)
+    dataCmptList=[]
+    for i in range(0, validDataListSize):
+            dataCmptList.append(dataList[i][:,colonNb])
 
-    fig2,ax2 = plt.subplots()
-    ax2.plot(rPlus,std[:,colonNb][::-1]/uTau,label='simu',color='red',marker='^')
-    if ifPlotAllTimes:
-        for i in range(nb_chunk):
-            ax2.plot(rPlus,chunkedStd[i][:,colonNb][::-1]/uTau,label=str(i+1),linewidth=1.5)
+    dataCmptArray=np.array(dataCmptList)
     
-    fig3,ax3 = plt.subplots()
-    ax3.plot(rPlus,std[:,colonNb][::-1]/mean[:,colonNb][::-1],label='simu',color='red')
-        
-    return ax1, ax2, ax3
+    chunkedMean=[]
+    chunkedStd=[]
+    for i in range(0, nb_chunk):
+        chunkedMean.append(chunkedMeanList[i][:,colonNb])
+        chunkedStd.append(chunkedStdList[i][:,colonNb])            
+    
+    chunkedMean=np.array(chunkedMean)
+    chunkedStd=np.array(chunkedStd)
+
+    return {'x': x, \
+            'chunkedMean':chunkedMean, \
+            'chunkedStd':chunkedStd, \
+            'mean':mean[:,colonNb], \
+            'std':std[:,colonNb], \
+            'dataCmptArray':dataCmptArray}

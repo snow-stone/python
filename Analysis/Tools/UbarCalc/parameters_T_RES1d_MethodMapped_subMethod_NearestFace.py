@@ -12,19 +12,19 @@ physics={
 sampling={
         'raw_sample_size':160,
 #        'dataShape':(199,4)     # uniform
-#        'dataShape':(188,4)     # face 3
-        'dataShape':(195,4)     # face 2
-#        'dataShape':(195,4)     # face 1
+        'dataShape':(97,4)     # face 3
+#        'dataShape':(103,4)     # face 2
+#        'dataShape':(104,4)     # face 1
         }
 
 # data entry parameters
 
 dataEntry={
-        'startTime':5.5,  # KinecticEnergy stationary
+        'startTime':5.5,
         'endTime':7.2,
         'chunkStep':50,
         'NbOfFiles':171,
-        'path':"/store/caseByGeometry/T/new-mesh/pointwise/postProcessing/1d_mapped_NearestFace",
+        'path':"/store/caseByGeometry/T-new-mesh/1d_mapped_NearestFace",
         }
 
 parameters={

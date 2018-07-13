@@ -1,5 +1,15 @@
 import numpy as np
 
+def convert2TimeDirName(string):
+    if '.' in string:
+        while string[-1] == '0':
+            string = string[:-1] # remove the trailing '0'
+        while string[-1] == '.': # then after that, remove the trailing '.'
+            string = string.rstrip('.')
+    else:
+        print 'Integer timeStep here :', string
+    return string
+
 def pre_check(para,sampleNaming):
     #N : Input number of data files 
     #rightDataShape : 2darray's shape : a tuple like (200,4)
@@ -15,7 +25,7 @@ def pre_check(para,sampleNaming):
     
     for i in range(N):
         # load data
-        fileName=path+"/"+"postProcessing/sets/"+str(timeStep)+"/"+sampleNaming+"-"+str(i)+"_Ucyl.xy"
+        fileName=path+"/"+"postProcessing/sets/"+convert2TimeDirName(str(timeStep))+"/"+sampleNaming+"-"+str(i)+"_Ucyl.xy"
 
         data.append(np.genfromtxt(fileName))
         # check array shapes
@@ -121,6 +131,7 @@ def process(para,validDataList,colonNb=3,innerVar=True):
 
     if innerVar :
         return {'rPlus':rPlus, \
+                'rByD':rByR/2.0, \
                 'mean':mean[:,colonNb][::-1]/uTau, \
                 'std':std[:,colonNb][::-1]/uTau, \
                 'dataCmptArray':dataCmptArray}

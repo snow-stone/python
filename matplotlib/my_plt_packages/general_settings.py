@@ -1,2 +1,0 @@
-
-sizeLabel = 15

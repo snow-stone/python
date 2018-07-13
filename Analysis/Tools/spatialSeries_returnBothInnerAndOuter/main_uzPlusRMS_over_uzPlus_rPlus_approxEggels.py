@@ -33,7 +33,7 @@ def main():
     ax1.legend(bbox_to_anchor=(1.45, 1.0), ncol=1, fancybox=True, shadow=True)
 #    ax1.set_xscale('log')
     ax1.set_xlim(1,50)
-#    ax1.set_ylim(1,25)
+    ax1.set_ylim(0,0.4)
     ax1.set_xlabel(r'$r^+$',fontsize=gs.sizeLabel)
     ax1.set_ylabel(r'$U_z^+$',fontsize=gs.sizeLabel)
     ax1.set_title('approxEggels spatial stat.')

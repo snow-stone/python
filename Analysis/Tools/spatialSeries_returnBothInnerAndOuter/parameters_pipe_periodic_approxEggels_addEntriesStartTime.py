@@ -18,7 +18,11 @@ sampling={
 # data entry parameters
 
 dataEntry={
-        'timeStep':5,
+        'timeStep':4.5,
+        'startTime':4.5,  # KinecticEnergy stationary
+        'endTime':5,
+        'chunkStep':10,
+        'NbOfFiles':51,
         'path':"/store/caseByGeometry/pipe/blockMesh/periodic/pipe4/prototype_artificiallyReducedViscosity",
         }
 
