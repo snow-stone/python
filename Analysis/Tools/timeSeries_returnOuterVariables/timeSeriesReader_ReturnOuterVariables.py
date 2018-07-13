@@ -140,7 +140,7 @@ def getChunkedStd(rightDataShape,chunkSizeList,data,chunkStep,chunkedMean):
     return chunkedStd
 
 #def process(R,nu,rightDataShape,validDataList,chunkStep,uTau,ifPlotAllTimes=False,colonNb=3):
-def process(paraDict,validDataList,ifPlotAllTimes=False,colonNb=3):
+def process(paraDict,validDataList,colonNb=3):
 
 #==============================================================================
 #   initialization
@@ -152,8 +152,8 @@ def process(paraDict,validDataList,ifPlotAllTimes=False,colonNb=3):
     chunkStep=paraDict['dataEntry']['chunkStep']
     rightDataShape=paraDict['sampling']['dataShape']
     R=paraDict['physics']['R']
-    nu=paraDict['physics']['nu']
-    uTau=paraDict['physics']['uTau']
+#    nu=paraDict['physics']['nu']
+#    uTau=paraDict['physics']['uTau']
     printInfo_coor=False
 #==============================================================================
 #   preparation    
@@ -182,8 +182,8 @@ def process(paraDict,validDataList,ifPlotAllTimes=False,colonNb=3):
     # rPlus is defined to be zero at wall
     # thus need to reverse the second plotting dimension too !
     # or data will not fit at all
-    rPlus=-rByR+1
-    rPlus=rPlus[::-1]*R*uTau/nu
+#    rPlus=-rByR+1
+#    rPlus=rPlus[::-1]*R*uTau/nu
 
     if printInfo_coor:
         print "\n"
@@ -201,25 +201,6 @@ def process(paraDict,validDataList,ifPlotAllTimes=False,colonNb=3):
         print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
 
 #==============================================================================
-#   thus it begins : plots
-#    fig1,ax1 = plt.subplots()
-#    ax1.plot(rPlus,mean[:,colonNb][::-1]/uTau,label='mean',color='red',linewidth=5)
-#    if ifPlotAllTimes:
-#        for i in range(nb_chunk):
-#            ax1.plot(rPlus,chunkedMean[i][:,colonNb][::-1]/uTau,label=str(i+1),linewidth=4)
-#
-#    fig2,ax2 = plt.subplots()
-#    ax2.plot(rPlus,std[:,colonNb][::-1]/uTau,label='simu',color='red',marker='^')
-#    if ifPlotAllTimes:
-#        for i in range(nb_chunk):
-#            ax2.plot(rPlus,chunkedStd[i][:,colonNb][::-1]/uTau,label=str(i+1),linewidth=1.5)
-#    
-#    fig3,ax3 = plt.subplots()
-#    ax3.plot(rPlus,std[:,colonNb][::-1]/mean[:,colonNb][::-1],label='simu',color='red')
-#        
-#    return ax1, ax2, ax3
-
-#    return rPlus,mean[:,colonNb][::-1]/uTau,std[:,colonNb][::-1]/uTau
 
     dataCmptList=[]
     for i in range(0, validDataListSize):
@@ -237,9 +218,9 @@ def process(paraDict,validDataList,ifPlotAllTimes=False,colonNb=3):
     chunkedStd=np.array(chunkedStd)
 
     return {'rByD':rByR/2.0, \
+            'chunkedMean':chunkedMean, \
+            'chunkedStd':chunkedStd, \
+            'mean':mean[:,colonNb], \
 #           'mean':mean[:,colonNb]/max(mean[:,colonNb]), \
-            'chunkedMean':chunkedMean/0.3, \
-            'chunkedStd':chunkedStd/0.3, \
-            'mean':mean[:,colonNb]/0.3, \
-            'std':std[:,colonNb]/0.3, \
-            'dataCmptArray':dataCmptArray/0.3}
+            'std':std[:,colonNb], \
+            'dataCmptArray':dataCmptArray}

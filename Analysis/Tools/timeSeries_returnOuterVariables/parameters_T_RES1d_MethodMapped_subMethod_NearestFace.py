@@ -24,7 +24,7 @@ dataEntry={
         'endTime':7.2,
         'chunkStep':50,
         'NbOfFiles':171,
-        'path':"/store/caseByGeometry/T-new-mesh/1d_mapped_NearestFace",
+        'path':"/store/caseByGeometry/T/new-mesh/pointwise/postProcessing/1d_mapped_NearestFace",
         }
 
 parameters={

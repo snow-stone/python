@@ -24,7 +24,7 @@ dataEntry={
         'endTime':7.01,
         'chunkStep':40,
         'NbOfFiles':161,
-        'path':"/store/caseByGeometry/T-new-mesh/1b_mirrorMerge",
+        'path':"/store/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge",
         }
 
 parameters={
