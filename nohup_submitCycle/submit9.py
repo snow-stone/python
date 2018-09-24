@@ -98,7 +98,9 @@ def getStatus(listJobs,jobID):
             print 'Job ' + jobID + ' is now ' + job.split()[4] + ' for ' + job.split()[-1]
             return job.split()[4], time.time()
         else:
-            print "Job %s is no longer in squeue !!" % jobID
+            print "Job %s is no longer in squeue !!" % jobID   
+            # but... in main it looks like... this must have return value
+            # like submitJob? Make a defaut ???
 
 def main():
     slurmFile = sys.argv[1]
