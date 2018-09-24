@@ -94,7 +94,7 @@ def main():
     
     print "creating " + pythonLogFile + " and appending..."
     pythonLog = open(pythonLogFile,'a')
-	print "start writing to logFile : " + pythonLogFile
+    print "start writing to logFile : " + pythonLogFile
     
     wait4File=5
     while True and time.time()-startTime < 60 :
