@@ -66,22 +66,22 @@ def getStateAndTime(listJobs,jobID):
 #            # but... in main it looks like... this must have return value
 #            # like submitJob? Make a defaut ???
 
-def returnJobStatus(jobID, submittedTime, ifAlwaysPending):
+def returnJobStatus(jobID, submittedTime, hasBeenRunningOnce):
     currentJobList = squeueMonitor()
     
     if ifJobFoundInSqueue(currentJobList, jobID):
         state, timeOfState = getStateAndTime(currentJobList, jobID)
         timeElapsedFromSubmission = timeOfState - submittedTime
         if state == 'RUNNING':
-            ifAlwaysPending = True
-            return state, timeElapsedFromSubmission, ifAlwaysPending
+            hasBeenRunningOnce = True
+            return state, timeElapsedFromSubmission, hasBeenRunningOnce
         elif state == 'PENDING' :
-            ifAlwaysPending = False
-            return state, timeElapsedFromSubmission, ifAlwaysPending
+            hasBeenRunningOnce = False
+            return state, timeElapsedFromSubmission, hasBeenRunningOnce
         else :
-            return "OTHER", timeElapsedFromSubmission, ifAlwaysPending
+            return "OTHER", timeElapsedFromSubmission, hasBeenRunningOnce
     else :
-        return "NotInQueue", time.time() - submittedTime, ifAlwaysPending
+        return "NotInQueue", time.time() - submittedTime, hasBeenRunningOnce
                 
 def simu_watchDog(cmd, status, jobID, wallTime, simuLogFile):
     import subprocess
