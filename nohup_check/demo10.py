@@ -97,7 +97,9 @@ def main():
     pythonLog = open(pythonLogFile,'a')
     print "start writing to logFile : " + pythonLogFile
     
-    # need removedTimesAsFile to be blank at the beginning
+    # only the first time to run this script =>
+    # need removedTimesAsFile to be blank and to exist !!! at the beginning
+    # for la reprise... read no-blank removedTimesAsFile
     removedTimes = open(removedTimesAsFile,'r')
     list0 = [line.rstrip('\n') for line in removedTimes]
     removedTimes.close()
