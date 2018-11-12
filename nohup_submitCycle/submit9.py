@@ -4,7 +4,6 @@ import commands, os
 import sys
 import time
 
-
 def removeLogFile(logFileName):
     # make sure logFile is cleaned before proceed
     # no fatal exception, no return value
