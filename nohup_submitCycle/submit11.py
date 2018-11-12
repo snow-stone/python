@@ -130,6 +130,10 @@ def simu_watchDog(cmd, status, jobID, wallTime, simuLogFile):
                                 print "Confirmed : mpirun: command not found !"
                                 print "=>need OpenFOAM env to be charged !\n"
                                 return 3
+                            elif "DUE TO TIME LIMIT" in open(errFile).read():
+                                print "Confirmed : CANCELLED DUE TO TIME LIMIT"
+                                print "=>Ask for more time when submitting !\n"
+                                return 4
                         else:
                             print "warning : %s not found" % errFile
                 else:
@@ -172,7 +176,7 @@ def tryJob(job_number):
         sf.write("#SBATCH --ntasks-per-node=28\n")
         sf.write("#SBATCH --ntasks=480\n")
         sf.write("#SBATCH --cpus-per-task=1\n")
-        sf.write("#SBATCH --time=00:15:00\n")
+        sf.write("#SBATCH --time=00:15:00\n")      # min is the smallest unit here
         sf.write("#SBATCH -C %s\n" % "BDW28")
         sf.write("#SBATCH --mem=50GB\n")
         sf.write("#SBATCH --output=bdw_mpi.%j.out\n")
@@ -232,7 +236,7 @@ def RunJobs(pickUpFromJobNb, nb_jobs, physical_time_interval, endTimeWall):
         # counting from 1 to nb_jobs
         # other than    0 to nb_jobs-1
         print "Trying job number " + str(i+1) + " of " + str(nb_jobs) + " jobs in this particular submission"
-        if notYetEndTimeWall :
+        if notYetEndTimeWall : #TODO change this to check the current job... Not the next job prediction. in module controlDict_editor
             returnFromCurrentJob = tryJob(i+currentJobNb)
             if returnFromCurrentJob == 0:
                 notYetEndTimeWall = controlDict_editor.updateFile(physical_time_interval, endTimeWall)
@@ -256,8 +260,11 @@ def RunJobs(pickUpFromJobNb, nb_jobs, physical_time_interval, endTimeWall):
                 elif returnFromCurrentJob == 3:
                     print "Error 3 => break" #HINT tested already
                     break
+                elif returnFromCurrentJob == 4:
+                    print "Error 4 => break" #TOBE tested
+                    break
                 else :
-                    print "Other Error => break"
+                    print "Other Error => break" # like exceeded quota. Blocked
                     break
         else :
             print "Hitting endTimeWall : " + str(endTimeWall) + ", thus omitting job nubmer " + str(i+1) + " of " + str(nb_jobs) + " jobs in this particular submission"
