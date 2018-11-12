@@ -127,7 +127,7 @@ def main(nb_procs, wallTime, interval):
             deltaList0 = process(OFVersion, dataFileName, nb_procs, list0, pythonLog)
             list0 = deltaList0 + list0
             for item in deltaList0:
-                addNewRemovedTimes.write(item+"\n")
+                addNewRemovedTimes.write(item+"\n") #TODO sometimes this is not properly written even if reconsruct is all done
         else:
             print "No " + dataFileName + " found ! Waiting ..."
             time.sleep(wait4File)
