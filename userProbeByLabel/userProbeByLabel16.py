@@ -43,12 +43,28 @@ def plotField(field):
     debit_min = [
              "BirdCarreau"+"/"+"inlet_0p3",
              "Newtonian"+"/"+"Re2400"]
+    color_medium = [
+             "red",
+             "blue"              
+              ]
+    color_min = [
+             "red",
+             "blue"              
+              ]
+    linestyle_medium = [
+             "-",
+             "--"
+              ]
+    linestyle_min = [
+             "-",
+             "--"
+              ]
     cuts_medium = [
             400,
             400
             ]
     cuts_min = [
-            0,
+            200,
             400
             ]
     
@@ -91,15 +107,15 @@ def plotField(field):
 
     ax1 = fig_rms.add_subplot(1,1,1)
     for i, case in enumerate(debit_medium):
-        ax1.plot(positionList,std_medium[:,i],label=debit_medium[i])
+        ax1.plot(positionList,std_medium[:,i],label=debit_medium[i],color=color_medium[i],linestyle=linestyle_medium[i])
 #    ax1.legend(bbox_to_anchor=(1.7, 1), ncol=1, shadow=True)
 #    ax1.set_xlabel(r"$x/D$")
 #    ax1.set_ylabel(latexRMSName)
     
 #    ax2 = fig_rms.add_subplot(2,1,2)
     for i, case in enumerate(debit_min):
-        ax1.plot(positionList,std_min[:,i],label=debit_min[i])
-    ax1.legend(bbox_to_anchor=(1.7, 1), ncol=1, shadow=True)
+        ax1.plot(positionList,std_min[:,i],label=debit_min[i],color=color_min[i],linestyle=linestyle_min[i])
+    ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
     ax1.set_xlabel(r"$x/D$")
     ax1.set_ylabel(latexRMSName)
     ax1.set_ylim(0,0.4)
@@ -113,15 +129,15 @@ def plotField(field):
 
     ax1 = fig_rms.add_subplot(1,1,1)
     for i, case in enumerate(debit_medium):
-        ax1.plot(positionList,mean_medium[:,i],label=debit_medium[i])
-    ax1.legend(bbox_to_anchor=(1.7, 1), ncol=1, shadow=True)
-    ax1.set_xlabel(r"$x/D$")
-    ax1.set_ylabel(latexMEANName)
+        ax1.plot(positionList,mean_medium[:,i],label=debit_medium[i],color=color_medium[i],linestyle=linestyle_medium[i])
+#    ax1.legend(bbox_to_anchor=(1.7, 1), ncol=1, shadow=True)
+#    ax1.set_xlabel(r"$x/D$")
+#    ax1.set_ylabel(latexMEANName)
     
 #    ax2 = fig_rms.add_subplot(2,1,2)
     for i, case in enumerate(debit_min):
-        ax1.plot(positionList,mean_min[:,i],label=debit_min[i])
-    ax1.legend(bbox_to_anchor=(1.7, 1), ncol=1, shadow=True)
+        ax1.plot(positionList,mean_min[:,i],label=debit_min[i],color=color_min[i],linestyle=linestyle_min[i])
+    ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
     ax1.set_xlabel(r"$x/D$")
     ax1.set_ylabel(latexMEANName)
     
