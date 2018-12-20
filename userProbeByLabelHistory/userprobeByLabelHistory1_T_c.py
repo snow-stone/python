@@ -25,7 +25,7 @@ def userProbeByLabel(ax, caseName, RelativeDataFile, sample, positionSet, cut=0.
     
     return std, mean
     
-def plotField(arrayName, cases, positionList, samples, field):
+def plotField(axarr, arrayName, cases, positionList, samples, field):
 
     dataFile = "/"+"userDefinedLog/history_labelGroup_"+arrayName
 
@@ -33,9 +33,9 @@ def plotField(arrayName, cases, positionList, samples, field):
     std = np.zeros((len(positionList),4))
     
     for i, sample in enumerate(samples):
-        fig = plt.figure()
-        
-        fig, axarr = plt.subplots(4, sharex=True)
+#        fig = plt.figure()
+#        
+#        fig, axarr = plt.subplots(4, sharex=True)
         for j, case in enumerate(cases):
             if j == 0:
                 if i >= 7:
@@ -60,9 +60,9 @@ def plotField(arrayName, cases, positionList, samples, field):
             else :
                 print "There's a big problem"
 
-        fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-        fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
-        fig.savefig("../PICTURE_history_c/"+arrayName+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
+#        fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
+#        fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
+#        fig.savefig("../PICTURE_history_c/"+"all"+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
 
     return mean, std
 #==============================================================================
@@ -98,8 +98,10 @@ def spatial_mean_rms(arrayName, cases, positionList, mean , std, linestyleList, 
 
 def main():
     plt.style.use('seaborn-white') # from defaut
-    positionList = [0,16,32,48]
-    samples = [0,1,2,3]
+#    positionList = [0,16,32,48]
+#    samples = [0,1,2,3]
+    positionList = [48]
+    samples = [0]
     cases = [
              "BirdCarreau"+"/"+"inlet_0p5",
              "Newtonian"+"/"+"Re4000",
@@ -120,11 +122,18 @@ def main():
               ]
     arrayNames=["U_x", "U_y", "U_z", "T"]
     
+    fig = plt.figure()
+    fig, axarr = plt.subplots(4, sharex=True)
     for i in range (0,4):
         arrayName =arrayNames[i]
         mean = np.zeros((len(positionList),4))
         std = np.zeros((len(positionList),4))
-        mean, std = plotField(arrayName, cases, positionList, samples, field=i)
+        mean, std = plotField(axarr, arrayName, cases, positionList, samples, field=i)
 #        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
-
+    fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
+    fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
+#    fig.savefig("../PICTURE_history_c/"+"all"+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
+    #        fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
+#        fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
+    fig.savefig("../PICTURE_history_c/"+"all/"+"all.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
 main()
