@@ -125,6 +125,6 @@ def main():
         mean = np.zeros((len(positionList),4))
         std = np.zeros((len(positionList),4))
         mean, std = plotField(arrayName, cases, positionList, samples, field=i)
-        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
+#        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
 
 main()
