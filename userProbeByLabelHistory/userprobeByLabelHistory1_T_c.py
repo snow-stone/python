@@ -64,55 +64,33 @@ def plotField(field):
     for i, sample in enumerate(samples):
         fig = plt.figure()
         
-        # debit_medium
-        ax1 = fig.add_subplot(4,1,1)
-        ax2 = fig.add_subplot(4,1,2)
-        ax3 = fig.add_subplot(4,1,3)
-        ax4 = fig.add_subplot(4,1,4)
+        fig, axarr = plt.subplots(4, sharex=True)
         for j, case in enumerate(cases):
             if j == 0:
                 if i >= 7:
-                    std[i,j], mean[i,j] = userProbeByLabel(ax1, case, dataFile, sample, positionList, cut=0.6)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, cut=0.6)
                 else :
-                    std[i,j], mean[i,j] = userProbeByLabel(ax1, case, dataFile, sample, positionList, cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, cut=0.5)
             elif j == 1:
                 if i >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(ax2, case, dataFile, sample, positionList, cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, cut=0.5)
                 else :
-                    std[i,j], mean[i,j] = userProbeByLabel(ax2, case, dataFile, sample, positionList, cut=0.5)                
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, cut=0.5)                
             elif j == 2:
                 if i >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(ax3, case, dataFile, sample, positionList, cut=0.8)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, cut=0.8)
                 else:
-                    std[i,j], mean[i,j] = userProbeByLabel(ax3, case, dataFile, sample, positionList, cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, cut=0.5)
             elif j ==3 :
                 if i >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(ax4, case, dataFile, sample, positionList, cut=0.8)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, cut=0.8)
                 else:
-                    std[i,j], mean[i,j] = userProbeByLabel(ax4, case, dataFile, sample, positionList, cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, cut=0.5)
             else :
                 print "There's a big problem"
-                        
-        ax1.set_xlabel(r"$t$")
-        ax1.set_ylabel(latexName)
-        ax1.set_ylim(-0.2,1.2)
-        ax1.set_xlim(0,0.8)
 
-        ax2.set_xlabel(r"$t$")
-        ax2.set_ylabel(latexName)
-        ax2.set_ylim(-0.2,1.2)
-        ax2.set_xlim(0,0.8)
-
-        ax3.set_xlabel(r"$t$")
-        ax3.set_ylabel(latexName)
-        ax3.set_ylim(-0.2,1.2)
-        ax3.set_xlim(0,0.8)
-
-        ax4.set_xlabel(r"$t$")
-        ax4.set_ylabel(latexName)
-        ax4.set_ylim(-0.2,1.2)
-        ax4.set_xlim(0,0.8)        
-        
+        fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
+        fig.text(0.06, 0.5, latexNames, ha='center', va='center', rotation='vertical')
         fig.savefig("../PICTURE_history_c/"+arrayName+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
 #==============================================================================
 #   RMS 
