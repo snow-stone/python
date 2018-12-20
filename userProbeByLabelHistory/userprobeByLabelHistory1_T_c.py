@@ -25,38 +25,9 @@ def userProbeByLabel(ax, caseName, RelativeDataFile, sample, positionSet, cut=0.
     
     return std, mean
     
-def plotField(field):
-    positionList = [0,16,32,48]
-    samples = [0,1,2,3]
-    arrayNames=["U_x", "U_y", "U_z", "T"]
-    arrayName =arrayNames[field]
+def plotField(arrayName, cases, positionList, samples, field):
+
     dataFile = "/"+"userDefinedLog/history_labelGroup_"+arrayName
-    latexNames = [r"$U_x$", r"$U_y$", r"$U_z$", r"$T$"]
-    latexName  = latexNames[field]
-    latexRMSNames = [r"$U_x^{rms}$",r"$U_y^{rms}$",r"$U_z^{rms}$",r"$T^{rms}$"]
-    latexRMSName = latexRMSNames[field]
-    latexMEANNames = [r"$<U_x>$",r"$<U_y>$",r"$<U_z>$",r"$<T>$"]
-    latexMEANName = latexMEANNames[field]
-    cases = [
-             "BirdCarreau"+"/"+"inlet_0p5",
-             "Newtonian"+"/"+"Re4000",
-             "BirdCarreau"+"/"+"inlet_0p3",
-             "Newtonian"+"/"+"Re2400"]
-    
-    linestyleList = [
-             "-",
-             "--",
-             "-",
-             "--"
-              ]
-    markerList = [
-             "s",
-             "^",
-             "s",
-             "^" 
-              ]
-    
-    plt.style.use('seaborn-white') # from defaut
 
     mean = np.zeros((len(positionList),4))
     std = np.zeros((len(positionList),4))
@@ -90,11 +61,14 @@ def plotField(field):
                 print "There's a big problem"
 
         fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-        fig.text(0.06, 0.5, latexNames, ha='center', va='center', rotation='vertical')
+        fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
         fig.savefig("../PICTURE_history_c/"+arrayName+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
+
+    return mean, std
 #==============================================================================
 #   RMS 
 #==============================================================================    
+def spatial_mean_rms(arrayName, cases, positionList, mean , std, linestyleList, markerList):
     fig_rms = plt.figure()
     positionList=[x/8.0 for x in positionList]
 
@@ -104,7 +78,7 @@ def plotField(field):
         ax1.plot(positionList,std[:,i],label=cases[i],linestyle=linestyleList[i],marker=markerList[i])
     ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
     ax1.set_xlabel(r"$x/D$")
-    ax1.set_ylabel(latexRMSName)
+#    ax1.set_ylabel(latexRMSName)
     
     fig_rms.savefig('../PICTURE_history_c/'+arrayName+'/RMS_xByD_oneFig.png', bbox_inches='tight',  dpi=300)
 #==============================================================================
@@ -118,12 +92,39 @@ def plotField(field):
         ax1.plot(positionList,mean[:,i],label=cases[i],linestyle=linestyleList[i],marker=markerList[i])
     ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
     ax1.set_xlabel(r"$x/D$")
-    ax1.set_ylabel(latexMEANName)
+#    ax1.set_ylabel(latexMEANName)
     
     fig_rms.savefig('../PICTURE_history_c/'+arrayName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
 
 def main():
+    plt.style.use('seaborn-white') # from defaut
+    positionList = [0,16,32,48]
+    samples = [0,1,2,3]
+    cases = [
+             "BirdCarreau"+"/"+"inlet_0p5",
+             "Newtonian"+"/"+"Re4000",
+             "BirdCarreau"+"/"+"inlet_0p3",
+             "Newtonian"+"/"+"Re2400"]
+    
+    linestyleList = [
+             "-",
+             "--",
+             "-",
+             "--"
+              ]
+    markerList = [
+             "s",
+             "^",
+             "s",
+             "^" 
+              ]
+    arrayNames=["U_x", "U_y", "U_z", "T"]
+    
     for i in range (0,4):
-        plotField(field=i)
+        arrayName =arrayNames[i]
+        mean = np.zeros((len(positionList),4))
+        std = np.zeros((len(positionList),4))
+        mean, std = plotField(arrayName, cases, positionList, samples, field=i)
+        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
 
 main()
