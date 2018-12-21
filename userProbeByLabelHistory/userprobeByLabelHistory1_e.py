@@ -71,7 +71,7 @@ def userProbeByLabel(ax, caseName, fieldName, sample, positions, color, cut=0.5)
 #    ax1.set_xlabel(r"$x/D$")
 ##    ax1.set_ylabel(latexRMSName)
 #    
-#    fig_rms.savefig('../PICTURE_history_d/'+fieldName+'/RMS_xByD_oneFig.png', bbox_inches='tight',  dpi=300)
+#    fig_rms.savefig('../PICTURE_history_e/'+fieldName+'/RMS_xByD_oneFig.png', bbox_inches='tight',  dpi=300)
 ##==============================================================================
 ##   Mean
 ##==============================================================================
@@ -85,7 +85,7 @@ def userProbeByLabel(ax, caseName, fieldName, sample, positions, color, cut=0.5)
 #    ax1.set_xlabel(r"$x/D$")
 ##    ax1.set_ylabel(latexMEANName)
 #    
-#    fig_rms.savefig('../PICTURE_history_d/'+fieldName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
+#    fig_rms.savefig('../PICTURE_history_e/'+fieldName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
 
 def main():
     plt.style.use('seaborn-white') # from defaut
@@ -116,6 +116,15 @@ def main():
               ]
               
     fieldNames=["U_x", "U_y", "U_z", "T"]
+
+    alphabetLabels=[
+					r"$a)$",
+					r"$b)$",
+					r"$c)$",
+					r"$d)$",
+					r"$e)$",
+					r"$f)$",
+					]
     
     colorList = [
                   "blue",
@@ -137,7 +146,7 @@ def main():
         #        mean, std = plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
         #        plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
         #        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
-                axses_case[j].set_ylim(-0.5,2.5)
+                axses_case[j].set_ylim(-0.5,2)
                 axses_case[j].set_xlim(-0,0.8)
                 
                 print "axe number = ", j , fieldName
@@ -170,8 +179,15 @@ def main():
         
 #        spatial_mean_rms(fieldName, cases, allProbePosition, mean, std, linestyleList, markerList)
         fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-        fig.text(0.87, 0.85, r'$a)$')
+        #fig.text(0.87, 0.84, r'$a)$')
+        #fig.text(0.87, 0.7, r'$b)$')
+        x = 0.87
+        yStart = 0.84
+        for i, label in enumerate(alphabetLabels):
+            y = yStart - i * 0.14
+            fig.text(x, y, label)
+
         fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$ @ position '+str(allProbePosition[p]/8.0)+'D')
-        fig.savefig("../PICTURE_history_d/"+"4cases/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
+        fig.savefig("../PICTURE_history_e/"+"4cases/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
 
 main()
