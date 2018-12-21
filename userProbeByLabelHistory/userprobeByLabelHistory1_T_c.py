@@ -9,8 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def userProbeByLabel(ax, caseName, RelativeDataFile, sample, positions, color, cut=0.5):
-    rawData = np.genfromtxt("../"+caseName+RelativeDataFile)
+def userProbeByLabel(ax, caseName, fieldName, sample, positions, color, cut=0.5):
+    RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
+    rawData = np.genfromtxt("../"+caseName+'/'+RelativeDataFile)
 #    print rawData.shape
     time = rawData[:,0]
     probeData = rawData[:,1:]
@@ -24,44 +25,6 @@ def userProbeByLabel(ax, caseName, RelativeDataFile, sample, positions, color, c
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
     
     return std, mean
-
-def plotField1(axarr, arrayName, cases, positionList, colorList, samples, field):
-
-    RelativeDataFile = "/"+"userDefinedLog/history_labelGroup_"+arrayName
-
-    mean = np.zeros((len(positionList),4))
-    std = np.zeros((len(positionList),4))
-    
-#    for i, sample in enumerate(samples):
-#        fig = plt.figure()
-#        
-#        fig, axarr = plt.subplots(4, sharex=True)
-    i=0
-    sample=samples[i]
-    for j, case in enumerate(cases):
-        print "axe number = ", j , arrayName
-        if j == 0:
-            if i >= 7:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.6)
-            else :
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)
-        elif j == 1:
-            if i >= 14:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)
-            else :
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)                
-        elif j == 2:
-            if i >= 14:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.8)
-            else:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)
-        elif j ==3 :
-            if i >= 14:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.8)
-            else:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)
-        else :
-            print "There's a big problem"
     
 def plotField(axarr, arrayName, cases, positionList, colorList, samples, field):
 
@@ -140,8 +103,8 @@ def plotField(axarr, arrayName, cases, positionList, colorList, samples, field):
 
 def main():
     plt.style.use('seaborn-white') # from defaut
-    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72]
-    samples = [17]
+    allProbePosition = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72]
+    positionSubSet = [17]
     cases = [
              "BirdCarreau"+"/"+"inlet_0p5",
              "Newtonian"+"/"+"Re4000",
@@ -176,41 +139,40 @@ def main():
 #    fig = plt.figure()
     fig, axarr = plt.subplots(4, 1, sharex=True)
 
-    for i, fieldName in enumerate(fieldNames):
-#        mean = np.zeros((len(positionList),4))
-#        std = np.zeros((len(positionList),4))
-#        mean, std = plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
-#        plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
-#        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
-        RelativeDataFile = "/"+"userDefinedLog/history_labelGroup_"+fieldName
-    
-        mean = np.zeros((len(positionList),4))
-        std = np.zeros((len(positionList),4))
+    for j, case in enumerate(cases):
+        for i, fieldName in enumerate(fieldNames):
+    #        mean = np.zeros((len(positionList),4))
+    #        std = np.zeros((len(positionList),4))
+    #        mean, std = plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
+    #        plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
+    #        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
         
-        k=0
-        sample=samples[k]
-        for j, case in enumerate(cases):
+            mean = np.zeros((len(allProbePosition),4))
+            std = np.zeros((len(allProbePosition),4))
+            
+            k=0
+            p=positionSubSet[k]
             print "axe number = ", j , fieldName
             if j == 0:
                 if k >= 7:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.6)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.6)
                 else :
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
             elif j == 1:
                 if k >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                 else :
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)                
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)                
             elif j == 2:
                 if k >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.8)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.8)
                 else:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
             elif j ==3 :
                 if k >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.8)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.8)
                 else:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
             else :
                 print "There's a big problem"
         
