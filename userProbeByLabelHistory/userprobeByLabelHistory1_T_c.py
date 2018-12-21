@@ -60,6 +60,7 @@ def userProbeByLabel(ax, caseName, fieldName, sample, positions, color, cut=0.5)
 def main():
     plt.style.use('seaborn-white') # from defaut
     allProbePosition = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72]
+        #   sampling = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
     positionSubSet = [17]
     cases = [
              "BirdCarreau"+"/"+"inlet_0p5",
@@ -111,22 +112,22 @@ def main():
             
             print "axe number = ", j , fieldName
             if j == 0:
-                if k >= 7:
+                if allProbePosition[p] >= 7:
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.6)
                 else :
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
             elif j == 1:
-                if k >= 14:
+                if allProbePosition[p] >= 24:
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                 else :
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)                
             elif j == 2:
-                if k >= 14:
+                if allProbePosition[p] >= 24:
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.8)
                 else:
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
             elif j ==3 :
-                if k >= 14:
+                if allProbePosition[p] >= 24:
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.8)
                 else:
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
