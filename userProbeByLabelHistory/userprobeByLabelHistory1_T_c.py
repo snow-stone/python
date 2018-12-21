@@ -20,8 +20,8 @@ def userProbeByLabel(ax, caseName, RelativeDataFile, sample, positionSet, color,
     std = np.std(data[cutSliceIndex:,sample])
     mean = np.mean(data[cutSliceIndex:,sample])
     print position_in_D + " std : ", std, " mean : ", mean
-    ax.plot(time[cutSliceIndex:], data[cutSliceIndex:,sample], color=color, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
-    ax.plot(time[:cutSliceIndex], data[:cutSliceIndex,sample], color=color, linestyle=':')    
+    ax.plot(time[cutSliceIndex:], data[cutSliceIndex:,sample], color=color, linewidth=1.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
+    ax.plot(time[:cutSliceIndex], data[:cutSliceIndex,sample], color=color, linewidth=0.5)    
     
     return std, mean
     
@@ -67,7 +67,7 @@ def plotField(axarr, arrayName, cases, positionList, colorList, samples, field):
 #        fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
 #        fig.savefig("../PICTURE_history_c/"+"all"+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
 
-    return mean, std
+#    return mean, std
 #==============================================================================
 #   RMS 
 #==============================================================================    
@@ -109,7 +109,8 @@ def main():
              "BirdCarreau"+"/"+"inlet_0p5",
              "Newtonian"+"/"+"Re4000",
              "BirdCarreau"+"/"+"inlet_0p3",
-             "Newtonian"+"/"+"Re2400"]
+             "Newtonian"+"/"+"Re2400"
+            ]
 #    cases = [
 #             "BirdCarreau"+"/"+"inlet_0p5"]
     
@@ -125,7 +126,8 @@ def main():
              "s",
              "^" 
               ]
-    arrayNames=["U_x", "U_y", "U_z", "T"]
+              
+    fieldNames=["U_x", "U_y", "U_z", "T"]
     
     colorList = [
                   "blue",
@@ -134,25 +136,22 @@ def main():
                   "black"
                 ]
     
-    fig = plt.figure()
-#    fig, axarr = plt.subplots(4, sharex=True)
-    fig1, ax1 = plt.subplots()
-    fig2, ax2 = plt.subplots()
-    fig3, ax3 = plt.subplots()
-    fig4, ax4 = plt.subplots()
-    axarr = [ax1, ax2, ax3, ax4]
-    for i in range (0,4):
-        arrayName =arrayNames[i]
-        mean = np.zeros((len(positionList),4))
-        std = np.zeros((len(positionList),4))
-        mean, std = plotField(axarr, arrayName, cases, positionList, colorList, samples, field=i)
+#    fig = plt.figure()
+    fig, axarr = plt.subplots(4, 1, sharex=True)
+
+    for i, fieldName in enumerate(fieldNames):
+#        mean = np.zeros((len(positionList),4))
+#        std = np.zeros((len(positionList),4))
+#        mean, std = plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
+        plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
 #        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
         
-#    axarr[0].set_ylim(1,1.5)
+    for i in range (0,4):
+        axarr[i].set_ylim(-0.5,2.5)
+    
     fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-    fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
-#    fig.savefig("../PICTURE_history_c/"+"all"+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
-#        fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-#        fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
+    fig.text(0.87, 0.85, r'$a)$')
+    fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$')
     fig.savefig("../PICTURE_history_c/"+"all/"+"all.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
+
 main()
