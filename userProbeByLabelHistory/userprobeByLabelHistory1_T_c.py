@@ -25,50 +25,6 @@ def userProbeByLabel(ax, caseName, fieldName, sample, positions, color, cut=0.5)
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
     
     return std, mean
-    
-def plotField(axarr, arrayName, cases, positionList, colorList, samples, field):
-
-    dataFile = "/"+"userDefinedLog/history_labelGroup_"+arrayName
-
-    mean = np.zeros((len(positionList),4))
-    std = np.zeros((len(positionList),4))
-    
-#    for i, sample in enumerate(samples):
-#        fig = plt.figure()
-#        
-#        fig, axarr = plt.subplots(4, sharex=True)
-    i=0
-    sample=samples[i]
-    for j, case in enumerate(cases):
-        print "axe number = ", j , arrayName
-        if j == 0:
-            if i >= 7:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, colorList[field], cut=0.6)
-            else :
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, colorList[field], cut=0.5)
-        elif j == 1:
-            if i >= 14:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, colorList[field], cut=0.5)
-            else :
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, colorList[field], cut=0.5)                
-        elif j == 2:
-            if i >= 14:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, colorList[field], cut=0.8)
-            else:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, colorList[field], cut=0.5)
-        elif j ==3 :
-            if i >= 14:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, colorList[field], cut=0.8)
-            else:
-                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, dataFile, sample, positionList, colorList[field], cut=0.5)
-        else :
-            print "There's a big problem"
-
-#        fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-#        fig.text(0.06, 0.5, 'Ux Uy Uz T', ha='center', va='center', rotation='vertical')
-#        fig.savefig("../PICTURE_history_c/"+"all"+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
-
-#    return mean, std
 
 ##==============================================================================
 ##   RMS 
@@ -137,8 +93,10 @@ def main():
                 ]
     
 #    fig = plt.figure()
-    fig, axarr = plt.subplots(4, 1, sharex=True)
-
+    fig, axses_case = plt.subplots(4, 1, sharex=True)
+    
+    k=0
+    p=positionSubSet[k]
     for j, case in enumerate(cases):
         for i, fieldName in enumerate(fieldNames):
     #        mean = np.zeros((len(positionList),4))
@@ -149,39 +107,35 @@ def main():
         
             mean = np.zeros((len(allProbePosition),4))
             std = np.zeros((len(allProbePosition),4))
+            axses_case[j].set_ylim(-0.5,2.5)
             
-            k=0
-            p=positionSubSet[k]
             print "axe number = ", j , fieldName
             if j == 0:
                 if k >= 7:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.6)
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.6)
                 else :
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
             elif j == 1:
                 if k >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                 else :
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)                
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)                
             elif j == 2:
                 if k >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.8)
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.8)
                 else:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
             elif j ==3 :
                 if k >= 14:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.8)
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.8)
                 else:
-                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, fieldName, p, allProbePosition, colorList[i], cut=0.5)
             else :
                 print "There's a big problem"
-        
-    for i in range (0,4):
-        axarr[i].set_ylim(-0.5,2.5)
-    
+            
     fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
     fig.text(0.87, 0.85, r'$a)$')
     fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$')
-    fig.savefig("../PICTURE_history_c/"+"all/"+"all.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
+    fig.savefig("../PICTURE_history_c/"+"4cases/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
 
 main()
