@@ -9,21 +9,59 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def userProbeByLabel(ax, caseName, RelativeDataFile, sample, positionSet, color, cut=0.5):
+def userProbeByLabel(ax, caseName, RelativeDataFile, sample, positions, color, cut=0.5):
     rawData = np.genfromtxt("../"+caseName+RelativeDataFile)
-    print rawData.shape
+#    print rawData.shape
     time = rawData[:,0]
-    data = rawData[:,1:]
+    probeData = rawData[:,1:]
     cutSliceIndex = int(cut*len(time))
     
-    position_in_D = str(positionSet[sample]/8.0)+"D"
-    std = np.std(data[cutSliceIndex:,sample])
-    mean = np.mean(data[cutSliceIndex:,sample])
-    print position_in_D + " std : ", std, " mean : ", mean
-    ax.plot(time[cutSliceIndex:], data[cutSliceIndex:,sample], color=color, linewidth=1.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
-    ax.plot(time[:cutSliceIndex], data[:cutSliceIndex,sample], color=color, linewidth=0.5)    
+    position_in_D = str(positions[sample]/8.0)+"D"
+    std = np.std(probeData[cutSliceIndex:,sample])
+    mean = np.mean(probeData[cutSliceIndex:,sample])
+#    print position_in_D + " std : ", std, " mean : ", mean
+    ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=1.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
+    ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
     
     return std, mean
+
+def plotField1(axarr, arrayName, cases, positionList, colorList, samples, field):
+
+    RelativeDataFile = "/"+"userDefinedLog/history_labelGroup_"+arrayName
+
+    mean = np.zeros((len(positionList),4))
+    std = np.zeros((len(positionList),4))
+    
+#    for i, sample in enumerate(samples):
+#        fig = plt.figure()
+#        
+#        fig, axarr = plt.subplots(4, sharex=True)
+    i=0
+    sample=samples[i]
+    for j, case in enumerate(cases):
+        print "axe number = ", j , arrayName
+        if j == 0:
+            if i >= 7:
+                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.6)
+            else :
+                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)
+        elif j == 1:
+            if i >= 14:
+                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)
+            else :
+                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)                
+        elif j == 2:
+            if i >= 14:
+                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.8)
+            else:
+                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)
+        elif j ==3 :
+            if i >= 14:
+                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.8)
+            else:
+                std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[field], cut=0.5)
+        else :
+            print "There's a big problem"
     
 def plotField(axarr, arrayName, cases, positionList, colorList, samples, field):
 
@@ -68,41 +106,40 @@ def plotField(axarr, arrayName, cases, positionList, colorList, samples, field):
 #        fig.savefig("../PICTURE_history_c/"+"all"+"/x_Eq_"+str(positionList[sample]/8.0).replace('.','p')+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
 
 #    return mean, std
-#==============================================================================
-#   RMS 
-#==============================================================================    
-def spatial_mean_rms(arrayName, cases, positionList, mean , std, linestyleList, markerList):
-    fig_rms = plt.figure()
-    positionList=[x/8.0 for x in positionList]
 
-    ax1 = fig_rms.add_subplot(1,1,1)
-
-    for i, case in enumerate(cases):
-        ax1.plot(positionList,std[:,i],label=cases[i],linestyle=linestyleList[i],marker=markerList[i])
-    ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
-    ax1.set_xlabel(r"$x/D$")
-#    ax1.set_ylabel(latexRMSName)
-    
-    fig_rms.savefig('../PICTURE_history_c/'+arrayName+'/RMS_xByD_oneFig.png', bbox_inches='tight',  dpi=300)
-#==============================================================================
-#   Mean
-#==============================================================================
-    fig_rms = plt.figure()
-
-    ax1 = fig_rms.add_subplot(1,1,1)
-
-    for i, case in enumerate(cases):
-        ax1.plot(positionList,mean[:,i],label=cases[i],linestyle=linestyleList[i],marker=markerList[i])
-    ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
-    ax1.set_xlabel(r"$x/D$")
-#    ax1.set_ylabel(latexMEANName)
-    
-    fig_rms.savefig('../PICTURE_history_c/'+arrayName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
+##==============================================================================
+##   RMS 
+##==============================================================================    
+#def spatial_mean_rms(arrayName, cases, positionList, mean , std, linestyleList, markerList):
+#    fig_rms = plt.figure()
+#    positionList=[x/8.0 for x in positionList]
+#
+#    ax1 = fig_rms.add_subplot(1,1,1)
+#
+#    for i, case in enumerate(cases):
+#        ax1.plot(positionList,std[:,i],label=cases[i],linestyle=linestyleList[i],marker=markerList[i])
+#    ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
+#    ax1.set_xlabel(r"$x/D$")
+##    ax1.set_ylabel(latexRMSName)
+#    
+#    fig_rms.savefig('../PICTURE_history_c/'+arrayName+'/RMS_xByD_oneFig.png', bbox_inches='tight',  dpi=300)
+##==============================================================================
+##   Mean
+##==============================================================================
+#    fig_rms = plt.figure()
+#
+#    ax1 = fig_rms.add_subplot(1,1,1)
+#
+#    for i, case in enumerate(cases):
+#        ax1.plot(positionList,mean[:,i],label=cases[i],linestyle=linestyleList[i],marker=markerList[i])
+#    ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
+#    ax1.set_xlabel(r"$x/D$")
+##    ax1.set_ylabel(latexMEANName)
+#    
+#    fig_rms.savefig('../PICTURE_history_c/'+arrayName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
 
 def main():
     plt.style.use('seaborn-white') # from defaut
-#    positionList = [0,16,32,48]
-#    samples = [0,1,2,3]
     positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72]
     samples = [17]
     cases = [
@@ -143,8 +180,39 @@ def main():
 #        mean = np.zeros((len(positionList),4))
 #        std = np.zeros((len(positionList),4))
 #        mean, std = plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
-        plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
+#        plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
 #        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
+        RelativeDataFile = "/"+"userDefinedLog/history_labelGroup_"+fieldName
+    
+        mean = np.zeros((len(positionList),4))
+        std = np.zeros((len(positionList),4))
+        
+        k=0
+        sample=samples[k]
+        for j, case in enumerate(cases):
+            print "axe number = ", j , fieldName
+            if j == 0:
+                if k >= 7:
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.6)
+                else :
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)
+            elif j == 1:
+                if k >= 14:
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)
+                else :
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)                
+            elif j == 2:
+                if k >= 14:
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.8)
+                else:
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)
+            elif j ==3 :
+                if k >= 14:
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.8)
+                else:
+                    std[i,j], mean[i,j] = userProbeByLabel(axarr[j], case, RelativeDataFile, sample, positionList, colorList[i], cut=0.5)
+            else :
+                print "There's a big problem"
         
     for i in range (0,4):
         axarr[i].set_ylim(-0.5,2.5)
