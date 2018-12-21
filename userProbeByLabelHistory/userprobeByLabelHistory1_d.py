@@ -23,8 +23,6 @@ def userProbeByLabel1(ax, caseName, fieldName, sample, positions, color, cut=0.)
     ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=0.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
 
-    return std, mean
-"""
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName+".bak"
     rawData = np.genfromtxt("../"+caseName+'/'+RelativeDataFile)
 #    print rawData.shape
@@ -38,7 +36,8 @@ def userProbeByLabel1(ax, caseName, fieldName, sample, positions, color, cut=0.)
 #    print position_in_D + " std : ", std, " mean : ", mean
     ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=1.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
-"""
+
+    return std, mean
 
 def userProbeByLabel(ax, caseName, fieldName, sample, positions, color, cut=0.5):
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
