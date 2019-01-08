@@ -1,8 +1,7 @@
 
-import sys
-import commands, os
 
 def submitJob(cmd, slurmFile):
+    import commands, os
     if os.path.exists(slurmFile):
         print "submitting job using : %s" % cmd
         status, jobnum = commands.getstatusoutput(cmd)
@@ -17,7 +16,7 @@ def tryJob(jobPrefix, someIndex, queue):
     simuLogFile = "log.userLabelListOp_DaiT_0_0p6_"+str(someIndex)
     
     slurmFile   = queue
-    if queue == 'test' :
+    if queue == 'mononode' :
         with open(slurmFile,'w') as sf:
             sf.write("#!/bin/bash\n")
             sf.write("#SBATCH --job-name="+str(jobPrefix)+"_"+str(someIndex)+"\n")
@@ -47,12 +46,15 @@ def tryJob(jobPrefix, someIndex, queue):
     return jobID
 
 def main():
+    import sys
+    import time
     jobNamePrefix = sys.argv[1]
     queue = sys.argv[2]
-#    sliceList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
-    sliceList = [0, 1]
+    sliceList = [2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
+#    sliceList = [0, 1]
     jobList =[]
     for slicei in sliceList:
+        time.sleep(5)
         jobList.append(tryJob(jobNamePrefix, slicei, queue))
     
     with open(jobNamePrefix, 'w') as jobListFile:
