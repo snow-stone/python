@@ -40,6 +40,32 @@ def tryJob(jobPrefix, someIndex, queue):
             sf.write("sliceStore=/store/lmfa/fct/hluo/occigen/caseByGeometry/T/shape_square/2a_3_T/sliceStore\n")
             sf.write("userLabelListOp_Dai T $sliceStore slice"+str(someIndex)+" -time '0:0.6' > %s\n" % simuLogFile)
         sf.close()
+    elif queue == 'test' :
+        with open(slurmFile,'w') as sf:
+            sf.write("#!/bin/bash\n")
+            sf.write("#SBATCH --job-name="+str(jobPrefix)+"_"+str(someIndex)+"\n")
+            sf.write("#SBATCH --output=job.%j.out\n")
+            sf.write("#SBATCH --error=job.%j.err\n")
+            sf.write("#SBATCH --mail-type=ALL\n")
+            sf.write("#SBATCH --mail-user=haining.luo@doctorant.ec-lyon.fr\n\n")
+            
+            sf.write("#SBATCH --partition=test\n")
+            sf.write("#SBATCH --mem=8000\n")
+            sf.write("#SBATCH --nodes=1\n")
+            sf.write("#SBATCH --ntasks=1\n")
+            sf.write("#SBATCH --cpus-per-task=1\n")
+            sf.write("##SBATCH --exclusive\n")
+            sf.write("#SBATCH --time=01:00:00\n\n")      # min is the smallest unit here
+
+            sf.write("module purge\n")
+            sf.write("module load OpenMPI/1.6.5-GCC-4.8.3 \n")
+            sf.write(". /home/lmfa/hluo/LocalSoftware/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.Opt\n\n")
+            
+            sf.write("sliceStore=/store/lmfa/fct/hluo/occigen/caseByGeometry/T/shape_square/2a_3_T/sliceStore\n")
+            sf.write("userLabelListOp_Dai T $sliceStore slice"+str(someIndex)+" -time '0:0.6' > %s\n" % simuLogFile)
+        sf.close()
+    else:
+        print "!! no queue named " + queue
 
     cmd = "sbatch %s" % slurmFile
     status, jobID = submitJob(cmd, slurmFile)
