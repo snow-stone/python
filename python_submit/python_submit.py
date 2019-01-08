@@ -12,9 +12,9 @@ def submitJob(cmd, slurmFile):
         print "file %s doesnt exits" % slurmFile
         return (1, '0000')
 
-def tryJob(job_number, queue):
+def tryJob(someIndex, queue):
 
-    simuLogFile = "logSimulation_"+str(job_number)
+    simuLogFile = "log.userLabelListOp_DaiT_0_0p6_"+str(someIndex)
     
     slurmFile   = queue
     if queue == 'test' :
@@ -38,7 +38,7 @@ def tryJob(job_number, queue):
             sf.write(". /home/lmfa/hluo/LocalSoftware/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.Opt\n\n")
             
             sf.write("sliceStore=/store/lmfa/fct/hluo/occigen/caseByGeometry/T/shape_square/2a_3_T/sliceStore\n")
-            sf.write("userLabelListOp_Dai T $sliceStore slice0 -time '0:0.6' > %s\n" % simuLogFile)
+            sf.write("userLabelListOp_Dai T $sliceStore slice"+str(someIndex)+" -time '0:0.6' > %s\n" % simuLogFile)
         sf.close()
 
     cmd = "sbatch %s" % slurmFile
@@ -46,6 +46,9 @@ def tryJob(job_number, queue):
 
 def main():
     queue = sys.argv[1]
-    tryJob(1, queue)
+#    sliceList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
+    sliceList = [0, 1]
+    for slicei in sliceList:
+        tryJob(slicei, queue)
     
 main()
