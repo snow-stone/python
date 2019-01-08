@@ -12,7 +12,7 @@ def submitJob(cmd, slurmFile):
         print "file %s doesnt exits" % slurmFile
         return (1, '0000') #TODO compatibility with if, return a tuple
 
-def tryJob(someIndex, queue):
+def tryJob(jobPrefix, someIndex, queue):
 
     simuLogFile = "log.userLabelListOp_DaiT_0_0p6_"+str(someIndex)
     
@@ -20,7 +20,7 @@ def tryJob(someIndex, queue):
     if queue == 'test' :
         with open(slurmFile,'w') as sf:
             sf.write("#!/bin/bash\n")
-            sf.write("##SBATCH --job-name=someName\n")
+            sf.write("#SBATCH --job-name="+str(jobPrefix)+"_"+str(someIndex)+"\n")
             sf.write("#SBATCH --output=job.%j.out\n")
             sf.write("#SBATCH --error=job.%j.err\n")
             sf.write("#SBATCH --mail-user=haining.luo@doctorant.ec-lyon.fr\n\n")
@@ -47,10 +47,11 @@ def tryJob(someIndex, queue):
     return jobID
 
 def main():
-    queue = sys.argv[1]
+    jobNamePrefix = sys.argv[1]
+    queue = sys.argv[2]
 #    sliceList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     sliceList = [0, 1]
     for slicei in sliceList:
-        print "jobID " + tryJob(slicei, queue)
+        print "jobID " + tryJob(jobNamePrefix, slicei, queue)
     
 main()
