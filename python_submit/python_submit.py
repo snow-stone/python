@@ -1,5 +1,16 @@
 
 import sys
+import commands, os
+
+def submitJob(cmd, slurmFile):
+    if os.path.exists(slurmFile):
+        print "submitting job using : %s" % cmd
+        status, jobnum = commands.getstatusoutput(cmd)
+        return status, jobnum.split()[-1]
+    else:
+        print "FATAL ERROR!"
+        print "file %s doesnt exits" % slurmFile
+        return (1, '0000')
 
 def tryJob(job_number, queue):
 
@@ -29,6 +40,9 @@ def tryJob(job_number, queue):
             sf.write("sliceStore=/store/lmfa/fct/hluo/occigen/caseByGeometry/T/shape_square/2a_3_T/sliceStore\n")
             sf.write("userLabelListOp_Dai T $sliceStore slice0 -time '0:0.6' > %s\n" % simuLogFile)
         sf.close()
+
+    cmd = "sbatch %s" % slurmFile
+    status, jobID = submitJob(cmd, slurmFile)
 
 def main():
     queue = sys.argv[1]
