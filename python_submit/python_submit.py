@@ -74,15 +74,11 @@ def tryJob(jobPrefix, someIndex, queue):
 
 def main():
     import sys
-    import time
     jobNamePrefix = sys.argv[1]
     queue = sys.argv[2]
-#    sliceList = [2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
-    sliceList = [9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
-#    sliceList = [0, 1]
+    sliceList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     jobList =[]
     for slicei in sliceList:
-        time.sleep(2)
         jobList.append(tryJob(jobNamePrefix, slicei, queue))
     
     with open(jobNamePrefix, 'w') as jobListFile:
