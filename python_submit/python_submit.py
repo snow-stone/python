@@ -10,7 +10,7 @@ def submitJob(cmd, slurmFile):
     else:
         print "FATAL ERROR!"
         print "file %s doesnt exits" % slurmFile
-        return (1, '0000')
+        return (1, '0000') #TODO compatibility with if, return a tuple
 
 def tryJob(someIndex, queue):
 
@@ -43,12 +43,14 @@ def tryJob(someIndex, queue):
 
     cmd = "sbatch %s" % slurmFile
     status, jobID = submitJob(cmd, slurmFile)
+    
+    return jobID
 
 def main():
     queue = sys.argv[1]
 #    sliceList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     sliceList = [0, 1]
     for slicei in sliceList:
-        tryJob(slicei, queue)
+        print "jobID " + tryJob(slicei, queue)
     
 main()
