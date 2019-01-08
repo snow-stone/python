@@ -26,12 +26,12 @@ def tryJob(jobPrefix, someIndex, queue):
             sf.write("#SBATCH --mail-user=haining.luo@doctorant.ec-lyon.fr\n\n")
             
             sf.write("#SBATCH --partition=mononode\n")
-            sf.write("#SBATCH --mem-per-cpu=4000\n")
+            sf.write("#SBATCH --mem=8000\n")
             sf.write("#SBATCH --nodes=1\n")
-            sf.write("#SBATCH --ntasks-per-node=1\n")
-            sf.write("##SBATCH --exclusive\n")
+            sf.write("#SBATCH --ntasks=1\n")
             sf.write("#SBATCH --cpus-per-task=1\n")
-            sf.write("#SBATCH -t 01:00:00\n\n")      # min is the smallest unit here
+            sf.write("##SBATCH --exclusive\n")
+            sf.write("#SBATCH --time=01:00:00\n\n")      # min is the smallest unit here
 
             sf.write("module purge\n")
             sf.write("module load OpenMPI/1.6.5-GCC-4.8.3 \n")
@@ -51,7 +51,8 @@ def main():
     import time
     jobNamePrefix = sys.argv[1]
     queue = sys.argv[2]
-    sliceList = [2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
+#    sliceList = [2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
+    sliceList = [9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
 #    sliceList = [0, 1]
     jobList =[]
     for slicei in sliceList:
