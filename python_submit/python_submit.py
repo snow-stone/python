@@ -1,4 +1,5 @@
 
+import sys
 
 def tryJob(job_number, queue):
 
@@ -22,5 +23,9 @@ def tryJob(job_number, queue):
             sf.write("ulimit -s 500000\n")
             sf.write("srun -n 480 pimpleFoamPS_profiling -parallel > %s\n" % simuLogFile)
         sf.close()
+
+def main():
+    queue = sys.argv[1]
+    tryJob(1, queue)
     
-tryJob(1, 'test')
+main()
