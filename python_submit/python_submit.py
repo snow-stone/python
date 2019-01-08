@@ -22,6 +22,7 @@ def tryJob(jobPrefix, someIndex, queue):
             sf.write("#SBATCH --job-name="+str(jobPrefix)+"_"+str(someIndex)+"\n")
             sf.write("#SBATCH --output=job.%j.out\n")
             sf.write("#SBATCH --error=job.%j.err\n")
+            sf.write("#SBATCH --mail-type=ALL\n")
             sf.write("#SBATCH --mail-user=haining.luo@doctorant.ec-lyon.fr\n\n")
             
             sf.write("#SBATCH --partition=mononode\n")
@@ -30,7 +31,7 @@ def tryJob(jobPrefix, someIndex, queue):
             sf.write("#SBATCH --ntasks-per-node=1\n")
             sf.write("##SBATCH --exclusive\n")
             sf.write("#SBATCH --cpus-per-task=1\n")
-            sf.write("#SBATCH --time=01:00:00\n\n")      # min is the smallest unit here
+            sf.write("#SBATCH -t 01:00:00\n\n")      # min is the smallest unit here
 
             sf.write("module purge\n")
             sf.write("module load OpenMPI/1.6.5-GCC-4.8.3 \n")
@@ -54,7 +55,7 @@ def main():
 #    sliceList = [0, 1]
     jobList =[]
     for slicei in sliceList:
-        time.sleep(60)
+        time.sleep(2)
         jobList.append(tryJob(jobNamePrefix, slicei, queue))
     
     with open(jobNamePrefix, 'w') as jobListFile:
