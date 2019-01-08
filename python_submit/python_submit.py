@@ -29,8 +29,8 @@ def tryJob(jobPrefix, someIndex, queue):
             sf.write("#SBATCH --nodes=1\n")
             sf.write("#SBATCH --ntasks-per-node=1\n")
             sf.write("##SBATCH --exclusive\n")
-            sf.write("#SBATCH --cpus-per-task=1")
-            sf.write("#SBATCH --time=00:10:00\n\n")      # min is the smallest unit here
+            sf.write("#SBATCH --cpus-per-task=1\n")
+            sf.write("#SBATCH --time=01:00:00\n\n")      # min is the smallest unit here
 
             sf.write("module purge\n")
             sf.write("module load OpenMPI/1.6.5-GCC-4.8.3 \n")
@@ -54,7 +54,7 @@ def main():
 #    sliceList = [0, 1]
     jobList =[]
     for slicei in sliceList:
-        time.sleep(5)
+        time.sleep(60)
         jobList.append(tryJob(jobNamePrefix, slicei, queue))
     
     with open(jobNamePrefix, 'w') as jobListFile:
