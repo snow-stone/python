@@ -144,6 +144,8 @@ def main():
         #        plotField(axarr, fieldName, cases, positionList, colorList, samples, field=i)
         #        spatial_mean_rms(arrayName, cases, positionList, mean, std, linestyleList, markerList)
                 axses_case[j].set_ylim(-0.5,2)
+                axses_case[j].set_yticks([0, 1])
+                axses_case[j].tick_params(axis='y', direction='in', length=4, width=1.5)
                 axses_case[j].set_xlim(-0,0.8)
                 
                 print "axe number = ", j , fieldName
