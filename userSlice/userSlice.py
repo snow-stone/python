@@ -55,10 +55,14 @@ def plotCaseWithSlices(ax_cases, path2Data, dataDir, positionList, marker, cut):
     
 def main():
     plt.style.use('seaborn-white')
+#    caseList=["BirdCarreau/inlet_0p5",
+#              "Newtonian/Re4000",
+#              "BirdCarreau/inlet_0p3",
+#              "Newtonian/Re2400"]
     caseList=["BirdCarreau/inlet_0p5",
+              "BirdCarreau/inlet0p5_impinging",
               "Newtonian/Re4000",
-              "BirdCarreau/inlet_0p3",
-              "Newtonian/Re2400"]
+              "Newtonian/Re4000_impinging"]
     markerList=["s",
                 "^",
                 "s",
