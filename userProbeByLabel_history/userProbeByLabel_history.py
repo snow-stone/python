@@ -122,6 +122,16 @@ def main():
 					r"$e)$",
 					r"$f)$",
 			   ]
+    aliasDict={
+        "BirdCarreau/inlet_0p5":"case1a",
+        "Newtonian/Re4000"     :"case1b",
+        "BirdCarreau/inlet_0p3":"case2a",
+        "Newtonian/Re2400"     :"case2b",
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":"case2c",
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":"case2d",
+        "BirdCarreau/inlet0p5_impinging"       :"case1ai",
+        "Newtonian/Re4000_impinging"           :"case1bi"
+    }
     
     colorList = [
                   "blue",
@@ -146,7 +156,7 @@ def main():
                 axses_case[j].set_ylim(-0.5,2)
                 axses_case[j].set_yticks([0, 1])
                 axses_case[j].tick_params(axis='y', direction='in', length=4, width=1.5)
-                axses_case[j].set_xlim(-0,0.8)
+                axses_case[j].set_xlim(-0,0.9)
                 
                 print "axe number = ", j , fieldName
                 if j == 0:
@@ -178,11 +188,11 @@ def main():
         
 #        spatial_mean_rms(fieldName, cases, allProbePosition, mean, std, linestyleList, markerList)
         fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-        x = 0.87
+        x = 0.8
         yStart = 0.84
-        for i, label in enumerate(alphabetLabels):
-            y = yStart - i * 0.14
-            fig.text(x, y, label)
+        for i, case in enumerate(cases):
+            y = yStart - i * 0.135
+            fig.text(x, y, aliasDict[case])
 
         fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$ @ position '+str(allProbePosition[p]/8.0)+'D')
         fig.savefig(path2Data+"/"+"PICTURE_history_e/"+"4cases/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
