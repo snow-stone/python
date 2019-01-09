@@ -68,6 +68,7 @@ def main():
     plt.bar(x+0.5, height = pressureDropList, width=0.4, color=colorList)
     plt.xticks(x+0.75, labelTuple) # xticks can only chagned by plt object. axes don't work !!
     plt.xlim(0,7)
+    plt.ylabel(r'$\Delta p/\rho \quad (m^2/s^2)$')
     plt.savefig(path2Data+"/"+'pressureDrop/pressureDrop.png', bbox_inches='tight', dpi=300)
     
     print pressureDropList[0]/pressureDropList[1]
