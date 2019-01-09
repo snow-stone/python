@@ -123,14 +123,14 @@ def main():
 					r"$f)$",
 			   ]
     aliasDict={
-        "BirdCarreau/inlet_0p5":"case1a",
-        "Newtonian/Re4000"     :"case1b",
-        "BirdCarreau/inlet_0p3":"case2a",
-        "Newtonian/Re2400"     :"case2b",
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":"case2c",
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":"case2d",
-        "BirdCarreau/inlet0p5_impinging"       :"case1ai",
-        "Newtonian/Re4000_impinging"           :"case1bi"
+        "BirdCarreau/inlet_0p5":"simu1a",
+        "Newtonian/Re4000"     :"simu1b",
+        "BirdCarreau/inlet_0p3":"simu2a",
+        "Newtonian/Re2400"     :"simu2b",
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":"simu2c",
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":"simu2d",
+        "BirdCarreau/inlet0p5_impinging"       :"simu1ai",
+        "Newtonian/Re4000_impinging"           :"simu1bi"
     }
     
     colorList = [
