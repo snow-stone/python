@@ -42,13 +42,13 @@ def main():
     path2Data = "/home/hluo/Downloads/tmp/shape_square/2a_3_T/python_postProcessing"
     pressureDropList = []
     labelTuple = (
-                "case1a",
-                "case1b",
-                "case2a",
-                "case2b",
-                "case1ai",
-                "case1bi"                
-                )
+                "simu1a",
+                "simu1b",
+                "simu2a",
+                "simu2b",
+                "simu1ai",
+                "simu1bi"                
+                )      
     colorList = [
                 "red",
                 "blue",
