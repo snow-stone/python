@@ -24,7 +24,7 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
 
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName+".bak"
-    rawData = np.genfromtxt("../"+caseName+'/'+RelativeDataFile)
+    rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
 #    print rawData.shape
     time = rawData[:,0]+0.2
     probeData = rawData[:,1:]
