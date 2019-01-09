@@ -63,13 +63,15 @@ def main():
               "BirdCarreau/inlet0p5_impinging",
               "Newtonian/Re4000",
               "Newtonian/Re4000_impinging"]
+
+    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
+    path2Data = "/home/hluo/Downloads/tmp/shape_square/2a_3_T/python_postProcessing"
+    
     markerList=["s",
                 "^",
                 "s",
                 "^"
                 ]
-    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
-    path2Data = "/home/hluo/Downloads/tmp/shape_square/2a_3_T/python_postProcessing"
     
     fig, ax_principle = plt.subplots()
 
