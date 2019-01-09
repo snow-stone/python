@@ -114,14 +114,6 @@ def main():
               
     fieldNames=["U_x", "U_y", "U_z", "T"]
 
-    alphabetLabels=[
-					r"$a)$",
-					r"$b)$",
-					r"$c)$",
-					r"$d)$",
-					r"$e)$",
-					r"$f)$",
-			   ]
     aliasDict={
         "BirdCarreau/inlet_0p5":"simu1a",
         "Newtonian/Re4000"     :"simu1b",
