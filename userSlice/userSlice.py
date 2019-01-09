@@ -31,7 +31,7 @@ def dai_debitMoyen(fluid):
     return data[:,0], data[:,1]
 
 def plotSlice(ax, sliceNumber, path2Data, dataDir, cut=0.5):
-    data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms")
+    data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms_Dai")
     
     time = data[:,0]
     cutSliceIndex = int(cut*len(time))
