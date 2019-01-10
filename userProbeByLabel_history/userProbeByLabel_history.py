@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positions, color, cut=0.):
-    RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
+    RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName+".old"
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
 #    print rawData.shape
     time = rawData[:,0]
@@ -23,7 +23,7 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
     ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=0.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
 
-    RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName+".bak"
+    RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
 #    print rawData.shape
     time = rawData[:,0]+0.2
@@ -88,6 +88,9 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
 #    fig_rms.savefig('../PICTURE_history_e/'+fieldName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
 
 def main():
+    print "README\n"
+    print "postProcessing data using output from : \n"
+    print "userProbeByLabelVector_noMean ; userProbeByLabelScalar_noMean"
     plt.style.use('seaborn-white') # from defaut
     allProbePosition = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72]
     #       sampling = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
