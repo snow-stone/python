@@ -138,7 +138,7 @@ def main():
     for k, position in enumerate(positionSubSet):
         p=positionSubSet[k]
         print "position : " , allProbePosition[p]
-        fig, axses_case = plt.subplots(len(cases), 1, sharex=True)
+        fig, axses_case = plt.subplots(len(cases), 1, sharex=True, figsize=(20,20))# figsize is an additional parameter : passed by **fig_kw
         mean = np.zeros((len(allProbePosition),len(cases)))
         std = np.zeros((len(allProbePosition),len(cases)))
         for j, case in enumerate(cases):
