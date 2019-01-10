@@ -156,7 +156,7 @@ def main():
                 print "axe number = ", j , fieldName
                 if j == 0:
                     if allProbePosition[p] >= 7:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.6)
+                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                     else :
                         std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                 elif j == 1:
@@ -166,12 +166,12 @@ def main():
                         std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)                
                 elif j == 2:
                     if allProbePosition[p] >= 24:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.8)
+                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.6)
                     else:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.6)
                 elif j ==3 :
                     if allProbePosition[p] >= 24:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.8)
+                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                     else:
                         std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                 elif j ==4 :
