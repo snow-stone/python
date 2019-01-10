@@ -92,6 +92,7 @@ def main():
     print "postProcessing data using output from : "
     print "userProbeByLabelVector_noMean ; userProbeByLabelScalar_noMean"
     plt.style.use('seaborn-white') # from defaut
+    plt.rcParams.update({'font.size': 20})
     allProbePosition = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72]
     #       sampling = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
     positionSubSet = [0,13,15,17]
@@ -154,7 +155,7 @@ def main():
                 axses_case[j].set_ylim(-0.5,2)
                 axses_case[j].set_yticks([0, 1])
                 axses_case[j].tick_params(axis='y', direction='in', length=4, width=1.5)
-                axses_case[j].set_xlim(-0,0.85)
+                axses_case[j].set_xlim(0,0.85)
                 
                 print "axe number = ", j , fieldName
                 if j == 0:
@@ -189,8 +190,9 @@ def main():
                     print "There's a big problem"
         
 #        spatial_mean_rms(fieldName, cases, allProbePosition, mean, std, linestyleList, markerList)
-        fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-        x = 0.85
+#        fig.text(0.5, 0.04, r'$t$', ha='center', va='center', fontsize=20)
+        axses_case[-1].set_xlabel(r'$t$',fontsize=20)
+        x = 0.82
         yStart = 0.84
         for i, case in enumerate(cases):
             y = yStart - i * 0.095
