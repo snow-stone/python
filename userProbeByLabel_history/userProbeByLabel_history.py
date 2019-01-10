@@ -88,8 +88,8 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
 #    fig_rms.savefig('../PICTURE_history_e/'+fieldName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
 
 def main():
-    print "README\n"
-    print "postProcessing data using output from : \n"
+    print "README"
+    print "postProcessing data using output from : "
     print "userProbeByLabelVector_noMean ; userProbeByLabelScalar_noMean"
     plt.style.use('seaborn-white') # from defaut
     allProbePosition = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72]
@@ -104,7 +104,9 @@ def main():
              "BirdCarreau"+"/"+"inlet_0p3",
              "Newtonian"+"/"+"Re2400",
              "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  # j=4, involving userProbeByLabel_forcing
-		  "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"   # j=5, involving userProbeByLabel_forcing
+		   "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",   # j=5, involving userProbeByLabel_forcing
+             "BirdCarreau/inlet0p5_impinging",
+             "Newtonian/Re4000_impinging"
             ]
     
     # it is possible to only show the first 4 cases
@@ -138,7 +140,8 @@ def main():
     for k, position in enumerate(positionSubSet):
         p=positionSubSet[k]
         print "position : " , allProbePosition[p]
-        fig, axses_case = plt.subplots(len(cases), 1, sharex=True, figsize=(20,20))# figsize is an additional parameter : passed by **fig_kw
+        #figsize should be in inches.
+        fig, axses_case = plt.subplots(len(cases), 1, sharex=True, figsize=(20,10))# figsize is an additional parameter for class matplotlib.pyplot.subplots: passed by **fig_kw
         mean = np.zeros((len(allProbePosition),len(cases)))
         std = np.zeros((len(allProbePosition),len(cases)))
         for j, case in enumerate(cases):
@@ -151,7 +154,7 @@ def main():
                 axses_case[j].set_ylim(-0.5,2)
                 axses_case[j].set_yticks([0, 1])
                 axses_case[j].tick_params(axis='y', direction='in', length=4, width=1.5)
-                axses_case[j].set_xlim(-0,0.9)
+                axses_case[j].set_xlim(-0,0.85)
                 
                 print "axe number = ", j , fieldName
                 if j == 0:
@@ -178,15 +181,19 @@ def main():
                         std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorList[i])
                 elif j ==5 :
                         std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i])
+                elif j ==6 :
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                elif j ==7 :
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)                        
                 else :
                     print "There's a big problem"
         
 #        spatial_mean_rms(fieldName, cases, allProbePosition, mean, std, linestyleList, markerList)
         fig.text(0.5, 0.04, r'$t$', ha='center', va='center')
-        x = 0.8
+        x = 0.85
         yStart = 0.84
         for i, case in enumerate(cases):
-            y = yStart - i * 0.135
+            y = yStart - i * 0.095
             fig.text(x, y, aliasDict[case])
 
         fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$ @ position '+str(allProbePosition[p]/8.0)+'D')
