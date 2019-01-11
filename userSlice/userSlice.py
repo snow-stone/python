@@ -72,7 +72,7 @@ def main():
 
 #    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     positionList = [1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
-    path2Data = "/home/hluo/Downloads/tmp/shape_square/2a_3_T/python_postProcessing"
+    path2Data = "/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
     
     markerList=["s",
                 "^",
