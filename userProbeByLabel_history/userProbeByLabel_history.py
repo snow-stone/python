@@ -14,14 +14,12 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
 #    print rawData.shape
     time = rawData[:,0]
     probeData = rawData[:,1:]
-    cutSliceIndex = int(cut*len(time))
     
     position_in_D = str(positions[sample]/8.0)+"D"
-    std = np.std(probeData[cutSliceIndex:,sample])
-    mean = np.mean(probeData[cutSliceIndex:,sample])
+    std = np.std(probeData[:,sample])
+    mean = np.mean(probeData[:,sample])
 #    print position_in_D + " std : ", std, " mean : ", mean
-    ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=0.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
-    ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
+    ax.plot(time, probeData[:,sample], color=color, linewidth=0.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[:])), linestyle='-')   
 
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
@@ -98,7 +96,7 @@ def main():
     positionSubSet = [0,13,15,17]
     #positionSubSet =  [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
     
-    path2Data="/home/hluo/Downloads/tmp/shape_square/2a_3_T/python_postProcessing"
+    path2Data="/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
     cases = [
              "BirdCarreau"+"/"+"inlet_0p5",
              "Newtonian"+"/"+"Re4000",
@@ -179,9 +177,9 @@ def main():
                     else:
                         std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                 elif j ==4 :
-                        std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorList[i])
+                        std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorList[i], cut=0.35)
                 elif j ==5 :
-                        std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i])
+                        std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.46)
                 elif j ==6 :
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                 elif j ==7 :
