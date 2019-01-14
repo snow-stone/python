@@ -100,12 +100,12 @@ def main():
     cases = [
              "BirdCarreau"+"/"+"inlet_0p5",
              "Newtonian"+"/"+"Re4000",
+             "BirdCarreau/inlet0p5_impinging",
+             "Newtonian/Re4000_impinging",
              "BirdCarreau"+"/"+"inlet_0p3",
              "Newtonian"+"/"+"Re2400",
-             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  # j=4, involving userProbeByLabel_forcing
-		   "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",   # j=5, involving userProbeByLabel_forcing
-             "BirdCarreau/inlet0p5_impinging",
-             "Newtonian/Re4000_impinging"
+             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  # j=6, involving userProbeByLabel_forcing
+		   "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",   # j=7, involving userProbeByLabel_forcing
             ]
     
     # it is possible to only show the first 4 cases
@@ -165,25 +165,25 @@ def main():
                     if allProbePosition[p] >= 24:
                         std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
                     else :
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)                
-                elif j == 2:
-                    if allProbePosition[p] >= 24:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.6)
-                    else:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.6)
-                elif j ==3 :
-                    if allProbePosition[p] >= 24:
                         std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
-                    else:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
-                elif j ==4 :
-                        std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorList[i], cut=0.35)
-                elif j ==5 :
-                        std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.46)
-                elif j ==6 :
+                elif j == 2 :
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
-                elif j ==7 :
-                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)                        
+                elif j == 3 :
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                elif j == 4:
+                    if allProbePosition[p] >= 24:
+                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.6)
+                    else:
+                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.6)
+                elif j == 5 :
+                    if allProbePosition[p] >= 24:
+                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                    else:
+                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.5)
+                elif j == 6 :
+                        std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorList[i], cut=0.35)
+                elif j == 7 :
+                        std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorList[i], cut=0.46)                        
                 else :
                     print "There's a big problem"
         
