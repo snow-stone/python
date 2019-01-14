@@ -30,7 +30,20 @@ def dai_debitMoyen(fluid):
 
     return data[:,0], data[:,1]
 
-def plotSlice(ax, sliceNumber, path2Data, dataDir, cut=0.5):
+def plotSlice_old(ax, sliceNumber, path2Data, dataDir, cut=0.5):
+    data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms")
+    
+    time = data[:,0]
+    cutSliceIndex = int(cut*len(time))
+    
+    p = ax.plot(time[cutSliceIndex:],data[cutSliceIndex:,2])
+    ax.plot(time[:cutSliceIndex],data[:cutSliceIndex,2],linestyle=':',color=p[0].get_color())
+    ax.legend(bbox_to_anchor=(1.3, 1), ncol=1, shadow=True)
+    ax.set_title(dataDir)
+    
+    return np.mean(data[cutSliceIndex:,2])
+
+def plotSlice_Dai(ax, sliceNumber, path2Data, dataDir, cut=0.5):
     data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms_Dai")
     
     time = data[:,0]
@@ -48,27 +61,28 @@ def plotCaseWithSlices(ax_cases, path2Data, dataDir, positionList, marker, alias
     
     fig, ax_in_case = plt.subplots()
     for i, position in enumerate(positionList):
-        meanOfRMS[i] = plotSlice(ax_in_case, position, path2Data, dataDir, cut)
+#        meanOfRMS[i] = plotSlice_Dai(ax_in_case, position, path2Data, dataDir, cut)
+        meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut)
 
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
 def main():
     plt.style.use('seaborn-white')
-    caseList=["BirdCarreau/inlet_0p5",
-              "Newtonian/Re4000",
-              "BirdCarreau/inlet_0p3",
-              "Newtonian/Re2400"]
+#    caseList=["BirdCarreau/inlet_0p5",
+#              "Newtonian/Re4000",
+#              "BirdCarreau/inlet_0p3",
+#              "Newtonian/Re2400"]
     #impinging
 #    caseList=["BirdCarreau/inlet_0p5",
 #              "BirdCarreau/inlet0p5_impinging",
 #              "Newtonian/Re4000",
 #              "Newtonian/Re4000_impinging"]
     #forcing effect
-#    caseList=["BirdCarreau/inlet_0p3",
-#             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
-#		  "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
-#             ]
+    caseList=["BirdCarreau/inlet_0p3",
+             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
+		  "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
+             ]
 
 #    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     positionList = [1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
