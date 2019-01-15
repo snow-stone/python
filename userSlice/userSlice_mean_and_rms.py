@@ -43,16 +43,21 @@ def plotSlice_old1(ax, sliceNumber, path2Data, dataDir, cut=0.5):
     
     return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
 
-def plotSlice_old(ax, sliceNumber, path2Data, dataDir, cut=0.5):
+def plotSlice_old(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True):
     data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms")
     
     time = data[:,0]
     cutSliceIndex = int(cut*len(time))
     
-    p = ax.plot(time[cutSliceIndex:],data[cutSliceIndex:,2])
-    ax.plot(time[:cutSliceIndex],data[:cutSliceIndex,2],linestyle=':',color=p[0].get_color())
-    ax.legend(bbox_to_anchor=(1.3, 1), ncol=1, shadow=True)
-    ax.set_title(dataDir)
+    if ifPlotInter :
+        p = ax.plot(time[cutSliceIndex:],data[cutSliceIndex:,2])
+        ax.plot(time[:cutSliceIndex],data[:cutSliceIndex,2],linestyle=':',color=p[0].get_color())
+        ax.legend(bbox_to_anchor=(1.3, 1), ncol=1, shadow=True)
+        ax.set_title(dataDir)
+    else :
+        print "====================="
+        print "No intermediate plots"
+        print "====================="
     
     return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
 
@@ -102,13 +107,13 @@ def plotCaseWithSlices_old1(ax_cases, path2Data, dataDir, positionList, marker, 
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=marker)
 
-def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut):
+def plotCaseWithSlices_old_errorbar(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
     fig, ax_in_case = plt.subplots()
     for i, position in enumerate(positionList):
-        meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut)
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
 
     print aliasDict[dataDir]+" :"
     print "mean : "
@@ -149,20 +154,20 @@ def plotCaseWithSlices_Dai_0p8(ax_cases, path2Data, dataDir, positionList, marke
     
 def main():
     plt.style.use('seaborn-white')
-    caseList=["BirdCarreau/inlet_0p5",
-              "Newtonian/Re4000",
-              "BirdCarreau/inlet_0p3",
-              "Newtonian/Re2400"]
+#    caseList=["BirdCarreau/inlet_0p5",
+#              "Newtonian/Re4000",
+#              "BirdCarreau/inlet_0p3",
+#              "Newtonian/Re2400"]
     #impinging
 #    caseList=["BirdCarreau/inlet_0p5",
 #              "BirdCarreau/inlet0p5_impinging",
 #              "Newtonian/Re4000",
 #              "Newtonian/Re4000_impinging"]
     #forcing effect
-#    caseList=["BirdCarreau/inlet_0p3",
-#             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
-#		  "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
-#             ]
+    caseList=["BirdCarreau/inlet_0p3",
+             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
+		  "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
+             ]
 
 #    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     positionList = [1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
@@ -195,14 +200,10 @@ def main():
     fig, ax_principle = plt.subplots()
 
     for i, caseDir in enumerate(caseList):
-        plotCaseWithSlices_old(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
+        print "caseDir : ", caseDir
+        plotCaseWithSlices_old_errorbar(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
 #        plotCaseWithSlices_old1(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
 #        plotCaseWithSlices_Dai(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
-#        if i==1 or i==3:
-#            plotCaseWithSlices_Dai_0p8(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
-#        else:
-#            plotCaseWithSlices_Dai(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
-        
     
     ax_principle.set_xlabel(r"$x/D$")
     ax_principle.set_ylabel(r"$mixing \quad factor$")
