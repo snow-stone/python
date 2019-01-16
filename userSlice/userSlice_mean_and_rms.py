@@ -124,6 +124,28 @@ def plotCaseWithSlices_old_errorbar(ax_cases, path2Data, dataDir, positionList, 
 #    ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=marker)
     ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
+def plotCaseWithSlices_old_rms(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
+    meanOfMEAN = np.zeros(len(positionList))
+    meanOfRMS = np.zeros(len(positionList))
+    
+    fig, ax_in_case = plt.subplots()
+    for i, position in enumerate(positionList):
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        
+    positionList = np.asarray(positionList)
+    ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=marker)
+    
+def plotCaseWithSlices_old_MI(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
+    meanOfMEAN = np.zeros(len(positionList))
+    meanOfRMS = np.zeros(len(positionList))
+    
+    fig, ax_in_case = plt.subplots()
+    for i, position in enumerate(positionList):
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        
+    positionList = np.asarray(positionList)
+    ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=marker)
+    
 def plotCaseWithSlices_Dai(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
@@ -197,18 +219,21 @@ def main():
         'Dai/Re2400'    : r'$exp(N^{2}_{d})$'
     }
     
-    fig, ax_principle = plt.subplots()
+    fig, ax_principle0 = plt.subplots()
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_errorbar(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_old_errorbar(ax_principle0, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
 #        plotCaseWithSlices_old1(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
 #        plotCaseWithSlices_Dai(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
     
-    ax_principle.set_xlabel(r"$x/D$")
-    ax_principle.set_ylabel(r"$mixing \quad factor$")
-#    ax_principle.set_ylim(0,1.0)
-
+    ax_principle0.set_xlabel(r"$x/D$")
+    ax_principle0.set_ylabel(r"$<T>_{slice}$")
+    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
+    ax_principle0.set_ylim(0,1.)
+#    ax_principle.set_xlim(0,40)
+    ax_principle0.legend(bbox_to_anchor=(1, 0.8), ncol=2, shadow=True)
+    
 #    x_XG1, y_XG1 = dai_debitMoyen('XG')
 #    ax_principle.plot(x_XG1,y_XG1,label=aliasDict_Dai['Dai/inlet_0p5'],linestyle='-',marker='s',fillstyle='none')    
 #    x_water1, y_water1 = dai_debitMoyen('EAU')    
@@ -219,10 +244,30 @@ def main():
 #    x_water0, y_water0 = dai_debitMin('EAU')    
 #    ax_principle.plot(x_water0,y_water0,label=aliasDict_Dai['Dai/Re2400'],linestyle='-',marker='v',fillstyle='none')
 
-
-    ax_principle.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
-#    ax_principle.set_xlim(0,40)
+    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mean_rms.png', bbox_inches='tight', dpi=300)
     
-    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mixingFactor.png', bbox_inches='tight', dpi=300)
+    fig, ax_principle1 = plt.subplots()
+
+    for i, caseDir in enumerate(caseList):
+        print "caseDir : ", caseDir
+        plotCaseWithSlices_old_rms(ax_principle1, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        
+    ax_principle1.set_xlabel(r"$x/D$")
+    ax_principle1.set_ylabel(r"$mixing \quad factor$")
+    ax_principle1.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
+    ax_principle1.set_ylim(0,0.25)
+    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/rms.png', bbox_inches='tight', dpi=300)
+
+    fig, ax_principle2 = plt.subplots()
+
+    for i, caseDir in enumerate(caseList):
+        print "caseDir : ", caseDir
+        plotCaseWithSlices_old_MI(ax_principle2, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        
+    ax_principle2.set_xlabel(r"$x/D$")
+    ax_principle2.set_ylabel(r"$Mixing \quad Efficiency$")
+    ax_principle2.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
+#    ax_principle2.set_ylim(0,1.0)
+    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mixingEfficiencyInpercentage.png', bbox_inches='tight', dpi=300)
     
 main()
