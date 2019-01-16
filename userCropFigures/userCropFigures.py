@@ -14,6 +14,10 @@ def crop(image_path, coords, saved_location):
  
  
 if __name__ == '__main__':
-    image = 'example.png'
-    Image.open(image).show()
-    crop(image, (887, 129, 1146, 426), 'cropped.png')
+#    image = 'example.png'
+#    Image.open(image).show()
+    dataBase = '/store/8simu_tmp/shape_square/2a_3_T'
+    relativePath = 'BirdCarreau/inlet_0p5'
+    imageName = 'k_mean_nonD'
+    image = dataBase + '/' + relativePath + '/' + imageName + '.png'
+    crop(image, (480, 567, 2277, 1281), dataBase+'/'+imageName+'_cropped.png')
