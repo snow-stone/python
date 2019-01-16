@@ -30,7 +30,9 @@ def main():
     imageName = sys.argv[1]
     
     coords_dict= {
-            'k_mean_nonD' : (480, 567, 2277, 1281)            
+            'k_mean_nonD' : (480, 567, 2277, 1281),
+            'k_mean_nonD_add_streamTracer_green_vertical' : (374, 512, 1880, 1070),
+            'k_mean_nonD_add_streamTracer_green_horizontal' : (486, 591, 2235, 1236)            
             }    
     
     
