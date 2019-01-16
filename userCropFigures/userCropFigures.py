@@ -1,5 +1,6 @@
 
 from PIL import Image
+import sys
  
 def crop(image_path, coords, saved_location):
     """
@@ -12,7 +13,7 @@ def crop(image_path, coords, saved_location):
     cropped_image.save(saved_location)
     cropped_image.show()
  
-if __name__ == '__main__':
+def main():
 #    image = 'example.png'
 #    Image.open(image).show()
     dataBase = '/store/8simu_tmp/shape_square/2a_3_T'
@@ -26,7 +27,15 @@ if __name__ == '__main__':
             'BirdCarreau/inlet_0p3-a_0p5-setT_St_1',
             'BirdCarreau/inlet_0p3-a_0p5-setT_St_5'
            ]
-    imageName = 'k_mean_nonD'
+    imageName = sys.argv[1]
+    
+    coords_dict= {
+            'k_mean_nonD' : (480, 567, 2277, 1281)            
+            }    
+    
+    
     for i, path in enumerate(paths):
         image = dataBase + '/' + path + '/' + imageName + '.png'
-        crop(image, (480, 567, 2277, 1281), dataBase+'/'+imageName+'_cropped.png')
+        crop(image, coords_dict[imageName], dataBase + '/' + path + '/' + imageName + '_cropped.png')
+
+main()
