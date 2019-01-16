@@ -34,20 +34,21 @@ def main():
               "Newtonian/Re4000",
               "BirdCarreau/inlet_0p3",
               "Newtonian/Re2400",
+              "BirdCarreau/inlet0p5_impinging",
+              "Newtonian/Re4000_impinging"
 #              "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
 #		   "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",
-              "BirdCarreau/inlet0p5_impinging",
-              "Newtonian/Re4000_impinging"]
+              ]
 
-    path2Data = "/home/hluo/Downloads/tmp/shape_square/2a_3_T/python_postProcessing"
+    path2Data = "/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
     pressureDropList = []
     labelTuple = (
-                "simu1a",
-                "simu1b",
-                "simu2a",
-                "simu2b",
-                "simu1ai",
-                "simu1bi"                
+                r'$NN^{1}_{d}$',
+                r'$N^{1}_{d}$',
+                r'$NN^{1}_{i}$',
+                r'$N^{1}_{i}$',
+                r'$NN^{2}_{d}$',
+                r'$N^{2}_{d}$'
                 )      
     colorList = [
                 "red",
