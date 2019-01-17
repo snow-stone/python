@@ -181,10 +181,12 @@ def main():
     plt.rcParams["legend.columnspacing"] = 1 # mesured in fontsize unit : 1 means = legend.fontsize
 #    plt.rcParams['figure.titlesize'] = 20
     plt.rcParams['savefig.dpi'] = 100
-#    caseList=["BirdCarreau/inlet_0p5",
-#              "Newtonian/Re4000",
-#              "BirdCarreau/inlet_0p3",
-#              "Newtonian/Re2400"]
+    caseList=[
+                "BirdCarreau/inlet_0p3",
+                "Newtonian/Re2400",
+                "BirdCarreau/inlet_0p5",
+                "Newtonian/Re4000"
+              ]
     #impinging
 #    caseList=["BirdCarreau/inlet_0p5",
 #              "BirdCarreau/inlet0p5_impinging",
@@ -192,8 +194,8 @@ def main():
 #              "Newtonian/Re4000_impinging"]
     #forcing effect
     caseList=["BirdCarreau/inlet_0p3",
-             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
-		  "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
+              "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
+              "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
              ]
 
 #    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
@@ -207,14 +209,14 @@ def main():
                 ]
     
     aliasDict={
-        "BirdCarreau/inlet_0p5":r'$NN^{1}_{d}$',
-        "Newtonian/Re4000"     :r'$N^{1}_{d}$',
-        "BirdCarreau/inlet_0p3":r'$NN^{2}_{d}$',
-        "Newtonian/Re2400"     :r'$N^{2}_{d}$',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":r'$NN^{2}_{d,St=1}$',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":r'$NN^{2}_{d,St=5}$',
-        "BirdCarreau/inlet0p5_impinging"       :r'$NN^{1}_{i}$',
-        "Newtonian/Re4000_impinging"           :r'$N^{1}_{i}$'
+        "BirdCarreau/inlet_0p3":r'$NN^{1}_{d}$',
+        "Newtonian/Re2400"     :r'$N^{1}_{d}$',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":r'$NN^{1}_{d,St=1}$',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":r'$NN^{1}_{d,St=5}$',
+        "BirdCarreau/inlet_0p5":r'$NN^{2}_{d}$',
+        "Newtonian/Re4000"     :r'$N^{2}_{d}$',
+        "BirdCarreau/inlet0p5_impinging"       :r'$NN^{2}_{i}$',
+        "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
     
     aliasDict_Dai={
