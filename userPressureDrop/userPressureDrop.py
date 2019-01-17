@@ -32,10 +32,11 @@ def main():
     plt.style.use('seaborn-white')
     plt.rcParams['font.size'] = 10 # defaut value is 10
     plt.rcParams['savefig.dpi'] = 100
-    caseList=["BirdCarreau/inlet_0p5",
-              "Newtonian/Re4000",
+    caseList=[
               "BirdCarreau/inlet_0p3",
-              "Newtonian/Re2400",
+              "Newtonian/Re2400",    
+              "BirdCarreau/inlet_0p5",
+              "Newtonian/Re4000",
               "BirdCarreau/inlet0p5_impinging",
               "Newtonian/Re4000_impinging"
 #              "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
@@ -47,10 +48,10 @@ def main():
     labelTuple = (
                 r'$NN^{1}_{d}$',
                 r'$N^{1}_{d}$',
-                r'$NN^{1}_{i}$',
-                r'$N^{1}_{i}$',
                 r'$NN^{2}_{d}$',
-                r'$N^{2}_{d}$'
+                r'$N^{2}_{d}$',
+                r'$NN^{2}_{i}$',
+                r'$N^{2}_{i}$'
                 )      
     colorList = [
                 "red",

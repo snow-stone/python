@@ -174,33 +174,16 @@ def plotCaseWithSlices_Dai_0p8(ax_cases, path2Data, dataDir, positionList, marke
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
-def main():
+def plotFor_caseList(caseList, path2Data, saveFigDir):
     plt.style.use('seaborn-white')
     plt.rcParams['font.size'] = 20
     plt.rcParams['legend.fontsize'] = 12 # overwriting fontsize in legend
     plt.rcParams["legend.columnspacing"] = 1 # mesured in fontsize unit : 1 means = legend.fontsize
 #    plt.rcParams['figure.titlesize'] = 20
     plt.rcParams['savefig.dpi'] = 100
-    caseList=[
-                "BirdCarreau/inlet_0p3",
-                "Newtonian/Re2400",
-                "BirdCarreau/inlet_0p5",
-                "Newtonian/Re4000"
-              ]
-    #impinging
-#    caseList=["BirdCarreau/inlet_0p5",
-#              "BirdCarreau/inlet0p5_impinging",
-#              "Newtonian/Re4000",
-#              "Newtonian/Re4000_impinging"]
-    #forcing effect
-    caseList=["BirdCarreau/inlet_0p3",
-              "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
-              "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
-             ]
 
 #    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     positionList = [1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
-    path2Data = "/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
     
     markerList=["s",
                 "^",
@@ -251,7 +234,7 @@ def main():
 #    x_water0, y_water0 = dai_debitMin('EAU')    
 #    ax_principle.plot(x_water0,y_water0,label=aliasDict_Dai['Dai/Re2400'],linestyle='-',marker='v',fillstyle='none')
 
-    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mean_rms.png', bbox_inches='tight')
+    fig.savefig(path2Data+"/"+saveFigDir+'/mean_rms.png', bbox_inches='tight')
     
     fig, ax_principle1 = plt.subplots()
 
@@ -263,7 +246,7 @@ def main():
     ax_principle1.set_ylabel(r"$mixing \quad factor$")
     ax_principle1.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
     ax_principle1.set_ylim(0,0.25)
-    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/rms.png', bbox_inches='tight')
+    fig.savefig(path2Data+"/"+saveFigDir+'/rms.png', bbox_inches='tight')
 
     fig, ax_principle2 = plt.subplots()
 
@@ -275,6 +258,32 @@ def main():
     ax_principle2.set_ylabel(r"$Mixing \quad Efficiency$")
     ax_principle2.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
-    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mixingEfficiencyInpercentage.png', bbox_inches='tight')
+    fig.savefig(path2Data+"/"+saveFigDir+'/mixingEfficiencyInpercentage.png', bbox_inches='tight')
     
+def main():
+    path2Data = "/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
+    
+#   non-newtonian
+    caseList1=[
+                "BirdCarreau/inlet_0p3",
+                "Newtonian/Re2400",
+                "BirdCarreau/inlet_0p5",
+                "Newtonian/Re4000"
+              ]
+#    impinging
+    caseList2=["BirdCarreau/inlet_0p5",
+              "BirdCarreau/inlet0p5_impinging",
+              "Newtonian/Re4000",
+              "Newtonian/Re4000_impinging"]
+#    forcing
+    caseList3=["BirdCarreau/inlet_0p3",
+              "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
+              "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
+             ]
+    
+    figDir = 'PICTURE_mixingFactor'
+    plotFor_caseList(caseList1, path2Data, figDir+'/'+'non-newtonian')
+    plotFor_caseList(caseList2, path2Data, figDir+'/'+'impinging')
+    plotFor_caseList(caseList3, path2Data, figDir+'/'+'forcing')
+
 main()
