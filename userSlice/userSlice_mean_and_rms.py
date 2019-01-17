@@ -176,6 +176,11 @@ def plotCaseWithSlices_Dai_0p8(ax_cases, path2Data, dataDir, positionList, marke
     
 def main():
     plt.style.use('seaborn-white')
+    plt.rcParams['font.size'] = 20
+    plt.rcParams['legend.fontsize'] = 12 # overwriting fontsize in legend
+    plt.rcParams["legend.columnspacing"] = 1 # mesured in fontsize unit : 1 means = legend.fontsize
+#    plt.rcParams['figure.titlesize'] = 20
+    plt.rcParams['savefig.dpi'] = 100
 #    caseList=["BirdCarreau/inlet_0p5",
 #              "Newtonian/Re4000",
 #              "BirdCarreau/inlet_0p3",
@@ -244,7 +249,7 @@ def main():
 #    x_water0, y_water0 = dai_debitMin('EAU')    
 #    ax_principle.plot(x_water0,y_water0,label=aliasDict_Dai['Dai/Re2400'],linestyle='-',marker='v',fillstyle='none')
 
-    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mean_rms.png', bbox_inches='tight', dpi=300)
+    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mean_rms.png', bbox_inches='tight')
     
     fig, ax_principle1 = plt.subplots()
 
@@ -256,7 +261,7 @@ def main():
     ax_principle1.set_ylabel(r"$mixing \quad factor$")
     ax_principle1.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
     ax_principle1.set_ylim(0,0.25)
-    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/rms.png', bbox_inches='tight', dpi=300)
+    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/rms.png', bbox_inches='tight')
 
     fig, ax_principle2 = plt.subplots()
 
@@ -268,6 +273,6 @@ def main():
     ax_principle2.set_ylabel(r"$Mixing \quad Efficiency$")
     ax_principle2.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
-    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mixingEfficiencyInpercentage.png', bbox_inches='tight', dpi=300)
+    fig.savefig(path2Data+"/"+'PICTURE_mixingFactor/mixingEfficiencyInpercentage.png', bbox_inches='tight')
     
 main()
