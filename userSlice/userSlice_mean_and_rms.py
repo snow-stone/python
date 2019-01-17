@@ -175,13 +175,6 @@ def plotCaseWithSlices_Dai_0p8(ax_cases, path2Data, dataDir, positionList, marke
     ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
 def plotFor_caseList(caseList, path2Data, saveFigDir):
-    plt.style.use('seaborn-white')
-    plt.rcParams['font.size'] = 20
-    plt.rcParams['legend.fontsize'] = 12 # overwriting fontsize in legend
-    plt.rcParams["legend.columnspacing"] = 1 # mesured in fontsize unit : 1 means = legend.fontsize
-#    plt.rcParams['figure.titlesize'] = 20
-    plt.rcParams['savefig.dpi'] = 100
-
 #    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     positionList = [1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     
@@ -261,6 +254,13 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
     fig.savefig(path2Data+"/"+saveFigDir+'/mixingEfficiencyInpercentage.png', bbox_inches='tight')
     
 def main():
+    plt.style.use('seaborn-white')
+    plt.rcParams['font.size'] = 20
+    plt.rcParams['legend.fontsize'] = 12 # overwriting fontsize in legend
+    plt.rcParams["legend.columnspacing"] = 1 # mesured in fontsize unit : 1 means = legend.fontsize
+#    plt.rcParams['figure.titlesize'] = 20
+    plt.rcParams['savefig.dpi'] = 100
+
     path2Data = "/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
     
 #   non-newtonian
