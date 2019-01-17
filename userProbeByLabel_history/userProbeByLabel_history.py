@@ -120,14 +120,14 @@ def main():
     fieldNames=["U_x", "U_y", "U_z", "T"]
 
     aliasDict={
-        "BirdCarreau/inlet_0p5":r'$NN^{1}_{d}$',
-        "Newtonian/Re4000"     :r'$N^{1}_{d}$',
-        "BirdCarreau/inlet_0p3":r'$NN^{2}_{d}$',
-        "Newtonian/Re2400"     :r'$N^{2}_{d}$',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":r'$NN^{2}_{d,St=1}$',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":r'$NN^{2}_{d,St=5}$',
-        "BirdCarreau/inlet0p5_impinging"       :r'$NN^{1}_{i}$',
-        "Newtonian/Re4000_impinging"           :r'$N^{1}_{i}$'
+        "BirdCarreau/inlet_0p3":r'$NN^{1}_{d}$',
+        "Newtonian/Re2400"     :r'$N^{1}_{d}$',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":r'$NN^{1}_{d,St=1}$',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":r'$NN^{1}_{d,St=5}$',
+        "BirdCarreau/inlet_0p5":r'$NN^{2}_{d}$',
+        "Newtonian/Re4000"     :r'$N^{2}_{d}$',
+        "BirdCarreau/inlet0p5_impinging"       :r'$NN^{2}_{i}$',
+        "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
     
     colorList = [
