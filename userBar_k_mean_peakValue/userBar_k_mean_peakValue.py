@@ -33,14 +33,14 @@ def main():
     plt.rcParams['font.size'] = 10 # defaut value is 10
     plt.rcParams['savefig.dpi'] = 100
     caseList=[
-              "BirdCarreau/inlet_0p5",
-              "Newtonian/Re4000",
               "BirdCarreau/inlet_0p3",
               "Newtonian/Re2400",
-              "BirdCarreau/inlet0p5_impinging",
-              "Newtonian/Re4000_impinging"
               "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
 		   "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",
+              "BirdCarreau/inlet_0p5",
+              "Newtonian/Re4000",
+              "BirdCarreau/inlet0p5_impinging",
+              "Newtonian/Re4000_impinging"
               ]
 
     path2Data = "/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
@@ -48,32 +48,32 @@ def main():
     labelTuple = (
                 r'$NN^{1}_{d}$',
                 r'$N^{1}_{d}$',
-                r'$NN^{1}_{i}$',
-                r'$N^{1}_{i}$',
+                r'$NN^{1}_{d,St=1}$',
+                r'$NN^{1}_{d,St=5}$',
                 r'$NN^{2}_{d}$',
                 r'$N^{2}_{d}$',
-                r'$NN^{2}_{d,St=1}$',
-                r'$NN^{2}_{d,St=5}$'
+                r'$NN^{2}_{i}$',
+                r'$N^{2}_{i}$'
                 )      
     colorList = [
                 "red",
                 "blue",
                 "red",
-                "blue",
+                "red",
                 "red",
                 "blue",
                 "red",
-                "red"
+                "blue"
                 ]
     k_mean_peak = [
-                0.16,
-                0.26,
-                0.476,
-                0.6,
                 0.0083,
                 0.08,
                 0.05,
-                0.098
+                0.098,
+                0.16,
+                0.26,
+                0.476,
+                0.6
                 ]
 
     plt.figure(1)
