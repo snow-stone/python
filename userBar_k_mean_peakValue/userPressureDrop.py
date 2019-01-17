@@ -30,6 +30,8 @@ import matplotlib.pyplot as plt
 
 def main():
     plt.style.use('seaborn-white')
+    plt.rcParams['font.size'] = 10 # defaut value is 10
+    plt.rcParams['savefig.dpi'] = 100
     caseList=[
               "BirdCarreau/inlet_0p5",
               "Newtonian/Re4000",
@@ -74,11 +76,12 @@ def main():
                 0.098
                 ]
 
-    plt.figure(1) # 6 figures already there !!
-    x = np.arange(len(labelTuple))
+    plt.figure(1)
+    x = np.linspace(0, len(labelTuple)*1.5, len(labelTuple))
     plt.bar(x+0.5, height = k_mean_peak, width=0.4, color=colorList)
     plt.xticks(x+0.75, labelTuple) # xticks can only chagned by plt object. axes don't work !!
-    plt.xlim(0,8.5)
+#    plt.xlim(0,8.5)
+    plt.ylim(0,0.7)
     plt.ylabel(r'$<k>_{max}$')
     plt.savefig(path2Data+"/"+'bar_k_mean_peakValue/k_mean_peakValue.png', bbox_inches='tight', dpi=300)
     
