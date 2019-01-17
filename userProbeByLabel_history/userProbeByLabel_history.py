@@ -86,11 +86,12 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
 #    fig_rms.savefig('../PICTURE_history_e/'+fieldName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
 
 def main():
+    plt.style.use('seaborn-white') # from defaut
+    plt.rcParams.update({'font.size': 20})
+    plt.rcParams['savefig.dpi'] = 100
     print "README"
     print "postProcessing data using output from : "
     print "userProbeByLabelVector_noMean ; userProbeByLabelScalar_noMean"
-    plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 20})
     allProbePosition = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72]
     #       sampling = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
     positionSubSet = [0,13,15,17]
@@ -189,7 +190,7 @@ def main():
         
 #        spatial_mean_rms(fieldName, cases, allProbePosition, mean, std, linestyleList, markerList)
 #        fig.text(0.5, 0.04, r'$t$', ha='center', va='center', fontsize=20)
-        axses_case[-1].set_xlabel(r'$t$',fontsize=20)
+        axses_case[-1].set_xlabel(r'$t$')
         x = 0.82
         yStart = 0.84
         for i, case in enumerate(cases):
@@ -197,6 +198,6 @@ def main():
             fig.text(x, y, aliasDict[case])
 
         fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$ @ position '+str(allProbePosition[p]/8.0)+'D')
-        fig.savefig(path2Data+"/"+"PICTURE_history_e/"+"4cases/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight',dpi=300) # bbox_inches = 'tight' is neccessary
+        fig.savefig(path2Data+"/"+"PICTURE_history_e/"+"4cases/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
 
 main()
