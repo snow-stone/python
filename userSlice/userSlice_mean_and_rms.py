@@ -211,8 +211,8 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 #        plotCaseWithSlices_Dai(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
     
     ax_principle0.set_xlabel(r"$x/D$")
-    ax_principle0.set_ylabel(r"$<T>_{slice}$")
-    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
+    ax_principle0.set_ylabel(r"$Mixing \quad Factors$")
+#    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
     ax_principle0.set_ylim(0,1.)
 #    ax_principle.set_xlim(0,40)
     ax_principle0.legend(bbox_to_anchor=(1, 0.8), ncol=2, shadow=True)
@@ -236,7 +236,7 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
         plotCaseWithSlices_old_rms(ax_principle1, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
         
     ax_principle1.set_xlabel(r"$x/D$")
-    ax_principle1.set_ylabel(r"$mixing \quad factor$")
+    ax_principle1.set_ylabel(r"$rms$")
     ax_principle1.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
     ax_principle1.set_ylim(0,0.25)
     fig.savefig(path2Data+"/"+saveFigDir+'/rms.png', bbox_inches='tight')
