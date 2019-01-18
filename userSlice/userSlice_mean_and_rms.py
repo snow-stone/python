@@ -267,8 +267,8 @@ def main():
     caseList1=[
                 "BirdCarreau/inlet_0p3",
                 "BirdCarreau/inlet_0p5",
-                "Newtonian/Re4000",
-                "Newtonian/Re2400"
+                "Newtonian/Re2400",
+                "Newtonian/Re4000"
               ]
 #    impinging
     caseList2=["BirdCarreau/inlet_0p5",
