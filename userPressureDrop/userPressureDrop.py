@@ -20,13 +20,14 @@ def plotCase(path2Data,dataDir,cut):
     p = ax_in_case.plot(time[cutIndex:], port3[cutIndex:], label='Port3')
     ax_in_case.plot(time[:cutIndex],port3[:cutIndex],linestyle=':',color=p[0].get_color())
 
-    pressureDrop = np.mean(port3[cutIndex:]) - np.mean(port2[cutIndex:])
+    pressureDrop_main = np.mean(port3[cutIndex:]) - np.mean(port2[cutIndex:])
+    pressureDrop_b    = np.mean(port1[cutIndex:]) - np.mean(port2[cutIndex:])
     
 #    ax_in_case.set_ylim(9.5,12)
     ax_in_case.set_title(dataDir)
     ax_in_case.legend()
     
-    return pressureDrop
+    return pressureDrop_b, pressureDrop_main
 
 def main():
     plt.style.use('seaborn-white')
@@ -44,7 +45,8 @@ def main():
               ]
 
     path2Data = "/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
-    pressureDropList = []
+    pressureDropList_main = []
+    pressureDropList_b = []
     labelTuple = (
                 r'$NN^{1}_{d}$',
                 r'$N^{1}_{d}$',
@@ -63,19 +65,29 @@ def main():
                 ]
 
     for i, caseDir in enumerate(caseList):
-        pressureDrop = plotCase(path2Data,caseDir, cut=0.7)
-        print caseDir + " : " + str(pressureDrop)
-        pressureDropList.append(pressureDrop)
+        pressureDrop_main, pressureDrop_b = plotCase(path2Data,caseDir, cut=0.7)
+        print caseDir + " : " + str(pressureDrop_main)
+        pressureDropList_main.append(pressureDrop_main)
+        print caseDir + " : " + str(pressureDrop_b)
+        pressureDropList_b.append(pressureDrop_b)
 
-    plt.figure(7) # 6 figures already there !!
-    x = np.arange(len(labelTuple))
-    plt.bar(x+0.5, height = pressureDropList, width=0.4, color=colorList)
-    plt.xticks(x+0.75, labelTuple) # xticks can only chagned by plt object. axes don't work !!
-    plt.xlim(0,6.5)
-    plt.ylabel(r'$\Delta p/\rho \quad (m^2/s^2)$')
-    plt.savefig(path2Data+"/"+'pressureDrop/pressureDrop.png', bbox_inches='tight', dpi=300)
+#    plt.figure(7) # 6 figures already there !!
+    bar_width=0.35
+    shift = 0.4
+    fig, ax = plt.subplots()
+    x = np.arange(len(labelTuple)) 
+    ax.bar(x+shift, pressureDropList_main, bar_width, color=colorList)
+    ax.bar(x+bar_width+shift, pressureDropList_b, bar_width, color=colorList, alpha=0.4)
+#    ax.xticks(x+0.75, labelTuple) # xticks can only chagned by plt object. axes don't work !!
+#    ax.set_xlim(0,6.5)
     
-    print pressureDropList[0]/pressureDropList[1]
-    print pressureDropList[2]/pressureDropList[3]
+    ax.set_xticks(x+0.75)
+    ax.set_xticklabels(labelTuple)
+    ax.set_ylabel(r'$\Delta p/\rho \quad (m^2/s^2)$')
+    ax.legend(bbox_to_anchor=(0.5, 1))
+    fig.savefig(path2Data+"/"+'pressureDrop/pressureDrop.png', bbox_inches='tight', dpi=300)
+    
+    print pressureDropList_main[0]/pressureDropList_main[1]
+    print pressureDropList_main[2]/pressureDropList_main[3]
     
 main()
