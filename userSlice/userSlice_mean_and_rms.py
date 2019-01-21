@@ -121,6 +121,8 @@ def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, aliasDict
     print "rms : "
     print meanOfRMS
     positionList = np.asarray(positionList)
+    ax_cases.axhline(y=0.8, linestyle=':', color='black')
+    ax_cases.axhline(y=0.5, linestyle=':', color='black')
     ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
 #    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
@@ -230,7 +232,7 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
 #    axes[0].set_ylim(0,0.2)
 #    ax_principle.set_xlim(0,40)
-    axes[0].legend(bbox_to_anchor=(1, 0.8), ncol=2, shadow=True)
+    axes[0].legend(bbox_to_anchor=(1, 0.875), ncol=2, shadow=True)
     
 #    x_XG1, y_XG1 = dai_debitMoyen('XG')
 #    ax_principle.plot(x_XG1,y_XG1,label=aliasDict_Dai['Dai/inlet_0p5'],linestyle='-',marker='s',fillstyle='none')    
@@ -295,10 +297,20 @@ def main():
               "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  
               "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
              ]
+#   all except for forcing
+    caseList=[
+                "BirdCarreau/inlet_0p3",
+                "BirdCarreau/inlet_0p5",
+                "BirdCarreau/inlet0p5_impinging",
+                "Newtonian/Re2400",
+                "Newtonian/Re4000",
+                "Newtonian/Re4000_impinging"
+              ]
     
     figDir = 'PICTURE_mixingFactor'
-    plotFor_caseList(caseList1, path2Data, figDir+'/'+'non-newtonian')
-    plotFor_caseList(caseList2, path2Data, figDir+'/'+'impinging')
-    plotFor_caseList(caseList3, path2Data, figDir+'/'+'forcing')
+#    plotFor_caseList(caseList1, path2Data, figDir+'/'+'non-newtonian')
+#    plotFor_caseList(caseList2, path2Data, figDir+'/'+'impinging')
+#    plotFor_caseList(caseList3, path2Data, figDir+'/'+'forcing')
+    plotFor_caseList(caseList, path2Data, figDir+'/')
 
 main()
