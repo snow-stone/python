@@ -107,7 +107,7 @@ def plotCaseWithSlices_old1(ax_cases, path2Data, dataDir, positionList, marker, 
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=marker)
 
-def plotCaseWithSlices_old_errorbar(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
+def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
@@ -121,8 +121,8 @@ def plotCaseWithSlices_old_errorbar(ax_cases, path2Data, dataDir, positionList, 
     print "rms : "
     print meanOfRMS
     positionList = np.asarray(positionList)
-#    ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=marker)
-    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
+    ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=marker)
+#    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
 def plotCaseWithSlices_old_rms(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
@@ -203,18 +203,16 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
     }
     
 #    fig, ax_principle0 = plt.subplots()
-    fig, axes = plt.subplots(3, 1, sharex=True, figsize=(20,10))
+    fig, axes = plt.subplots(3, 1, sharex=True, figsize=(10,10))
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_errorbar(axes[0], path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
-#        plotCaseWithSlices_old1(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
-#        plotCaseWithSlices_Dai(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
+        plotCaseWithSlices_old(axes[0], path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
     
     axes[0].set_xlabel(r"$x/D$")
     axes[0].set_ylabel(r"$Mixing \quad Factors$")
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
-    axes[0].set_ylim(0,1.)
+#    axes[0].set_ylim(0,0.2)
 #    ax_principle.set_xlim(0,40)
     axes[0].legend(bbox_to_anchor=(1, 0.8), ncol=2, shadow=True)
     
