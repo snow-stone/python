@@ -107,7 +107,7 @@ def plotCaseWithSlices_old1(ax_cases, path2Data, dataDir, positionList, marker, 
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=marker)
 
-def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
+def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
@@ -121,7 +121,7 @@ def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, marker, a
     print "rms : "
     print meanOfRMS
     positionList = np.asarray(positionList)
-    ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=marker)
+    ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir])
 #    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
 def plotCaseWithSlices_old_rms(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
@@ -195,6 +195,28 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
         "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
     
+    colorDict={
+        "BirdCarreau/inlet_0p3": 'red',
+        "Newtonian/Re2400"     : 'blue',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'red',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'red',
+        "BirdCarreau/inlet_0p5": 'red',
+        "Newtonian/Re4000"     : 'blue',
+        "BirdCarreau/inlet0p5_impinging"       : 'red',
+        "Newtonian/Re4000_impinging"           : 'blue'
+    }
+    
+    markerDict={
+        "BirdCarreau/inlet_0p3": 's',
+        "Newtonian/Re2400"     : 's',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '^',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'v',
+        "BirdCarreau/inlet_0p5": 'o',
+        "Newtonian/Re4000"     : 'o',
+        "BirdCarreau/inlet0p5_impinging"       : 'x',
+        "Newtonian/Re4000_impinging"           : 'x'
+    }
+    
     aliasDict_Dai={
         'Dai/inlet_0p5' : r'$exp(NN^{1}_{d})$',
         'Dai/Re4000'    : r'$exp(N^{1}_{d})$',
@@ -207,7 +229,7 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old(axes[0], path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_old(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
     
     axes[0].set_xlabel(r"$x/D$")
     axes[0].set_ylabel(r"$Mixing \quad Factors$")
