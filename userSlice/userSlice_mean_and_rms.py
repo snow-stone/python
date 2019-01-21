@@ -124,7 +124,7 @@ def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, aliasDict
     ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir])
 #    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
-def plotCaseWithSlices_old_rms(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
+def plotCaseWithSlices_old_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
@@ -133,9 +133,9 @@ def plotCaseWithSlices_old_rms(ax_cases, path2Data, dataDir, positionList, marke
         meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
         
     positionList = np.asarray(positionList)
-    ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=marker)
+    ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir])
     
-def plotCaseWithSlices_old_MI(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut, ifPlotInter):
+def plotCaseWithSlices_old_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
@@ -144,7 +144,7 @@ def plotCaseWithSlices_old_MI(ax_cases, path2Data, dataDir, positionList, marker
         meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
         
     positionList = np.asarray(positionList)
-    ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=marker)
+    ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir])
     
 #def plotCaseWithSlices_Dai(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut):
 #    meanOfMEAN = np.zeros(len(positionList))
@@ -254,7 +254,7 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_rms(axes[1], path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_old_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[1].set_xlabel(r"$x/D$")
     axes[1].set_ylabel(r"$rms$")
@@ -266,7 +266,7 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_MI(axes[2], path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_old_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[2].set_xlabel(r"$x/D$")
     axes[2].set_ylabel(r"$Mixing \quad Efficiency$")
