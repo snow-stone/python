@@ -202,20 +202,21 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
         'Dai/Re2400'    : r'$exp(N^{2}_{d})$'
     }
     
-    fig, ax_principle0 = plt.subplots()
+#    fig, ax_principle0 = plt.subplots()
+    fig, axes = plt.subplots(3, 1, sharex=True, figsize=(20,10))
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_errorbar(ax_principle0, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_old_errorbar(axes[0], path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
 #        plotCaseWithSlices_old1(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
 #        plotCaseWithSlices_Dai(ax_principle, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7)
     
-    ax_principle0.set_xlabel(r"$x/D$")
-    ax_principle0.set_ylabel(r"$Mixing \quad Factors$")
+    axes[0].set_xlabel(r"$x/D$")
+    axes[0].set_ylabel(r"$Mixing \quad Factors$")
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
-    ax_principle0.set_ylim(0,1.)
+    axes[0].set_ylim(0,1.)
 #    ax_principle.set_xlim(0,40)
-    ax_principle0.legend(bbox_to_anchor=(1, 0.8), ncol=2, shadow=True)
+    axes[0].legend(bbox_to_anchor=(1, 0.8), ncol=2, shadow=True)
     
 #    x_XG1, y_XG1 = dai_debitMoyen('XG')
 #    ax_principle.plot(x_XG1,y_XG1,label=aliasDict_Dai['Dai/inlet_0p5'],linestyle='-',marker='s',fillstyle='none')    
@@ -227,31 +228,31 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 #    x_water0, y_water0 = dai_debitMin('EAU')    
 #    ax_principle.plot(x_water0,y_water0,label=aliasDict_Dai['Dai/Re2400'],linestyle='-',marker='v',fillstyle='none')
 
-    fig.savefig(path2Data+"/"+saveFigDir+'/mean_rms.png', bbox_inches='tight')
+#    fig.savefig(path2Data+"/"+saveFigDir+'/mean_rms.png', bbox_inches='tight')
     
-    fig, ax_principle1 = plt.subplots()
+#    fig, ax_principle1 = plt.subplots()
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_rms(ax_principle1, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_old_rms(axes[1], path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
         
-    ax_principle1.set_xlabel(r"$x/D$")
-    ax_principle1.set_ylabel(r"$rms$")
-    ax_principle1.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
-    ax_principle1.set_ylim(0,0.25)
-    fig.savefig(path2Data+"/"+saveFigDir+'/rms.png', bbox_inches='tight')
+    axes[1].set_xlabel(r"$x/D$")
+    axes[1].set_ylabel(r"$rms$")
+    axes[1].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
+    axes[1].set_ylim(0,0.25)
+#    fig.savefig(path2Data+"/"+saveFigDir+'/rms.png', bbox_inches='tight')
 
-    fig, ax_principle2 = plt.subplots()
+#    fig, ax_principle2 = plt.subplots()
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_MI(ax_principle2, path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_old_MI(axes[2], path2Data, caseDir, positionList, markerList[i], aliasDict, cut=0.7, ifPlotInter=False)
         
-    ax_principle2.set_xlabel(r"$x/D$")
-    ax_principle2.set_ylabel(r"$Mixing \quad Efficiency$")
-    ax_principle2.legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
+    axes[2].set_xlabel(r"$x/D$")
+    axes[2].set_ylabel(r"$Mixing \quad Efficiency$")
+    axes[2].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
-    fig.savefig(path2Data+"/"+saveFigDir+'/mixingEfficiencyInpercentage.png', bbox_inches='tight')
+    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
     
 def main():
     plt.style.use('seaborn-white')
