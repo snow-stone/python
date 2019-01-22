@@ -759,7 +759,7 @@ renderView1.CameraViewUp = [0.0, 1.0, 2.220446049250313e-16]
 renderView1.CameraParallelScale = 0.005656854518178539
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean.png', renderView1, ImageResolution=[2896, 1838],
+SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean_test1.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
