@@ -192,23 +192,23 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
     }
     
     colorDict={
-        "BirdCarreau/inlet_0p3": 'red',
-        "Newtonian/Re2400"     : 'blue',
+        "BirdCarreau/inlet_0p3"                : 'red',
+        "Newtonian/Re2400"                     : 'blue',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'red',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'red',
-        "BirdCarreau/inlet_0p5": 'red',
-        "Newtonian/Re4000"     : 'blue',
+        "BirdCarreau/inlet_0p5"                : 'red',
+        "Newtonian/Re4000"                     : 'blue',
         "BirdCarreau/inlet0p5_impinging"       : 'red',
         "Newtonian/Re4000_impinging"           : 'blue'
     }
     
     markerDict={
-        "BirdCarreau/inlet_0p3": 's',
-        "Newtonian/Re2400"     : 's',
+        "BirdCarreau/inlet_0p3"                : 's',
+        "Newtonian/Re2400"                     : 's',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '^',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'v',
-        "BirdCarreau/inlet_0p5": 'o',
-        "Newtonian/Re4000"     : 'o',
+        "BirdCarreau/inlet_0p5"                : 'o',
+        "Newtonian/Re4000"                     : 'o',
         "BirdCarreau/inlet0p5_impinging"       : 'x',
         "Newtonian/Re4000_impinging"           : 'x'
     }
@@ -230,9 +230,9 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
     axes[0].set_xlabel(r"$x/D$")
     axes[0].set_ylabel(r"$<T>_{slice}$")
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
-#    axes[0].set_ylim(0,0.2)
+    axes[0].set_ylim(0.2,0.9)
 #    ax_principle.set_xlim(0,40)
-    axes[0].legend(bbox_to_anchor=(1, 0.875), ncol=2, shadow=True)
+#    axes[0].legend(bbox_to_anchor=(1, 0.875), ncol=2, shadow=True)
     
 #    x_XG1, y_XG1 = dai_debitMoyen('XG')
 #    ax_principle.plot(x_XG1,y_XG1,label=aliasDict_Dai['Dai/inlet_0p5'],linestyle='-',marker='s',fillstyle='none')    
