@@ -43,40 +43,7 @@ def dai_debitMoyen(fluid):
 #    
 #    return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
 #
-def plotSlice_old(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True):
-    data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms")
-    
-    time = data[:,0]
-    cutSliceIndex = int(cut*len(time))
-    
-    if ifPlotInter :
-        p = ax.plot(time[cutSliceIndex:],data[cutSliceIndex:,2])
-        ax.plot(time[:cutSliceIndex],data[:cutSliceIndex,2],linestyle=':',color=p[0].get_color())
-        ax.legend(bbox_to_anchor=(1.3, 1), ncol=1, shadow=True)
-        ax.set_title(dataDir)
-    else :
-        print "====================="
-        print "No intermediate plots"
-        print "====================="
-    
-    return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
-#
-#def plotSlice_Dai(ax, sliceNumber, path2Data, dataDir, cut=0.5):
-#    data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms_Dai")
-#
-#    time = data[:,0]
-#    cutSliceIndex = int(cut*len(time))
-#    
-#    p = ax.plot(time[cutSliceIndex:],data[cutSliceIndex:,2])
-#    ax.plot(time[:cutSliceIndex],data[:cutSliceIndex,2],linestyle=':',color=p[0].get_color())
-#    ax.legend(bbox_to_anchor=(1.3, 1), ncol=1, shadow=True)
-#    ax.set_title(dataDir)
-#
-#    print "for slice number : ", sliceNumber
-#    print "mean : ", np.mean(data[cutSliceIndex:,1])
-#    
-#    return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
-#
+
 #def plotSlice_Dai_0p8(ax, sliceNumber, path2Data, dataDir, cut=0.5):
 #    data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms_Dai_0p8")
 #    
@@ -107,13 +74,93 @@ def plotSlice_old(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True
 #    positionList = np.asarray(positionList)
 #    ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=marker)
 
-def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+def plotSlice_Dai(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True):
+    data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms_Dai")
+
+    time = data[:,0]
+    cutSliceIndex = int(cut*len(time))
+    
+    if ifPlotInter :
+        p = ax.plot(time[cutSliceIndex:],data[cutSliceIndex:,2])
+        ax.plot(time[:cutSliceIndex],data[:cutSliceIndex,2],linestyle=':',color=p[0].get_color())
+        ax.legend(bbox_to_anchor=(1.3, 1), ncol=1, shadow=True)
+        ax.set_title(dataDir)
+    else :
+        print "====================="
+        print "No intermediate plots"
+        print "====================="
+    
+    return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
+
+def plotCaseWithSlices_Dai(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
     fig, ax_in_case = plt.subplots()
     for i, position in enumerate(positionList):
-        meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_Dai(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+
+    print aliasDict[dataDir]+" :"
+    print "mean : "
+    print meanOfMEAN
+    print "rms : "
+    print meanOfRMS
+    positionList = np.asarray(positionList)
+    ax_cases.axhline(y=0.8, linestyle=':', color='black')
+    ax_cases.axhline(y=0.5, linestyle=':', color='black')
+    ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+
+def plotCaseWithSlices_Dai_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    meanOfMEAN = np.zeros(len(positionList))
+    meanOfRMS = np.zeros(len(positionList))
+    
+    fig, ax_in_case = plt.subplots()
+    for i, position in enumerate(positionList):
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_Dai(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        
+    positionList = np.asarray(positionList)
+    ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+    
+def plotCaseWithSlices_Dai_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    meanOfMEAN = np.zeros(len(positionList))
+    meanOfRMS = np.zeros(len(positionList))
+    
+    fig, ax_in_case = plt.subplots()
+    for i, position in enumerate(positionList):
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_Dai(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        
+    positionList = np.asarray(positionList)
+    ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+
+#==============================================================================
+#   local mean
+#==============================================================================
+
+def plotSlice_local(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True):
+    data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/slice"+str(sliceNumber)+"_mean_rms")
+    
+    time = data[:,0]
+    cutSliceIndex = int(cut*len(time))
+    
+    if ifPlotInter :
+        p = ax.plot(time[cutSliceIndex:],data[cutSliceIndex:,2])
+        ax.plot(time[:cutSliceIndex],data[:cutSliceIndex,2],linestyle=':',color=p[0].get_color())
+        ax.legend(bbox_to_anchor=(1.3, 1), ncol=1, shadow=True)
+        ax.set_title(dataDir)
+    else :
+        print "====================="
+        print "No intermediate plots"
+        print "====================="
+    
+    return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
+
+def plotCaseWithSlices_local(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    meanOfMEAN = np.zeros(len(positionList))
+    meanOfRMS = np.zeros(len(positionList))
+    
+    fig, ax_in_case = plt.subplots()
+    for i, position in enumerate(positionList):
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
 
     print aliasDict[dataDir]+" :"
     print "mean : "
@@ -126,27 +173,29 @@ def plotCaseWithSlices_old(ax_cases, path2Data, dataDir, positionList, aliasDict
     ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
 #    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
     
-def plotCaseWithSlices_old_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+def plotCaseWithSlices_local_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
     fig, ax_in_case = plt.subplots()
     for i, position in enumerate(positionList):
-        meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
         
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
     
-def plotCaseWithSlices_old_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+def plotCaseWithSlices_local_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
     fig, ax_in_case = plt.subplots()
     for i, position in enumerate(positionList):
-        meanOfMEAN[i], meanOfRMS[i] = plotSlice_old(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
         
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+
+#==============================================================================
     
 #def plotCaseWithSlices_Dai(ax_cases, path2Data, dataDir, positionList, marker, aliasDict, cut):
 #    meanOfMEAN = np.zeros(len(positionList))
@@ -225,14 +274,15 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+#        plotCaseWithSlices_local(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_Dai(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
     
     axes[0].set_xlabel(r"$x/D$")
     axes[0].set_ylabel(r"$<T>_{slice}$")
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
     axes[0].set_ylim(0.2,0.9)
 #    ax_principle.set_xlim(0,40)
-#    axes[0].legend(bbox_to_anchor=(1, 0.875), ncol=2, shadow=True)
+    axes[0].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
     
 #    x_XG1, y_XG1 = dai_debitMoyen('XG')
 #    ax_principle.plot(x_XG1,y_XG1,label=aliasDict_Dai['Dai/inlet_0p5'],linestyle='-',marker='s',fillstyle='none')    
@@ -250,25 +300,28 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+#        plotCaseWithSlices_local_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_Dai_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[1].set_xlabel(r"$x/D$")
     axes[1].set_ylabel(r"$<T^{\prime 2}>_{slice}$")
-    axes[1].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
-    axes[1].set_ylim(0,0.25)
+#    axes[1].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
+#    axes[1].set_ylim(0,0.25)
 #    fig.savefig(path2Data+"/"+saveFigDir+'/rms.png', bbox_inches='tight')
 
 #    fig, ax_principle2 = plt.subplots()
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_old_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+#        plotCaseWithSlices_local_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_Dai_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[2].set_xlabel(r"$x/D$")
     axes[2].set_ylabel(r"$Mixing \quad Efficiency$")
-    axes[2].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
+#    axes[2].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
-    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
+#    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
+    fig.savefig(path2Data+"/"+saveFigDir+'/mixing_Dai.png', bbox_inches='tight')
     
 def main():
     plt.style.use('seaborn-white')
