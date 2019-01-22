@@ -8,8 +8,14 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName                   = sys.argv[1]
+yPositionInSlice          = float(sys.argv[2])
+yPositionInSaveScreenShot = sys.argv[3]
+
 # create a new 'OpenFOAMReader'
-re4000foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/Re4000.foam')
+re4000foam = OpenFOAMReader(FileName=dirName+'/Re4000.foam')
 re4000foam.SkipZeroTime = 1
 re4000foam.CaseType = 'Reconstructed Case'
 re4000foam.LabelSize = '32-bit'
@@ -1351,11 +1357,7 @@ slice1.SliceType.Offset = 0.0
 Hide3DWidgets(proxy=slice1.SliceType)
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.013999999035149813, -0.003, 0.0]
-slice1.SliceType.Normal = [0.0, 1.0, 0.0]
-
-# Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.013999999035149813, -0.003, 0.0]
+slice1.SliceType.Origin = [0.013999999035149813, yPositionInSlice, 0.0]
 slice1.SliceType.Normal = [0.0, 1.0, 0.0]
 
 # show data in view
@@ -1776,7 +1778,7 @@ renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraParallelScale = 0.022360679233547745
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_yNomal_y_Eq_neg3mm_1.png', renderView1, ImageResolution=[2896, 1835],
+SaveScreenshot(dirName+'/slice_yNomal_y_Eq_'+yPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
