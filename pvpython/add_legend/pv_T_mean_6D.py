@@ -768,9 +768,9 @@ renderView1.CameraParallelScale = 0.005656854518178539
 #    CompressionLevel='5')
 
 # Properties modified on t_meanLUTColorBar
-t_meanLUTColorBar.TitleFontSize = 8
-t_meanLUTColorBar.LabelFontSize = 8
-t_meanLUTColorBar.ScalarBarThickness = 20
+t_meanLUTColorBar.TitleFontSize = 4
+t_meanLUTColorBar.LabelFontSize = 4
+t_meanLUTColorBar.ScalarBarThickness = 5
 t_meanLUTColorBar.ScalarBarLength = 0.5
 
 # change scalar bar placement
@@ -784,7 +784,7 @@ renderView1.CameraViewUp = [0.0, 1.0, 2.220446049250313e-16]
 renderView1.CameraParallelScale = 0.005656854518178539
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean_2.png', renderView1, ImageResolution=[2896, 1838],
+SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean_2.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
