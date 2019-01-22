@@ -1673,7 +1673,7 @@ renderView1.CameraFocalPoint = [0.013999999035149813, -0.0020000000949949026, -7
 renderView1.CameraParallelScale = 0.022803508012705226
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/k_mean_nonRescaled.png', renderView1, ImageResolution=[3224, 1838],
+SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/k_mean_nonRescaled_test.png', renderView1, ImageResolution=[3224, 1838],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
