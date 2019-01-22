@@ -10,23 +10,25 @@ def slice_6D_T_mean_hist(path2Data, caseName):
     
     T = rawData[:,0]
     
-    n, bins, patches = plt.hist(T, 50, facecolor='g', normed=1)
+    fig, ax = plt.subplots()
+    
+    n, bins, patches = ax.hist(T, 50, facecolor='g', normed=1)
     
     mean = np.mean(T)
     rms  = np.std(T)
     
-    plt.xlabel(r'$T$')
-    plt.ylabel('The number of cells in '+r'$\%$')
+    ax.set_xlabel(r'$T$')
+    ax.set_ylabel('The number of cells in '+r'$\%$')
     #plt.text(0.5, 0.5, r'$\mu=%.2f,\ \sigma=%.2f$')
-    plt.xlim(0,1)
-    plt.grid(True)
+    ax.set_xlim(0,1)
+    ax.grid(True)
     
-    plt.axvline(x=0.5, color='black', linewidth=1)
-    plt.axvline(x=mean, color='red', linewidth=2)
-    plt.axvline(x=mean-rms, color='red', linewidth=2, linestyle=':')
-    plt.axvline(x=mean+rms, color='red', linewidth=2, linestyle=':')
+    ax.axvline(x=0.5, color='blue', linewidth=1)
+    ax.axvline(x=mean, color='red', linewidth=2)
+    ax.axvline(x=mean-rms, color='red', linewidth=2, linestyle=':')
+    ax.axvline(x=mean+rms, color='red', linewidth=2, linestyle=':')
     
-    plt.savefig(path2Data+"/"+caseName+"/"+"slice_6D_T_mean_hist.png",  bbox_inches='tight')
+    fig.savefig(path2Data+"/"+caseName+"/"+"slice_6D_T_mean_hist.png",  bbox_inches='tight')
     
 def main():
     path2Data="/store/8simu_tmp/shape_square/2a_3_T"
