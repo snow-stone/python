@@ -758,8 +758,33 @@ renderView1.CameraFocalPoint = [0.052000001072883606, 0.0, 0.0]
 renderView1.CameraViewUp = [0.0, 1.0, 2.220446049250313e-16]
 renderView1.CameraParallelScale = 0.005656854518178539
 
+## save screenshot
+#SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean.png', renderView1, ImageResolution=[2896, 1838],
+#    FontScaling='Scale fonts proportionally',
+#    OverrideColorPalette='',
+#    StereoMode='No change',
+#    TransparentBackground=0, 
+#    # PNG options
+#    CompressionLevel='5')
+
+# Properties modified on t_meanLUTColorBar
+t_meanLUTColorBar.TitleFontSize = 8
+t_meanLUTColorBar.LabelFontSize = 8
+t_meanLUTColorBar.ScalarBarThickness = 20
+t_meanLUTColorBar.ScalarBarLength = 0.5
+
+# change scalar bar placement
+t_meanLUTColorBar.Position = [0.2632320441988954, 0.0559630032644179]
+t_meanLUTColorBar.ScalarBarLength = 0.49999999999999994
+
+# current camera placement for renderView1
+renderView1.CameraPosition = [0.07385640857155823, 0.0, 0.0]
+renderView1.CameraFocalPoint = [0.052000001072883606, 0.0, 0.0]
+renderView1.CameraViewUp = [0.0, 1.0, 2.220446049250313e-16]
+renderView1.CameraParallelScale = 0.005656854518178539
+
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean_test1.png', renderView1, ImageResolution=[2896, 1835],
+SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean_2.png', renderView1, ImageResolution=[2896, 1838],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
