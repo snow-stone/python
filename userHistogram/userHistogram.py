@@ -19,7 +19,9 @@ def slice_6D_T_mean_hist(path2Data, caseName):
     
     ax.set_xlabel(r'$T$')
     ax.set_ylabel('The number of cells in '+r'$\%$')
-    #plt.text(0.5, 0.5, r'$\mu=%.2f,\ \sigma=%.2f$')
+    ymin, ymax = ax.get_ylim()
+    ax.text(0.75, ymax*0.8, r'$\mu=%.2f$'% mean)
+    ax.text(0.75, ymax*0.7, r'$\sigma=%.2f$'% rms)
     ax.set_xlim(0,1)
     ax.grid(True)
     
