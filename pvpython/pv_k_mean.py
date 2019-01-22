@@ -17,7 +17,7 @@ re4000foam.ScalarSize = '64-bit (DP)'
 re4000foam.Createcelltopointfiltereddata = 1
 re4000foam.Adddimensionalunitstoarraynames = 0
 re4000foam.MeshRegions = ['internalMesh']
-re4000foam.CellArrays = ['T', 'T_mean', 'U', 'U_mean', 'k_mean', 'p', 'reyTensor', 'reyTensor_mean', 'tt_mean', 'vorticity_U_mean']
+re4000foam.CellArrays = ['k_mean']
 re4000foam.PointArrays = []
 re4000foam.LagrangianArrays = []
 re4000foam.Cachemesh = 1
@@ -26,9 +26,6 @@ re4000foam.ListtimestepsaccordingtocontrolDict = 0
 re4000foam.Lagrangianpositionswithoutextradata = 1
 re4000foam.Readzones = 0
 re4000foam.Copydatatocellzones = 0
-
-# Properties modified on re4000foam
-re4000foam.CellArrays = ['k_mean']
 
 # get active view
 renderView1 = GetActiveViewOrCreate('RenderView')
@@ -1673,7 +1670,7 @@ renderView1.CameraFocalPoint = [0.013999999035149813, -0.0020000000949949026, -7
 renderView1.CameraParallelScale = 0.022803508012705226
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/k_mean_nonRescaled_test.png', renderView1, ImageResolution=[3224, 1838],
+SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/k_mean_nonRescaled_test1.png', renderView1, ImageResolution=[3224, 1838],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
