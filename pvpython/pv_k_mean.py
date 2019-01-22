@@ -8,8 +8,11 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+dirName = sys.argv[1]
+
 # create a new 'OpenFOAMReader'
-re4000foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000_impinging/autoReader.foam')
+re4000foam = OpenFOAMReader(FileName=dirName+'/'+'autoReader.foam')
 re4000foam.SkipZeroTime = 1
 re4000foam.CaseType = 'Reconstructed Case'
 re4000foam.LabelSize = '32-bit'
@@ -1670,7 +1673,7 @@ renderView1.CameraFocalPoint = [0.013999999035149813, -0.0020000000949949026, -7
 renderView1.CameraParallelScale = 0.022803508012705226
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000_impinging/k_mean_nonRescaled_test3.png', renderView1, ImageResolution=[3224, 1838],
+SaveScreenshot(dirName+'/'+'k_mean_nonRescaled_test4.png', renderView1, ImageResolution=[3224, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
