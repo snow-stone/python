@@ -1736,6 +1736,15 @@ u_meanLUTColorBar.LabelFontSize = 4
 u_meanLUTColorBar.ScalarBarThickness = 5
 u_meanLUTColorBar.ScalarBarLength = 0.5
 
+# set scalar coloring
+ColorBy(slice1Display, ('POINTS', 'U_mean', 'Z'))
+
+# rescale color and/or opacity maps used to exactly fit the current data range
+slice1Display.RescaleTransferFunctionToDataRange(False, False)
+
+# Update a scalar bar component title.
+UpdateScalarBarsComponentTitle(u_meanLUT, slice1Display)
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.013999999035149813, -0.0893950302862747, 0.0]
 renderView1.CameraFocalPoint = [0.013999999035149813, -0.003000000026077032, 0.0]
@@ -1743,7 +1752,7 @@ renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraParallelScale = 0.022360679233547745
 
 # save screenshot
-SaveScreenshot(dirName+'/Uy_mean_slice_yNomal_y_Eq_'+yPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2896, 1834],
+SaveScreenshot(dirName+'/Uz_mean_slice_yNomal_y_Eq_'+yPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2896, 1834],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
