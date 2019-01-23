@@ -1727,6 +1727,12 @@ u_meanLUTColorBar.WindowLocation = 'AnyLocation'
 u_meanLUTColorBar.Position = [0.3032872928176798, 0.1888139281828075]
 u_meanLUTColorBar.ScalarBarLength = 0.32999999999999935
 
+# Properties modified on t_meanLUTColorBar
+u_meanLUTColorBar.TitleFontSize = 4
+u_meanLUTColorBar.LabelFontSize = 4
+u_meanLUTColorBar.ScalarBarThickness = 5
+u_meanLUTColorBar.ScalarBarLength = 0.5
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.013999999035149813, -0.0893950302862747, 0.0]
 renderView1.CameraFocalPoint = [0.013999999035149813, -0.003000000026077032, 0.0]
@@ -1734,7 +1740,7 @@ renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraParallelScale = 0.022360679233547745
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/Uy_mean_slice_yNomal_y_Eq_neg3mm.png', renderView1, ImageResolution=[2896, 1835],
+SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/Uy_mean_slice_yNomal_y_Eq_neg3mm_test.png', renderView1, ImageResolution=[2896, 1834],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
