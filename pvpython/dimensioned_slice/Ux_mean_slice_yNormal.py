@@ -1788,3 +1788,8 @@ SaveScreenshot(dirName+'/Ux_slice_yNomal_y_Eq_'+yPositionInSaveScreenShot+'.png'
     TransparentBackground=0, 
     # PNG options
     CompressionLevel='5')
+
+print "Finalizing Ux_mean_slice_yNormal.py " + "@ dir : " + dirName + " " + " @ " + yPositionInSaveScreenShot
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
