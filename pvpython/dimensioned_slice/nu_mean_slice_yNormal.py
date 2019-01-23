@@ -8,8 +8,14 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName                   = sys.argv[1]
+yPositionInSlice          = float(sys.argv[2])
+yPositionInSaveScreenShot = sys.argv[3]
+
 # create a new 'OpenFOAMReader'
-inlet_0p5foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p5/inlet_0p5.foam')
+inlet_0p5foam = OpenFOAMReader(FileName=dirName+'/inlet_0p5.foam')
 inlet_0p5foam.SkipZeroTime = 1
 inlet_0p5foam.CaseType = 'Reconstructed Case'
 inlet_0p5foam.LabelSize = '32-bit'
@@ -1305,7 +1311,7 @@ slice1.Triangulatetheslice = 1
 slice1.SliceOffsetValues = [0.0]
 
 # init the 'Plane' selected for 'SliceType'
-slice1.SliceType.Origin = [0.013999999035149813, -0.0020000000949949026, 0.0]
+slice1.SliceType.Origin = [0.013999999035149813, yPositionInSlice, 0.0]
 slice1.SliceType.Normal = [1.0, 0.0, 0.0]
 slice1.SliceType.Offset = 0.0
 
@@ -1711,6 +1717,12 @@ nu_meanLUTColorBar.WindowLocation = 'AnyLocation'
 nu_meanLUTColorBar.Position = [0.30121546961325985, 0.2225462459194778]
 nu_meanLUTColorBar.ScalarBarLength = 0.3299999999999996
 
+# Properties modified on t_meanLUTColorBar
+nu_meanLUTColorBar.TitleFontSize = 4
+nu_meanLUTColorBar.LabelFontSize = 4
+nu_meanLUTColorBar.ScalarBarThickness = 5
+nu_meanLUTColorBar.ScalarBarLength = 0.5
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.013999999035149813, -0.08839503035519257, 0.0]
 renderView1.CameraFocalPoint = [0.013999999035149813, -0.0020000000949949026, 0.0]
@@ -1718,7 +1730,7 @@ renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraParallelScale = 0.022360679233547745
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p5/nu_mean_slice_yNomal_y_Eq_0mm.png', renderView1, ImageResolution=[2896, 1838],
+SaveScreenshot(dirName+'/Uy_mean_slice_yNomal_y_Eq_'+yPositionInSaveScreenShot+'_test.png', renderView1, ImageResolution=[2896, 1838],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
