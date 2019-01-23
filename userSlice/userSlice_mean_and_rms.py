@@ -230,12 +230,12 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
     positionList = [1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     
     aliasDict={
-        "BirdCarreau/inlet_0p3":r'$NN^{1}_{d}$',
-        "Newtonian/Re2400"     :r'$N^{1}_{d}$',
+        "BirdCarreau/inlet_0p3"                :r'$NN^{1}_{d}$',
+        "Newtonian/Re2400"                     :r'$N^{1}_{d}$',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":r'$NN^{1}_{d,St=1}$',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":r'$NN^{1}_{d,St=5}$',
-        "BirdCarreau/inlet_0p5":r'$NN^{2}_{d}$',
-        "Newtonian/Re4000"     :r'$N^{2}_{d}$',
+        "BirdCarreau/inlet_0p5"                :r'$NN^{2}_{d}$',
+        "Newtonian/Re4000"                     :r'$N^{2}_{d}$',
         "BirdCarreau/inlet0p5_impinging"       :r'$NN^{2}_{i}$',
         "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
@@ -363,7 +363,7 @@ def main():
     figDir = 'PICTURE_mixingFactor'
 #    plotFor_caseList(caseList1, path2Data, figDir+'/'+'non-newtonian')
 #    plotFor_caseList(caseList2, path2Data, figDir+'/'+'impinging')
-#    plotFor_caseList(caseList3, path2Data, figDir+'/'+'forcing')
-    plotFor_caseList(caseList, path2Data, figDir+'/')
+    plotFor_caseList(caseList3, path2Data, figDir+'/'+'forcing')
+#    plotFor_caseList(caseList, path2Data, figDir+'/')
 
 main()
