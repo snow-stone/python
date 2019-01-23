@@ -1736,6 +1736,9 @@ u_meanLUTColorBar.LabelFontSize = 4
 u_meanLUTColorBar.ScalarBarThickness = 5
 u_meanLUTColorBar.ScalarBarLength = 0.5
 
+# rescale color and/or opacity maps used to exactly fit the current data range
+slice1Display.RescaleTransferFunctionToDataRange(False, True)
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.013999999035149813, -0.0893950302862747, 0.0]
 renderView1.CameraFocalPoint = [0.013999999035149813, -0.003000000026077032, 0.0]

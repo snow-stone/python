@@ -1745,6 +1745,9 @@ slice1Display.RescaleTransferFunctionToDataRange(False, False)
 # Update a scalar bar component title.
 UpdateScalarBarsComponentTitle(u_meanLUT, slice1Display)
 
+# rescale color and/or opacity maps used to exactly fit the current data range
+slice1Display.RescaleTransferFunctionToDataRange(False, True)
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.013999999035149813, -0.0893950302862747, 0.0]
 renderView1.CameraFocalPoint = [0.013999999035149813, -0.003000000026077032, 0.0]

@@ -1771,6 +1771,9 @@ u_meanLUTColorBar.ScalarBarLength = 0.5
 # Properties modified on slice1Display.DataAxesGrid
 #slice1Display.DataAxesGrid.GridAxesVisibility = 1
 
+# rescale color and/or opacity maps used to exactly fit the current data range
+slice1Display.RescaleTransferFunctionToDataRange(False, True)
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.013999999035149813, -0.0893950302862747, 0.0]
 renderView1.CameraFocalPoint = [0.013999999035149813, -0.003000000026077032, 0.0]
