@@ -1778,7 +1778,7 @@ renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraParallelScale = 0.022360679233547745
 
 # save screenshot
-SaveScreenshot(dirName+'/slice_yNomal_y_Eq_'+yPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2896, 1835],
+SaveScreenshot(dirName+'/Ux_slice_yNomal_y_Eq_'+yPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
