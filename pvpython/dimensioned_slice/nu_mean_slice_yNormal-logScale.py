@@ -8,8 +8,14 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName                   = sys.argv[1]
+yPositionInSlice          = float(sys.argv[2])
+yPositionInSaveScreenShot = sys.argv[3]
+
 # create a new 'OpenFOAMReader'
-inlet_0p3foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p3/inlet_0p3.foam')
+inlet_0p3foam = OpenFOAMReader(FileName=dirName+'/inlet_0p3.foam')
 inlet_0p3foam.SkipZeroTime = 1
 inlet_0p3foam.CaseType = 'Reconstructed Case'
 inlet_0p3foam.LabelSize = '32-bit'
@@ -1809,7 +1815,7 @@ slice1.SliceType.Origin = [0.013999999035149813, 0.0, 0.0]
 slice1.SliceType.Normal = [0.0, 1.0, 0.0]
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.013999999035149813, 0.0, 0.0]
+slice1.SliceType.Origin = [0.013999999035149813, yPositionInSlice, 0.0]
 slice1.SliceType.Normal = [0.0, 1.0, 0.0]
 
 # show data in view
@@ -2119,6 +2125,12 @@ slice1Display.RescaleTransferFunctionToDataRange(True, False)
 # show color bar/color legend
 slice1Display.SetScalarBarVisibility(renderView1, True)
 
+# Properties modified on t_meanLUTColorBar
+nu_meanLUTColorBar.TitleFontSize = 4
+nu_meanLUTColorBar.LabelFontSize = 4
+nu_meanLUTColorBar.ScalarBarThickness = 5
+nu_meanLUTColorBar.ScalarBarLength = 0.5
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.013999999035149813, -0.08639503026019767, 0.0]
 renderView1.CameraFocalPoint = [0.013999999035149813, -7.703719777548943e-34, 0.0]
@@ -2126,10 +2138,15 @@ renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraParallelScale = 0.022360679233547745
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p3/nu_mean_slice_yNomal_y_Eq_0mm.png', renderView1, ImageResolution=[2896, 1838],
+SaveScreenshot(dirName+'/nu_mean_slice_yNomal_y_Eq_'+yPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
     TransparentBackground=0, 
     # PNG options
     CompressionLevel='5')
+
+print "Finalizing nu_mean_slice_yNormal-logScale.py " + "@ dir : " + dirName + " " + " @ " + yPositionInSaveScreenShot
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
