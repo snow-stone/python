@@ -82,7 +82,7 @@ def plotCaseWithSlices_0p8_rms(ax_cases, path2Data, dataDir, positionList, alias
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
     
-def plotCaseWithSlices_local_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+def plotCaseWithSlices_0p8_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
