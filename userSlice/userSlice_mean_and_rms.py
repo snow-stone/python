@@ -50,7 +50,7 @@ def plotSlice_0p8(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True
         print "No intermediate plots"
         print "====================="
     
-    return np.mean(data[cutSliceIndex:,1]),np.mean(np.sqrt(data[cutSliceIndex:,2]))
+    return np.mean(data[cutSliceIndex:,1]),np.mean(np.sqrt(data[cutSliceIndex:,2]*(0.5*0.5)))
 
 def plotCaseWithSlices_0p8_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
@@ -126,7 +126,7 @@ def plotSlice_0p5(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True
         print "No intermediate plots"
         print "====================="
     
-    return np.mean(data[cutSliceIndex:,1]),np.mean(np.sqrt(data[cutSliceIndex:,2]))
+    return np.mean(data[cutSliceIndex:,1]),np.mean(np.sqrt(data[cutSliceIndex:,2]*(0.5*0.5)))
 
 def plotCaseWithSlices_0p5_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
