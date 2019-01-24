@@ -8,8 +8,12 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName                   = sys.argv[1]
+
 # create a new 'OpenFOAMReader'
-inlet_0p3foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p3/inlet_0p3.foam')
+inlet_0p3foam = OpenFOAMReader(FileName=dirName+'/inlet_0p3.foam')
 inlet_0p3foam.SkipZeroTime = 1
 inlet_0p3foam.CaseType = 'Reconstructed Case'
 inlet_0p3foam.LabelSize = '32-bit'
@@ -2522,10 +2526,15 @@ renderView1.CameraViewUp = [0.0, 1.0, 2.220446049250313e-16]
 renderView1.CameraParallelScale = 0.005656854518178539
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p3/nu_mean_slice_x_Eq_0.0D.png', renderView1, ImageResolution=[2896, 1835],
+SaveScreenshot(dirName+'/nu_mean_slice_x_Eq_0.0D.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
     TransparentBackground=0, 
     # PNG options
     CompressionLevel='5')
+
+print "Finalizing nu_mean_slice_x_Eq_0.0D.py " + "@ dir : " + dirName + " " + " @x=0 " 
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
