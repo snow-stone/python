@@ -223,6 +223,9 @@ def plotCaseWithSlices_local_MI(ax_cases, path2Data, dataDir, positionList, alia
 
 
 def Figure_ref_0p5(caseList, path2Data, saveFigDir):
+    print "REAME :"
+    print "This is the version using 0.5 as reference value for all cases thus"
+    print "letting 2 impinging cases a almost constant rms"
 #    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     positionList = [1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     
@@ -321,6 +324,10 @@ def Figure_ref_0p5(caseList, path2Data, saveFigDir):
     fig.savefig(path2Data+"/"+saveFigDir+'/mixing_ref_0p5.png', bbox_inches='tight')
 
 def Figure_ref_local(caseList, path2Data, saveFigDir):
+    print "README :"
+    print "This is the version where we take slice averaged value as reference"
+    print "to calculate rms, resulting in a monotone decreasing rms (far from "
+    print "junction) for all cases"
 #    positionList = [0,1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     positionList = [1,2,3,4,5,6,7,8,9,10,11,12,16,24,32,40,48,56,64,72,73,74,75]
     
