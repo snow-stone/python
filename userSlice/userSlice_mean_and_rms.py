@@ -50,7 +50,7 @@ def plotSlice_0p8(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True
         print "No intermediate plots"
         print "====================="
     
-    return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
+    return np.mean(data[cutSliceIndex:,1]),np.mean(np.sqrt(data[cutSliceIndex:,2]))
 
 def plotCaseWithSlices_0p8_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
@@ -126,7 +126,7 @@ def plotSlice_0p5(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True
         print "No intermediate plots"
         print "====================="
     
-    return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
+    return np.mean(data[cutSliceIndex:,1]),np.mean(np.sqrt(data[cutSliceIndex:,2]))
 
 def plotCaseWithSlices_0p5_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
@@ -803,9 +803,9 @@ def main():
 #    plotFor_caseList(caseList2, path2Data, figDir+'/'+'impinging')
 #    plotFor_caseList(caseList3, path2Data, figDir+'/'+'forcing')
     
-#    Figure_ref_0p5(caseList, path2Data, figDir+'/')
-#    Figure_ref_local(caseList, path2Data, figDir+'/')
-#    Figure_ref_0p5_0p8_nonDimension(caseList, path2Data, figDir+'/')
+    Figure_ref_0p5(caseList, path2Data, figDir+'/')
+    Figure_ref_local(caseList, path2Data, figDir+'/')
+    Figure_ref_0p5_0p8_nonDimension(caseList, path2Data, figDir+'/')
     forcing_ref_local(caseList3, path2Data, figDir+'/'+'forcing')
 
 main()
