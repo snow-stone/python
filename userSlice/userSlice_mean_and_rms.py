@@ -92,7 +92,7 @@ def plotSlice_Dai(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=True
     
     return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
 
-def plotCaseWithSlices_Dai(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+def plotCaseWithSlices_Dai_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
@@ -154,7 +154,7 @@ def plotSlice_local(ax, sliceNumber, path2Data, dataDir, cut=0.5, ifPlotInter=Tr
     
     return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
 
-def plotCaseWithSlices_local(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+def plotCaseWithSlices_local_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
     meanOfMEAN = np.zeros(len(positionList))
     meanOfRMS = np.zeros(len(positionList))
     
@@ -274,8 +274,8 @@ def plotFor_caseList(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-#        plotCaseWithSlices_local(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
-        plotCaseWithSlices_Dai(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+#        plotCaseWithSlices_local_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_Dai_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
     
     axes[0].set_xlabel(r"$x/D$")
     axes[0].set_ylabel(r"$<T>_{slice}$")
