@@ -363,7 +363,7 @@ def main():
     figDir = 'PICTURE_mixingFactor'
 #    plotFor_caseList(caseList1, path2Data, figDir+'/'+'non-newtonian')
 #    plotFor_caseList(caseList2, path2Data, figDir+'/'+'impinging')
-    plotFor_caseList(caseList3, path2Data, figDir+'/'+'forcing')
-#    plotFor_caseList(caseList, path2Data, figDir+'/')
+#    plotFor_caseList(caseList3, path2Data, figDir+'/'+'forcing')
+    plotFor_caseList(caseList, path2Data, figDir+'/')
 
 main()
