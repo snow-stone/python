@@ -11,6 +11,8 @@ paraview.simple._DisableFirstRenderCameraReset()
 import sys
 
 dirName                   = sys.argv[1]
+xPositionInSlice          = float(sys.argv[2])
+xPositionInSaveScreenShot = sys.argv[3]
 
 # create a new 'OpenFOAMReader'
 inlet_0p3foam = OpenFOAMReader(FileName=dirName+'/inlet_0p3.foam')
@@ -2170,7 +2172,7 @@ Hide3DWidgets(proxy=slice1.SliceType)
 slice1.SliceType.Origin = [0.0041, -0.0020000000949949026, 0.0]
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.0041, -0.0020000000949949026, 0.0]
+slice1.SliceType.Origin = [xPositionInSlice, -0.0020000000949949026, 0.0]
 
 # show data in view
 slice1Display = Show(slice1, renderView1)
@@ -2526,7 +2528,7 @@ renderView1.CameraViewUp = [0.0, 1.0, 2.220446049250313e-16]
 renderView1.CameraParallelScale = 0.005656854518178539
 
 # save screenshot
-SaveScreenshot(dirName+'/nu_mean_slice_x_Eq_0.0D.png', renderView1, ImageResolution=[2896, 1835],
+SaveScreenshot(dirName+'/nu_mean_slice_x_Eq_'+xPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
@@ -2534,7 +2536,7 @@ SaveScreenshot(dirName+'/nu_mean_slice_x_Eq_0.0D.png', renderView1, ImageResolut
     # PNG options
     CompressionLevel='5')
 
-print "Finalizing nu_mean_slice_x_Eq_0.0D.py " + "@ dir : " + dirName + " " + " @x=0 " 
+print "Finalizing nu_mean_slice_xNormal.py " + "@ dir : " + dirName + " " + " @ " + xPositionInSaveScreenShot
 import datetime
 print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 print "==============================="
