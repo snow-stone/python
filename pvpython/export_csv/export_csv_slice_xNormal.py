@@ -8,8 +8,14 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName = sys.argv[1]
+xPositionInSlice          = float(sys.argv[2])
+xPositionInSaveScreenShot = sys.argv[3]
+
 # create a new 'OpenFOAMReader'
-re4000foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/Re4000.foam')
+re4000foam = OpenFOAMReader(FileName=dirName+'/autoReader.foam')
 re4000foam.SkipZeroTime = 1
 re4000foam.CaseType = 'Reconstructed Case'
 re4000foam.LabelSize = '32-bit'
@@ -354,7 +360,7 @@ Hide3DWidgets(proxy=slice1.SliceType)
 slice1.SliceType.Origin = [0.052, -0.037999999010935426, 0.0]
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.052, -0.037999999010935426, 0.0]
+slice1.SliceType.Origin = [xPositionInSlice, -0.037999999010935426, 0.0]
 
 # show data in view
 slice1Display = Show(slice1, renderView1)
@@ -697,8 +703,13 @@ t_meanPWF.UseLogScale = 0
 t_meanPWF.ScalarRangeInitialized = 1
 
 # save data
-SaveData('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean.csv', proxy=slice1, Precision=5,
+SaveData(dirName+'/T_mean_slice_'+xPositionInSaveScreenShot+'.csv', proxy=slice1, Precision=5,
     UseScientificNotation=1,
     FieldDelimiter=',',
     WriteTimeSteps=0,
     FieldAssociation='Points')
+
+print "Finalizing export_csv_slice_xNormal.py " + "@ dir : " + dirName + " " + " @ " + xPositionInSaveScreenShot
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
