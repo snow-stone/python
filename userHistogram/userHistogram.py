@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def slice_6D_T_mean_hist(path2Data, caseName, alias):
+def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     plt.style.use('seaborn-white') # from defaut
     plt.rcParams.update({'font.size': 20})
     plt.rcParams['savefig.dpi'] = 100
     
-    rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+"slice_6D_T_mean0.csv", delimiter=',', skip_header=1)
+    rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
     
     T = rawData[:,0]
     
@@ -17,12 +17,16 @@ def slice_6D_T_mean_hist(path2Data, caseName, alias):
     mean = np.mean(T)
     rms  = np.std(T)
     
-    ax.set_xlabel(r'$T$')
+    ax.set_xlabel(r'$\overline{T}$')
     ax.set_ylabel('The number of cells in '+r'$\%$')
-    ymin, ymax = ax.get_ylim()
-    xmin, xmax = ax.get_xlim()
-    ax.text((xmax+xmin)/2.0, ymax*0.8, r'$\mu=%.2f$'% mean)
-    ax.text((xmax+xmin)/2.0, ymax*0.7, r'$\sigma=%.2f$'% rms)
+#    ymin, ymax = ax.get_ylim()
+#    xmin, xmax = ax.get_xlim()
+    ax.set_xlim(-0.2,1.2)
+    ax.set_ylim(0,30)
+    xmax=1.2
+    ymax=30
+    ax.text(xmax*0.7, ymax*0.8, r'$\mu=%.2f$'% mean)
+    ax.text(xmax*0.7, ymax*0.7, r'$\sigma=%.2f$'% rms)
 #    ax.set_xlim(0,1)
     ax.grid(True)
     
@@ -31,8 +35,8 @@ def slice_6D_T_mean_hist(path2Data, caseName, alias):
     ax.axvline(x=mean-rms, color='red', linewidth=2, linestyle=':')
     ax.axvline(x=mean+rms, color='red', linewidth=2, linestyle=':')
     
-    ax.set_title(r"$@6D$")
-    fig.savefig(path2Data+"/"+caseName+"/"+"slice_6D_T_mean_hist.png",  bbox_inches='tight')
+    ax.set_title(r"$@%s$" % marker)
+    fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+".png",  bbox_inches='tight')
     
 def main():
     path2Data="/store/8simu_tmp/shape_square/2a_3_T"
@@ -60,6 +64,6 @@ def main():
     }
 
     for case in caseList:
-        slice_6D_T_mean_hist(path2Data, case, aliasDict[case])
+        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
     
 main()
