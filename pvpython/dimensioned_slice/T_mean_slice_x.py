@@ -8,8 +8,14 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName                   = sys.argv[1]
+xPositionInSlice          = float(sys.argv[2])
+xPositionInSaveScreenShot = sys.argv[3]
+
 # create a new 'OpenFOAMReader'
-re4000foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/Re4000.foam')
+re4000foam = OpenFOAMReader(FileName=dirName+'/Re4000.foam')
 re4000foam.SkipZeroTime = 1
 re4000foam.CaseType = 'Reconstructed Case'
 re4000foam.LabelSize = '32-bit'
@@ -354,7 +360,7 @@ Hide3DWidgets(proxy=slice1.SliceType)
 slice1.SliceType.Origin = [0.052, -0.037999999010935426, 0.0]
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.052, -0.037999999010935426, 0.0]
+slice1.SliceType.Origin = [xPositionInSlice, -0.037999999010935426, 0.0]
 
 # show data in view
 slice1Display = Show(slice1, renderView1)
@@ -758,17 +764,31 @@ t_meanLUTColorBar.WindowLocation = 'AnyLocation'
 t_meanLUTColorBar.Position = [0.3233149171270718, 0.04082698585418945]
 t_meanLUTColorBar.ScalarBarLength = 0.3299999999999997
 
+# Properties modified on t_meanLUTColorBar
+t_meanLUTColorBar.TitleFontSize = 4
+t_meanLUTColorBar.LabelFontSize = 4
+t_meanLUTColorBar.ScalarBarThickness = 5
+t_meanLUTColorBar.ScalarBarLength = 0.5
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.030143593574208986, 0.0, 0.0]
 renderView1.CameraFocalPoint = [0.052000001072883606, 0.0, 0.0]
 renderView1.CameraViewUp = [0.0, 1.0, 2.220446049250313e-16]
 renderView1.CameraParallelScale = 0.005656854518178539
 
+# reset view to fit data
+renderView1.ResetCamera()
+
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/slice_6D_T_mean_GUI.png', renderView1, ImageResolution=[2896, 1838],
+SaveScreenshot(dirName+'/T_mean_slice_'+xPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
     TransparentBackground=0, 
     # PNG options
     CompressionLevel='5')
+
+print "Finalizing T_mean_slice_x.py " + "@ dir : " + dirName + " " + " @ " + xPositionInSaveScreenShot
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
