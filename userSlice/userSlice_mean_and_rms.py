@@ -94,15 +94,18 @@ def plotCaseWithSlices_0p8_MI(ax_cases, path2Data, dataDir, positionList, aliasD
     ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
 
 def plotCaseWithSlices_0p8_MI_nonDimension(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
-    meanOfMEAN = np.zeros(len(positionList))
-    meanOfRMS = np.zeros(len(positionList))
+    meanOfMEAN_0p8 = np.zeros(len(positionList))
+    meanOfRMS_0p8 = np.zeros(len(positionList))
+    meanOfMEAN_local = np.zeros(len(positionList))
+    meanOfRMS_local = np.zeros(len(positionList))
     
     fig, ax_in_case = plt.subplots()
     for i, position in enumerate(positionList):
-        meanOfMEAN[i], meanOfRMS[i] = plotSlice_0p8(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        meanOfMEAN_0p8[i], meanOfRMS_0p8[i] = plotSlice_0p8(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        meanOfMEAN_local[i], meanOfRMS_local[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
         
     positionList = np.asarray(positionList)
-    ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+    ax_cases.plot(positionList/8.0, meanOfRMS_0p8/meanOfMEAN_local, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
 
 
 #==============================================================================
@@ -169,15 +172,18 @@ def plotCaseWithSlices_0p5_MI(ax_cases, path2Data, dataDir, positionList, aliasD
     ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
 
 def plotCaseWithSlices_0p5_MI_nonDimension(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
-    meanOfMEAN = np.zeros(len(positionList))
-    meanOfRMS = np.zeros(len(positionList))
+    meanOfMEAN_0p5 = np.zeros(len(positionList))
+    meanOfRMS_0p5 = np.zeros(len(positionList))
+    meanOfMEAN_local = np.zeros(len(positionList))
+    meanOfRMS_local = np.zeros(len(positionList))
     
     fig, ax_in_case = plt.subplots()
     for i, position in enumerate(positionList):
-        meanOfMEAN[i], meanOfRMS[i] = plotSlice_0p5(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        meanOfMEAN_0p5[i], meanOfRMS_0p5[i] = plotSlice_0p5(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        meanOfMEAN_local[i], meanOfRMS_local[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
         
     positionList = np.asarray(positionList)
-    ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+    ax_cases.plot(positionList/8.0, meanOfRMS_0p5/meanOfMEAN_local, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
 
 #==============================================================================
 #
@@ -294,6 +300,8 @@ def Figure_ref_0p5(caseList, path2Data, saveFigDir):
     
 #    fig, ax_principle0 = plt.subplots()
     fig, axes = plt.subplots(3, 1, sharex=True, figsize=(10,10))
+    for ax in axes:
+        ax.tick_params(axis='both', direction='in', length=4, width=1.5)
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
@@ -398,6 +406,8 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
     
 #    fig, ax_principle0 = plt.subplots()
     fig, axes = plt.subplots(3, 1, sharex=True, figsize=(10,10))
+    for ax in axes:
+        ax.tick_params(axis='both', direction='in', length=4, width=1.5)
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
@@ -499,6 +509,8 @@ def Figure_ref_0p5_0p8_nonDimension(caseList, path2Data, saveFigDir):
     
 #    fig, ax_principle0 = plt.subplots()
     fig, axes = plt.subplots(3, 1, sharex=True, figsize=(10,10))
+    for ax in axes:
+        ax.tick_params(axis='both', direction='in', length=4, width=1.5)
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
@@ -609,6 +621,8 @@ def forcing_ref_local(caseList, path2Data, saveFigDir):
     
 #    fig, ax_principle0 = plt.subplots()
     fig, axes = plt.subplots(3, 1, sharex=True, figsize=(10,10))
+    for ax in axes:
+        ax.tick_params(axis='both', direction='in', length=4, width=1.5)
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
