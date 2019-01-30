@@ -8,8 +8,12 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName                   = sys.argv[1]
+
 # create a new 'OpenFOAMReader'
-inlet_0p5foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p5/inlet_0p5.foam')
+inlet_0p5foam = OpenFOAMReader(FileName=dirName+'/inlet_0p5.foam')
 inlet_0p5foam.SkipZeroTime = 1
 inlet_0p5foam.CaseType = 'Reconstructed Case'
 inlet_0p5foam.LabelSize = '32-bit'
@@ -755,16 +759,27 @@ nu_meanLUTColorBar.WindowLocation = 'AnyLocation'
 nu_meanLUTColorBar.Position = [0.349657794676806, 0.16487486398258983]
 nu_meanLUTColorBar.ScalarBarLength = 0.3300000000000002
 
+# Properties modified on t_meanLUTColorBar
+nu_meanLUTColorBar.TitleFontSize = 4
+nu_meanLUTColorBar.LabelFontSize = 4
+nu_meanLUTColorBar.ScalarBarThickness = 5
+nu_meanLUTColorBar.ScalarBarLength = 0.5
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.0, -0.037999999010935426, 0.3491043481524701]
 renderView1.CameraFocalPoint = [0.0, -0.037999999010935426, 0.0]
 renderView1.CameraParallelScale = 0.09035485402996027
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p5/nu_mean_slice_zNomal_z_Eq_0mm.png', renderView1, ImageResolution=[2896, 1838],
+SaveScreenshot(dirName+'/nu_mean_slice_zNomal_z_Eq_0mm.png', renderView1, ImageResolution=[2896, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
     TransparentBackground=0, 
     # PNG options
     CompressionLevel='5')
+
+print "Finalizing nu_mean_slice_zNormal.py " + "@ dir : " + dirName + " " + " @z=0 " 
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
