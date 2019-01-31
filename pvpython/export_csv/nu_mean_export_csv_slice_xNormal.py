@@ -8,8 +8,14 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName = sys.argv[1]
+xPositionInSlice          = float(sys.argv[2])
+xPositionInSaveScreenShot = sys.argv[3]
+
 # create a new 'OpenFOAMReader'
-inlet_0p5foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p5/inlet_0p5.foam')
+inlet_0p5foam = OpenFOAMReader(FileName=dirName+'/inlet_0p5.foam')
 inlet_0p5foam.SkipZeroTime = 1
 inlet_0p5foam.CaseType = 'Reconstructed Case'
 inlet_0p5foam.LabelSize = '32-bit'
@@ -354,7 +360,7 @@ Hide3DWidgets(proxy=slice1.SliceType)
 slice1.SliceType.Origin = [0.0041, -0.037999999010935426, 0.0]
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.0041, -0.037999999010935426, 0.0]
+slice1.SliceType.Origin = [xPositionInSlice, -0.037999999010935426, 0.0]
 
 # show data in view
 slice1Display = Show(slice1, renderView1)
@@ -700,8 +706,13 @@ nu_meanPWF.UseLogScale = 0
 nu_meanPWF.ScalarRangeInitialized = 1
 
 # save data
-SaveData('/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p5/nu_mean_slice_0.0D.csv', proxy=slice1, Precision=5,
+SaveData(dirName+'/nu_mean_slice_'+xPositionInSaveScreenShot+'.csv', proxy=slice1, Precision=5,
     UseScientificNotation=0,
     FieldDelimiter=',',
     WriteTimeSteps=0,
     FieldAssociation='Points')
+
+print "Finalizing nu_mean_export_csv_slice_xNormal.py " + "@ dir : " + dirName + " " + " @ " + xPositionInSaveScreenShot
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
