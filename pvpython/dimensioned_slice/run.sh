@@ -11,6 +11,7 @@ contourNu_z=nu_mean_slice_zNormal-logScale_noClipped.py
 #contourNu_x=nu_mean_slice_xNormal-logScale.py
 contourNu_x=nu_mean_slice_x-logScale.py
 contourT_x=T_mean_slice_x.py
+contourT_z=T_mean_slice_zNormal_noClipped.py
 
 #pvpython $contourUx $BirdCarreau/inlet_0p5 -0.003 neg3mm &&
 #pvpython $contourUx $BirdCarreau/inlet0p5_impinging -0.003 neg3mm &&
@@ -316,8 +317,18 @@ contourT_x=T_mean_slice_x.py
 #echo "Finish T_x 8.0D" &&
 #echo "---------------" 
 
-pvpython $contourNu_z $BirdCarreau/inlet_0p5 &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3 &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5 &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3 &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 
+
+
+pvpython $contourT_z $BirdCarreau/inlet_0p5 0 0mm &&
+pvpython $contourT_z $BirdCarreau/inlet0p5_impinging 0 0mm &&
+pvpython $contourT_z $BirdCarreau/inlet_0p3 0 0mm &&
+pvpython $contourT_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0 0mm &&
+pvpython $contourT_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm &&
+pvpython $contourT_z $Newtonian/Re2400 0 0mm &&
+pvpython $contourT_z $Newtonian/Re4000 0 0mm &&
+pvpython $contourT_z $Newtonian/Re4000_impinging 0 0mm 
