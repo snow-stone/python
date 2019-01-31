@@ -11,21 +11,31 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     T = rawData[:,0]
     
     fig, ax = plt.subplots()
+
+#    n, bins, patches = ax.hist(T, bins=40, weights=np.ones(len(T)) / len(T), color='g')    
+    n, bins, patches = ax.hist(T, np.linspace(-0.05,1.05,50), weights=np.ones(len(T)) / len(T), color='g', normed=False, histtype='stepfilled', alpha=1)
+#    n, bins, patches = ax.hist(T, bins=np.linspace(0,1,40), weights=np.ones(len(T)) / len(T), color='g')
+#    n, bins, patches = ax.hist(T, bins=40, color='g', normed=True)
     
-    n, bins, patches = ax.hist(T, 50, facecolor='g', normed=1)
+#    print "bins :", bins
+#    print "n :", n
+    print "sum(n) : ", sum(n)
+#    print "n*bins :", n*1./50
+#    print "sum :", sum(n*1./50)
     
     mean = np.mean(T)
     rms  = np.std(T)
     
 #    ymin, ymax = ax.get_ylim()
 #    xmin, xmax = ax.get_xlim()
-    ax.set_xlim(0,1)
-    ax.set_ylim(0,25)
+    ax.set_xlim(-0.02,1.02)
+#    ax.set_xlim(-0.02,1.02)
+    ax.set_ylim(0,0.4)
 #    xmax=1
 #    ymax=30
 #    ax.text(xmax*0.7, ymax*0.8, r'$\mu=%.2f$'% mean)
 #    ax.text(xmax*0.7, ymax*0.7, r'$\sigma=%.2f$'% rms)
-    ax.grid(True)
+#    ax.grid(True)
     
 #    ax.axvline(x=0.5, color='blue', linewidth=1)
     ax.axvline(x=mean, color='red', linewidth=2)
@@ -51,8 +61,13 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     fig, ax = plt.subplots()
     
     MIN, MAX = 2e-06, 3e-4
-    ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), facecolor='g', normed=1)
+#    ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), facecolor='g', normed=1)
+    n, bins, patches = ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), weights=np.ones(len(nu)) / len(nu),facecolor='g')
     
+#    print "bins :", bins
+#    print "n :", n
+#    print "sum(n) : ", sum(n)
+
     mean = np.mean(nu)
     rms  = np.std(nu)
     
@@ -61,12 +76,12 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     ax.set_xscale("log")
     ax.set_xlim(1e-06,1e-3)
 #    ax.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
-#    ax.set_ylim(0,30)
+    ax.set_ylim(0,0.15)
 #    xmax=1
 #    ymax=30
 #    ax.text(xmax*0.7, ymax*0.8, r'$\mu=%.2f$'% mean)
 #    ax.text(xmax*0.7, ymax*0.7, r'$\sigma=%.2f$'% rms)
-    ax.grid(True)
+#    ax.grid(True)
     ax.tick_params(axis='both', direction='in', length=4, width=1.5)
     
 #    import matplotlib
@@ -76,11 +91,13 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 #    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
     
 #    ax.axvline(x=0.5, color='blue', linewidth=1)
+    ax.axvline(x=MIN, color='orange', linewidth=2, linestyle=':')
+    ax.axvline(x=MAX, color='orange', linewidth=2, linestyle=':')
     ax.axvline(x=mean, color='red', linewidth=2)
     if (mean-rms) > MIN:
-        ax.axvline(x=mean-rms, color='red', linewidth=2, linestyle=':')
+        ax.axvline(x=mean-rms, color='black', linewidth=2, linestyle='--')
     if (mean+rms) < MAX:
-        ax.axvline(x=mean+rms, color='red', linewidth=2, linestyle=':')
+        ax.axvline(x=mean+rms, color='black', linewidth=2, linestyle='--')
     
 #    ax.set_title(r"$@%s$" % marker)
 #    ax.set_xlabel(r'$\overline{T}$')
@@ -120,17 +137,18 @@ def main():
         "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
 
-    for case in caseList:
-        slice_T_mean_hist("T_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
-        slice_T_mean_hist("T_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
-        slice_T_mean_hist("T_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
-        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
-        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
+#    for case in caseList:
+#        slice_T_mean_hist("T_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
+#        slice_T_mean_hist("T_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
+#        slice_T_mean_hist("T_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
+#        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
+#        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
         
-#    for case in casesNonNewtonian:
-#        slice_nu_mean_hist("nu_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
-#        slice_nu_mean_hist("nu_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
-#        slice_nu_mean_hist("nu_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
-#        slice_nu_mean_hist("nu_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
-#        slice_nu_mean_hist("nu_mean_slice_8.0D0","8D",path2Data, case, aliasDict[case])
+    for case in casesNonNewtonian:
+        slice_nu_mean_hist("nu_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
+        slice_nu_mean_hist("nu_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
+        slice_nu_mean_hist("nu_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
+        slice_nu_mean_hist("nu_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
+        slice_nu_mean_hist("nu_mean_slice_8.0D0","8D",path2Data, case, aliasDict[case])
+        
 main()
