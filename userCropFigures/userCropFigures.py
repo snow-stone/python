@@ -46,10 +46,13 @@ def main():
 #            '2DstreamLines_4p0D',
 #            '2DstreamLines_6p0D'            
 #            ]
-    imageNames = [#'nu_mean_slice_yNomal_y_Eq_neg3mm_addInlet2',
-                  #'nu_mean_slice_yNomal_y_Eq_0mm_addInlet2',
-                  'nu_mean_slice_x_Eq_6.0D',
-                  'nu_mean_slice_x_Eq_8.0D']
+    imageNames = [
+                'T_mean_slice_0.5D',
+                'T_mean_slice_2.0D',
+                'T_mean_slice_4.0D',
+                'T_mean_slice_6.0D',
+                'T_mean_slice_8.0D'
+                ]
     
     coords_dict= {
             'k_mean' : (729, 660, 2496, 1173),
@@ -69,6 +72,13 @@ def main():
             'nu_mean_slice_x_Eq_4.0D'       : (810, 285, 2082, 1551),
             'nu_mean_slice_x_Eq_6.0D'       : (810, 285, 2082, 1551),
             'nu_mean_slice_x_Eq_8.0D'       : (810, 285, 2082, 1551),
+            'T_mean_slice_0.0D'             : (816, 286, 2080, 1552),
+            'T_mean_slice_0.25D'            : (816, 286, 2080, 1552),
+            'T_mean_slice_0.5D'             : (816, 286, 2080, 1552),
+            'T_mean_slice_2.0D'             : (816, 286, 2080, 1552),
+            'T_mean_slice_4.0D'             : (816, 286, 2080, 1552),
+            'T_mean_slice_6.0D'             : (816, 286, 2080, 1552),
+            'T_mean_slice_8.0D'             : (816, 286, 2080, 1552),
             'Ux_mean_slice_yNomal_y_Eq_neg3mm_addInlet2' : (552, 732, 2238, 1080),
             'Ux_mean_slice_yNomal_y_Eq_0mm_addInlet2'    : (552, 732, 2238, 1080),
             'Ux_mean_slice_yNomal_y_Eq_pos3mm_addInlet2' : (552, 732, 2238, 1080),
@@ -84,8 +94,8 @@ def main():
             }    
     
     
-#    for i, path in enumerate(paths):
-    for i, path in enumerate(pathsNonNewtonian):
+    for i, path in enumerate(paths):
+#    for i, path in enumerate(pathsNonNewtonian):
         for imageName in imageNames:
             image = dataBase + '/' + path + '/' + imageName + '.png'
             crop(image, coords_dict[imageName], dataBase + '/' + path + '/' + imageName + '_cropped.png')
