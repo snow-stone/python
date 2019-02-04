@@ -249,6 +249,17 @@ def plotCaseWithSlices_local_MI(ax_cases, path2Data, dataDir, positionList, alia
         
     positionList = np.asarray(positionList)
     ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+    
+def plotCaseWithSlices_local_MI_1(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    meanOfMEAN = np.zeros(len(positionList))
+    meanOfRMS = np.zeros(len(positionList))
+    
+    fig, ax_in_case = plt.subplots()
+    for i, position in enumerate(positionList):
+        meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
+        
+    positionList = np.asarray(positionList)
+    ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
 
 
 def Figure_ref_0p5(caseList, path2Data, saveFigDir):
@@ -452,15 +463,16 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_local_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
-#        plotCaseWithSlices_Dai_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+#        plotCaseWithSlices_local_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_local_MI_1(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[2].set_xlabel(r"$x/D$")
-    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{[<T-T_{ref}>_{(y,z)}^2]^{1/2}|_{x=0}}$")
+#    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{[<T-T_{ref}>_{(y,z)}^2]^{1/2}|_{x=0}}$")
+    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{<T>_{y,z}}$")
 #    axes[2].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
 #    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
-    fig.savefig(path2Data+"/"+saveFigDir+'/mixing_ref_local.png', bbox_inches='tight')
+    fig.savefig(path2Data+"/"+saveFigDir+'/mixing_ref_local_1.png', bbox_inches='tight')
 
 
 def Figure_ref_0p5_0p8_nonDimension(caseList, path2Data, saveFigDir):
