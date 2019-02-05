@@ -767,9 +767,9 @@ t_meanLUT.RescaleTransferFunction(0.0, 1.0)
 t_meanPWF.RescaleTransferFunction(0.0, 1.0)
 
 # Properties modified on t_meanLUTColorBar
-t_meanLUTColorBar.TitleFontSize = 4
-t_meanLUTColorBar.LabelFontSize = 4
-t_meanLUTColorBar.ScalarBarThickness = 5
+t_meanLUTColorBar.TitleFontSize = 8
+t_meanLUTColorBar.LabelFontSize = 8
+t_meanLUTColorBar.ScalarBarThickness = 10
 t_meanLUTColorBar.ScalarBarLength = 0.5
 
 # current camera placement for renderView1
