@@ -432,7 +432,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
     axes[0].axhline(y=0.8, linestyle=':', color='black')
     axes[0].axhline(y=0.5, linestyle=':', color='black')
 #    ax_principle.set_xlim(0,40)
-    axes[0].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
+    axes[0].legend(bbox_to_anchor=(0.925, 0.8), ncol=2, shadow=True)
     
 #    x_XG1, y_XG1 = dai_debitMoyen('XG')
 #    ax_principle.plot(x_XG1,y_XG1,label=aliasDict_Dai['Dai/inlet_0p5'],linestyle='-',marker='s',fillstyle='none')    
