@@ -47,11 +47,7 @@ def main():
 #            '2DstreamLines_6p0D'            
 #            ]
     imageNames = [
-                'T_mean_slice_0.5D',
-                'T_mean_slice_2.0D',
-                'T_mean_slice_4.0D',
-                'T_mean_slice_6.0D',
-                'T_mean_slice_8.0D'
+            'nu_mean_slice_zNomal_z_Eq_0mm'
                 ]
     
     coords_dict= {
@@ -90,12 +86,14 @@ def main():
             'Uz_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (594, 750, 2298, 1077),
             'nu_mean_slice_yNomal_y_Eq_neg3mm_addInlet2'    : (621, 765, 2280, 1076),
             'nu_mean_slice_yNomal_y_Eq_0mm_addInlet2'       : (621, 765, 2280, 1076),
-            'nu_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (621, 765, 2280, 1076)
+            'nu_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (621, 765, 2280, 1076),
+            'T_mean_slice_zNomal_z_Eq_0mm'                  : (1369,506, 2232,  622),
+            'nu_mean_slice_zNomal_z_Eq_0mm'                 : (1377,505, 2233,  624)
             }    
     
     
-    for i, path in enumerate(paths):
-#    for i, path in enumerate(pathsNonNewtonian):
+#    for i, path in enumerate(paths):
+    for i, path in enumerate(pathsNonNewtonian):
         for imageName in imageNames:
             image = dataBase + '/' + path + '/' + imageName + '.png'
             crop(image, coords_dict[imageName], dataBase + '/' + path + '/' + imageName + '_cropped.png')
