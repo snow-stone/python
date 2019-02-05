@@ -317,11 +317,11 @@ contourT_z=T_mean_slice_zNormal_noClipped.py
 #echo "Finish T_x 8.0D" &&
 #echo "---------------" 
 
-pvpython $contourNu_z $BirdCarreau/inlet_0p5 &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3 &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 
+pvpython $contourNu_z $BirdCarreau/inlet_0p5 0 0mm &&
+pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging 0 0mm &&
+pvpython $contourNu_z $BirdCarreau/inlet_0p3 0 0mm &&
+pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0 0mm &&
+pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm
 
 
 #pvpython $contourT_z $BirdCarreau/inlet_0p5 0 0mm &&
