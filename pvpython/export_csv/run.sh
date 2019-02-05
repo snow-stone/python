@@ -1,11 +1,11 @@
 ##!/bin/bash
-#
-#BirdCarreau=/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau
-#Newtonian=/store/8simu_tmp/shape_square/2a_3_T/Newtonian
-#
-#export=export_csv_slice_xNormal.py
-#export_nu=nu_mean_export_csv_slice_xNormal.py
-#
+
+BirdCarreau=/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau
+Newtonian=/store/8simu_tmp/shape_square/2a_3_T/Newtonian
+
+export=export_csv_slice_xNormal.py
+export_nu=nu_mean_export_csv_slice_xNormal.py
+
 #pvpython $export_nu $BirdCarreau/inlet_0p5 0.0041 0.0D &&
 #pvpython $export_nu $BirdCarreau/inlet0p5_impinging 0.0041 0.0D &&
 #pvpython $export_nu $BirdCarreau/inlet_0p3 0.0041 0.0D &&
