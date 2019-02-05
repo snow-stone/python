@@ -13,7 +13,7 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     fig, ax = plt.subplots()
 
 #    n, bins, patches = ax.hist(T, bins=40, weights=np.ones(len(T)) / len(T), color='g')    
-    n, bins, patches = ax.hist(T, np.linspace(-0.05,1.05,50), weights=np.ones(len(T)) / len(T), color='g', normed=False, histtype='stepfilled', alpha=1)
+    n, bins, patches = ax.hist(T, np.linspace(-0.05,1.05,50), weights=np.ones(len(T)) / len(T), color='darkcyan', normed=False, histtype='stepfilled', alpha=1)
 #    n, bins, patches = ax.hist(T, bins=np.linspace(0,1,40), weights=np.ones(len(T)) / len(T), color='g')
 #    n, bins, patches = ax.hist(T, bins=40, color='g', normed=True)
     
@@ -38,11 +38,11 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 #    ax.grid(True)
     
 #    ax.axvline(x=0.5, color='blue', linewidth=1)
-    ax.axvline(x=mean, color='red', linewidth=2)
+    ax.axvline(x=mean, color='red', linewidth=3)
     if (mean-rms) > 0:
-        ax.axvline(x=mean-rms, color='black', linewidth=2, linestyle='--')
+        ax.axvline(x=mean-rms, color='black', linewidth=3, linestyle='--')
     if (mean+rms) < 1.0:
-        ax.axvline(x=mean+rms, color='black', linewidth=2, linestyle='--')
+        ax.axvline(x=mean+rms, color='black', linewidth=3, linestyle='--')
     
 #    ax.set_title(r"$@%s$" % marker)
 #    ax.set_xlabel(r'$\overline{T}$')
@@ -62,7 +62,7 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     
     MIN, MAX = 2e-06, 3e-4
 #    ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), facecolor='g', normed=1)
-    n, bins, patches = ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), weights=np.ones(len(nu)) / len(nu),facecolor='g')
+    n, bins, patches = ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), weights=np.ones(len(nu)) / len(nu),facecolor='darkcyan')
     
 #    print "bins :", bins
 #    print "n :", n
@@ -91,13 +91,13 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 #    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
     
 #    ax.axvline(x=0.5, color='blue', linewidth=1)
-    ax.axvline(x=MIN, color='orange', linewidth=2, linestyle=':')
-    ax.axvline(x=MAX, color='orange', linewidth=2, linestyle=':')
-    ax.axvline(x=mean, color='red', linewidth=2)
+    ax.axvline(x=MIN, color='orange', linewidth=3, linestyle=':')
+    ax.axvline(x=MAX, color='orange', linewidth=3, linestyle=':')
+    ax.axvline(x=mean, color='red', linewidth=3)
     if (mean-rms) > MIN:
-        ax.axvline(x=mean-rms, color='black', linewidth=2, linestyle='--')
+        ax.axvline(x=mean-rms, color='black', linewidth=3, linestyle='--')
     if (mean+rms) < MAX:
-        ax.axvline(x=mean+rms, color='black', linewidth=2, linestyle='--')
+        ax.axvline(x=mean+rms, color='black', linewidth=3, linestyle='--')
     
 #    ax.set_title(r"$@%s$" % marker)
 #    ax.set_xlabel(r'$\overline{T}$')
