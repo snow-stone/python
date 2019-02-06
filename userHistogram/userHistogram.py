@@ -47,6 +47,13 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 #    ax.set_title(r"$@%s$" % marker)
 #    ax.set_xlabel(r'$\overline{T}$')
 #    ax.set_ylabel('The number of cells in '+r'$\%$')
+#    plt.tick_params(
+#    axis='x',          # changes apply to the x-axis
+#    which='both',      # both major and minor ticks are affected
+#    bottom=False,      # ticks along the bottom edge are off
+#    top=False,         # ticks along the top edge are off
+#    labelbottom=False) # labels along the bottom edge are off
+    
     fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+".png",  bbox_inches='tight')
     
 def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
@@ -76,7 +83,7 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 #    ymin, ymax = ax.get_ylim()
 #    xmin, xmax = ax.get_xlim()
     ax.set_xscale("log")
-    ax.set_xlim(1e-06,1e-3)
+    ax.set_xlim(1e-06,1e-4)
 #    ax.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
     ax.set_ylim(0,0.15)
 #    xmax=1
@@ -94,7 +101,7 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     
 #    ax.axvline(x=0.5, color='blue', linewidth=1)
     ax.axvline(x=MIN, color='orange', linewidth=3, linestyle=':')
-    ax.axvline(x=MAX, color='orange', linewidth=3, linestyle=':')
+#    ax.axvline(x=MAX, color='orange', linewidth=3, linestyle=':')
     ax.axvline(x=mean, color='red', linewidth=3)
     if (mean-rms) > MIN:
         ax.axvline(x=mean-rms, color='black', linewidth=3, linestyle='--')
@@ -107,6 +114,13 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+".png",  bbox_inches='tight')
     
 def main():
+
+    from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+    ## for Palatino and other serif fonts use:
+    rc('font',**{'family':'serif','serif':['Palatino']})
+    rc('text', usetex=True)    
+
     path2Data="/store/8simu_tmp/shape_square/2a_3_T"
     
     caseList=[
@@ -139,19 +153,19 @@ def main():
         "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
 
-#    for case in caseList:
-#        slice_T_mean_hist("T_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
-#        slice_T_mean_hist("T_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
-#        slice_T_mean_hist("T_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
-#        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
-#        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
+    for case in caseList:
+        slice_T_mean_hist("T_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
+        slice_T_mean_hist("T_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
+        slice_T_mean_hist("T_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
+        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
+        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
         
-    for case in casesNonNewtonian:
+#    for case in casesNonNewtonian:
 #        slice_nu_mean_hist("nu_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
 #        slice_nu_mean_hist("nu_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
 #        slice_nu_mean_hist("nu_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
 #        slice_nu_mean_hist("nu_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
 #        slice_nu_mean_hist("nu_mean_slice_8.0D0","8D",path2Data, case, aliasDict[case])
-        slice_nu_mean_hist("nu_mean_slice_9.5D0","9.5D",path2Data, case, aliasDict[case])
+#        slice_nu_mean_hist("nu_mean_slice_9.5D0","9.5D",path2Data, case, aliasDict[case])
         
 main()
