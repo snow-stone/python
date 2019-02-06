@@ -370,7 +370,8 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
 #        plotCaseWithSlices_Dai_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
     
     axes[0].set_xlabel(r"$x/D$")
-    axes[0].set_ylabel(r"$T_{ref} \, = \, <T>_{(y,z)}$")
+#    axes[0].set_ylabel(r"$T_{ref} \, = \, <T>_{(y,z)}$")
+    axes[0].set_ylabel(r"$\mu_{\overline{c}}$")
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
     axes[0].set_ylim(0.2,0.9)
     axes[0].axhline(y=0.8, linestyle=':', color='black')
@@ -398,7 +399,8 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
 #        plotCaseWithSlices_Dai_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[1].set_xlabel(r"$x/D$")
-    axes[1].set_ylabel(r"$[<T-T_{ref}>_{(y,z)}^2]^{1/2}$")
+#    axes[1].set_ylabel(r"$[<T-T_{ref}>_{(y,z)}^2]^{1/2}$")
+    axes[1].set_ylabel(r"$\sigma_{\overline{c}}$")
 #    axes[1].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    axes[1].set_ylim(0,0.25)
 #    fig.savefig(path2Data+"/"+saveFigDir+'/rms.png', bbox_inches='tight')
@@ -412,11 +414,15 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
         
     axes[2].set_xlabel(r"$x/D$")
 #    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{[<T-T_{ref}>_{(y,z)}^2]^{1/2}|_{x=0}}$")
-    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{<T>_{y,z}}$")
+#    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{<T>_{y,z}}$")
+    axes[2].set_ylabel(r"$\sigma_{\overline{c}} / \mu_{\overline{c}}$")
 #    axes[2].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
 #    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
-    fig.savefig(path2Data+"/"+saveFigDir+'/mixing_ref_local_1.png', bbox_inches='tight')
+    axes[0].text(-0.1,3.4,'(a)',size=20, transform=ax.transAxes)
+    axes[1].text(-0.1,2.2,'(b)',size=20, transform=ax.transAxes)
+    axes[2].text(-0.1,1,'(c)',size=20, transform=ax.transAxes)
+    fig.savefig(path2Data+"/"+saveFigDir+'/mixing_ref_local_1.png', bbox_inches='tight', fontsize=20)
 
 
 def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
@@ -559,7 +565,8 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 #        plotCaseWithSlices_Dai_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
     
     axes[0].set_xlabel(r"$x/D$")
-    axes[0].set_ylabel(r"$\nu_{ref} \, = \, <\nu>_{(y,z)}$")
+#    axes[0].set_ylabel(r"$\nu_{ref} \, = \, <\nu>_{(y,z)}$")
+    axes[0].set_ylabel(r"$\mu_{\overline{\nu}}$")
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
 #    axes[0].set_ylim(0.2,0.9)
 #    axes[0].axhline(y=0.8, linestyle=':', color='black')
@@ -587,7 +594,8 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 #        plotCaseWithSlices_Dai_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[1].set_xlabel(r"$x/D$")
-    axes[1].set_ylabel(r"$[<\nu-\nu_{ref}>_{(y,z)}^2]^{1/2}$")
+#    axes[1].set_ylabel(r"$[<\nu-\nu_{ref}>_{(y,z)}^2]^{1/2}$")
+    axes[1].set_ylabel(r"$\sigma_{\overline{\nu}}$")
     axes[1].ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 #    axes[1].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    axes[1].set_ylim(0,0.25)
@@ -602,11 +610,15 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
         
     axes[2].set_xlabel(r"$x/D$")
 #    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{[<T-T_{ref}>_{(y,z)}^2]^{1/2}|_{x=0}}$")
-    axes[2].set_ylabel(r"$\frac{[<\nu-\nu_{ref}>_{(y,z)}^2]^{1/2}}{<\nu>_{y,z}}$")
+#    axes[2].set_ylabel(r"$\frac{[<\nu-\nu_{ref}>_{(y,z)}^2]^{1/2}}{<\nu>_{y,z}}$")
+    axes[2].set_ylabel(r"$\sigma_{\overline{\nu}} / \mu_{\overline{\nu}}$")
 #    axes[2].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
 #    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
-    fig.savefig(path2Data+"/"+saveFigDir+'/nu_mixing_ref_local_1.png', bbox_inches='tight')
+    axes[0].text(-0.1,3.4,'(a)',size=20, transform=ax.transAxes)
+    axes[1].text(-0.1,2.2,'(b)',size=20, transform=ax.transAxes)
+    axes[2].text(-0.1,1,'(c)',size=20, transform=ax.transAxes)
+    fig.savefig(path2Data+"/"+saveFigDir+'/nu_mixing_ref_local_1.png', bbox_inches='tight', fontsize=20)
 
 def Figure_ref_0p5_0p8_nonDimension(caseList, path2Data, saveFigDir):
 
@@ -1396,6 +1408,12 @@ def main():
     plt.rcParams["legend.columnspacing"] = 1 # mesured in fontsize unit : 1 means = legend.fontsize
 #    plt.rcParams['figure.titlesize'] = 20
     plt.rcParams['savefig.dpi'] = 100
+    
+    from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+    ## for Palatino and other serif fonts use:
+    rc('font',**{'family':'serif','serif':['Palatino']})
+    rc('text', usetex=True)
 
     path2Data = "/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
     
