@@ -22,18 +22,30 @@ a=2 # defaut BirdCarreau in OpenFOAM
 nu = nuInf + (nu0-nuInf)*(1.0+(k*gama)**a)**((n-1.0)/a)
 
 n1=0.6
-#nu1= nu0 * gama**(n1-1.0)
+nu1= nu0 * gama**(n-1.0)
 
 
 
-fig,ax = plt.subplots()
+fig,ax = plt.subplots(figsize=(10,5),frameon=True)
 
-
-ax.plot(gama,nu,linewidth=2,label='nu')
-#ax.plot(gama,nu1,linewidth=2,label='nu1')
+ax.set_xlim(0.1,100000)
+ax.set_ylim(1e-6,5e-4)
 ax.set_xscale("log")
 ax.set_yscale("log")
-ax.legend()
+ax.tick_params(axis='both', direction='out', length=4, width=1, labelsize=20)
+ax.set_xlabel(r'$\dot{\gamma}$',fontsize=20)
+ax.set_ylabel(r'$\nu$',fontsize=20)
+
+font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 20,
+        }
+ax.text(10, 1e-5, r'$\nu \propto \dot{\gamma}^{1-n}$', fontdict=font)
+ax.plot(gama,nu,linewidth=2, label='Xanthan gum')
+ax.plot(gama,nu1,linewidth=2,linestyle='--',color='darkred')
+ax.legend(fancybox=True, bbox_to_anchor=(1, 1), ncol=1,frameon=False, fontsize=16)
+fig.savefig('BirdCarreau.png',dpi=100, bbox_inches='tight')
 
 ########################################################################
 #fig1,ax1 = plt.subplots()
