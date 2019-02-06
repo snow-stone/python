@@ -87,8 +87,15 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
 
 def main():
     plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 20})
+    plt.rcParams.update({'font.size': 25})
     plt.rcParams['savefig.dpi'] = 100
+    
+    from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+    ## for Palatino and other serif fonts use:
+    rc('font',**{'family':'serif','serif':['Palatino']})
+    rc('text', usetex=True)
+
     print "README"
     print "postProcessing data using output from : "
     print "userProbeByLabelVector_noMean ; userProbeByLabelScalar_noMean"
@@ -194,12 +201,12 @@ def main():
 #        fig.text(0.5, 0.04, r'$t$', ha='center', va='center', fontsize=20)
         axses_case[-1].set_xlabel(r'$t$')
         x = 0.82
-        yStart = 0.84
+        yStart = 0.82
         for i, case in enumerate(cases):
-            y = yStart - i * 0.095
-            fig.text(x, y, aliasDict[case])
+            y = yStart - i * 0.0975
+            fig.text(x, y, aliasDict[case], fontsize=30)
 
-        fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$ @ position '+str(allProbePosition[p]/8.0)+'D')
+#        fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$ @ position '+str(allProbePosition[p]/8.0)+'D')
         fig.savefig(path2Data+"/"+"PICTURE_history/"+"8simu/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
 
 main()
