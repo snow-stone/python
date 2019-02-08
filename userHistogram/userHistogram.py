@@ -59,7 +59,7 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     plt.style.use('seaborn-white') # from defaut
     plt.rcParams.update({'font.size': 20})
-    plt.rcParams['savefig.dpi'] = 100
+    plt.rcParams['savefig.dpi'] = 50
     
     rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
     
@@ -153,19 +153,19 @@ def main():
         "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
 
-    for case in caseList:
-        slice_T_mean_hist("T_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
-        slice_T_mean_hist("T_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
-        slice_T_mean_hist("T_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
-        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
-        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
+#    for case in caseList:
+#        slice_T_mean_hist("T_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
+#        slice_T_mean_hist("T_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
+#        slice_T_mean_hist("T_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
+#        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
+#        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
         
-#    for case in casesNonNewtonian:
-#        slice_nu_mean_hist("nu_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
-#        slice_nu_mean_hist("nu_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
-#        slice_nu_mean_hist("nu_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
-#        slice_nu_mean_hist("nu_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
-#        slice_nu_mean_hist("nu_mean_slice_8.0D0","8D",path2Data, case, aliasDict[case])
+    for case in casesNonNewtonian:
+        slice_nu_mean_hist("nu_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
+        slice_nu_mean_hist("nu_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
+        slice_nu_mean_hist("nu_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
+        slice_nu_mean_hist("nu_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
+        slice_nu_mean_hist("nu_mean_slice_8.0D0","8D",path2Data, case, aliasDict[case])
 #        slice_nu_mean_hist("nu_mean_slice_9.5D0","9.5D",path2Data, case, aliasDict[case])
         
 main()
