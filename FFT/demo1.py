@@ -8,9 +8,10 @@ a = np.zeros(n)
 a[1] = 1
 
 # visualisation de a
+a = np.append(a, a[0])
 # on ajoute a droite la valeur de gauche pour la periodicite
 plt.subplot(311)
-plt.plot( np.append(a, a[0]) )
+plt.plot(a)
 
 # calcul de A
 A = np.fft.fft(a)
