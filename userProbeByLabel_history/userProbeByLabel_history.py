@@ -32,8 +32,8 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
     std = np.std(probeData[cutSliceIndex:,sample])
     mean = np.mean(probeData[cutSliceIndex:,sample])
 #    print position_in_D + " std : ", std, " mean : ", mean
-    ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=1.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
-    ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
+    ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=2, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
+    ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=1)    
 
     return std, mean
 
@@ -49,8 +49,8 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
     std = np.std(probeData[cutSliceIndex:,sample])
     mean = np.mean(probeData[cutSliceIndex:,sample])
 #    print position_in_D + " std : ", std, " mean : ", mean
-    ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=1.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
-    ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=0.5)    
+    ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=2, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
+    ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=1)    
     
     return std, mean
 
