@@ -91,7 +91,9 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 #    ax.text(xmax*0.7, ymax*0.8, r'$\mu=%.2f$'% mean)
 #    ax.text(xmax*0.7, ymax*0.7, r'$\sigma=%.2f$'% rms)
 #    ax.grid(True)
-    ax.tick_params(axis='both', direction='in', length=4, width=1.5)
+    ax.tick_params(axis='both', direction='out', length=8, width=4)
+    ax.set_xticklabels([''])
+    ax.set_yticklabels([''])
     
 #    import matplotlib
 ##    locmin = matplotlib.ticker.LogLocator(base=10.0, subs=(0.1,0.2,0.4,0.6,0.8,1,2,4,6,8,10 ))
@@ -100,17 +102,23 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 #    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
     
 #    ax.axvline(x=0.5, color='blue', linewidth=1)
-    ax.axvline(x=MIN, color='orange', linewidth=3, linestyle=':')
+    ax.axvline(x=MIN, color='orange', linewidth=5, linestyle='-.')
 #    ax.axvline(x=MAX, color='orange', linewidth=3, linestyle=':')
-    ax.axvline(x=mean, color='red', linewidth=3)
+    ax.axvline(x=mean, color='red', linewidth=5)
     if (mean-rms) > MIN:
-        ax.axvline(x=mean-rms, color='black', linewidth=3, linestyle='--')
+        ax.axvline(x=mean-rms, color='black', linewidth=5, linestyle='--')
     if (mean+rms) < MAX:
-        ax.axvline(x=mean+rms, color='black', linewidth=3, linestyle='--')
+        ax.axvline(x=mean+rms, color='black', linewidth=5, linestyle='--')
     
 #    ax.set_title(r"$@%s$" % marker)
 #    ax.set_xlabel(r'$\overline{T}$')
 #    ax.set_ylabel('The number of cells in '+r'$\%$')
+#    ax.text(-0.1, -0.1, r'$0$', fontsize=40, transform=ax.transAxes)
+    ax.text(6e-7, 0., r'$0$', fontsize=40)
+    ax.text(3e-7, 0.13, r'$0.15$', fontsize=40)
+    ax.text(1e-6, -0.03, r'$10^{-6}$', fontsize=40)
+    ax.text(1e-5, -0.03, r'$10^{-5}$', fontsize=40)
+    ax.text(1e-4, -0.03, r'$10^{-4}$', fontsize=40)
     fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+".png",  bbox_inches='tight')
     
 def main():
