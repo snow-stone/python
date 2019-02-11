@@ -279,7 +279,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
         ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], linestyle=linestyleDict[dataDir], linewidth=linewidthDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor=markerfacecolorDict[dataDir], markeredgewidth=1.5)
     #    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
         
-    def plotCaseWithSlices_local_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    def plotCaseWithSlices_local_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
         meanOfRMS = np.zeros(len(positionList))
         
@@ -288,7 +288,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
             meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
             
         positionList = np.asarray(positionList)
-        ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], linestyle=linestyleDict[dataDir], linewidth=linewidthDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor=markerfacecolorDict[dataDir], markeredgewidth=1.5)
         
     def plotCaseWithSlices_local_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
@@ -301,7 +301,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
         positionList = np.asarray(positionList)
         ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
         
-    def plotCaseWithSlices_local_MI_1(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    def plotCaseWithSlices_local_MI_1(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
         meanOfRMS = np.zeros(len(positionList))
         
@@ -310,7 +310,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
             meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
             
         positionList = np.asarray(positionList)
-        ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], linestyle=linestyleDict[dataDir], linewidth=linewidthDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor=markerfacecolorDict[dataDir], markeredgewidth=1.5)
     
     print "README :"
     print "This is the version where we take slice averaged value as reference"
@@ -428,7 +428,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_local_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_local_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0.7, ifPlotInter=False)
 #        plotCaseWithSlices_Dai_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[1].set_xlabel(r"$x/D$")
@@ -443,7 +443,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
 #        plotCaseWithSlices_local_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
-        plotCaseWithSlices_local_MI_1(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_local_MI_1(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0.7, ifPlotInter=False)
         
     axes[2].set_xlabel(r"$x/D$")
 #    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{[<T-T_{ref}>_{(y,z)}^2]^{1/2}|_{x=0}}$")
