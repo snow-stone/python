@@ -276,7 +276,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
         positionList = np.asarray(positionList)
     #    ax_cases.axhline(y=0.8, linestyle=':', color='black')
     #    ax_cases.axhline(y=0.5, linestyle=':', color='black')
-        ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
     #    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
         
     def plotCaseWithSlices_local_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
@@ -288,7 +288,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
             meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
             
         positionList = np.asarray(positionList)
-        ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
         
     def plotCaseWithSlices_local_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
@@ -299,7 +299,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
             meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
             
         positionList = np.asarray(positionList)
-        ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
         
     def plotCaseWithSlices_local_MI_1(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
@@ -310,7 +310,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
             meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
             
         positionList = np.asarray(positionList)
-        ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
     
     print "README :"
     print "This is the version where we take slice averaged value as reference"
@@ -377,7 +377,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
     axes[0].axhline(y=0.8, linestyle=':', color='black')
     axes[0].axhline(y=0.5, linestyle=':', color='black')
 #    ax_principle.set_xlim(0,40)
-    axes[0].legend(bbox_to_anchor=(0.2, 1), ncol=6, shadow=True)
+    axes[0].legend(bbox_to_anchor=(0.05, 1), ncol=6, shadow=True, fontsize=15)
     
 #    x_XG1, y_XG1 = dai_debitMoyen('XG')
 #    ax_principle.plot(x_XG1,y_XG1,label=aliasDict_Dai['Dai/inlet_0p5'],linestyle='-',marker='s',fillstyle='none')    
@@ -1403,7 +1403,7 @@ def forcing_ref_0p5(caseList, path2Data, saveFigDir):
     
 def main():
     plt.style.use('seaborn-white')
-    plt.rcParams['font.size'] = 20
+    plt.rcParams['font.size'] = 25
     plt.rcParams['legend.fontsize'] = 12 # overwriting fontsize in legend
     plt.rcParams["legend.columnspacing"] = 1 # mesured in fontsize unit : 1 means = legend.fontsize
 #    plt.rcParams['figure.titlesize'] = 20
