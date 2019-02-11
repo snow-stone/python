@@ -488,7 +488,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 #        return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
         return data[1],np.sqrt(data[2])
     
-    def plotCaseWithSlices_local_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    def plotCaseWithSlices_local_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
         meanOfRMS = np.zeros(len(positionList))
         
@@ -504,10 +504,10 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
         positionList = np.asarray(positionList)
     #    ax_cases.axhline(y=0.8, linestyle=':', color='black')
     #    ax_cases.axhline(y=0.5, linestyle=':', color='black')
-        ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], linestyle=linestyleDict[dataDir], linewidth=linewidthDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor=markerfacecolorDict[dataDir], markeredgewidth=1.5)
     #    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
         
-    def plotCaseWithSlices_local_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    def plotCaseWithSlices_local_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
         meanOfRMS = np.zeros(len(positionList))
         
@@ -516,7 +516,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
             meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
             
         positionList = np.asarray(positionList)
-        ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0,meanOfRMS, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], linestyle=linestyleDict[dataDir], linewidth=linewidthDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor=markerfacecolorDict[dataDir], markeredgewidth=1.5)
         
     def plotCaseWithSlices_local_MI(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
@@ -529,7 +529,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
         positionList = np.asarray(positionList)
         ax_cases.plot(positionList/8.0, meanOfRMS/meanOfRMS[0], label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
         
-    def plotCaseWithSlices_local_MI_1(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
+    def plotCaseWithSlices_local_MI_1(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict ,linestyleDict, linewidthDict, markerfacecolorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
         meanOfRMS = np.zeros(len(positionList))
         
@@ -538,7 +538,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
             meanOfMEAN[i], meanOfRMS[i] = plotSlice_local(ax_in_case, position, path2Data, dataDir, cut, ifPlotInter)
             
         positionList = np.asarray(positionList)
-        ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none')
+        ax_cases.plot(positionList/8.0, meanOfRMS/meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], color=colorDict[dataDir], linestyle=linestyleDict[dataDir], linewidth=linewidthDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor=markerfacecolorDict[dataDir], markeredgewidth=1.5)
     
     print "README :"
     print "This is the version where we take slice averaged value as reference"
@@ -559,33 +559,60 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
     }
     
     colorDict={
-        "BirdCarreau/inlet_0p3"                : 'red',
-        "Newtonian/Re2400"                     : 'blue',
+        "BirdCarreau/inlet_0p3"                : 'mediumvioletred',
+        "Newtonian/Re2400"                     : 'darkred',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'red',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'red',
-        "BirdCarreau/inlet_0p5"                : 'red',
-        "Newtonian/Re4000"                     : 'blue',
-        "BirdCarreau/inlet0p5_impinging"       : 'red',
-        "Newtonian/Re4000_impinging"           : 'blue'
+        "BirdCarreau/inlet_0p5"                : 'steelblue',
+        "Newtonian/Re4000"                     : 'red',
+        "BirdCarreau/inlet0p5_impinging"       : 'darkmagenta',
+        "Newtonian/Re4000_impinging"           : 'darkcyan'
+    }
+    
+    markerfacecolorDict={
+        "BirdCarreau/inlet_0p3"                : 'none',
+        "Newtonian/Re2400"                     : 'darkred',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'none',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'none',
+        "BirdCarreau/inlet_0p5"                : 'none',
+        "Newtonian/Re4000"                     : 'none',
+        "BirdCarreau/inlet0p5_impinging"       : 'none',
+        "Newtonian/Re4000_impinging"           : 'darkcyan'     
+    }
+    
+    linestyleDict={
+        "BirdCarreau/inlet_0p3"                : '-',
+        "Newtonian/Re2400"                     : '--',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '-',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '-',
+        "BirdCarreau/inlet_0p5"                : '-.',
+        "Newtonian/Re4000"                     : '-',
+        "BirdCarreau/inlet0p5_impinging"       : '--',
+        "Newtonian/Re4000_impinging"           : '-'
+    }
+    
+    linewidthDict={
+        "BirdCarreau/inlet_0p3"                : 4,
+        "Newtonian/Re2400"                     : 1,
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 4,
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 4,
+        "BirdCarreau/inlet_0p5"                : 4,
+        "Newtonian/Re4000"                     : 1,
+        "BirdCarreau/inlet0p5_impinging"       : 4,
+        "Newtonian/Re4000_impinging"           : 1
     }
     
     markerDict={
-        "BirdCarreau/inlet_0p3"                : 's',
-        "Newtonian/Re2400"                     : 's',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '^',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'v',
-        "BirdCarreau/inlet_0p5"                : 'o',
+        "BirdCarreau/inlet_0p3"                : '',
+        "Newtonian/Re2400"                     : '^',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '',
+        "BirdCarreau/inlet_0p5"                : '',
         "Newtonian/Re4000"                     : 'o',
-        "BirdCarreau/inlet0p5_impinging"       : 'x',
-        "Newtonian/Re4000_impinging"           : 'x'
+        "BirdCarreau/inlet0p5_impinging"       : '',
+        "Newtonian/Re4000_impinging"           : 's'
     }
-    
-    aliasDict_Dai={
-        'Dai/inlet_0p5' : r'$exp(NN^{1}_{d})$',
-        'Dai/Re4000'    : r'$exp(N^{1}_{d})$',
-        'Dai/inlet_0p3' : r'$exp(NN^{2}_{d})$',
-        'Dai/Re2400'    : r'$exp(N^{2}_{d})$'
-    }
+
     
 #    fig, ax_principle0 = plt.subplots()
     fig, axes = plt.subplots(3, 1, sharex=True, figsize=(10,10))
@@ -594,7 +621,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_local_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0, ifPlotInter=False)
+        plotCaseWithSlices_local_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0, ifPlotInter=False)
 #        plotCaseWithSlices_Dai_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
     
     axes[0].set_xlabel(r"$x/D$")
@@ -605,7 +632,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 #    axes[0].axhline(y=0.8, linestyle=':', color='black')
 #    axes[0].axhline(y=0.5, linestyle=':', color='black')
 #    ax_principle.set_xlim(0,40)
-    axes[0].legend(bbox_to_anchor=(0.5, 1), ncol=3, shadow=True)
+    axes[0].legend(bbox_to_anchor=(0.5, 1), ncol=3, shadow=True, fontsize=15, handlelength=2.5)
     axes[0].ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 #    x_XG1, y_XG1 = dai_debitMoyen('XG')
 #    ax_principle.plot(x_XG1,y_XG1,label=aliasDict_Dai['Dai/inlet_0p5'],linestyle='-',marker='s',fillstyle='none')    
@@ -623,7 +650,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_local_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0, ifPlotInter=False)
+        plotCaseWithSlices_local_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0, ifPlotInter=False)
 #        plotCaseWithSlices_Dai_rms(axes[1], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
         
     axes[1].set_xlabel(r"$x/D$")
@@ -639,7 +666,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
 #        plotCaseWithSlices_local_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
-        plotCaseWithSlices_local_MI_1(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0, ifPlotInter=False)
+        plotCaseWithSlices_local_MI_1(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0, ifPlotInter=False)
         
     axes[2].set_xlabel(r"$x/D$")
 #    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{[<T-T_{ref}>_{(y,z)}^2]^{1/2}|_{x=0}}$")
@@ -648,7 +675,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 #    axes[2].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
 #    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
-    axes[0].text(-0.1,3.4,'(a)',size=20, transform=ax.transAxes)
+    axes[0].text(-0.1,3.5,'(a)',size=20, transform=ax.transAxes)
     axes[1].text(-0.1,2.2,'(b)',size=20, transform=ax.transAxes)
     axes[2].text(-0.1,1,'(c)',size=20, transform=ax.transAxes)
     fig.savefig(path2Data+"/"+saveFigDir+'/nu_mixing_ref_local_1.png', bbox_inches='tight', fontsize=20)
