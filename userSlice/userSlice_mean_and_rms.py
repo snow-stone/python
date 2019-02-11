@@ -260,7 +260,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
         
         return np.mean(data[cutSliceIndex:,1]),np.mean(data[cutSliceIndex:,2])
     
-    def plotCaseWithSlices_local_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, cut, ifPlotInter):
+    def plotCaseWithSlices_local_mean(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut, ifPlotInter):
         meanOfMEAN = np.zeros(len(positionList))
         meanOfRMS = np.zeros(len(positionList))
         
@@ -276,7 +276,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
         positionList = np.asarray(positionList)
     #    ax_cases.axhline(y=0.8, linestyle=':', color='black')
     #    ax_cases.axhline(y=0.5, linestyle=':', color='black')
-        ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], linestyle=linestyleDict[dataDir], linewidth=linewidthDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor='none', markeredgewidth=1.5)
+        ax_cases.plot(positionList/8.0, meanOfMEAN, label=aliasDict[dataDir], marker=markerDict[dataDir], markersize=8, color=colorDict[dataDir], linestyle=linestyleDict[dataDir], linewidth=linewidthDict[dataDir], markeredgecolor=colorDict[dataDir], markerfacecolor=markerfacecolorDict[dataDir], markeredgewidth=1.5)
     #    ax_cases.errorbar(positionList/8.0, meanOfMEAN, yerr=meanOfRMS, label=aliasDict[dataDir], marker=marker)
         
     def plotCaseWithSlices_local_rms(ax_cases, path2Data, dataDir, positionList, aliasDict, markerDict, colorDict, cut, ifPlotInter):
@@ -341,6 +341,17 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
         "Newtonian/Re4000_impinging"           : 'darkcyan'
     }
     
+    markerfacecolorDict={
+        "BirdCarreau/inlet_0p3"                : 'none',
+        "Newtonian/Re2400"                     : 'darkred',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'none',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'none',
+        "BirdCarreau/inlet_0p5"                : 'none',
+        "Newtonian/Re4000"                     : 'none',
+        "BirdCarreau/inlet0p5_impinging"       : 'none',
+        "Newtonian/Re4000_impinging"           : 'darkcyan'     
+    }
+    
     linestyleDict={
         "BirdCarreau/inlet_0p3"                : '-',
         "Newtonian/Re2400"                     : '--',
@@ -388,7 +399,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
 
     for i, caseDir in enumerate(caseList):
         print "caseDir : ", caseDir
-        plotCaseWithSlices_local_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, cut=0.7, ifPlotInter=False)
+        plotCaseWithSlices_local_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0.7, ifPlotInter=False)
 #        plotCaseWithSlices_Dai_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
     
     axes[0].set_xlabel(r"$x/D$")
