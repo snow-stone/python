@@ -32,19 +32,19 @@ ax.set_xlim(0.1,100000)
 ax.set_ylim(1e-6,5e-4)
 ax.set_xscale("log")
 ax.set_yscale("log")
-ax.tick_params(axis='both', direction='out', length=4, width=1, labelsize=20)
-ax.set_xlabel(r'$\dot{\gamma}$',fontsize=20)
-ax.set_ylabel(r'$\nu$',fontsize=20)
+ax.tick_params(axis='both', direction='out', length=4, width=1, labelsize=25)
+ax.set_xlabel(r'$\dot{\gamma}$',fontsize=25)
+ax.set_ylabel(r'$\nu$',fontsize=25)
 
 font = {'family': 'serif',
         'color':  'darkred',
         'weight': 'normal',
-        'size': 20,
+        'size': 25,
         }
-ax.text(10, 1e-5, r'$\nu \propto \dot{\gamma}^{1-n}$', fontdict=font)
-ax.plot(gama,nu,linewidth=2, label='Xanthan gum')
-ax.plot(gama,nu1,linewidth=2,linestyle='--',color='darkred')
-ax.legend(fancybox=True, bbox_to_anchor=(1, 1), ncol=1,frameon=False, fontsize=16)
+ax.text(5, 1e-5, r'$\nu \propto \dot{\gamma}^{1-n}$', fontdict=font)
+ax.plot(gama,nu,linewidth=4, label='Xanthan gum')
+ax.plot(gama,nu1,linewidth=4,linestyle='--',color='darkred')
+ax.legend(fancybox=True, bbox_to_anchor=(1, 1), ncol=1,frameon=False, fontsize=25)
 fig.savefig('BirdCarreau.png',dpi=100, bbox_inches='tight')
 
 ########################################################################
