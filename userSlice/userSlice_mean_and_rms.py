@@ -357,7 +357,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
         "Newtonian/Re2400"                     : '--',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '-',
         "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '-',
-        "BirdCarreau/inlet_0p5"                : 'dashdot',
+        "BirdCarreau/inlet_0p5"                : '-.',
         "Newtonian/Re4000"                     : '-',
         "BirdCarreau/inlet0p5_impinging"       : '--',
         "Newtonian/Re4000_impinging"           : '-'
@@ -407,8 +407,8 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
     axes[0].set_ylabel(r"$\mu_{\overline{c}}$")
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
     axes[0].set_ylim(0.2,0.9)
-    axes[0].axhline(y=0.8, linestyle='dashdot', color='black')
-    axes[0].axhline(y=0.5, linestyle='dashdot', color='black')
+    axes[0].axhline(y=0.8, linestyle='-.', color='black')
+    axes[0].axhline(y=0.5, linestyle='-.', color='black')
 #    ax_principle.set_xlim(0,40)
     axes[0].legend(bbox_to_anchor=(0.05, 1), ncol=6, shadow=True, fontsize=15, handlelength=2.5)
     
