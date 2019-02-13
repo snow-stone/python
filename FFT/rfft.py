@@ -2,9 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 N = 100
+f = 1
+omega = 2*np.pi * f
 
 i = np.arange(N)
-a = np.sin(i * 2*np.pi/N) + 2*np.sin(i * 4*np.pi/N)
+a = np.sin(omega * i/N) + 2*np.sin(2*omega * i/N)
 #a = np.append(a, a[0]) # symmetry
 
 print "plot data in time domain"
@@ -67,12 +69,13 @@ ax[3].legend(loc=1)
 
 print "============="
 print "FIG5"
-print "||c|| => normalise now x-axis : frequency"
+print "||c|| => normalise now x-axis : No normalization is needed ?!"
 
-ax[4].plot((np.arange(len(B))/float(N))[1:], B[1:],color='black',marker='^',markeredgecolor='black',markerfacecolor='none',label='mag')
+#ax[4].plot((np.arange(len(B))/float(N))[1:], B[1:],color='black',marker='^',markeredgecolor='black',markerfacecolor='none',label='mag')
+ax[4].plot(np.arange(len(B))[1:], B[1:],color='black',marker='^',markeredgecolor='black',markerfacecolor='none',label='mag')
 
 ax[4].set_xscale('log')
-ax[4].set_xlim(10**-3,10)
+ax[4].set_xlim(1,1000)
 ax[4].legend(loc=4)
 
 plt.show()
