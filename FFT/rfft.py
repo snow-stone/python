@@ -78,14 +78,14 @@ ax[4].legend(loc=4)
 plt.show()
 print "Finish plot"
 
-import scipy.io as io
-signal={}
-x=(np.arange(len(B))/float(N))[1:]
-y=B[1:]
-
-signal['fn']=x
-signal['Bn']=y
-io.savemat('signal',signal)
-
-b = io.loadmat('signal')
-print b['fn']
+#import scipy.io as io
+#signal={}
+#x=(np.arange(len(B))/float(N))[1:]
+#y=B[1:]
+#
+#signal['fn']=x
+#signal['Bn']=y
+#io.savemat('signal',signal)
+#
+#b = io.loadmat('signal')
+#print b['fn']
