@@ -11,20 +11,17 @@ import matplotlib.pyplot as plt
 def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positions, color, cut=0.):
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName+".old"
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
-#    print rawData.shape
     time = rawData[:,0]
     probeData = rawData[:,1:]
     
     position_in_D = str(positions[sample]/8.0)+"D"
     std = np.std(probeData[:,sample])
     mean = np.mean(probeData[:,sample])
-#    print position_in_D + " std : ", std, " mean : ", mean
     cutSliceIndex=int(0.6*len(time))
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=1, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[:])), linestyle='-')   
 
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
-#    print rawData.shape
     time = rawData[:,0]+0.2
     probeData = rawData[:,1:]
     cutSliceIndex = int(cut*len(time))
@@ -32,7 +29,6 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
     position_in_D = str(positions[sample]/8.0)+"D"
     std = np.std(probeData[cutSliceIndex:,sample])
     mean = np.mean(probeData[cutSliceIndex:,sample])
-#    print position_in_D + " std : ", std, " mean : ", mean
     ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=2, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=1)    
 
@@ -41,7 +37,6 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
 def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, color, cut=0.5):
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
-#    print rawData.shape
     time = rawData[:,0]
     probeData = rawData[:,1:]
     cutSliceIndex = int(cut*len(time))
@@ -49,42 +44,10 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
     position_in_D = str(positions[sample]/8.0)+"D"
     std = np.std(probeData[cutSliceIndex:,sample])
     mean = np.mean(probeData[cutSliceIndex:,sample])
-#    print position_in_D + " std : ", std, " mean : ", mean
     ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=2, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=1)    
     
     return std, mean
-
-##==============================================================================
-##   RMS 
-##==============================================================================    
-#def spatial_mean_rms(fieldName, cases, positions, mean , std, linestyleList, markerList):
-#    fig_rms = plt.figure()
-#    positions=[x/8.0 for x in positions]
-#
-#    ax1 = fig_rms.add_subplot(1,1,1)
-#
-#    for i, case in enumerate(cases):
-#        ax1.plot(positions,std[:,i],label=cases[i],linestyle=linestyleList[i],marker=markerList[i])
-#    ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
-#    ax1.set_xlabel(r"$x/D$")
-##    ax1.set_ylabel(latexRMSName)
-#    
-#    fig_rms.savefig('../PICTURE_history_e/'+fieldName+'/RMS_xByD_oneFig.png', bbox_inches='tight',  dpi=300)
-##==============================================================================
-##   Mean
-##==============================================================================
-#    fig_rms = plt.figure()
-#
-#    ax1 = fig_rms.add_subplot(1,1,1)
-#
-#    for i, case in enumerate(cases):
-#        ax1.plot(positions,mean[:,i],label=cases[i],linestyle=linestyleList[i],marker=markerList[i])
-#    ax1.legend(bbox_to_anchor=(1., 1), ncol=1, shadow=True)
-#    ax1.set_xlabel(r"$x/D$")
-##    ax1.set_ylabel(latexMEANName)
-#    
-#    fig_rms.savefig('../PICTURE_history_e/'+fieldName+'/Mean_xByD_oneFig.png', bbox_inches='tight', dpi=300)
 
 def main():
     plt.style.use('seaborn-white') # from defaut
