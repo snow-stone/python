@@ -72,23 +72,14 @@ def main():
     cases = [
              "BirdCarreau"+"/"+"inlet_0p3",
              "Newtonian"+"/"+"Re2400",
-             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",  # j=6, involving userProbeByLabel_forcing
-		    "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",   # j=7, involving userProbeByLabel_forcing
+             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
+		    "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",
              "BirdCarreau"+"/"+"inlet_0p5",
              "Newtonian"+"/"+"Re4000",
              "BirdCarreau/inlet0p5_impinging",
              "Newtonian/Re4000_impinging"
             ]
-    
-    # it is possible to only show the first 4 cases
-#    cases = [
-#             "BirdCarreau"+"/"+"inlet_0p5",
-#             "Newtonian"+"/"+"Re4000",
-#             "BirdCarreau"+"/"+"inlet_0p3",
-#             "Newtonian"+"/"+"Re2400"
-#            ]
-              
-#    fieldNames=["U_x", "U_y", "U_z", "T"]
+
     fieldNames=["U_y", "T"]
 
     aliasDict={
@@ -146,8 +137,6 @@ def main():
                 else:
                     std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cutDict[case])
         
-#        spatial_mean_rms(fieldName, cases, allProbePosition, mean, std, linestyleList, markerList)
-#        fig.text(0.5, 0.04, r'$t$', ha='center', va='center', fontsize=20)
         axses_case[-1].set_xlabel(r'$t$')
         x = 0.82
         yStart = 0.82
@@ -155,7 +144,6 @@ def main():
             y = yStart - i * 0.0975
             fig.text(x, y, aliasDict[case], fontsize=30)
 
-#        fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$ @ position '+str(allProbePosition[p]/8.0)+'D')
         fig.savefig(path2Data+"/"+"PICTURE_history/"+"8simu/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
 
 main()
