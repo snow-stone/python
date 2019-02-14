@@ -88,14 +88,21 @@ def main():
              "Newtonian/Re4000_impinging"
             ]
 
-#    fieldNames=["U_y", "T"]
-    fieldNames=["U_y"]
+    fieldNames=["U_y", "T"]
+#    fieldNames=["U_y"]
     
     colorDict = {
                   "U_x" : "blue",
                   "U_y" : "red",
                   "U_z" : "green",
                   "T"   : "black"
+                }
+    
+    fieldNameAliasDict = {
+                  "U_x" : r"$FFT(u^{\prime}_x)$",
+                  "U_y" : r"$FFT(u^{\prime}_y)$",
+                  "U_z" : r"$FFT(u^{\prime}_z)$",
+                  "T"   : r"$FFT(c^{\prime})$"
                 }
     
     cutDict = {
@@ -131,8 +138,6 @@ def main():
         "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
     
-    dataDict={}
-    
     for k, position in enumerate(positionSubSet):
         p=positionSubSet[k]
         print "position : " , allProbePosition[p]
@@ -140,6 +145,12 @@ def main():
         fig, axses_case = plt.subplots(len(cases), 1, sharex=True, figsize=(20,10))# figsize is an additional parameter for class matplotlib.pyplot.subplots: passed by **fig_kw
         mean = np.zeros((len(allProbePosition),len(cases)))
         std = np.zeros((len(allProbePosition),len(cases)))
+        
+        dataDict=dict.fromkeys(fieldNames)
+        for fieldName in fieldNames:
+            dataDict[fieldName]={}
+        print dataDict
+        
         for j, case in enumerate(cases):
             for i, fieldName in enumerate(fieldNames):
         #        mean = np.zeros((len(positionList),4))
@@ -159,7 +170,7 @@ def main():
                 else:
                     data, std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cutDict[case])
                 
-                dataDict[case]=data
+                dataDict[fieldName][case]=data
                 
         axses_case[-1].set_xlabel(r'$t$')
         x = 0.82
@@ -170,22 +181,26 @@ def main():
 
         fig.savefig(path2Data+"/"+"PICTURE_history/"+"8simu/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
         
-        fig, ax = plt.subplots(figsize=(20,10))
+        
         start=1   # removing mode 0 : average (in time domain)
         end=10000 # big enough
         resample=1# no resampling defaut value : 1
-        for case in cases:
-            print "data length", len(dataDict[case])
-            FFT_plot(ax, dataDict[case], samplingFrequencyDict[case], start, end, aliasDict[case], resample)
+        for i, fieldName in enumerate(fieldNames):
+            print i
+            fig, ax = plt.subplots(figsize=(20,10))
+            for case in cases:
+                print "data length", len(dataDict[fieldName][case])
+                FFT_plot(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resample)
             
-        x=np.arange(1000)
-        ax.plot(x,x**(-5.0/3.0), linestyle='-.',color='blue')
-        ax.plot(x,.05*x**(-1.0), linestyle='-.', color='red')
-        ax.set_xscale('log')
-        ax.set_yscale('log')
-        ax.legend()
-        ax.set_xlabel('frequency (Hz)')
-        ax.set_ylabel('fluctuation magnitude')
-        fig.savefig(path2Data+"/"+"PICTURE_history_FFT/"+"8simu/Uy_new_FFT_"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight')
+#            x=np.arange(1000)
+#            ax.plot(x,x**(-5.0/3.0), linestyle='-.',color='blue')
+#            ax.plot(x,.05*x**(-1.0), linestyle='-.', color='red')
+            ax.set_xscale('log')
+            ax.set_yscale('log')
+            ax.set_xlim(1,end)
+            ax.legend()
+            ax.set_xlabel('frequency (Hz)')
+            ax.set_ylabel(fieldNameAliasDict[fieldName])
+            fig.savefig(path2Data+"/"+"PICTURE_history_FFT/"+"8simu/"+fieldName+"_new_FFT_"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight')
 
 main()
