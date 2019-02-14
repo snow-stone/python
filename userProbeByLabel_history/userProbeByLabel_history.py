@@ -109,6 +109,17 @@ def main():
                   "T"   : "black"
                 }
     
+    cutDict = {
+        "BirdCarreau/inlet_0p3"                :0.6,
+        "Newtonian/Re2400"                     :0.5,
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":0.35,
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":0.46,
+        "BirdCarreau/inlet_0p5"                :0.5,
+        "Newtonian/Re4000"                     :0.5,
+        "BirdCarreau/inlet0p5_impinging"       :0.5,
+        "Newtonian/Re4000_impinging"           :0.5
+    }
+    
     for k, position in enumerate(positionSubSet):
         p=positionSubSet[k]
         print "position : " , allProbePosition[p]
@@ -129,38 +140,11 @@ def main():
                 axses_case[j].set_xlim(0,0.85)
                 
                 print "axe number = ", j , fieldName
-                if j == 0:
-                    if allProbePosition[p] >= 24:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.6)
-                    else:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.6)
-
-                elif j == 1:
-                    if allProbePosition[p] >= 24:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.5)
-                    else:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.5)
-                elif j == 2 :
-                    std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorDict[fieldName], cut=0.35)
-                elif j == 3 :
-                    std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.46)
-
-                elif j == 4:
-                    if allProbePosition[p] >= 7:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.5)
-                    else :
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.5)
-                elif j == 5 :
-                    if allProbePosition[p] >= 24:
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.5)
-                    else :
-                        std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.5)
-                elif j == 6 :
-                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.5)
-                elif j == 7 :
-                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cut=0.5)            
-                else :
-                    print "There's a big problem"
+                
+                if case == "BirdCarreau/inlet_0p3-a_0p5-setT_St_1" or case == "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":
+                    std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorDict[fieldName], cutDict[case])
+                else:
+                    std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cutDict[case])
         
 #        spatial_mean_rms(fieldName, cases, allProbePosition, mean, std, linestyleList, markerList)
 #        fig.text(0.5, 0.04, r'$t$', ha='center', va='center', fontsize=20)
