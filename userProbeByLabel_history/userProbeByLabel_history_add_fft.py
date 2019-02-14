@@ -215,34 +215,94 @@ def main():
 #        fig.suptitle(r'Time history of $Ux,\, Uy,\, Uz,\, T$ @ position '+str(allProbePosition[p]/8.0)+'D')
         fig.savefig(path2Data+"/"+"PICTURE_history_FFT/"+"8simu/Uy_"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
 
-        fig, ax = plt.subplots( figsize=(20,10))
+        fig, ax = plt.subplots(figsize=(20,10))
         n=1 #removing mean
         m=10000
+        sampling=1
+        
         data=data0
         A = np.fft.rfft(data)
         print len(data)
-        print len(A)
-        ax.plot(np.absolute(A)[n:m], label=r'$NN^{1}_{d}$')
+#        print len(A)
+        N = len(data)
+        dt= 0.0005
+        f=(np.arange(len(A))[n:m:sampling]/(dt*N))
+        ax.plot(f, np.absolute(A)[n:m:sampling]/N, label=r'$NN^{1}_{d}$')
+        
         data=data1
         A = np.fft.rfft(data)
         print len(data)
-        print len(A)
-        ax.plot(np.absolute(A)[n:m], label=r'$N^{1}_{d}$')
+#        print len(A)
+        N = len(data)
+        dt= 0.0005
+        f=(np.arange(len(A))[n:m:sampling]/(dt*N))
+        ax.plot(f,np.absolute(A)[n:m:sampling]/N, label=r'$N^{1}_{d}$')
+
+        data=data2
+        A = np.fft.rfft(data)
+        print len(data)
+#        print len(A)
+        N = len(data)
+        dt= 0.0005
+        f=(np.arange(len(A))[n:m:sampling]/(dt*N))
+        ax.plot(f, np.absolute(A)[n:m:sampling]/N, label=r'$NN^{1}_{d,St=1}$')
+
+        data=data3
+        A = np.fft.rfft(data)
+        print len(data)
+#        print len(A)
+        N = len(data)
+        dt= 0.0005
+        f=(np.arange(len(A))[n:m:sampling]/(dt*N))
+        ax.plot(f, np.absolute(A)[n:m:sampling]/N, label=r'$NN^{1}_{d,St=5}$')
+
         data=data4
         A = np.fft.rfft(data)
         print len(data)
-        print len(A)
-        ax.plot(np.absolute(A)[n:m], label=r'$NN^{2}_{d}$')
+#        print len(A)
+        N = len(data)
+        dt= 0.0002
+        f=(np.arange(len(A))[n:m:sampling]/(dt*N))
+        ax.plot(f,np.absolute(A)[n:m:sampling]/N, label=r'$NN^{2}_{d}$')
+        
         data=data5
         A = np.fft.rfft(data)
         print len(data)
-        print len(A)
-        ax.plot(np.absolute(A)[n:m], label=r'$N^{2}_{d}$')
+#        print len(A)
+        N = len(data)
+        dt= 0.0005
+        f=(np.arange(len(A))[n:m:sampling]/(dt*N))
+        ax.plot(f,np.absolute(A)[n:m:sampling]/N, label=r'$N^{2}_{d}$')
+        
+        data=data6
+        A = np.fft.rfft(data)
+        print len(data)
+#        print len(A)
+        print data
+        N = len(data)
+        dt= 0.0005
+        f=(np.arange(len(A))[n:m:sampling]/(dt*N))
+        ax.plot(f,np.absolute(A)[n:m:sampling]/N, label=r'$NN^{2}_{i}$')
+
+        data=data7
+        A = np.fft.rfft(data)
+        print len(data)
+        print data
+#        print len(A)
+        N = len(data)
+        dt= 0.0005
+        f=(np.arange(len(A))[n:m:sampling]/(dt*N))
+        ax.plot(f,np.absolute(A)[n:m:sampling]/N, label=r'$N^{2}_{i}$')        
+
         ax.set_xscale('log')
+        ax.set_yscale('log')
 #        ax.set_ylim(0,100)
         ax.legend()
-        ax.set_xlabel('ch. mode number')
-        ax.set_ylabel('sortie de rFFT en magnitude')
+        ax.set_xlabel('frequency (Hz)')
+        ax.set_ylabel('fluctuation magnitude')
+        x=np.arange(1000)
+        ax.plot(x,x**(-5.0/3.0), linestyle='-.',color='blue')
+        ax.plot(x,.05*x**(-1.0), linestyle='-.', color='red')
         fig.savefig(path2Data+"/"+"PICTURE_history_FFT/"+"8simu/Uy_FFT_"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
 #            fig, ax = plt.subplots( figsize=(20,10))
 #            ax.plot(A.real[:m])
