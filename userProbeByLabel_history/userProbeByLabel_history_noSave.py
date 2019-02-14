@@ -17,7 +17,7 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
     position_in_D = str(positions[sample]/8.0)+"D"
     std = np.std(probeData[:,sample])
     mean = np.mean(probeData[:,sample])
-    cutSliceIndex=int(0.6*len(time))
+    cutSliceIndex=int(0.565*len(time))
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=1, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[:])), linestyle='-')   
 
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
@@ -49,7 +49,15 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
     
     return probeData[cutSliceIndex:,sample], std, mean
 
-def FFT_plot(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, labelAlias, resamplingStep):
+def FFT_plot(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, labelAlias, resamplingStep, linestyle, color, linewidth, marker):
+    A = np.fft.rfft(originalTimeSeries)
+    print "data length", len(originalTimeSeries)
+#    print len(data)
+    N = len(originalTimeSeries)
+    f=(np.arange(len(A))[startIndex:endIndex:resamplingStep]/(samplingFrequency*N))
+    ax.plot(f, np.absolute(A)[startIndex:endIndex:resamplingStep]/N, label=labelAlias, linestyle=linestyle, color=color, linewidth=linewidth, marker=marker, markersize=8, markeredgecolor=color, markerfacecolor='none')
+
+def FFT_plot_simple(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, labelAlias, resamplingStep):
     A = np.fft.rfft(originalTimeSeries)
     print "data length", len(originalTimeSeries)
 #    print len(data)
@@ -91,7 +99,7 @@ def main():
     fieldNames=["U_y", "T"]
 #    fieldNames=["U_y"]
     
-    colorDict = {
+    colorDictForfieldNames = {
                   "U_x" : "blue",
                   "U_y" : "red",
                   "U_z" : "green",
@@ -166,9 +174,9 @@ def main():
                 print "axe number = ", j , fieldName
                 
                 if case == "BirdCarreau/inlet_0p3-a_0p5-setT_St_1" or case == "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":
-                    data, std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorDict[fieldName], cutDict[case])
+                    data, std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorDictForfieldNames[fieldName], cutDict[case])
                 else:
-                    data, std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDict[fieldName], cutDict[case])
+                    data, std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDictForfieldNames[fieldName], cutDict[case])
                 
                 dataDict[fieldName][case]=data
                 
@@ -184,13 +192,74 @@ def main():
         
         start=1   # removing mode 0 : average (in time domain)
         end=10000 # big enough
-        resample=1# no resampling defaut value : 1
+#        resample=1# no resampling defaut value : 1
+        cases_FFT = [
+             "BirdCarreau"+"/"+"inlet_0p3",
+             "Newtonian"+"/"+"Re2400",
+             "BirdCarreau"+"/"+"inlet_0p5",
+             "Newtonian"+"/"+"Re4000",
+             "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
+		    "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",
+             "BirdCarreau/inlet0p5_impinging",
+             "Newtonian/Re4000_impinging"
+        ]
+        lineStyleDict={
+            "BirdCarreau/inlet_0p3"                : '-',
+            "Newtonian/Re2400"                     : 'none',
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '-',
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '-',
+            "BirdCarreau/inlet_0p5"                : '-.',
+            "Newtonian/Re4000"                     : 'none',
+            "BirdCarreau/inlet0p5_impinging"       : '-.',
+            "Newtonian/Re4000_impinging"           : 'none'
+        }
+        colorDict={
+            "BirdCarreau/inlet_0p3"                : 'darkcyan',
+            "Newtonian/Re2400"                     : 'darkred',
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'red',
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'red',
+            "BirdCarreau/inlet_0p5"                : 'mediumvioletred',
+            "Newtonian/Re4000"                     : 'forestgreen',
+            "BirdCarreau/inlet0p5_impinging"       : 'darkmagenta',
+            "Newtonian/Re4000_impinging"           : 'mediumvioletred'
+        }
+        lineWidthDict={
+            "BirdCarreau/inlet_0p3"                : 4,
+            "Newtonian/Re2400"                     : 1,
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 2,
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 2,
+            "BirdCarreau/inlet_0p5"                : 4,
+            "Newtonian/Re4000"                     : 1,
+            "BirdCarreau/inlet0p5_impinging"       : 2,
+            "Newtonian/Re4000_impinging"           : 1
+        }
+        markerDict={
+            "BirdCarreau/inlet_0p3"                : '',
+            "Newtonian/Re2400"                     : '^',
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '',
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '',
+            "BirdCarreau/inlet_0p5"                : '',
+            "Newtonian/Re4000"                     : 'o',
+            "BirdCarreau/inlet0p5_impinging"       : '',
+            "Newtonian/Re4000_impinging"           : 's'
+        }
+        resampleDict={
+            "BirdCarreau/inlet_0p3"                : 1,
+            "Newtonian/Re2400"                     : 1,
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 1,
+            "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 1,
+            "BirdCarreau/inlet_0p5"                : 1,
+            "Newtonian/Re4000"                     : 1,
+            "BirdCarreau/inlet0p5_impinging"       : 1,
+            "Newtonian/Re4000_impinging"           : 1                
+        }
         for i, fieldName in enumerate(fieldNames):
             print i
             fig, ax = plt.subplots(figsize=(20,10))
-            for case in cases:
+            for case in cases_FFT:
                 print "data length", len(dataDict[fieldName][case])
-                FFT_plot(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resample)
+#                FFT_plot(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resampleDict[case], lineStyleDict[case], colorDict[case], lineWidthDict[case], markerDict[case])
+                FFT_plot_simple(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resampleDict[case])
             
 #            x=np.arange(1000)
 #            ax.plot(x,x**(-5.0/3.0), linestyle='-.',color='blue')
