@@ -19,7 +19,8 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
     std = np.std(probeData[:,sample])
     mean = np.mean(probeData[:,sample])
 #    print position_in_D + " std : ", std, " mean : ", mean
-    ax.plot(time, probeData[:,sample], color=color, linewidth=0.5, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[:])), linestyle='-')   
+    cutSliceIndex=int(0.6*len(time))
+    ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=1, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[:])), linestyle='-')   
 
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
@@ -124,7 +125,8 @@ def main():
 #             "Newtonian"+"/"+"Re2400"
 #            ]
               
-    fieldNames=["U_x", "U_y", "U_z", "T"]
+#    fieldNames=["U_x", "U_y", "U_z", "T"]
+    fieldNames=["U_y", "T"]
 
     aliasDict={
         "BirdCarreau/inlet_0p3":r'$NN^{1}_{d}$',
