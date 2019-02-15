@@ -64,7 +64,7 @@ def FFT_plot_simple(ax, originalTimeSeries, samplingFrequency, startIndex, endIn
 
 def main():
     plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 25})
+    plt.rcParams.update({'font.size': 30})
     plt.rcParams['savefig.dpi'] = 100
     
     from matplotlib import rc
@@ -176,7 +176,7 @@ def main():
                 
                 dataDict[fieldName][case]=data
                 
-        axses_case[-1].set_xlabel(r'$t$')
+        axses_case[-1].set_xlabel(r'$t$',fontsize=40)
         x = 0.82
         yStart = 0.82
         for i, case in enumerate(cases):
@@ -260,7 +260,7 @@ def main():
                   "T"   : r"$FFT(c^{\prime})$"
         }
         for fieldName in fieldNames:
-            fig, ax = plt.subplots(figsize=(20,10))
+            fig, ax = plt.subplots(figsize=(20,12))
             zorders = np.arange(len(cases_FFT),0,-1)
             for i, case in enumerate(cases_FFT):
                 print "data length", len(dataDict[fieldName][case])
@@ -270,6 +270,7 @@ def main():
 #            x=np.arange(1000)
 #            ax.plot(x,x**(-5.0/3.0), linestyle='-.',color='blue')
 #            ax.plot(x,.05*x**(-1.0), linestyle='-.', color='red')
+            ax.tick_params(axis='both', which='both', direction='out', length=4, width=1, labelsize=30)
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_xlim(1,end)
