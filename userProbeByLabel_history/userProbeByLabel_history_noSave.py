@@ -57,13 +57,13 @@ def FFT_plot(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, la
     f=(np.arange(len(A))[startIndex:endIndex:resamplingStep]/(samplingFrequency*N))
     ax.plot(f, np.absolute(A)[startIndex:endIndex:resamplingStep]/N, label=labelAlias, linestyle=linestyle, color=color, linewidth=linewidth, marker=marker, markersize=8, markeredgecolor=color, markerfacecolor='none')
 
-def FFT_plot_simple(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, labelAlias, resamplingStep):
+def FFT_plot_simple(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, labelAlias, resamplingStep, zorder):
     A = np.fft.rfft(originalTimeSeries)
     print "data length", len(originalTimeSeries)
 #    print len(data)
     N = len(originalTimeSeries)
     f=(np.arange(len(A))[startIndex:endIndex:resamplingStep]/(samplingFrequency*N))
-    ax.plot(f, np.absolute(A)[startIndex:endIndex:resamplingStep]/N, label=labelAlias)
+    ax.plot(f, np.absolute(A)[startIndex:endIndex:resamplingStep]/N, label=labelAlias, zorder=zorder, linewidth=2)
 
 def main():
     plt.style.use('seaborn-white') # from defaut
@@ -253,13 +253,13 @@ def main():
             "BirdCarreau/inlet0p5_impinging"       : 1,
             "Newtonian/Re4000_impinging"           : 1                
         }
-        for i, fieldName in enumerate(fieldNames):
-            print i
+        for fieldName in fieldNames:
             fig, ax = plt.subplots(figsize=(20,10))
-            for case in cases_FFT:
+            zorders = np.arange(len(cases_FFT),0,-1)
+            for i, case in enumerate(cases_FFT):
                 print "data length", len(dataDict[fieldName][case])
 #                FFT_plot(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resampleDict[case], lineStyleDict[case], colorDict[case], lineWidthDict[case], markerDict[case])
-                FFT_plot_simple(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resampleDict[case])
+                FFT_plot_simple(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resampleDict[case], zorder=zorders[i])
             
 #            x=np.arange(1000)
 #            ax.plot(x,x**(-5.0/3.0), linestyle='-.',color='blue')
@@ -270,6 +270,6 @@ def main():
             ax.legend()
             ax.set_xlabel('frequency (Hz)')
             ax.set_ylabel(fieldNameAliasDict[fieldName])
-            fig.savefig(path2Data+"/"+"PICTURE_history_FFT/"+"8simu/"+fieldName+"_new_FFT_"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight')
+            fig.savefig(path2Data+"/"+"PICTURE_history_FFT/"+"8simu/"+fieldName+"_new_FFT_"+str(allProbePosition[p]/8.0).replace('.','p')+"D.png", bbox_inches='tight')
 
 main()
