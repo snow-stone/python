@@ -131,6 +131,13 @@ def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     ax.text(3e-5, -0.03, r'$10^{-4}$', fontsize=40)
     fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+".png",  bbox_inches='tight')
     
+    import scipy.stats as stats
+    
+    skew = stats.skew(nu)
+    kurt = stats.kurtosis(nu)
+    
+    return skew, kurt
+    
 def main():
 
     from matplotlib import rc
@@ -177,13 +184,49 @@ def main():
 #        slice_T_mean_hist("T_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
 #        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
 #        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
-        
+    
+    higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
-        slice_nu_mean_hist("nu_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
-        slice_nu_mean_hist("nu_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
-        slice_nu_mean_hist("nu_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
-        slice_nu_mean_hist("nu_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
-        slice_nu_mean_hist("nu_mean_slice_8.0D0","8D",path2Data, case, aliasDict[case])
+        higherOrderStat[case]={'skew':[],'kurt':[]}
+#    skewList=[]
+#    kurtList=[]
+    for case in casesNonNewtonian:
+        skew, kurt = slice_nu_mean_hist("nu_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
+        higherOrderStat[case]['skew'].append(skew)
+        higherOrderStat[case]['kurt'].append(kurt)
+#        skewList.append(skew)
+#        kurtList.append(kurt)
+        skew, kurt = slice_nu_mean_hist("nu_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
+        higherOrderStat[case]['skew'].append(skew)
+        higherOrderStat[case]['kurt'].append(kurt)
+#        skewList.append(skew)
+#        kurtList.append(kurt)
+        skew, kurt = slice_nu_mean_hist("nu_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
+        higherOrderStat[case]['skew'].append(skew)
+        higherOrderStat[case]['kurt'].append(kurt)
+#        skewList.append(skew)
+#        kurtList.append(kurt)
+        skew, kurt = slice_nu_mean_hist("nu_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
+        higherOrderStat[case]['skew'].append(skew)
+        higherOrderStat[case]['kurt'].append(kurt)
+#        skewList.append(skew)
+#        kurtList.append(kurt)
+        skew, kurt = slice_nu_mean_hist("nu_mean_slice_8.0D0","8D",path2Data, case, aliasDict[case])
+        higherOrderStat[case]['skew'].append(skew)
+        higherOrderStat[case]['kurt'].append(kurt)
+#        skewList.append(skew)
+#        kurtList.append(kurt)
         slice_nu_mean_hist("nu_mean_slice_9.5D0","9.5D",path2Data, case, aliasDict[case])
+    
+    for case in casesNonNewtonian:
+        fig, ax = plt.subplots(2)
+        ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker='^',markersize=8)
+        ax[0].legend()
+        ax[0].set_ylim(0,20)
+        ax[1].plot(higherOrderStat[case]['kurt'],label='kurt',marker='^',markersize=8)
+        ax[1].legend()
+        ax[1].set_ylim(0,300)
+        fig.suptitle(aliasDict[case])
+        fig.savefig(path2Data+"/"+case+"/"+"higherOrderStat.png",  bbox_inches='tight')
         
 main()
