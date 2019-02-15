@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 100
+N = 200
 f = 1
 omega = 2*np.pi * f
 
-i = np.arange(N)
+i = 2*np.arange(N)
 a = np.sin(omega * i/N) + 2*np.sin(2*omega * i/N)
 #a = np.append(a, a[0]) # symmetry
 
@@ -77,6 +77,7 @@ ax[4].plot(np.arange(len(B))[1:], B[1:],color='black',marker='^',markeredgecolor
 ax[4].set_xscale('log')
 ax[4].set_xlim(1,1000)
 ax[4].legend(loc=4)
+ax[4].set_xlabel('mode Nb.')
 
 plt.show()
 print "Finish plot"
@@ -92,3 +93,16 @@ print "Finish plot"
 #
 #b = io.loadmat('signal')
 #print b['fn']
+
+fig, ax = plt.subplots(2,figsize=(10,10))
+print "!!!!!!!!!!!!!!"
+print "=============="
+print "Actual signal:"
+print "Length of the signal is 2s, corresponding to 0.5Hz"
+print "which is the fundemantal frequency, the 1st mode excecpt the mode for average where frequency=0"
+ax[0].plot(i/float(N),a) # i/N is the time variable, N sampling frequency
+
+print "=============="
+print "Actual FFT:"
+ax[1].plot(np.arange(len(B))*0.5, B,color='black',marker='^',markeredgecolor='black',markerfacecolor='none',label='mag')
+ax[1].set_xlabel('frequency (Hz)')
