@@ -188,7 +188,7 @@ def main():
         fig.savefig(path2Data+"/"+"PICTURE_history/"+"8simu/"+str(allProbePosition[p]/8.0).replace('.','p')+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
         
 # =============================================================================
-#       FFT
+#       FFT : still in loop of position
 # =============================================================================
         start=1   # removing mode 0 : average (in time domain)
         end=10000 # big enough
@@ -267,10 +267,11 @@ def main():
 #                FFT_plot(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resampleDict[case], lineStyleDict[case], colorDict[case], lineWidthDict[case], markerDict[case])
                 FFT_plot_simple(ax, dataDict[fieldName][case], samplingFrequencyDict[case], start, end, aliasDict[case], resampleDict[case], zorder=zorders[i])
             
-#            x=np.arange(1000)
-#            ax.plot(x,x**(-5.0/3.0), linestyle='-.',color='blue')
-#            ax.plot(x,.05*x**(-1.0), linestyle='-.', color='red')
-            ax.tick_params(axis='both', which='both', direction='out', length=4, width=1, labelsize=30)
+            if position == 13:
+                x=np.arange(50,5e3)
+                ax.plot(x,30*x**(-5.0/3.0), linestyle='-.',color='black', linewidth=4, zorder=10)
+                ax.text(3e3, 1e-4, r'$ \propto k^{-5/3}$', fontsize=30)
+            ax.tick_params(axis='both', which='both', direction='out', length=4, width=1, labelsize=30)#major and minor ticks
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_xlim(1,end)
