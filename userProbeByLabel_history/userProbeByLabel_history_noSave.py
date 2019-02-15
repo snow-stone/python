@@ -8,7 +8,7 @@ Created on Wed Dec 12 21:08:57 2018
 import numpy as np
 import matplotlib.pyplot as plt
 
-def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positions, color, cut=0.):
+def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positions, color, cut):
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName+".old"
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
     time = rawData[:,0]
@@ -34,17 +34,16 @@ def userProbeByLabel_forcing(ax, caseName, path2Data, fieldName, sample, positio
 
     return probeData[cutSliceIndex:,sample], std, mean
 
-def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, color, cut=0.5):
+def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, color, cut, fieldNameAliasDict):
     RelativeDataFile = "./"+"userDefinedLog/history_labelGroup_"+fieldName
     rawData = np.genfromtxt(path2Data+"/"+caseName+'/'+RelativeDataFile)
     time = rawData[:,0]
     probeData = rawData[:,1:]
     cutSliceIndex = int(cut*len(time))
     
-    position_in_D = str(positions[sample]/8.0)+"D"
     std = np.std(probeData[cutSliceIndex:,sample])
     mean = np.mean(probeData[cutSliceIndex:,sample])
-    ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=2, label=caseName+"_"+position_in_D+"\nNbSampleEq_"+str(len(time[cutSliceIndex:])), linestyle='-')
+    ax.plot(time[cutSliceIndex:], probeData[cutSliceIndex:,sample], color=color, linewidth=2, label=fieldNameAliasDict[fieldName], linestyle='-')
     ax.plot(time[:cutSliceIndex], probeData[:cutSliceIndex,sample], color=color, linewidth=1)    
     
     return probeData[cutSliceIndex:,sample], std, mean
@@ -52,7 +51,6 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
 def FFT_plot(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, labelAlias, resamplingStep, linestyle, color, linewidth, marker):
     A = np.fft.rfft(originalTimeSeries)
     print "data length", len(originalTimeSeries)
-#    print len(data)
     N = len(originalTimeSeries)
     f=(np.arange(len(A))[startIndex:endIndex:resamplingStep]/(samplingFrequency*N))
     ax.plot(f, np.absolute(A)[startIndex:endIndex:resamplingStep]/N, label=labelAlias, linestyle=linestyle, color=color, linewidth=linewidth, marker=marker, markersize=8, markeredgecolor=color, markerfacecolor='none')
@@ -60,7 +58,6 @@ def FFT_plot(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, la
 def FFT_plot_simple(ax, originalTimeSeries, samplingFrequency, startIndex, endIndex, labelAlias, resamplingStep, zorder):
     A = np.fft.rfft(originalTimeSeries)
     print "data length", len(originalTimeSeries)
-#    print len(data)
     N = len(originalTimeSeries)
     f=(np.arange(len(A))[startIndex:endIndex:resamplingStep]/(samplingFrequency*N))
     ax.plot(f, np.absolute(A)[startIndex:endIndex:resamplingStep]/N, label=labelAlias, zorder=zorder, linewidth=2)
@@ -97,20 +94,19 @@ def main():
             ]
 
     fieldNames=["U_y", "T"]
-#    fieldNames=["U_y"]
+    
+    fieldNameAliasDict = {
+              "U_x" : r"$u_x$",
+              "U_y" : r"$u_y$",
+              "U_z" : r"$u_z$",
+              "T"   : r"$c$"
+    }
     
     colorDictForfieldNames = {
                   "U_x" : "blue",
                   "U_y" : "red",
                   "U_z" : "green",
                   "T"   : "black"
-                }
-    
-    fieldNameAliasDict = {
-                  "U_x" : r"$FFT(u^{\prime}_x)$",
-                  "U_y" : r"$FFT(u^{\prime}_y)$",
-                  "U_z" : r"$FFT(u^{\prime}_z)$",
-                  "T"   : r"$FFT(c^{\prime})$"
                 }
     
     cutDict = {
@@ -176,7 +172,7 @@ def main():
                 if case == "BirdCarreau/inlet_0p3-a_0p5-setT_St_1" or case == "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":
                     data, std[i,j], mean[i,j] = userProbeByLabel_forcing(axses_case[j], case, path2Data,  fieldName, p, allProbePosition, colorDictForfieldNames[fieldName], cutDict[case])
                 else:
-                    data, std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDictForfieldNames[fieldName], cutDict[case])
+                    data, std[i,j], mean[i,j] = userProbeByLabel(axses_case[j], case, path2Data, fieldName, p, allProbePosition, colorDictForfieldNames[fieldName], cutDict[case], fieldNameAliasDict)
                 
                 dataDict[fieldName][case]=data
                 
@@ -187,9 +183,13 @@ def main():
             y = yStart - i * 0.0975
             fig.text(x, y, aliasDict[case], fontsize=30)
 
-        fig.savefig(path2Data+"/"+"PICTURE_history/"+"8simu/"+str(allProbePosition[p]/8.0)+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
+        axses_case[0].legend(bbox_to_anchor=(1, 2.6), ncol=2, shadow=True)
+        fig.suptitle('Probe signal at '+r'$x=%.1fD$'%(allProbePosition[p]/8.0))
+        fig.savefig(path2Data+"/"+"PICTURE_history/"+"8simu/"+str(allProbePosition[p]/8.0).replace('.','p')+"D.png", bbox_inches='tight') # bbox_inches = 'tight' is neccessary
         
-        
+# =============================================================================
+#       FFT
+# =============================================================================
         start=1   # removing mode 0 : average (in time domain)
         end=10000 # big enough
 #        resample=1# no resampling defaut value : 1
@@ -253,6 +253,12 @@ def main():
             "BirdCarreau/inlet0p5_impinging"       : 1,
             "Newtonian/Re4000_impinging"           : 1                
         }
+        fieldNameAliasFFTDict = {
+                  "U_x" : r"$FFT(u^{\prime}_x)$",
+                  "U_y" : r"$FFT(u^{\prime}_y)$",
+                  "U_z" : r"$FFT(u^{\prime}_z)$",
+                  "T"   : r"$FFT(c^{\prime})$"
+        }
         for fieldName in fieldNames:
             fig, ax = plt.subplots(figsize=(20,10))
             zorders = np.arange(len(cases_FFT),0,-1)
@@ -269,7 +275,7 @@ def main():
             ax.set_xlim(1,end)
             ax.legend()
             ax.set_xlabel('frequency (Hz)')
-            ax.set_ylabel(fieldNameAliasDict[fieldName])
+            ax.set_ylabel(fieldNameAliasFFTDict[fieldName])
             fig.savefig(path2Data+"/"+"PICTURE_history_FFT/"+"8simu/"+fieldName+"_new_FFT_"+str(allProbePosition[p]/8.0).replace('.','p')+"D.png", bbox_inches='tight')
 
 main()
