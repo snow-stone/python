@@ -10,10 +10,10 @@ paraview.simple._DisableFirstRenderCameraReset()
 
 import sys
 
-dirname = sys.argv[1]
+dirName = sys.argv[1]
 
 # create a new 'OpenFOAMReader'
-re4000foam = OpenFOAMReader(FileName=dirname+'/Re4000.foam')
+re4000foam = OpenFOAMReader(FileName=dirName+'/Re4000.foam')
 re4000foam.SkipZeroTime = 1
 re4000foam.CaseType = 'Reconstructed Case'
 re4000foam.LabelSize = '32-bit'
@@ -2423,7 +2423,7 @@ renderView1.CameraViewUp = [0.013846228886864613, 0.99917582883037, 0.0381568477
 renderView1.CameraParallelScale = 0.009797959246405369
 
 # save screenshot
-SaveScreenshot(dirname+'/hluo_kidneyVortices_decked.png', renderView1, ImageResolution=[2562, 1838],
+SaveScreenshot(dirName+'/hluo_kidneyVortices_decked.png', renderView1, ImageResolution=[2562, 1838],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
