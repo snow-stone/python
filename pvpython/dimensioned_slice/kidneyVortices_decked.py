@@ -8,8 +8,12 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirname = sys.argv[1]
+
 # create a new 'OpenFOAMReader'
-re4000foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/Re4000.foam')
+re4000foam = OpenFOAMReader(FileName=dirname+'/Re4000.foam')
 re4000foam.SkipZeroTime = 1
 re4000foam.CaseType = 'Reconstructed Case'
 re4000foam.LabelSize = '32-bit'
@@ -2407,6 +2411,11 @@ omega_xLUTColorBar.WindowLocation = 'AnyLocation'
 omega_xLUTColorBar.Position = [0.785768930523029, 0.3252557127312298]
 omega_xLUTColorBar.ScalarBarLength = 0.3299999999999996
 
+omega_xLUTColorBar.TitleFontSize = 4
+omega_xLUTColorBar.LabelFontSize = 4
+omega_xLUTColorBar.ScalarBarThickness = 5
+omega_xLUTColorBar.ScalarBarLength = 0.5
+
 # current camera placement for renderView1
 renderView1.CameraPosition = [0.023120297672353244, -0.005511351954040058, 0.03263797833751225]
 renderView1.CameraFocalPoint = [0.004000000189989805, -0.003999999957159162, 0.0]
@@ -2414,10 +2423,15 @@ renderView1.CameraViewUp = [0.013846228886864613, 0.99917582883037, 0.0381568477
 renderView1.CameraParallelScale = 0.009797959246405369
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/Newtonian/Re4000/hluo_kidneyVortices_decked.png', renderView1, ImageResolution=[2562, 1838],
+SaveScreenshot(dirname+'/hluo_kidneyVortices_decked.png', renderView1, ImageResolution=[2562, 1838],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
     TransparentBackground=0, 
     # PNG options
     CompressionLevel='5')
+
+print "Finalizing keydneyVortices_decked.py " + "@ dir : " + dirName 
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
