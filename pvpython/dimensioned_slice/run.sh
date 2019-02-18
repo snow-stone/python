@@ -13,6 +13,8 @@ contourNu_x=nu_mean_slice_x-logScale.py
 contourT_x=T_mean_slice_x.py
 contourT_z=T_mean_slice_zNormal_noClipped.py
 
+kidneyVortices_decked=kidneyVortices_decked.py
+
 #pvpython $contourUx $BirdCarreau/inlet_0p5 -0.003 neg3mm &&
 #pvpython $contourUx $BirdCarreau/inlet0p5_impinging -0.003 neg3mm &&
 #pvpython $contourUx $BirdCarreau/inlet_0p3 -0.003 neg3mm &&
@@ -317,11 +319,11 @@ contourT_z=T_mean_slice_zNormal_noClipped.py
 #echo "Finish T_x 8.0D" &&
 #echo "---------------" 
 
-pvpython $contourNu_z $BirdCarreau/inlet_0p5 0 0mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging 0 0mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3 0 0mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0 0mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5 0 0mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging 0 0mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3 0 0mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0 0mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm
 
 
 #pvpython $contourT_z $BirdCarreau/inlet_0p5 0 0mm &&
@@ -335,3 +337,12 @@ pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm
 
 #pvpython $contourNu_z $BirdCarreau/inlet_0p5 
 #pvpython $contourT_z $BirdCarreau/inlet_0p5 0 0mm 
+
+pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p5 &&
+pvpython $kidneyVortices_decked $BirdCarreau/inlet0p5_impinging &&
+pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3 &&
+pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 &&
+pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 &&
+pvpython $kidneyVortices_decked $Newtonian/Re2400 &&
+pvpython $kidneyVortices_decked $Newtonian/Re4000 &&
+pvpython $kidneyVortices_decked $Newtonian/Re4000_impinging 
