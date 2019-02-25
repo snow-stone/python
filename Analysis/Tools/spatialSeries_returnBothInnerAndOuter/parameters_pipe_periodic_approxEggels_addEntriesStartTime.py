@@ -23,7 +23,7 @@ dataEntry={
         'endTime':5,
         'chunkStep':10,
         'NbOfFiles':51,
-        'path':"/store/caseByGeometry/pipe/blockMesh/periodic/pipe4/prototype_artificiallyReducedViscosity",
+        'path':"pipe4",
         }
 
 parameters={

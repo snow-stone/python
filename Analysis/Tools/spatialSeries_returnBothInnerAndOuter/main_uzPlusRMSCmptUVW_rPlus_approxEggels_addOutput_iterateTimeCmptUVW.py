@@ -1,6 +1,8 @@
 import numpy as np
 import general_settings as gs
 import reference_database as rdb
+import matplotlib
+matplotlib.use("agg")
 import matplotlib.pyplot as plt
 
 def convert2TimeDirName(string):
@@ -57,10 +59,21 @@ def mainWriter():
 #mainWriter()
 
 def mainReader():
+
+    plt.style.use('seaborn-white') # from defaut
+    plt.rcParams.update({'font.size': 30})
+    plt.rcParams['savefig.dpi'] = 100
+    
+    from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+    ## for Palatino and other serif fonts use:
+    rc('font',**{'family':'serif','serif':['Palatino']})
+    rc('text', usetex=True)
+
     import timeSeriesReader_ReturnBothInnerAndOuterVariables as tsR
     import parameters_pipe_periodic_approxEggels_addEntriesStartTime as p_appoxEggels
     
-    fig2,ax2 = plt.subplots()
+    fig2,ax2 = plt.subplots(figsize=(20,10))
     sampleNaming='rms_time'
     
     l = tsR.pre_check_spatialAveragedProfiles(p_appoxEggels.parameters,sampleNaming)
@@ -76,13 +89,15 @@ def mainReader():
     x1, y1 = rdb.Eggels_article_1994.Fig8b_DNS_E_cmpt_r()
     x2, y2 = rdb.Eggels_article_1994.Fig8b_DNS_E_cmpt_theta()
     x3, y3 = rdb.Eggels_article_1994.Fig8b_DNS_E_cmpt_z()
-    ax2.plot(x1,y1,label='DNS(E)'+r' $r$',marker='s')
-    ax2.plot(x2,y2,label='DNS(E)'+r' $\theta$',marker='<')
-    ax2.plot(x3,y3,label='DNS(E)'+r' $z$',marker='>')
+    ax2.plot(x1,y1,label=r'$DNS_E :\,$'+r' $u_r$',marker='s')
+    ax2.plot(x2,y2,label=r'$DNS_E :\,$'+r' $u_{\theta}$',marker='<')
+    ax2.plot(x3,y3,label=r'$DNS_E :\,$'+r' $u_z$',marker='>')
     ax2.set_xlim(0,0.5)
     ax2.legend(bbox_to_anchor=(0.3, 1.0), ncol=1, fancybox=True, shadow=True)
-    ax2.set_xlabel(r'$r/D$',fontsize=gs.sizeLabel)
-    ax2.set_ylabel(r'$(U_z^+)_{rms}$',fontsize=gs.sizeLabel)
+    ax2.set_xlabel(r'$r/D$')
+    ax2.set_ylabel(r'$(U_z^+)_{rms}$')
     ax2.set_title('Eggels_article_1994 Fig 8(a)')
+
+    fig2.savefig("UrtzRMS.png", bbox_inches='tight')
 
 mainReader()
