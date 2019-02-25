@@ -34,7 +34,7 @@ def outputToFile(x,cmpt_1,cmpt_2,cmpt_3,paraDict,fileName):
 def mainWriter():
     import spatialSeriesReader_returnBothInnerAndOuter as ssR
 #    import parameters_pipe_periodic_approxEggels as p_appoxEggels
-    import parameters_pipe_periodic_approxEggels_addEntriesStartTime as p_appoxEggels
+    import parameters_t_c as p_appoxEggels
 #    import copy
 
     sampleNaming='lines_typeFace_cell' 
@@ -78,7 +78,7 @@ def mainReader():
             }
 
     import timeSeriesReader_ReturnBothInnerAndOuterVariables as tsR
-    import parameters_pipe_periodic_approxEggels_addEntriesStartTime as p_appoxEggels
+    import parameters_t_c as p_appoxEggels
     
     fig2,ax2 = plt.subplots(figsize=(20,10))
     sampleNaming='rms_time'
