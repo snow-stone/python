@@ -107,4 +107,10 @@ def mainReader():
 
     fig2.savefig("UrtzRMS.png", bbox_inches='tight')
 
-mainReader()
+#mainReader()
+
+def main():
+    #mainWriter() # 1st : execute Writer (write down spatial averaged data) while commmenting Reader
+    mainReader() # 2rd : execute only reader to plot data
+
+main()
