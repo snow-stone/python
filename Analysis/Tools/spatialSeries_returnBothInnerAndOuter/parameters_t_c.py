@@ -19,7 +19,7 @@ sampling={
 
 dataEntry={
         'timeStep':6.5,
-        'startTime':6.5,  # KinecticEnergy stationary
+        'startTime':6.5,  # KinecticEnergy stationary 4.5
         'endTime':7,
         'chunkStep':10,
         'NbOfFiles':51,
