@@ -1,6 +1,8 @@
 import numpy as np
 import general_settings as gs
 import reference_database as rdb
+import matplotlib
+matplotlib.use("agg")
 import matplotlib.pyplot as plt
 
 def addToFig1(ax):        
@@ -26,7 +28,19 @@ def addToFig1(ax):
 
 
 def main():
+
+    plt.style.use('seaborn-white') # from defaut
+    plt.rcParams.update({'font.size': 30})
+    plt.rcParams['savefig.dpi'] = 100
+    
+    from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+    ## for Palatino and other serif fonts use:
+    rc('font',**{'family':'serif','serif':['Palatino']})
+    rc('text', usetex=True)
+
     import spatialSeriesReader0_module as ssR
+
     import parameters_periodic_M1_dict as M1
     import copy
 
@@ -59,5 +73,7 @@ def main():
     ax1.set_ylabel(r'$U_z^+$',fontsize=gs.sizeLabel)
     ax1.set_title('spatial stat.')
 
+    #plt.show()
+    fig1.savefig("U_x.png",bbox_inches='tight')
 
 main()
