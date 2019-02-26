@@ -26,9 +26,9 @@ def read_cases():
     prefix='1b_mirrorMerge_mapped_NearestFace'+'_'
     n_procs=np.array([48, 96, 192, 768])
 
-    fig0, ax0 = plt.subplots(figsize=(20,10))
-    fig1, ax1 = plt.subplots(figsize=(20,10)) 
-    fig2, ax2 = plt.subplots(figsize=(20,10))
+    fig0, ax0 = plt.subplots(figsize=(16,10))
+    fig1, ax1 = plt.subplots(figsize=(16,10)) 
+    fig2, ax2 = plt.subplots(figsize=(16,10))
     
     Sp=np.zeros(len(n_procs))
     E =np.zeros(len(n_procs))
