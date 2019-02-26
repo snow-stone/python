@@ -64,24 +64,42 @@ def read_cases():
     ax1.set_ylabel('Speed Up')
     ax1.set_xlim(0,1000)
     #ax1.set_title('annoatations : average nb of cells per proc')
+    ax1.tick_params(axis='both', which='major', direction='out', length=8, width=4)
+    ax1.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
 
     ax2.set_xlabel('nb. of processors')
     ax2.set_ylabel('Parallel Efficiency')
     #ax2.set_title('annoatations : average nb of cells per proc')
     ax2.set_ylim(0,1.2)
     ax2.set_xlim(0,1000)
+    ax2.tick_params(axis='both', which='major', direction='out', length=8, width=4)
+    ax2.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
+
+    offset1=[
+            (120,  0),
+            (120 ,-80),
+            (80, 80),
+            ( 0, 80)
+            ]
+
+    offset2=[
+            (80,  10),
+            (120 ,-40),
+            (80, 80),
+            ( 0, 80)
+            ]
 
     for i in range(len(n_procs)):
         nb_cell_per_proc = 1.5e6 / n_procs[i]
         print nb_cell_per_proc
-        ax1.annotate('%.2g' % nb_cell_per_proc, xy=(n_procs[i], Sp[i]), xytext=(-20,20), 
+        ax1.annotate('%.2g' % nb_cell_per_proc, xy=(n_procs[i], Sp[i]), xytext=offset1[i], 
             textcoords='offset points', ha='center', va='bottom',
-            bbox=dict(boxstyle='round,pad=0.2', fc='yellow', alpha=0.3),
+            bbox=dict(boxstyle='round,pad=0.2', fc='none', alpha=0.3),
             arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.5', 
                             color='red'))
-        ax2.annotate('%.2g' % nb_cell_per_proc, xy=(n_procs[i], E[i]), xytext=(-20,20), 
+        ax2.annotate('%.2g' % nb_cell_per_proc, xy=(n_procs[i], E[i]), xytext=offset2[i], 
             textcoords='offset points',
-            bbox=dict(boxstyle='round,pad=0.2', fc='yellow', alpha=0.3),
+            bbox=dict(boxstyle='round,pad=0.2', fc='none', alpha=0.3),
             arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.5', 
                             color='red'))
 
