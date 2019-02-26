@@ -2,6 +2,8 @@ def main():
     import numpy as np
     import general_settings as gs
     import UbarCalc
+    import matplotlib
+    matplotlib.use('agg')
     import matplotlib.pyplot as plt
     
 #    import parameters_pipe_periodic_approxEggels as pp_apprxE
@@ -53,5 +55,7 @@ def main():
     ax.set_ylabel(r'$<Uz>_{volume}$',fontsize=gs.sizeLabel)
     ax.legend(bbox_to_anchor=(1.6, 1), ncol=1, fancybox=True, shadow=True)
     ax.set_title('Volumic average on Uz through whole volume')
+
+    fig.savefig('Ubar_t.png', bbox_inches='tight')
 
 main()
