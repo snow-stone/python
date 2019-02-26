@@ -1,5 +1,5 @@
 import numpy as np
-import general_settings as gs
+#import general_settings as gs
 import reference_database as rdb
 import matplotlib
 matplotlib.use('agg')
