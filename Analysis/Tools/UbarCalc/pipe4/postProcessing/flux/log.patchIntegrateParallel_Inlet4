@@ -1,0 +1,2585 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 2.3.x
+Exec   : patchIntegrate -time 0:3.52 phi inlet4 -parallel
+Date   : Jul 05 2018
+Time   : 18:25:34
+Host   : "visu"
+PID    : 101162
+Case   : /home/lmfa/hluo/LocalSoftware/OpenFOAM/hluo-2.3.x/run/pipe/periodic/pipe4/prototype_artificiallyReducedViscosity
+nProcs : 32
+Slaves : 
+31
+(
+"visu.101163"
+"visu.101164"
+"visu.101165"
+"visu.101166"
+"visu.101169"
+"visu.101170"
+"visu.101171"
+"visu.101172"
+"visu.101174"
+"visu.101175"
+"visu.101177"
+"visu.101178"
+"visu.101179"
+"visu.101180"
+"visu.101181"
+"visu.101182"
+"visu.101183"
+"visu.101184"
+"visu.101185"
+"visu.101186"
+"visu.101187"
+"visu.101188"
+"visu.101189"
+"visu.101191"
+"visu.101193"
+"visu.101194"
+"visu.101195"
+"visu.101196"
+"visu.101198"
+"visu.101199"
+"visu.101202"
+)
+
+Pstream initialized with:
+    floatTransfer      : 0
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+--> FOAM Warning : 
+    From function dlOpen(const fileName&, const bool)
+    in file POSIX.C at line 1179
+    dlopen error : /home/lmfa/hluo/LocalSoftware/OpenFOAM/hluo-2.3.x/platforms/linux64GccDPOpt/lib/libfvOptionUserConstantExplicitPGradForce.so: undefined symbol: _ZTIN4Foam2fv6optionE
+--> FOAM Warning : 
+    From function dlLibraryTable::open(const fileName&, const bool)
+    in file db/dynamicLibrary/dlLibraryTable/dlLibraryTable.C at line 99
+    could not load "libfvOptionUserConstantExplicitPGradForce.so"
+Create mesh for time = 0
+
+Time = 0
+    No field phi
+
+Time = 0.0021
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.3336902e-06
+
+Time = 0.004
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.3732492e-06
+
+Time = 0.006
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.3223184e-06
+
+Time = 0.008
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.3390919e-06
+
+Time = 0.01
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4254115e-06
+
+Time = 0.02
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4958913e-06
+
+Time = 0.03
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4649922e-06
+
+Time = 0.04
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.3836852e-06
+
+Time = 0.05
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.2638193e-06
+
+Time = 0.06
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4497008e-06
+
+Time = 0.07
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4334235e-06
+
+Time = 0.08
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4380451e-06
+
+Time = 0.09
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.3402764e-06
+
+Time = 0.1
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.3907186e-06
+
+Time = 0.11
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4775856e-06
+
+Time = 0.12
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4816782e-06
+
+Time = 0.13
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4381172e-06
+
+Time = 0.14
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4911676e-06
+
+Time = 0.15
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.4391773e-06
+
+Time = 0.16
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.5429321e-06
+
+Time = 0.17
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.5566004e-06
+
+Time = 0.18
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.5640121e-06
+
+Time = 0.19
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.5440855e-06
+
+Time = 0.2
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.6367705e-06
+
+Time = 0.21
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.6627728e-06
+
+Time = 0.22
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.6355556e-06
+
+Time = 0.23
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.6942231e-06
+
+Time = 0.24
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.7468835e-06
+
+Time = 0.25
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.789769e-06
+
+Time = 0.26
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.783134e-06
+
+Time = 0.27
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.8728609e-06
+
+Time = 0.28
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.9063139e-06
+
+Time = 0.29
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.8968682e-06
+
+Time = 0.3
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.9138211e-06
+
+Time = 0.31
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -3.9781825e-06
+
+Time = 0.32
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.028022e-06
+
+Time = 0.33
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.0505283e-06
+
+Time = 0.34
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.0764173e-06
+
+Time = 0.35
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.101193e-06
+
+Time = 0.36
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.1453527e-06
+
+Time = 0.37
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.1729872e-06
+
+Time = 0.38
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.1960845e-06
+
+Time = 0.39
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.2227953e-06
+
+Time = 0.4
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.2621426e-06
+
+Time = 0.41
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.2853247e-06
+
+Time = 0.42
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.3190588e-06
+
+Time = 0.43
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.3973095e-06
+
+Time = 0.44
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.3609864e-06
+
+Time = 0.45
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.4255271e-06
+
+Time = 0.46
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.4426919e-06
+
+Time = 0.47
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.4916726e-06
+
+Time = 0.48
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.4904406e-06
+
+Time = 0.49
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.57271e-06
+
+Time = 0.5
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.6051608e-06
+
+Time = 0.51
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.5708923e-06
+
+Time = 0.52
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.6422723e-06
+
+Time = 0.53
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.690616e-06
+
+Time = 0.54
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.6796175e-06
+
+Time = 0.55
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.69521e-06
+
+Time = 0.56
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.749232e-06
+
+Time = 0.57
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.7812952e-06
+
+Time = 0.58
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.7933013e-06
+
+Time = 0.59
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.7858736e-06
+
+Time = 0.6
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.8662019e-06
+
+Time = 0.61
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.8675668e-06
+
+Time = 0.62
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.866744e-06
+
+Time = 0.63
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.9109313e-06
+
+Time = 0.64
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.9137938e-06
+
+Time = 0.65
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.9472838e-06
+
+Time = 0.66
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.9508445e-06
+
+Time = 0.67
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0016959e-06
+
+Time = 0.68
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0567119e-06
+
+Time = 0.69
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0089322e-06
+
+Time = 0.7
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0992709e-06
+
+Time = 0.71
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0606432e-06
+
+Time = 0.72
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.1367617e-06
+
+Time = 0.73
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.1385583e-06
+
+Time = 0.74
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.1012669e-06
+
+Time = 0.75
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.1642531e-06
+
+Time = 0.76
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.179698e-06
+
+Time = 0.77
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.1888166e-06
+
+Time = 0.78
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.1896063e-06
+
+Time = 0.79
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.2045763e-06
+
+Time = 0.8
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.2629717e-06
+
+Time = 0.81
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.2709379e-06
+
+Time = 0.82
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.3436912e-06
+
+Time = 0.83
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.3240832e-06
+
+Time = 0.84
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.3383257e-06
+
+Time = 0.85
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.3900752e-06
+
+Time = 0.86
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.3779852e-06
+
+Time = 0.87
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.381213e-06
+
+Time = 0.88
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.4417289e-06
+
+Time = 0.89
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.4373014e-06
+
+Time = 0.9
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.4353858e-06
+
+Time = 0.91
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.4553623e-06
+
+Time = 0.92
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.4885814e-06
+
+Time = 0.93
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.4960632e-06
+
+Time = 0.94
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.5456501e-06
+
+Time = 0.95
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.498994e-06
+
+Time = 0.96
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.522273e-06
+
+Time = 0.97
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.5111494e-06
+
+Time = 0.98
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.5719965e-06
+
+Time = 0.99
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.5884025e-06
+
+Time = 1
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.5817159e-06
+
+Time = 1.01
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.6491563e-06
+
+Time = 1.02
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.5876609e-06
+
+Time = 1.03
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.6612438e-06
+
+Time = 1.04
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.6651365e-06
+
+Time = 1.05
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7188827e-06
+
+Time = 1.06
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7259148e-06
+
+Time = 1.07
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.6434829e-06
+
+Time = 1.08
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7413006e-06
+
+Time = 1.09
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7403055e-06
+
+Time = 1.1
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7470297e-06
+
+Time = 1.11
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7706571e-06
+
+Time = 1.12
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7987392e-06
+
+Time = 1.13
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8183826e-06
+
+Time = 1.14
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7899919e-06
+
+Time = 1.15
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7825982e-06
+
+Time = 1.16
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8045684e-06
+
+Time = 1.17
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8315907e-06
+
+Time = 1.18
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8796836e-06
+
+Time = 1.19
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8792043e-06
+
+Time = 1.2
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8878712e-06
+
+Time = 1.21
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8405381e-06
+
+Time = 1.22
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8943711e-06
+
+Time = 1.23
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8944268e-06
+
+Time = 1.24
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8864256e-06
+
+Time = 1.25
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.9687367e-06
+
+Time = 1.26
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.9211556e-06
+
+Time = 1.27
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.9616047e-06
+
+Time = 1.28
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.997786e-06
+
+Time = 1.29
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.9465065e-06
+
+Time = 1.3
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.9332357e-06
+
+Time = 1.31
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.0610325e-06
+
+Time = 1.32
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.0494147e-06
+
+Time = 1.33
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.0459152e-06
+
+Time = 1.34
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.0662516e-06
+
+Time = 1.35
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.0735088e-06
+
+Time = 1.36
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.0392315e-06
+
+Time = 1.37
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1070027e-06
+
+Time = 1.38
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1305418e-06
+
+Time = 1.39
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.0779225e-06
+
+Time = 1.4
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1236136e-06
+
+Time = 1.41
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.0883512e-06
+
+Time = 1.42
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1382965e-06
+
+Time = 1.43
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1792872e-06
+
+Time = 1.44
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1797874e-06
+
+Time = 1.45
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1456249e-06
+
+Time = 1.46
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1791583e-06
+
+Time = 1.47
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1881733e-06
+
+Time = 1.48
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2309888e-06
+
+Time = 1.49
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2369703e-06
+
+Time = 1.5
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2283089e-06
+
+Time = 1.51
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1689971e-06
+
+Time = 1.52
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1769516e-06
+
+Time = 1.53
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1958928e-06
+
+Time = 1.54
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2757417e-06
+
+Time = 1.55
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2964932e-06
+
+Time = 1.56
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3228796e-06
+
+Time = 1.57
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3449134e-06
+
+Time = 1.58
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2940529e-06
+
+Time = 1.59
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3325228e-06
+
+Time = 1.6
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2934623e-06
+
+Time = 1.61
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3256032e-06
+
+Time = 1.62
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3487331e-06
+
+Time = 1.63
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3043348e-06
+
+Time = 1.64
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3450485e-06
+
+Time = 1.65
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3103299e-06
+
+Time = 1.66
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3095024e-06
+
+Time = 1.67
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3578403e-06
+
+Time = 1.68
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3336887e-06
+
+Time = 1.69
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3661413e-06
+
+Time = 1.7
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2934954e-06
+
+Time = 1.71
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3682398e-06
+
+Time = 1.72
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4255013e-06
+
+Time = 1.73
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3534347e-06
+
+Time = 1.74
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4091041e-06
+
+Time = 1.75
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4155232e-06
+
+Time = 1.76
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3708132e-06
+
+Time = 1.77
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4344882e-06
+
+Time = 1.78
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4290222e-06
+
+Time = 1.79
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4410667e-06
+
+Time = 1.8
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4049483e-06
+
+Time = 1.81
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4127072e-06
+
+Time = 1.82
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4328229e-06
+
+Time = 1.83
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4237337e-06
+
+Time = 1.84
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3750175e-06
+
+Time = 1.85
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3928194e-06
+
+Time = 1.86
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4836294e-06
+
+Time = 1.87
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.3934746e-06
+
+Time = 1.88
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4294301e-06
+
+Time = 1.89
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4747906e-06
+
+Time = 1.9
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.44379e-06
+
+Time = 1.91
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5138457e-06
+
+Time = 1.92
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4639809e-06
+
+Time = 1.93
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.492573e-06
+
+Time = 1.94
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.4957997e-06
+
+Time = 1.95
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5664489e-06
+
+Time = 1.96
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5068635e-06
+
+Time = 1.97
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5444227e-06
+
+Time = 1.98
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5252412e-06
+
+Time = 1.99
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5280973e-06
+
+Time = 2
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5004548e-06
+
+Time = 2.01
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5830624e-06
+
+Time = 2.02
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5325037e-06
+
+Time = 2.03
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5561984e-06
+
+Time = 2.04
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5498035e-06
+
+Time = 2.05
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5132408e-06
+
+Time = 2.06
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5731471e-06
+
+Time = 2.07
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5362107e-06
+
+Time = 2.08
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5831926e-06
+
+Time = 2.09
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5735689e-06
+
+Time = 2.1
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5049185e-06
+
+Time = 2.11
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5667858e-06
+
+Time = 2.12
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5245428e-06
+
+Time = 2.13
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6212848e-06
+
+Time = 2.14
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6508589e-06
+
+Time = 2.15
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6424279e-06
+
+Time = 2.16
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6218449e-06
+
+Time = 2.17
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6591956e-06
+
+Time = 2.18
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6458474e-06
+
+Time = 2.19
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6675082e-06
+
+Time = 2.2
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7240469e-06
+
+Time = 2.21
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6559493e-06
+
+Time = 2.22
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6390364e-06
+
+Time = 2.23
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6431427e-06
+
+Time = 2.24
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6171962e-06
+
+Time = 2.25
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6532063e-06
+
+Time = 2.26
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6019927e-06
+
+Time = 2.27
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6830807e-06
+
+Time = 2.28
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6372722e-06
+
+Time = 2.29
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7027142e-06
+
+Time = 2.3
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6126143e-06
+
+Time = 2.31
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6380752e-06
+
+Time = 2.32
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6594743e-06
+
+Time = 2.33
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6009871e-06
+
+Time = 2.34
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7061308e-06
+
+Time = 2.35
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6478442e-06
+
+Time = 2.36
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7360785e-06
+
+Time = 2.37
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6749542e-06
+
+Time = 2.38
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6851523e-06
+
+Time = 2.39
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6446868e-06
+
+Time = 2.4
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7127369e-06
+
+Time = 2.41
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.5940105e-06
+
+Time = 2.42
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7468236e-06
+
+Time = 2.43
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7231666e-06
+
+Time = 2.44
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7358531e-06
+
+Time = 2.45
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7635479e-06
+
+Time = 2.46
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7262273e-06
+
+Time = 2.47
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6858588e-06
+
+Time = 2.48
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7332784e-06
+
+Time = 2.49
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6725081e-06
+
+Time = 2.5
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7507469e-06
+
+Time = 2.51
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6796948e-06
+
+Time = 2.52
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7779407e-06
+
+Time = 2.53
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.689625e-06
+
+Time = 2.54
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.81648e-06
+
+Time = 2.55
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6960196e-06
+
+Time = 2.56
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7670227e-06
+
+Time = 2.57
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7526868e-06
+
+Time = 2.58
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7374817e-06
+
+Time = 2.59
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7618849e-06
+
+Time = 2.6
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6885392e-06
+
+Time = 2.61
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7534087e-06
+
+Time = 2.62
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7029903e-06
+
+Time = 2.63
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7274011e-06
+
+Time = 2.64
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6862143e-06
+
+Time = 2.65
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7339042e-06
+
+Time = 2.66
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.718689e-06
+
+Time = 2.67
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7713469e-06
+
+Time = 2.68
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7579309e-06
+
+Time = 2.69
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7693237e-06
+
+Time = 2.7
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7481044e-06
+
+Time = 2.71
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7792186e-06
+
+Time = 2.72
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7557704e-06
+
+Time = 2.73
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.769121e-06
+
+Time = 2.74
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7503117e-06
+
+Time = 2.75
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7609339e-06
+
+Time = 2.76
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7727523e-06
+
+Time = 2.77
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7559351e-06
+
+Time = 2.78
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7479767e-06
+
+Time = 2.79
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7756887e-06
+
+Time = 2.8
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7562878e-06
+
+Time = 2.81
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8096833e-06
+
+Time = 2.82
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7739365e-06
+
+Time = 2.83
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8529988e-06
+
+Time = 2.84
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7985404e-06
+
+Time = 2.85
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8072997e-06
+
+Time = 2.86
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8415009e-06
+
+Time = 2.87
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8519125e-06
+
+Time = 2.88
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.817483e-06
+
+Time = 2.89
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8399295e-06
+
+Time = 2.9
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8264357e-06
+
+Time = 2.91
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8239162e-06
+
+Time = 2.92
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8149656e-06
+
+Time = 2.93
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8427123e-06
+
+Time = 2.94
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8568318e-06
+
+Time = 2.95
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.856038e-06
+
+Time = 2.96
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8786716e-06
+
+Time = 2.97
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8519707e-06
+
+Time = 2.98
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8540561e-06
+
+Time = 2.99
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8704862e-06
+
+Time = 3
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8393694e-06
+
+Time = 3.01
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8101017e-06
+
+Time = 3.02
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.869341e-06
+
+Time = 3.03
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.834087e-06
+
+Time = 3.04
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8494705e-06
+
+Time = 3.05
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8546352e-06
+
+Time = 3.06
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8344543e-06
+
+Time = 3.07
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8672867e-06
+
+Time = 3.08
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7862919e-06
+
+Time = 3.09
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8230279e-06
+
+Time = 3.1
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7903059e-06
+
+Time = 3.11
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8073943e-06
+
+Time = 3.12
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7912637e-06
+
+Time = 3.13
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7892221e-06
+
+Time = 3.14
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.812408e-06
+
+Time = 3.15
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7769351e-06
+
+Time = 3.16
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8221774e-06
+
+Time = 3.17
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7523946e-06
+
+Time = 3.18
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8334989e-06
+
+Time = 3.19
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7971862e-06
+
+Time = 3.2
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8322909e-06
+
+Time = 3.21
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8528782e-06
+
+Time = 3.22
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8609388e-06
+
+Time = 3.23
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8327054e-06
+
+Time = 3.24
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8068e-06
+
+Time = 3.25
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8614397e-06
+
+Time = 3.26
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8128788e-06
+
+Time = 3.27
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8429025e-06
+
+Time = 3.28
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8020208e-06
+
+Time = 3.29
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7744171e-06
+
+Time = 3.3
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.798465e-06
+
+Time = 3.31
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8367943e-06
+
+Time = 3.32
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8309928e-06
+
+Time = 3.33
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8788323e-06
+
+Time = 3.34
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8365069e-06
+
+Time = 3.35
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8779351e-06
+
+Time = 3.36
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7476157e-06
+
+Time = 3.37
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9067145e-06
+
+Time = 3.38
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.7452386e-06
+
+Time = 3.39
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9023897e-06
+
+Time = 3.4
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8099533e-06
+
+Time = 3.41
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9139952e-06
+
+Time = 3.42
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8102341e-06
+
+Time = 3.43
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8956232e-06
+
+Time = 3.44
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8416483e-06
+
+Time = 3.45
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8827031e-06
+
+Time = 3.46
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8525898e-06
+
+Time = 3.47
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8412082e-06
+
+Time = 3.48
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.875877e-06
+
+Time = 3.49
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8465798e-06
+
+Time = 3.5
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9054363e-06
+
+Time = 3.51
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8549256e-06
+
+Time = 3.52
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9325194e-06
+
+End
+
+Finalising parallel run
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 2.3.x
+Exec   : patchIntegrate -time 3.52:4 phi inlet4 -parallel
+Date   : Jul 06 2018
+Time   : 11:09:00
+Host   : "visu"
+PID    : 138939
+Case   : /home/lmfa/hluo/LocalSoftware/OpenFOAM/hluo-2.3.x/run/pipe/periodic/pipe4/prototype_artificiallyReducedViscosity
+nProcs : 32
+Slaves : 
+31
+(
+"visu.138940"
+"visu.138942"
+"visu.138943"
+"visu.138944"
+"visu.138945"
+"visu.138946"
+"visu.138947"
+"visu.138948"
+"visu.138949"
+"visu.138950"
+"visu.138951"
+"visu.138952"
+"visu.138953"
+"visu.138954"
+"visu.138955"
+"visu.138956"
+"visu.138957"
+"visu.138958"
+"visu.138959"
+"visu.138960"
+"visu.138961"
+"visu.138962"
+"visu.138963"
+"visu.138964"
+"visu.138965"
+"visu.138966"
+"visu.138967"
+"visu.138968"
+"visu.138969"
+"visu.138970"
+"visu.138971"
+)
+
+Pstream initialized with:
+    floatTransfer      : 0
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+--> FOAM Warning : 
+    From function dlOpen(const fileName&, const bool)
+    in file POSIX.C at line 1179
+    dlopen error : /home/lmfa/hluo/LocalSoftware/OpenFOAM/hluo-2.3.x/platforms/linux64GccDPOpt/lib/libfvOptionUserConstantExplicitPGradForce.so: undefined symbol: _ZTIN4Foam2fv6optionE
+--> FOAM Warning : 
+    From function dlLibraryTable::open(const fileName&, const bool)
+    in file db/dynamicLibrary/dlLibraryTable/dlLibraryTable.C at line 99
+    could not load "libfvOptionUserConstantExplicitPGradForce.so"
+Create mesh for time = 3.52
+
+Time = 3.52
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9325194e-06
+
+Time = 3.53
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.8914607e-06
+
+Time = 3.54
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9942631e-06
+
+Time = 3.55
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9481706e-06
+
+Time = 3.56
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.0233316e-06
+
+Time = 3.57
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9826174e-06
+
+Time = 3.58
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.0137278e-06
+
+Time = 3.59
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.0153751e-06
+
+Time = 3.6
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.0226291e-06
+
+Time = 3.61
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.0119242e-06
+
+Time = 3.62
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.0701819e-06
+
+Time = 3.63
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9956084e-06
+
+Time = 3.64
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.0477619e-06
+
+Time = 3.65
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.0882573e-06
+
+Time = 3.66
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -7.1828447e-06
+
+Time = 3.67
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9339727e-06
+
+Time = 3.68
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.9247976e-06
+
+Time = 3.69
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.6355065e-06
+
+Time = 3.7
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.2440429e-06
+
+Time = 3.71
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -6.1930562e-06
+
+Time = 3.72
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8160089e-06
+
+Time = 3.73
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8965443e-06
+
+Time = 3.74
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.8914999e-06
+
+Time = 3.75
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.7352294e-06
+
+Time = 3.76
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.6320486e-06
+
+Time = 3.77
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.342924e-06
+
+Time = 3.78
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.5075772e-06
+
+Time = 3.79
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.4976081e-06
+
+Time = 3.8
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.5998096e-06
+
+Time = 3.81
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.3828903e-06
+
+Time = 3.82
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0819192e-06
+
+Time = 3.83
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.2348077e-06
+
+Time = 3.84
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.1100264e-06
+
+Time = 3.85
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0593299e-06
+
+Time = 3.86
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.9355061e-06
+
+Time = 3.87
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0754286e-06
+
+Time = 3.88
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -5.0906404e-06
+
+Time = 3.89
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.8289098e-06
+
+Time = 3.9
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.8298581e-06
+
+Time = 3.91
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.8307128e-06
+
+Time = 3.92
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.8146434e-06
+
+Time = 3.93
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.7739599e-06
+
+Time = 3.94
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.6956968e-06
+
+Time = 3.95
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.6388681e-06
+
+Time = 3.96
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.839104e-06
+
+Time = 3.97
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.5760687e-06
+
+Time = 3.98
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.5818856e-06
+
+Time = 3.99
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.5369334e-06
+
+Time = 4
+    Area vector of patch inlet4[9] = (0 0 -3.3580247e-06)
+    Area magnitude of patch inlet4[9] = 3.3580247e-06
+    Reading surfaceScalarField phi
+    Integral of phi over patch inlet4[9] = -4.4358782e-06
+
+End
+
+Finalising parallel run
