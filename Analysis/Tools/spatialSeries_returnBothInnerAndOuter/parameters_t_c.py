@@ -18,7 +18,7 @@ sampling={
 # data entry parameters
 
 dataEntry={
-        'timeStep':6.5,
+        'timeStep':7,
         'startTime':6.5,  # KinecticEnergy stationary 4.5
         'endTime':7,
         'chunkStep':10,

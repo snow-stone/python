@@ -1,11 +1,13 @@
 import numpy as np
 import general_settings as gs
 import reference_database as rdb
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 def main():
     import spatialSeriesReader_returnBothInnerAndOuter as ssR
-    import parameters_pipe_periodic_approxEggels as p_appoxEggels
+    import parameters_t_c as p_appoxEggels
     import copy
 
 #    sampleNaming='lines_typeUniform_cell'
@@ -35,8 +37,9 @@ def main():
     ax1.set_xlim(1,50)
     ax1.set_ylim(0,0.4)
     ax1.set_xlabel(r'$r^+$',fontsize=gs.sizeLabel)
-    ax1.set_ylabel(r'$U_z^+$',fontsize=gs.sizeLabel)
+    ax1.set_ylabel(r'$u_z(rms)/u_z$',fontsize=gs.sizeLabel)
     ax1.set_title('approxEggels spatial stat.')
-
+    
+    fig1.savefig('UzRMS_over_Uz.png', bbox_inches='tight')
 
 main()
