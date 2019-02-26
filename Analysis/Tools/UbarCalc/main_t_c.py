@@ -24,11 +24,6 @@ def main():
 #    print "len(flux1) : ", len(flux1)
     ax.plot(time1,np.abs(flux1)/area1,label='run2 M0 patchIntegrate')
     
-#    area2, time2, flux2 = UbarCalc.patchesIntegrate(pp_M1_bNV.parameters,logFileNameList)
-#    print "area2 = ", area2
-#    time2=time2[1:]
-#    ax.plot(time2,np.abs(flux2)/area2,label='run1 M1 patchIntegrate')
-
 #    ax.set_xlim(104,120)
 #    ax.set_ylim(0.7,1.3)
     ax.set_xlabel(r'$t$',fontsize=gs.sizeLabel)
