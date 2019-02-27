@@ -28,12 +28,12 @@ def main():
     area1, time1, flux1 = UbarCalc.patchesIntegrate(t_c.parameters,logFileNameList)
     print "area1 = ", area1
     time1=time1[1:]
-    ax.plot(time1,np.abs(flux1)/area1,label=r'$<u_x>_{inlet}$')
+    ax.plot(time1,np.abs(flux1)/area1,label=r'$<u_z>_{inlet}$')
     
     ax.set_xlim(0,7)
 #    ax.set_ylim(0.7,1.3)
     ax.set_xlabel(r'$t$')
-    ax.set_ylabel(r'$<u_x>_{inlet}$')
+    ax.set_ylabel(r'$<u_z>_{inlet}$')
     ax.legend(bbox_to_anchor=(1, 1), ncol=1, fancybox=True, shadow=True)
 
     fig.savefig('Ubar_t_c.png', bbox_inches='tight')
