@@ -1,6 +1,5 @@
 def main():
     import numpy as np
-    import general_settings as gs
     import UbarCalc
     import matplotlib
     matplotlib.use('agg')
