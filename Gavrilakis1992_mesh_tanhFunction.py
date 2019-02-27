@@ -6,6 +6,8 @@ Created on Thu Oct 18 09:06:42 2018
 """
 
 import numpy as np
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 
@@ -30,6 +32,8 @@ for i in range(nksi):
     
 print ksi
 
-fig2,ax2 = plt.subplots()
+fig,ax = plt.subplots()
 
-ax2.plot(dx,'o')
+ax.plot(dx,'o')
+
+fig.savefig('deltaY_distribution.png')
