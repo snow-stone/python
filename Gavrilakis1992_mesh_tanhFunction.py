@@ -10,9 +10,18 @@ import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
+plt.style.use('seaborn-white') # from defaut
+plt.rcParams.update({'font.size': 30})
+plt.rcParams['savefig.dpi'] = 100
+
+from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+## for Palatino and other serif fonts use:
+rc('font',**{'family':'serif','serif':['Palatino']})
+rc('text', usetex=True)
 
 h=0.004
-nksi= 256
+nksi= 127
 
 ksi = np.zeros(nksi)
 x = np.zeros(nksi)
@@ -30,10 +39,17 @@ for i in range(nksi):
     else :
         dx[i]= 0.
     
-print ksi
+#print ksi
 
-fig,ax = plt.subplots()
+fig,ax = plt.subplots(figsize=(16,10))
 
-ax.plot(dx,'o')
+ax.plot(dx[1:],linestyle='-',linewidth=4)
+ax.set_xlim(0,nksi)
+#ax.set_ylim(0,nksi)
+ax.set_xlabel(r'$No. \; de \; cellule$')
+ax.set_ylabel(r'$\Delta x$')
+ax.text(0.8, 0.8, r'$\frac{\Delta x_{max}}{\Delta x_{min}} \approx %.2f$'%(max(dx[1:]) / min(dx[1:])), horizontalalignment='center',verticalalignment='center', transform=ax.transAxes)
+
+print max(dx[1:]) / min(dx[1:])
 
 fig.savefig('deltaY_distribution.png')
