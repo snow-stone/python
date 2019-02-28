@@ -45,24 +45,24 @@ def main():
     output2Txt('uv_reynoldsStress',outerCoordData['rByD']*2,outerCoordData['mean']*max(outerCoordData['mean'])/0.045)
 
     x_DNS, y_DNS = rdb.Gavrilakis1992.Fig9a_DNS_G()
-    ax1.plot(x_DNS,y_DNS,color='forestgreen',linewidth=4)
+    ax1.plot(x_DNS,y_DNS,label=r'$DNS_G$',color='forestgreen',linewidth=4)
 
     x_Kim, y_Kim = rdb.Gavrilakis1992.Fig9a_Kim1987()
-    ax1.plot(x_Kim,y_Kim,color='orange',linewidth=4)
+    ax1.plot(x_Kim,y_Kim,label=r'$DNS_K$',color='orange',linewidth=4)
 
     x_Niederschulte, y_Niederschulte = rdb.Gavrilakis1992.Fig9a_Niederschulte1989()
-    ax1.plot(x_Niederschulte,y_Niederschulte,linestyle='--',linewidth=1,marker='s',markersize=16,markerfacecolor='none',markerEdgeWidth=4)
+    ax1.plot(x_Niederschulte,y_Niederschulte,label=r'$EXP_{Nie}$',linestyle='--',linewidth=1,marker='s',markersize=16,markerfacecolor='none',markerEdgeWidth=4)
 
     x_Nishino, y_Nishino = rdb.Gavrilakis1992.Fig9a_Nishino1989()
-    ax1.plot(x_Nishino,y_Nishino,marker='^',markersize=16,markerfacecolor='none',markerEdgeWidth=4)
+    ax1.plot(x_Nishino,y_Nishino,label=r'$EXP_{Nis}$',marker='^',markersize=16,markerfacecolor='none',markerEdgeWidth=4)
 
     ax1.set_xlabel(r'$y/h$')
-    ax1.set_ylabel(r'$<-u^{\prime}v^{\prime}/..>$')
+    ax1.set_ylabel(r'$<-u^{\prime}v^{\prime}>/\partial^2*$')
     ax1.set_ylim(0,0.8)
     ax1.set_xlim(0,1)
-    #ax1.set_title('annoatations : average nb of cells per proc')
     ax1.tick_params(axis='both', which='major', direction='out', length=8, width=4)
     ax1.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
+    ax1.legend(bbox_to_anchor=(1.0, 1.0), ncol=1, fancybox=True, shadow=True)
 
     fig1.savefig('uv_reynoldsStress.png')
 
