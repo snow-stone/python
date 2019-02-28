@@ -42,7 +42,7 @@ def main():
     y=-outerCoordData['mean']/0.045**2#*max(outerCoordData['mean'])#/0.045    
     #ax1.plot(x,y,label='simu t=%.1f'%set4uv.parameters['dataEntry']['timeStep'],linewidth=2)
     ax1.plot(x,y,label=r'$t_r$',linewidth=4,color='mediumvioletred')
-    output2Txt('uv_reynoldsStress',outerCoordData['rByD']*2,outerCoordData['mean']*max(outerCoordData['mean'])/0.045)
+    output2Txt('uv_reynoldsStress',x,y)
 
     x_DNS, y_DNS = rdb.Gavrilakis1992.Fig9a_DNS_G()
     ax1.plot(x_DNS,y_DNS,label=r'$DNS_G$',color='forestgreen',linewidth=4)
