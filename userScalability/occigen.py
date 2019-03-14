@@ -55,9 +55,9 @@ def read_cases():
 #        ax1.plot(n_procs[i],speed_up,marker='o')
 #        ax2.plot(n_procs[i],eff,marker='o')
     
-    ax1.plot(n_procs,Sp, linestyle='--', linewidth=2, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
+    ax1.plot(n_procs,Sp, linestyle='--', linewidth=4, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
     ax1.set_xscale('log')
-    ax2.plot(n_procs,E, linestyle='--', linewidth=2, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
+    ax2.plot(n_procs,E, linestyle='--', linewidth=4, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
     ax2.set_xscale('log')
     
     
