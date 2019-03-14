@@ -67,15 +67,15 @@ def read_cases():
     #ax0.set_title('case with 1.5M cellule, saturated at 192 cpu\n\
     #            Tested on occigen HSW24')
                 
-    ax1.set_xlabel('nb. of processors')
+    ax1.set_xlabel('Nb. de Processeurs')
     ax1.set_ylabel('Speed Up')
     ax1.set_xlim(0,1000)
     #ax1.set_title('annoatations : average nb of cells per proc')
     ax1.tick_params(axis='both', which='major', direction='out', length=8, width=4)
     ax1.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
 
-    ax2.set_xlabel('nb. of processors')
-    ax2.set_ylabel(r'$Parallel Efficiencit\'e$')
+    ax2.set_xlabel('Nb. de Processeurs')
+    ax2.set_ylabel(r'$Efficacit\acute{e}\,de\,parall\acute{e}lization$')
     #ax2.set_title('annoatations : average nb of cells per proc')
     ax2.set_ylim(0,1.2)
     ax2.set_xlim(0,1000)
