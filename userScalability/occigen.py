@@ -70,6 +70,7 @@ def read_cases():
     ax1.set_xlabel('Nb. de Processeurs')
     ax1.set_ylabel('Speed Up')
     ax1.set_xlim(0,1000)
+    ax1.set_ylim(0,2)
     #ax1.set_title('annoatations : average nb of cells per proc')
     ax1.tick_params(axis='both', which='major', direction='out', length=8, width=4)
     ax1.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
