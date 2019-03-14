@@ -26,6 +26,13 @@ def read_cases():
     prefix='1b_mirrorMerge_mapped_NearestFace'+'_'
     n_procs=np.array([48, 96, 192, 768])
 
+    markerList=[
+                's',
+                '^',
+                'o',
+                'd'
+    ]
+
     fig0, ax0 = plt.subplots(figsize=(16,10))
     fig1, ax1 = plt.subplots(figsize=(16,10)) 
     fig2, ax2 = plt.subplots(figsize=(16,10))
@@ -35,7 +42,7 @@ def read_cases():
     
     for i in range(len(n_procs)):
         x,y = read_case_after_foamLog(prefix+str(n_procs[i]))
-        ax0.plot(x,y,label='np=%d'%n_procs[i],linewidth=2)
+        ax0.plot((x-7.0)[::100],y[::100],label='np=%d'%n_procs[i],linewidth=2, linestyle='--', markerfacecolor='none', marker=markerList[i], markersize=16, markeredgewidth=4)
         slope, intercept, r_value, p_value, std_err = linregress(x,y)
         print "slope : ", slope
         if i == 0 :
@@ -48,17 +55,17 @@ def read_cases():
 #        ax1.plot(n_procs[i],speed_up,marker='o')
 #        ax2.plot(n_procs[i],eff,marker='o')
     
-    ax1.plot(n_procs,Sp, '-o')
+    ax1.plot(n_procs,Sp, linestyle='--', linewidth=2, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
     ax1.set_xscale('log')
-    ax2.plot(n_procs,E, '-o')
+    ax2.plot(n_procs,E, linestyle='--', linewidth=2, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
     ax2.set_xscale('log')
     
     
     ax0.legend(bbox_to_anchor=(0.3, 1.0), ncol=1, fancybox=True, shadow=True)
-    ax0.set_xlabel('physic time')
-    ax0.set_ylabel('cpu time')
-    ax0.set_title('case with 1.5M cellule, saturated at 192 cpu\n\
-                Tested on occigen HSW24')
+    ax0.set_xlabel('Temps physique (s)')
+    ax0.set_ylabel('Temps CPU (s)')
+    #ax0.set_title('case with 1.5M cellule, saturated at 192 cpu\n\
+    #            Tested on occigen HSW24')
                 
     ax1.set_xlabel('nb. of processors')
     ax1.set_ylabel('Speed Up')
@@ -68,7 +75,7 @@ def read_cases():
     ax1.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
 
     ax2.set_xlabel('nb. of processors')
-    ax2.set_ylabel('Parallel Efficiency')
+    ax2.set_ylabel(r'$Parallel Efficiencit\'e$')
     #ax2.set_title('annoatations : average nb of cells per proc')
     ax2.set_ylim(0,1.2)
     ax2.set_xlim(0,1000)
@@ -95,12 +102,12 @@ def read_cases():
         ax1.annotate('%.2g' % nb_cell_per_proc, xy=(n_procs[i], Sp[i]), xytext=offset1[i], 
             textcoords='offset points', ha='center', va='bottom',
             bbox=dict(boxstyle='round,pad=0.2', fc='none', alpha=0.3),
-            arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.5', 
+            arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.5', linewidth=2,
                             color='red'))
         ax2.annotate('%.2g' % nb_cell_per_proc, xy=(n_procs[i], E[i]), xytext=offset2[i], 
             textcoords='offset points',
             bbox=dict(boxstyle='round,pad=0.2', fc='none', alpha=0.3),
-            arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.5', 
+            arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.5', linewidth=2,
                             color='red'))
 
     fig0.savefig("cpuTime.png", bbox_inches='tight')
