@@ -268,4 +268,31 @@ def main():
         fig.suptitle(aliasDict[case])
         fig.savefig(path2Data+"/"+case+"/"+"higherOrderStat.png",  bbox_inches='tight')
         
+    casesNonNewtonian=[
+                "BirdCarreau/inlet_0p3",
+                "BirdCarreau/inlet_0p5",
+                "BirdCarreau/inlet0p5_impinging"
+    ]
+    markerDict={
+        "BirdCarreau/inlet_0p3"                : '^',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '',
+        "BirdCarreau/inlet_0p5"                : 'v',
+        "BirdCarreau/inlet0p5_impinging"       : 'o',
+    }
+
+    fig, ax = plt.subplots(2, figsize=(16,10))
+    for case in casesNonNewtonian:
+        ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
+        #ax[0].legend()
+        ax[0].set_ylim(0,20)
+        ax[0].set_ylabel("skew")
+        ax[1].plot(higherOrderStat[case]['kurt'],label=aliasDict[case],marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
+        ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
+        ax[1].axhline(y=0., linestyle='-.', color='black')
+        ax[1].set_ylim(-10,350)
+        ax[1].set_ylabel("kurtosis")
+        ax[1].set_xlabel(r"$x/D$")
+    fig.savefig("./"+"higherOrderStat.png",  bbox_inches='tight')
+              
 main()
