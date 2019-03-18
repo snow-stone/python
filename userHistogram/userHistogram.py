@@ -183,6 +183,17 @@ def main():
         "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
     }
 
+    colorDict={
+        "BirdCarreau/inlet_0p3"                : 'mediumvioletred',
+        "Newtonian/Re2400"                     : 'darkred',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'red',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'red',
+        "BirdCarreau/inlet_0p5"                : 'steelblue',
+        "Newtonian/Re4000"                     : 'red',
+        "BirdCarreau/inlet0p5_impinging"       : 'darkmagenta',
+        "Newtonian/Re4000_impinging"           : 'darkcyan'
+    }
+
 #    for case in caseList:
 #        slice_T_mean_hist("T_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
 #        slice_T_mean_hist("T_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
@@ -245,14 +256,14 @@ def main():
     
     for case in casesNonNewtonian:
         fig, ax = plt.subplots(2,figsize=(16,10))
-        ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker='^',markersize=16,linestyle='--',color='mediumvioletred')
+        ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker='^',markersize=16,linestyle='--',color=colorDict[case])
         #ax[0].legend()
         ax[0].set_ylim(0,20)
         ax[0].set_ylabel("skew")
-        ax[1].plot(higherOrderStat[case]['kurt'],label='kurt',marker='^',markersize=16,linestyle='--',color='mediumvioletred')
+        ax[1].plot(higherOrderStat[case]['kurt'],label='kurt',marker='^',markersize=16,linestyle='--',color=colorDict[case])
         #ax[1].legend()
         ax[1].axhline(y=0., linestyle='-.', color='black')
-        ax[1].set_ylim(-10,300)
+        ax[1].set_ylim(-10,350)
         ax[1].set_ylabel("kurtosis")
         fig.suptitle(aliasDict[case])
         fig.savefig(path2Data+"/"+case+"/"+"higherOrderStat.png",  bbox_inches='tight')
