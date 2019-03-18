@@ -70,7 +70,7 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias):
 def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     plt.style.use('seaborn-white') # from defaut
     plt.rcParams.update({'font.size': 20})
-    plt.rcParams['savefig.dpi'] = 50
+    plt.rcParams['savefig.dpi'] = 100
     
     rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
     
@@ -147,6 +147,9 @@ def main():
     ## for Palatino and other serif fonts use:
     rc('font',**{'family':'serif','serif':['Palatino']})
     rc('text', usetex=True)    
+    plt.style.use('seaborn-white') # from defaut
+    plt.rcParams.update({'font.size': 20})
+    plt.rcParams['savefig.dpi'] = 100
 
     path2Data="/store/8simu_tmp/shape_square/2a_3_T"
     
@@ -241,13 +244,16 @@ def main():
         slice_nu_mean_hist("nu_mean_slice_9.5D0","9.5D",path2Data, case, aliasDict[case])
     
     for case in casesNonNewtonian:
-        fig, ax = plt.subplots(2)
-        ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker='^',markersize=8)
-        ax[0].legend()
+        fig, ax = plt.subplots(2,figsize=(16,10))
+        ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker='^',markersize=16,linestyle='--',color='mediumvioletred')
+        #ax[0].legend()
         ax[0].set_ylim(0,20)
-        ax[1].plot(higherOrderStat[case]['kurt'],label='kurt',marker='^',markersize=8)
-        ax[1].legend()
-        ax[1].set_ylim(0,300)
+        ax[0].set_ylabel("skew")
+        ax[1].plot(higherOrderStat[case]['kurt'],label='kurt',marker='^',markersize=16,linestyle='--',color='mediumvioletred')
+        #ax[1].legend()
+        ax[1].axhline(y=0., linestyle='-.', color='black')
+        ax[1].set_ylim(-10,300)
+        ax[1].set_ylabel("kurtosis")
         fig.suptitle(aliasDict[case])
         fig.savefig(path2Data+"/"+case+"/"+"higherOrderStat.png",  bbox_inches='tight')
         
