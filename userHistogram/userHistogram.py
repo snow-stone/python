@@ -242,13 +242,40 @@ def main():
         "BirdCarreau/inlet0p5_impinging"       : 'o',
     }
 
-    fig, ax = plt.subplots(2, figsize=(16,10))
+    linestyleDict={
+        "BirdCarreau/inlet_0p3"                : '-',
+        "Newtonian/Re2400"                     : '--',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '-',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '-',
+        "BirdCarreau/inlet_0p5"                : '-.',
+        "Newtonian/Re4000"                     : '-',
+        "BirdCarreau/inlet0p5_impinging"       : '--',
+        "Newtonian/Re4000_impinging"           : '-'
+    }
+    
+    linewidthDict={
+        "BirdCarreau/inlet_0p3"                : 4,
+        "Newtonian/Re2400"                     : 1,
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 4,
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 4,
+        "BirdCarreau/inlet_0p5"                : 4,
+        "Newtonian/Re4000"                     : 1,
+        "BirdCarreau/inlet0p5_impinging"       : 4,
+        "Newtonian/Re4000_impinging"           : 1
+    }
+
+    fig, ax = plt.subplots(2, figsize=(10,10))
+    for axis in ax:
+        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+
     for case in casesNonNewtonian:
-        ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew',marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
+        #ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew',marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
+        ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
         #ax[0].legend()
         ax[0].set_ylim(0,25)
         ax[0].set_ylabel(r"$\alpha_{\overline{\nu}}$")
-        ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case],marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
+        #ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case],marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
+        ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
         ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
         ax[1].axhline(y=0., linestyle='-.', color='black')
         ax[1].set_ylim(-10,700)
