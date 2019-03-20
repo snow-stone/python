@@ -69,7 +69,7 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     
 def slice_nu_mean_hist(dataFileName, marker, path2Data, caseName, alias):
     plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 20})
+    plt.rcParams.update({'font.size': 30})
     plt.rcParams['savefig.dpi'] = 100
     
     rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
@@ -271,16 +271,21 @@ def main():
     for case in casesNonNewtonian:
         #ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew',marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
         ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        #ax[0].legend()
-        ax[0].set_ylim(0,25)
-        ax[0].set_ylabel(r"$\alpha_{\overline{\nu}}$")
         #ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case],marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
         ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
-        ax[1].axhline(y=0., linestyle='-.', color='black')
-        ax[1].set_ylim(-10,700)
-        ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
-        ax[1].set_xlabel(r"$x/D$")
+
+    #ax[0].legend()
+    ax[0].set_ylim(0,25)
+    ax[0].set_ylabel(r"$\alpha_{\overline{\nu}}$")
+    ax[1].axhline(y=0., linestyle='-.', color='black')
+    #ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
+    ax[1].set_ylim(-10,700)
+    ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
+    ax[1].set_xlabel(r"$x/D$")
+
+    ax[0].text(-0.12, 0.9,'(a)', transform=ax[0].transAxes)
+    ax[1].text(-0.12, 1.0,'(b)', transform=ax[1].transAxes)
+    ax[0].set_xticklabels([])
     fig.savefig("./"+"higherOrderStat.png",  bbox_inches='tight')
               
 main()
