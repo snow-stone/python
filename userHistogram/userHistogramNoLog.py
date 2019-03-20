@@ -80,7 +80,7 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias):
     
     MIN, MAX = 2e-06, 3e-4
 #    ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), facecolor='g', normed=1)
-    n, bins, patches = ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), weights=np.ones(len(nu)) / len(nu),facecolor='darkcyan')
+    n, bins, patches = ax.hist(nu, bins=np.linspace(MIN, MAX, 1000), weights=np.ones(len(nu)) / len(nu),facecolor='darkcyan')
     
 #    print "bins :", bins
 #    print "n :", n
@@ -93,19 +93,19 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias):
     
 #    ymin, ymax = ax.get_ylim()
 #    xmin, xmax = ax.get_xlim()
-    ax.set_xscale("log")
-    ax.set_xlim(1e-06,1e-4)
-#    ax.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
-    ax.set_ylim(0,0.15)
+#    ax.set_xlim(1e-06,1e-4)
+    ax.set_xlim(2e-06,2e-5)
+    ax.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
+#    ax.set_ylim(0,0.15)
 #    xmax=1
 #    ymax=30
 #    ax.text(xmax*0.7, ymax*0.8, r'$\mu=%.2f$'% mean)
 #    ax.text(xmax*0.7, ymax*0.7, r'$\sigma=%.2f$'% rms)
 #    ax.grid(True)
     ax.tick_params(axis='both', which='major', direction='out', length=8, width=4)
-    ax.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
-    ax.set_xticklabels([''])
-    ax.set_yticklabels([''])
+#    ax.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
+#    ax.set_xticklabels([''])
+#    ax.set_yticklabels([''])
     
 #    import matplotlib
 ##    locmin = matplotlib.ticker.LogLocator(base=10.0, subs=(0.1,0.2,0.4,0.6,0.8,1,2,4,6,8,10 ))
@@ -128,10 +128,10 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias):
 #    ax.text(-0.1, -0.1, r'$0$', fontsize=40, transform=ax.transAxes)
 #    ax.text(6e-7, 0., r'$0$', fontsize=40)
 #    ax.text(3e-7, 0.13, r'$0.15$', fontsize=40)
-    ax.text(1e-6, -0.03, r'$10^{-6}$', fontsize=40)
-    ax.text(5e-6, -0.03, r'$10^{-5}$', fontsize=40)
-    ax.text(3e-5, -0.03, r'$10^{-4}$', fontsize=40)
-    fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+".png",  bbox_inches='tight')
+#    ax.text(1e-6, -0.03, r'$10^{-6}$', fontsize=40)
+#    ax.text(5e-6, -0.03, r'$10^{-5}$', fontsize=40)
+#    ax.text(3e-5, -0.03, r'$10^{-4}$', fontsize=40)
+    fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_noLog.png",  bbox_inches='tight')
     
     import scipy.stats as stats
     
@@ -211,7 +211,7 @@ def main():
 
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
-            skew, kurt = slice_nu_mean_hist("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case])
+            skew, kurt = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case])
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
     
@@ -286,6 +286,6 @@ def main():
     ax[0].text(-0.12, 0.9,'(d)', transform=ax[0].transAxes)
     ax[1].text(-0.12, 1.0,'(e)', transform=ax[1].transAxes)
     ax[0].set_xticklabels([])
-    fig.savefig("./"+"higherOrderStat.png",  bbox_inches='tight')
+    fig.savefig("./"+"higherOrderStat_noLog.png",  bbox_inches='tight')
               
 main()
