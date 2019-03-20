@@ -206,53 +206,25 @@ def main():
         higherOrderStat[case]={'skew':[],'kurt':[]}
 #    skewList=[]
 #    kurtList=[]
+
+    axis_x = np.linspace(0, 8, 9)
+    axis_x_List = [
+        "0D",
+        "1D",
+        "2D",
+        "3D",
+        "4D",
+        "5D",
+        "6D",
+        "7D",
+        "8D"
+    ]
+
     for case in casesNonNewtonian:
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_1.0D0","1D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_3.0D0","3D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_5.0D0","5D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_7.0D0","7D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        skew, kurt = slice_nu_mean_hist("nu_mean_slice_8.0D0","8D",path2Data, case, aliasDict[case])
-        higherOrderStat[case]['skew'].append(skew)
-        higherOrderStat[case]['kurt'].append(kurt)
-#        skewList.append(skew)
-#        kurtList.append(kurt)
-        slice_nu_mean_hist("nu_mean_slice_9.5D0","9.5D",path2Data, case, aliasDict[case])
+        for i, x in enumerate(axis_x):
+            skew, kurt = slice_nu_mean_hist("nu_mean_slice_"+str(x)+"D0",axis_x_List[i],path2Data, case, aliasDict[case])
+            higherOrderStat[case]['skew'].append(skew)
+            higherOrderStat[case]['kurt'].append(kurt)
     
     for case in casesNonNewtonian:
         fig, ax = plt.subplots(2,figsize=(16,10))
@@ -280,8 +252,6 @@ def main():
         "BirdCarreau/inlet_0p5"                : 'v',
         "BirdCarreau/inlet0p5_impinging"       : 'o',
     }
-
-    axis_x = np.linspace(0, 8, 9)
 
     fig, ax = plt.subplots(2, figsize=(16,10))
     for case in casesNonNewtonian:
