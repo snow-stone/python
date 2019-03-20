@@ -281,13 +281,15 @@ def main():
         "BirdCarreau/inlet0p5_impinging"       : 'o',
     }
 
+    axis_x = np.linspace(0, 8, 9)
+
     fig, ax = plt.subplots(2, figsize=(16,10))
     for case in casesNonNewtonian:
-        ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
+        ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew',marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
         #ax[0].legend()
         ax[0].set_ylim(0,20)
         ax[0].set_ylabel("skew")
-        ax[1].plot(higherOrderStat[case]['kurt'],label=aliasDict[case],marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
+        ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case],marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
         ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
         ax[1].axhline(y=0., linestyle='-.', color='black')
         ax[1].set_ylim(-10,350)
