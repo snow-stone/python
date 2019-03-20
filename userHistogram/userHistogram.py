@@ -207,22 +207,11 @@ def main():
 #    skewList=[]
 #    kurtList=[]
 
-    axis_x = np.linspace(0, 8, 9)
-    axis_x_List = [
-        "0D",
-        "1D",
-        "2D",
-        "3D",
-        "4D",
-        "5D",
-        "6D",
-        "7D",
-        "8D"
-    ]
+    axis_x = np.linspace(0, 9.5, 20)
 
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
-            skew, kurt = slice_nu_mean_hist("nu_mean_slice_"+str(x)+"D0",axis_x_List[i],path2Data, case, aliasDict[case])
+            skew, kurt = slice_nu_mean_hist("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case])
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
     
@@ -257,12 +246,12 @@ def main():
     for case in casesNonNewtonian:
         ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew',marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
         #ax[0].legend()
-        ax[0].set_ylim(0,20)
+        ax[0].set_ylim(0,25)
         ax[0].set_ylabel(r"$\alpha_{\overline{\nu}}$")
         ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case],marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
         ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
         ax[1].axhline(y=0., linestyle='-.', color='black')
-        ax[1].set_ylim(-10,350)
+        ax[1].set_ylim(-10,700)
         ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
         ax[1].set_xlabel(r"$x/D$")
     fig.savefig("./"+"higherOrderStat.png",  bbox_inches='tight')
