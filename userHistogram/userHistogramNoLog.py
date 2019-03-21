@@ -96,7 +96,7 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias):
 #    ax.set_xlim(1e-06,1e-4)
     ax.set_xlim(2e-06,2e-5)
     ax.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
-#    ax.set_ylim(0,0.15)
+    ax.set_ylim(0,0.15)
 #    xmax=1
 #    ymax=30
 #    ax.text(xmax*0.7, ymax*0.8, r'$\mu=%.2f$'% mean)
