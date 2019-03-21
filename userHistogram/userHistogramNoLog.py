@@ -84,7 +84,7 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias):
     
 #    print "bins :", bins
 #    print "n :", n
-#    print "sum(n) : ", sum(n)
+    print "sum(n) : ", sum(n)
 
     mean = np.mean(nu)
     rms  = np.std(nu)
