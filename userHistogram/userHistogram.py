@@ -278,7 +278,7 @@ def main():
 
     #ax[0].legend()
     ax[0].set_ylim(0,25)
-    ax[0].set_ylabel(r"$\alpha_{\overline{\nu}}$")
+    ax[0].set_ylabel(r"$\gamma_{\overline{\nu}}$")
     ax[1].axhline(y=0., linestyle='-.', color='black')
     #ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
     ax[1].set_ylim(-10,700)
