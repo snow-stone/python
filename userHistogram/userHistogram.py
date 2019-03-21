@@ -201,13 +201,15 @@ def main():
 #        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
 #        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
     
+    axis_x1 = np.linspace(0, 1.75, 8)
+    axis_x2 = np.linspace(2, 9.5, 16)
+    axis_x  = np.append(axis_x1, axis_x2)
+
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
         higherOrderStat[case]={'skew':[],'kurt':[]}
 #    skewList=[]
 #    kurtList=[]
-
-    axis_x = np.linspace(0, 9.5, 20)
 
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
