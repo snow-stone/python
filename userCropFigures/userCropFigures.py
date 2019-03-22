@@ -47,7 +47,8 @@ def main():
 #            '2DstreamLines_6p0D'            
 #            ]
     imageNames = [
-            'nu_mean_slice_zNomal_z_Eq_0mm'
+            'nu_mean_slice_x_Eq_1.0D',
+            'nu_mean_slice_x_Eq_1.75D'
                 ]
     
     coords_dict= {
@@ -64,6 +65,8 @@ def main():
             'nu_mean_slice_x_Eq_0.0D'       : (810, 285, 2082, 1551),
             'nu_mean_slice_x_Eq_0.25D'      : (810, 285, 2082, 1551),
             'nu_mean_slice_x_Eq_0.5D'       : (810, 285, 2082, 1551),
+            'nu_mean_slice_x_Eq_1.0D'       : (810, 285, 2082, 1551),
+            'nu_mean_slice_x_Eq_1.75D'      : (810, 285, 2082, 1551),
             'nu_mean_slice_x_Eq_2.0D'       : (810, 285, 2082, 1551),
             'nu_mean_slice_x_Eq_4.0D'       : (810, 285, 2082, 1551),
             'nu_mean_slice_x_Eq_6.0D'       : (810, 285, 2082, 1551),
