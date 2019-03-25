@@ -198,6 +198,14 @@ kidneyVortices_decked=kidneyVortices_decked.py
 #echo "---------------" &&
 #echo "Finish Nu_x 0.25D" &&
 #echo "---------------" &&
+pvpython $contourNu_x $BirdCarreau/inlet_0p5                 0.0072 0.4D &&
+pvpython $contourNu_x $BirdCarreau/inlet0p5_impinging        0.0072 0.4D &&
+pvpython $contourNu_x $BirdCarreau/inlet_0p3                 0.0072 0.4D &&
+pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0072 0.4D &&
+pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0072 0.4D &&
+echo "---------------" &&
+echo "Finish Nu_x 0.4D" &&
+echo "---------------"
 #pvpython $contourNu_x $BirdCarreau/inlet_0p5 0.008 0.5D &&
 #pvpython $contourNu_x $BirdCarreau/inlet0p5_impinging 0.008 0.5D &&
 #pvpython $contourNu_x $BirdCarreau/inlet_0p3 0.008 0.5D &&
@@ -206,22 +214,22 @@ kidneyVortices_decked=kidneyVortices_decked.py
 #echo "---------------" &&
 #echo "Finish Nu_x 0.5D" &&
 #echo "---------------" &&
-pvpython $contourNu_x $BirdCarreau/inlet_0p5                 0.012 1.0D &&
-pvpython $contourNu_x $BirdCarreau/inlet0p5_impinging        0.012 1.0D &&
-pvpython $contourNu_x $BirdCarreau/inlet_0p3                 0.012 1.0D &&
-pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.012 1.0D &&
-pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.012 1.0D &&
-echo "---------------" &&
-echo "Finish Nu_x 1.0D" &&
-echo "---------------" &&
-pvpython $contourNu_x $BirdCarreau/inlet_0p5                 0.018 1.75D &&
-pvpython $contourNu_x $BirdCarreau/inlet0p5_impinging        0.018 1.75D &&
-pvpython $contourNu_x $BirdCarreau/inlet_0p3                 0.018 1.75D &&
-pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.018 1.75D &&
-pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.018 1.75D &&
-echo "---------------" &&
-echo "Finish Nu_x 1.75D" &&
-echo "---------------" 
+#pvpython $contourNu_x $BirdCarreau/inlet_0p5                 0.012 1.0D &&
+#pvpython $contourNu_x $BirdCarreau/inlet0p5_impinging        0.012 1.0D &&
+#pvpython $contourNu_x $BirdCarreau/inlet_0p3                 0.012 1.0D &&
+#pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.012 1.0D &&
+#pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.012 1.0D &&
+#echo "---------------" &&
+#echo "Finish Nu_x 1.0D" &&
+#echo "---------------" &&
+#pvpython $contourNu_x $BirdCarreau/inlet_0p5                 0.018 1.75D &&
+#pvpython $contourNu_x $BirdCarreau/inlet0p5_impinging        0.018 1.75D &&
+#pvpython $contourNu_x $BirdCarreau/inlet_0p3                 0.018 1.75D &&
+#pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.018 1.75D &&
+#pvpython $contourNu_x $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.018 1.75D &&
+#echo "---------------" &&
+#echo "Finish Nu_x 1.75D" &&
+#echo "---------------" 
 #pvpython $contourNu_x $BirdCarreau/inlet_0p5 0.02 2.0D &&
 #pvpython $contourNu_x $BirdCarreau/inlet0p5_impinging 0.02 2.0D &&
 #pvpython $contourNu_x $BirdCarreau/inlet_0p3 0.02 2.0D &&
@@ -354,11 +362,11 @@ echo "---------------"
 #pvpython $contourNu_z $BirdCarreau/inlet_0p5 
 #pvpython $contourT_z $BirdCarreau/inlet_0p5 0 0mm 
 
-pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p5 &&
-pvpython $kidneyVortices_decked $BirdCarreau/inlet0p5_impinging &&
-pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3 &&
-pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 &&
-pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 &&
-pvpython $kidneyVortices_decked $Newtonian/Re2400 &&
-pvpython $kidneyVortices_decked $Newtonian/Re4000 &&
-pvpython $kidneyVortices_decked $Newtonian/Re4000_impinging 
+#pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p5 &&
+#pvpython $kidneyVortices_decked $BirdCarreau/inlet0p5_impinging &&
+#pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3 &&
+#pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 &&
+#pvpython $kidneyVortices_decked $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 &&
+#pvpython $kidneyVortices_decked $Newtonian/Re2400 &&
+#pvpython $kidneyVortices_decked $Newtonian/Re4000 &&
+#pvpython $kidneyVortices_decked $Newtonian/Re4000_impinging 
