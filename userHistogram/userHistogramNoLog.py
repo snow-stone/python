@@ -221,13 +221,6 @@ def main():
         "Newtonian/Re4000_impinging"           : 'darkcyan'
     }
 
-#    for case in caseList:
-#        slice_T_mean_hist("T_mean_slice_0.0D0","0D",path2Data, case, aliasDict[case])
-#        slice_T_mean_hist("T_mean_slice_2.0D0","2D",path2Data, case, aliasDict[case])
-#        slice_T_mean_hist("T_mean_slice_4.0D0","4D",path2Data, case, aliasDict[case])
-#        slice_T_mean_hist("T_mean_slice_6.0D0","6D",path2Data, case, aliasDict[case])
-#        slice_T_mean_hist("T_mean_slice_8.0D0","6D",path2Data, case, aliasDict[case])
-
     axis_x1 = np.linspace(0, 1.875, 16)
     axis_x2 = np.linspace(2, 9.5, 16)
     axis_x  = np.append(axis_x1, axis_x2)
@@ -235,8 +228,6 @@ def main():
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
         higherOrderStat[case]={'skew':[],'kurt':[]}
-#    skewList=[]
-#    kurtList=[]
 
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
@@ -244,6 +235,7 @@ def main():
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
     
+    # A plot for skew and kurt for each case
     for case in casesNonNewtonian:
         fig, ax = plt.subplots(2,figsize=(16,10))
         ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker='^',markersize=16,linestyle='--',color=colorDict[case])
@@ -257,7 +249,9 @@ def main():
         ax[1].set_ylabel("kurtosis")
         fig.suptitle(aliasDict[case])
         fig.savefig(path2Data+"/"+case+"/"+"higherOrderStat.png",  bbox_inches='tight')
-        
+     
+    #
+    # One plot for these cases
     casesNonNewtonian=[
                 "BirdCarreau/inlet_0p3",
                 "BirdCarreau/inlet_0p5",
