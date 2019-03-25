@@ -242,13 +242,13 @@ def main():
 
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
-            #skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
-            skew, kurt, factor0, factor1 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
+            skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
+            #skew, kurt, factor0, factor1 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
             higherOrderStat[case]['factor0'].append(factor0)
             higherOrderStat[case]['factor1'].append(factor1)
-            #higherOrderStat[case]['factor2'].append(factor2)
+            higherOrderStat[case]['factor2'].append(factor2)
     
     # A plot for skew and kurt for each case
     for case in casesNonNewtonian:
@@ -333,16 +333,16 @@ def main():
     for case in casesNonNewtonian:
         ax[0].plot(axis_x, higherOrderStat[case]['factor0'],label='factor0', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
         ax[1].plot(axis_x, np.asarray(higherOrderStat[case]['factor1'])/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-#        ax[2].plot(axis_x, higherOrderStat[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+        ax[2].plot(axis_x, higherOrderStat[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
     ax[0].set_ylim(0.5,1)
     ax[0].axhline(y=0.7, linestyle='-.', color='black')
     ax[0].set_ylabel(r"$\zeta_{\overline{\nu}}$")
     ax[1].set_ylim(0,2.5)
     ax[1].axhline(y=1., linestyle='-.', color='black')
     ax[1].set_ylabel(r"$(\mu_{\overline{\nu}}+\sigma_{\overline{\nu}})/\nu_{ref}$")
-#    ax[2].set_ylim(0,0.5)
-#    ax[2].set_ylabel(r"$\psi(\nu_{ref})$")
-#    ax[2].set_xlabel(r"$x/D$")
+    ax[2].set_ylim(0,0.5)
+    ax[2].set_ylabel(r"$\psi(\nu_{ref})$")
+    ax[2].set_xlabel(r"$x/D$")
     fig.savefig("./"+"factor_noLog.png",  bbox_inches='tight')
               
 main()
