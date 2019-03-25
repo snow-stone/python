@@ -132,6 +132,33 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias):
 #    ax.text(5e-6, -0.03, r'$10^{-5}$', fontsize=40)
 #    ax.text(3e-5, -0.03, r'$10^{-4}$', fontsize=40)
     fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_noLog.png",  bbox_inches='tight')
+
+    nu_Filtered = filter(lambda x: x > (mean+rms), nu)
+    print "len(nu)", len(nu)
+    print "len(nu_Filtered)", len(nu_Filtered)
+    fig1, ax1 = plt.subplots()
+    n, bins, patches = ax1.hist(nu_Filtered, bins=np.linspace(MIN, MAX, 1000), weights=np.ones(len(nu_Filtered)) / len(nu_Filtered),facecolor='darkcyan')
+    mean_Filtered = np.mean(nu_Filtered)
+    rms_Filtered  = np.std(nu_Filtered)
+    print "casename : ", caseName
+    print "mean     : ", mean
+    ax1.set_xlim(2e-06,2e-5)
+    ax1.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
+    ax1.set_ylim(0,0.15)
+    ax1.tick_params(axis='both', which='major', direction='out', length=8, width=4)
+    ax1.axvline(x=MIN, color='orange', linewidth=5, linestyle='-.')
+    ax1.axvline(x=mean, color='red', linewidth=5)
+    if (mean-rms) > MIN:
+        ax1.axvline(x=mean-rms, color='black', linewidth=5, linestyle='--')
+    if (mean+rms) < MAX:
+        ax1.axvline(x=mean+rms, color='black', linewidth=5, linestyle='--')
+    ax1.axvline(x=mean_Filtered, color='mediumvioletred', linewidth=5)
+    if (mean_Filtered-rms_Filtered) > MIN:
+        ax1.axvline(x=mean_Filtered-rms_Filtered, color='darkmagenta', linewidth=5, linestyle='--')
+    if (mean_Filtered+rms_Filtered) < MAX:
+        ax1.axvline(x=mean_Filtered+rms_Filtered, color='darkmagenta', linewidth=5, linestyle='--')
+
+    fig1.savefig(path2Data+"/"+caseName+"/"+"histFiltered_"+dataFileName[:-1]+"_noLog.png",  bbox_inches='tight')
     
     import scipy.stats as stats
     
