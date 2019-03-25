@@ -142,7 +142,7 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias):
     rms_Filtered  = np.std(nu_Filtered)
     print "casename : ", caseName
     print "mean     : ", mean
-    ax1.set_xlim(2e-06,2e-5)
+    ax1.set_xlim(2e-06,5e-5)
     ax1.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
     ax1.set_ylim(0,0.15)
     ax1.tick_params(axis='both', which='major', direction='out', length=8, width=4)
