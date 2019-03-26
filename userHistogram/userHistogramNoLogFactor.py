@@ -199,7 +199,7 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, i
         print "ratio2 :", ratio2
         return skew, kurt, ratio0, ratio1, ratio2
     else :
-        return skew, kurt, ratio0, ratio1
+        return mean, rms, skew, kurt, ratio0, ratio1, mean_Filtered, rms_Filtered
     
 def writeData_T_mean():
 
@@ -255,10 +255,10 @@ def writeData_T_mean():
         "Newtonian/Re4000_impinging"           : 'darkcyan'
     }
 
-    #axis_x1 = np.linspace(0, 1.875, 16)
-    #axis_x2 = np.linspace(2, 9.5, 16)
-    #axis_x  = np.append(axis_x1, axis_x2)
-    axis_x  = np.linspace(0, 8, 5)
+    axis_x1 = np.linspace(0, 1.875, 16)
+    axis_x2 = np.linspace(2, 9.5, 16)
+    axis_x  = np.append(axis_x1, axis_x2)
+    #axis_x  = np.linspace(0, 8, 5)
     
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
@@ -342,17 +342,22 @@ def writeData_nu_mean_noLog():
     
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
-        higherOrderStat[case]={'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[]}
+        #higherOrderStat[case]={'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[], 'mean_tail':[]}
+        higherOrderStat[case]={'mean':[],'rms':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[]}
 
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
-            skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
-            #skew, kurt, factor0, factor1 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
+            #skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
+            mean, rms, skew, kurt, factor0, factor1, mean_tail, rms_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
+            higherOrderStat[case]['mean'].append(skew)
+            higherOrderStat[case]['rms'].append(skew)
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
             higherOrderStat[case]['factor0'].append(factor0)
             higherOrderStat[case]['factor1'].append(factor1)
-            higherOrderStat[case]['factor2'].append(factor2)
+            #higherOrderStat[case]['factor2'].append(factor2)
+            higherOrderStat[case]['mean_tail'].append(mean_tail)
+            higherOrderStat[case]['rms_tail'].append(rms_tail)
             print "========================"
             print "\n"
     
@@ -361,7 +366,7 @@ def writeData_nu_mean_noLog():
             output2Txt(path2Data + "/" + case + "/nu_mean_" + key, axis_x, value) 
 
 def main():
-    #writeData_nu_mean_noLog()
-    writeData_T_mean()
+    writeData_nu_mean_noLog()
+    #writeData_T_mean()
 
 main()
