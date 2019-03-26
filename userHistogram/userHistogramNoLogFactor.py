@@ -216,11 +216,11 @@ def main():
               ]
     
     casesNonNewtonian=[
-                "BirdCarreau/inlet_0p3"#,
-                #"BirdCarreau/inlet_0p5",
-                #"BirdCarreau/inlet0p5_impinging",
-                #"BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
-                #"BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
+                "BirdCarreau/inlet_0p3",
+                "BirdCarreau/inlet_0p5",
+                "BirdCarreau/inlet0p5_impinging",
+                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
+                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
     ]
               
     aliasDict={
