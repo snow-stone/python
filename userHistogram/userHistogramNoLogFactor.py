@@ -191,7 +191,7 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, i
     else :
         return skew, kurt, ratio0, ratio1
     
-def main():
+def writeData_nu_mean_noLog():
 
     from matplotlib import rc
 #    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
@@ -265,104 +265,9 @@ def main():
             print "========================"
             print "\n"
     
-    # A plot for skew and kurt for each case
-    # but before that, save data
     for case in casesNonNewtonian:
         for key, value in higherOrderStat[case].iteritems():
             output2Txt(path2Data + "/" + case + "/nu_mean_" + key, axis_x, value) 
 
-    for case in casesNonNewtonian:
-        fig, ax = plt.subplots(2,figsize=(16,10))
-        ax[0].plot(higherOrderStat[case]['skew'],label='skew',marker='^',markersize=16,linestyle='--',color=colorDict[case])
-        #ax[0].legend()
-        ax[0].set_ylim(0,20)
-        ax[0].set_ylabel("skew")
-        ax[1].plot(higherOrderStat[case]['kurt'],label='kurt',marker='^',markersize=16,linestyle='--',color=colorDict[case])
-        #ax[1].legend()
-        ax[1].axhline(y=0., linestyle='-.', color='black')
-        ax[1].set_ylim(-10,350)
-        ax[1].set_ylabel("kurtosis")
-        fig.suptitle(aliasDict[case])
-        fig.savefig(path2Data+"/"+case+"/"+"higherOrderStat.png",  bbox_inches='tight')
-     
-#    #
-#    # One plot for these cases
-#    casesNonNewtonian=[
-#                "BirdCarreau/inlet_0p3",
-#                "BirdCarreau/inlet_0p5",
-#                "BirdCarreau/inlet0p5_impinging"
-#    ]
-#    markerDict={
-#        "BirdCarreau/inlet_0p3"                : '^',
-#        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '',
-#        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '',
-#        "BirdCarreau/inlet_0p5"                : 'v',
-#        "BirdCarreau/inlet0p5_impinging"       : 'o',
-#    }
-#
-#    linestyleDict={
-#        "BirdCarreau/inlet_0p3"                : '-',
-#        "Newtonian/Re2400"                     : '--',
-#        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": '-',
-#        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": '-',
-#        "BirdCarreau/inlet_0p5"                : '-.',
-#        "Newtonian/Re4000"                     : '-',
-#        "BirdCarreau/inlet0p5_impinging"       : '--',
-#        "Newtonian/Re4000_impinging"           : '-'
-#    }
-#    
-#    linewidthDict={
-#        "BirdCarreau/inlet_0p3"                : 4,
-#        "Newtonian/Re2400"                     : 1,
-#        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 4,
-#        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 4,
-#        "BirdCarreau/inlet_0p5"                : 4,
-#        "Newtonian/Re4000"                     : 1,
-#        "BirdCarreau/inlet0p5_impinging"       : 4,
-#        "Newtonian/Re4000_impinging"           : 1
-#    }
-#
-#    fig, ax = plt.subplots(2, figsize=(10,10))
-#    for axis in ax:
-#        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
-#
-#    for case in casesNonNewtonian:
-#        #ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew',marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
-#        ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-#        #ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case],marker=markerDict[case],markersize=16,linestyle='--',color=colorDict[case])
-#        ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-#
-#    #ax[0].legend()
-#    ax[0].set_ylim(0,25)
-#    ax[0].set_ylabel(r"$\gamma_{\overline{\nu}}$")
-#    ax[1].axhline(y=0., linestyle='-.', color='black')
-#    #ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
-#    ax[1].set_ylim(-10,700)
-#    ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
-#    ax[1].set_xlabel(r"$x/D$")
-#
-#    ax[0].text(-0.12, 0.9,'(d)', transform=ax[0].transAxes)
-#    ax[1].text(-0.12, 1.0,'(e)', transform=ax[1].transAxes)
-#    ax[0].set_xticklabels([])
-#    fig.savefig("./"+"higherOrderStat_noLog.png",  bbox_inches='tight')
-#
-#    fig, ax = plt.subplots(3,figsize=(10,10))
-#    for axis in ax:
-#        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
-#
-#    for case in casesNonNewtonian:
-#        ax[0].plot(axis_x, higherOrderStat[case]['factor0'],label='factor0', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-#        ax[1].plot(axis_x, np.asarray(higherOrderStat[case]['factor1'])/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-#        ax[2].plot(axis_x, higherOrderStat[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-#    ax[0].set_ylim(0.5,1)
-#    ax[0].axhline(y=0.7, linestyle='-.', color='black')
-#    ax[0].set_ylabel(r"$\zeta_{\overline{\nu}}$")
-#    ax[1].set_ylim(0,2.5)
-#    ax[1].axhline(y=1., linestyle='-.', color='black')
-#    ax[1].set_ylabel(r"$(\mu_{\overline{\nu}}+\sigma_{\overline{\nu}})/\nu_{ref}$")
-#    ax[2].set_ylim(0,0.5)
-#    ax[2].set_ylabel(r"$\psi(\nu_{ref})$")
-#    ax[2].set_xlabel(r"$x/D$")
-#    fig.savefig("./"+"factor_noLog.png",  bbox_inches='tight')
-              
-main()
+def main():
+    #writeData_nu_mean_noLog()
