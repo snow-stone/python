@@ -22,10 +22,13 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias, ifPlotHi
     plt.rcParams['savefig.dpi'] = 100
     
     rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
-    
+
     T = rawData[:,0]
     mean = np.mean(T)
     rms  = np.std(T)
+    
+    print "casename : ", caseName, " with ", dataFileName+".csv"
+    print "mean     : ", mean
     
     if ifPlotHist :
 	    fig, ax = plt.subplots()
@@ -223,11 +226,11 @@ def writeData_T_mean():
               ]
     
     casesNonNewtonian=[
-                "BirdCarreau/inlet_0p3"#,
-                #"BirdCarreau/inlet_0p5",
-                #"BirdCarreau/inlet0p5_impinging",
-                #"BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
-                #"BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
+                "BirdCarreau/inlet_0p3",
+                "BirdCarreau/inlet_0p5",
+                "BirdCarreau/inlet0p5_impinging",
+                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
+                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
     ]
               
     aliasDict={
