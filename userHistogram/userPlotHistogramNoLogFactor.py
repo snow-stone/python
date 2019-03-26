@@ -41,11 +41,11 @@ def plot_T_mean():
               ]
     
     casesNonNewtonian=[
-                "BirdCarreau/inlet_0p3"#,
-                #"BirdCarreau/inlet_0p5",
-                #"BirdCarreau/inlet0p5_impinging",
-                #"BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
-                #"BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
+                "BirdCarreau/inlet_0p3",
+                "BirdCarreau/inlet_0p5",
+                "BirdCarreau/inlet0p5_impinging",
+                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
+                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
     ]
               
     aliasDict={
@@ -90,9 +90,9 @@ def plot_T_mean():
     
     # One plot for these cases
     casesNonNewtonian=[
-                "BirdCarreau/inlet_0p3"#,
-                #"BirdCarreau/inlet_0p5",
-                #"BirdCarreau/inlet0p5_impinging"
+                "BirdCarreau/inlet_0p3",
+                "BirdCarreau/inlet_0p5",
+                "BirdCarreau/inlet0p5_impinging"
     ]
     markerDict={
         "BirdCarreau/inlet_0p3"                : '^',
@@ -135,11 +135,11 @@ def plot_T_mean():
         ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
 
     #ax[0].legend()
-    ax[0].set_ylim(0,25)
+    ax[0].set_ylim(0,5)
     ax[0].set_ylabel(r"$\gamma_{\overline{\nu}}$")
     ax[1].axhline(y=0., linestyle='-.', color='black')
     #ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
-    ax[1].set_ylim(-10,700)
+    ax[1].set_ylim(-10,10)
     ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
     ax[1].set_xlabel(r"$x/D$")
 
@@ -148,10 +148,10 @@ def plot_T_mean():
     ax[0].set_xticklabels([])
     fig.savefig("./"+"c_mean_higherOrderStat_noLog.png",  bbox_inches='tight')
 
-    fig, ax = plt.subplots(3,figsize=(10,10))
-    for axis in ax:
-        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
-
+#    fig, ax = plt.subplots(3,figsize=(10,10))
+#    for axis in ax:
+#        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+#
 #    for case in casesNonNewtonian:
 #        ax[0].plot(axis_x, higherOrderStat[case]['factor0'],label='factor0', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
 #        ax[1].plot(axis_x, np.asarray(higherOrderStat[case]['factor1'])/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
