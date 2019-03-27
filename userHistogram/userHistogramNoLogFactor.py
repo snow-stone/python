@@ -349,8 +349,8 @@ def writeData_nu_mean_noLog():
         for i, x in enumerate(axis_x):
             #skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
             mean, rms, skew, kurt, factor0, factor1, mean_tail, rms_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
-            higherOrderStat[case]['mean'].append(skew)
-            higherOrderStat[case]['rms'].append(skew)
+            higherOrderStat[case]['mean'].append(mean)
+            higherOrderStat[case]['rms'].append(rms)
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
             higherOrderStat[case]['factor0'].append(factor0)

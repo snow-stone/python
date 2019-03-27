@@ -275,15 +275,26 @@ def plot_nu_mean():
         "Newtonian/Re4000_impinging"           : 1
     }
 
+    # mean and rms
     fig, ax = plt.subplots(3, 1, figsize=(10,10))
     for axis in ax:
         axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+        axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
     for case in casesNonNewtonian:
         ax[0].plot(axis_x, higherOrderStat[case]['mean'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
         ax[1].plot(axis_x, higherOrderStat[case]['rms'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[2].plot(axis_x, np.asarray(higherOrderStat[case]['mean'])/np.asarray(higherOrderStat[case]['rms']), linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+        ax[2].plot(axis_x, np.asarray(higherOrderStat[case]['rms'])/np.asarray(higherOrderStat[case]['mean']), linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
 
-    fig.savefig("./"+"nu_mean_12.png",  bbox_inches='tight')
+    ax[0].set_ylabel(r"$\mu_{\overline{\nu}}$")
+    ax[1].set_ylabel(r"$\sigma_{\overline{\nu}}$")
+    ax[2].set_ylabel(r"$\sigma_{\overline{\nu}} / \mu_{\overline{\nu}}$")
+    ax[2].set_xlabel(r"$x/D$")
+    
+    ax[0].text(-0.1,3.4,'(a)',size=20, transform=ax[2].transAxes)
+    ax[1].text(-0.1,2.2,'(b)',size=20, transform=ax[2].transAxes)
+    ax[2].text(-0.1,1,'(c)',size=20, transform=ax[2].transAxes)  
+    ax[2].set_ylim(0.2,1.2)
+    fig.savefig("./"+"nu_mean_moment12.png",  bbox_inches='tight')
 
     # skew and kurt
     fig, ax = plt.subplots(2, figsize=(10,10))
@@ -306,9 +317,9 @@ def plot_nu_mean():
     ax[0].text(-0.12, 0.9,'(d)', transform=ax[0].transAxes)
     ax[1].text(-0.12, 1.0,'(e)', transform=ax[1].transAxes)
     ax[0].set_xticklabels([])
-    fig.savefig("./"+"nu_mean_higherOrderStat_noLog.png",  bbox_inches='tight')
+    fig.savefig("./"+"nu_mean_moment34.png",  bbox_inches='tight')
 
-    # factor0, factor1, factor2
+    # factors
     fig, ax = plt.subplots(3,figsize=(10,10))
     for axis in ax:
         axis.tick_params(axis='both', direction='in', length=4, width=1.5)
@@ -316,7 +327,8 @@ def plot_nu_mean():
     for case in casesNonNewtonian:
         ax[0].plot(axis_x, higherOrderStat[case]['factor0'],label='factor0', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
         ax[1].plot(axis_x, np.asarray(higherOrderStat[case]['factor1'])/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        #ax[2].plot(axis_x, higherOrderStat[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+        ax[2].plot(axis_x, higherOrderStat[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+
     ax[0].set_ylim(0.5,1)
     ax[0].axhline(y=0.7, linestyle='-.', color='black')
     ax[0].set_ylabel(r"$\zeta_{\overline{\nu}}$")
@@ -326,11 +338,10 @@ def plot_nu_mean():
     ax[2].set_ylim(0,0.5)
     ax[2].set_ylabel(r"$\psi(\nu_{ref})$")
     ax[2].set_xlabel(r"$x/D$")
-    fig.savefig("./"+"nu_mean_factor_noLog.png",  bbox_inches='tight')
+    fig.savefig("./"+"nu_mean_factors.png",  bbox_inches='tight')
               
 def main():
     plot_nu_mean()
     #plot_T_mean()
-
 
 main()
