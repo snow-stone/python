@@ -276,142 +276,157 @@ def plot_nu_mean():
         "Newtonian/Re4000_impinging"           : 1
     }
 
-    # mean and rms
-    fig, ax = plt.subplots(3, 1, figsize=(10,10))
-    for axis in ax:
-        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
-        axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
-    for case in casesNonNewtonian:
-        ax[0].plot(axis_x, higherOrderStat[case]['mean'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[1].plot(axis_x, higherOrderStat[case]['rms'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[2].plot(axis_x, np.asarray(higherOrderStat[case]['rms'])/np.asarray(higherOrderStat[case]['mean']), linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-
-    ax[0].set_ylabel(r"$\mu_{\overline{\nu}}$")
-    ax[1].set_ylabel(r"$\sigma_{\overline{\nu}}$")
-    ax[2].set_ylabel(r"$\sigma_{\overline{\nu}} / \mu_{\overline{\nu}}$")
-    ax[2].set_xlabel(r"$x/D$")
+    def nu_mean_moment12(x, databaseDict):
+        # mean and rms
+        fig, ax = plt.subplots(3, 1, figsize=(10,10))
+        for axis in ax:
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+            axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['mean'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['rms'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[2].plot(x, np.asarray(databaseDict[case]['rms'])/np.asarray(higherOrderStat[case]['mean']), linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
     
-    ax[0].text(-0.1,3.4,'(a)',size=20, transform=ax[2].transAxes)
-    ax[1].text(-0.1,2.2,'(b)',size=20, transform=ax[2].transAxes)
-    ax[2].text(-0.1,1,'(c)',size=20, transform=ax[2].transAxes)  
-    ax[2].set_ylim(0.2,1.2)
-    fig.savefig("./"+"nu_mean_moment12.png",  bbox_inches='tight')
+        ax[0].set_ylabel(r"$\mu_{\overline{\nu}}$")
+        ax[1].set_ylabel(r"$\sigma_{\overline{\nu}}$")
+        ax[2].set_ylabel(r"$\sigma_{\overline{\nu}} / \mu_{\overline{\nu}}$")
+        ax[2].set_xlabel(r"$x/D$")
+        
+        ax[0].text(-0.1,3.4,'(a)',size=20, transform=ax[2].transAxes)
+        ax[1].text(-0.1,2.2,'(b)',size=20, transform=ax[2].transAxes)
+        ax[2].text(-0.1,1,'(c)',size=20, transform=ax[2].transAxes)  
+        ax[2].set_ylim(0.2,1.2)
+        fig.savefig("./"+"nu_mean_moment12.png",  bbox_inches='tight')
 
-    # skew and kurt
-    fig, ax = plt.subplots(2, figsize=(10,10))
-    for axis in ax:
-        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+    def nu_mean_moment34(x, databaseDict):
+        # skew and kurt
+        fig, ax = plt.subplots(2, figsize=(10,10))
+        for axis in ax:
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+    
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['skew'],label='skew', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    
+        #ax[0].legend()
+        ax[0].set_ylim(0,25)
+        ax[0].set_ylabel(r"$\gamma_{\overline{\nu}}$")
+        ax[1].axhline(y=0., linestyle='-.', color='black')
+        #ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
+        ax[1].set_ylim(-10,700)
+        ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
+        ax[1].set_xlabel(r"$x/D$")
+    
+        ax[0].text(-0.12, 0.9,'(d)', transform=ax[0].transAxes)
+        ax[1].text(-0.12, 1.0,'(e)', transform=ax[1].transAxes)
+        ax[0].set_xticklabels([])
+        fig.savefig("./"+"nu_mean_moment34.png",  bbox_inches='tight')
 
-    for case in casesNonNewtonian:
-        ax[0].plot(axis_x, higherOrderStat[case]['skew'],label='skew', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[1].plot(axis_x, higherOrderStat[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    def nu_mean_MinMax0(x, databaseDict):
+        # max and min
+        fig, ax = plt.subplots(4, figsize=(10,10))
+        for i, axis in enumerate(ax):
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+            axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
+            if i != (len(ax)-1) :
+                axis.set_xticklabels([])
+            else :
+                axis.set_xlabel(r"$x/D$")
+    
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['maximum'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['minimum'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[2].plot(x, databaseDict[case]['maximum_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[3].plot(x, databaseDict[case]['minimum_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    
+        ax[0].set_ylabel(r"$max(\overline{\nu})$")
+        ax[1].set_ylabel(r"$min(\overline{\nu})$")
+        ax[2].set_ylabel(r"$max(tail)$")
+        ax[3].set_ylabel(r"$min(tail)$")
+    
+        ax[0].text(-0.12, 0.9,'(f)', transform=ax[0].transAxes)
+        ax[1].text(-0.12, 0.9,'(g)', transform=ax[1].transAxes)
+        ax[2].text(-0.12, 0.9,'(h)', transform=ax[2].transAxes)
+        ax[3].text(-0.12, 0.9,'(i)', transform=ax[3].transAxes)
+        fig.savefig("./"+"nu_mean_MinMax0.png",  bbox_inches='tight')
 
-    #ax[0].legend()
-    ax[0].set_ylim(0,25)
-    ax[0].set_ylabel(r"$\gamma_{\overline{\nu}}$")
-    ax[1].axhline(y=0., linestyle='-.', color='black')
-    #ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
-    ax[1].set_ylim(-10,700)
-    ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
-    ax[1].set_xlabel(r"$x/D$")
+    def nu_mean_MinMax1(x, databaseDict):
+        # max and min complement
+        fig, ax = plt.subplots(2, figsize=(10,10))
+        for i, axis in enumerate(ax):
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+            axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
+            if i != (len(ax)-1) :
+                axis.set_xticklabels([])
+            else :
+                axis.set_xlabel(r"$x/D$")
+    
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['maximum']/higherOrderStat[case]['minimum'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['maximum_tail']/higherOrderStat[case]['minimum_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    
+        ax[0].set_ylabel(r"$max/min$")
+        ax[1].set_ylabel(r"$max/min(tail)$")
+    
+        ax[0].text(-0.12, 0.9,'(j)', transform=ax[0].transAxes)
+        ax[1].text(-0.12, 0.9,'(k)', transform=ax[1].transAxes)
+        fig.savefig("./"+"nu_mean_MinMax1.png",  bbox_inches='tight')
 
-    ax[0].text(-0.12, 0.9,'(d)', transform=ax[0].transAxes)
-    ax[1].text(-0.12, 1.0,'(e)', transform=ax[1].transAxes)
-    ax[0].set_xticklabels([])
-    fig.savefig("./"+"nu_mean_moment34.png",  bbox_inches='tight')
+    def nu_mean_tail0(x, databaseDict):
+        # tail
+        fig, ax = plt.subplots(3, figsize=(10,10))
+        for i, axis in enumerate(ax):
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+            axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
+            if i != (len(ax)-1) :
+                axis.set_xticklabels([])
+            else :
+                axis.set_xlabel(r"$x/D$")
+    
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['rms_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[2].plot(x, (databaseDict[case]['mean']+higherOrderStat[case]['rms'])/higherOrderStat[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    
+        ax[0].set_ylabel(r"$\mu_{\overline{\nu}}(tail)$")
+        ax[1].set_ylabel(r"$\sigma_{\overline{\nu}}(tail)$")
+        ax[2].set_ylabel(r"$\zeta_{\overline{\nu}}$")
+    
+        ax[0].text(-0.12, 0.9,'(l)', transform=ax[0].transAxes)
+        ax[1].text(-0.12, 0.9,'(m)', transform=ax[1].transAxes)
+        ax[2].text(-0.12, 0.9,'(n)', transform=ax[2].transAxes)
+        fig.savefig("./"+"nu_mean_tail0.png",  bbox_inches='tight')
 
-    # max and min
-    fig, ax = plt.subplots(4, figsize=(10,10))
-    for i, axis in enumerate(ax):
-        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
-        axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
-        if i != (len(ax)-1) :
-            axis.set_xticklabels([])
-        else :
-            axis.set_xlabel(r"$x/D$")
+    def nu_mean_factors(x, databaseDict):
+        # factors
+        fig, ax = plt.subplots(3,figsize=(10,10))
+        for axis in ax:
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+    
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['factor0'],label='factor0', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['factor1']/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[2].plot(x, databaseDict[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    
+        ax[0].set_ylim(0.5,1)
+        ax[0].axhline(y=0.7, linestyle='-.', color='black')
+        ax[0].set_ylabel(r"$\zeta_{\overline{\nu}}$")
+        ax[1].set_ylim(0,2.5)
+        ax[1].axhline(y=1., linestyle='-.', color='black')
+        ax[1].set_ylabel(r"$(\mu_{\overline{\nu}}+\sigma_{\overline{\nu}})/\nu_{ref}$")
+        ax[2].set_ylim(0,0.5)
+        ax[2].set_ylabel(r"$\psi(\nu_{ref})$")
+        ax[2].set_xlabel(r"$x/D$")
+        fig.savefig("./"+"nu_mean_factors.png",  bbox_inches='tight')
 
-    for case in casesNonNewtonian:
-        ax[0].plot(axis_x, higherOrderStat[case]['maximum'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[1].plot(axis_x, higherOrderStat[case]['minimum'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[2].plot(axis_x, higherOrderStat[case]['maximum_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[3].plot(axis_x, higherOrderStat[case]['minimum_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
 
-    ax[0].set_ylabel(r"$max(\overline{\nu})$")
-    ax[1].set_ylabel(r"$min(\overline{\nu})$")
-    ax[2].set_ylabel(r"$max(tail)$")
-    ax[3].set_ylabel(r"$min(tail)$")
-
-    ax[0].text(-0.12, 0.9,'(f)', transform=ax[0].transAxes)
-    ax[1].text(-0.12, 0.9,'(g)', transform=ax[1].transAxes)
-    ax[2].text(-0.12, 0.9,'(h)', transform=ax[2].transAxes)
-    ax[3].text(-0.12, 0.9,'(i)', transform=ax[3].transAxes)
-    fig.savefig("./"+"nu_mean_MinMax0.png",  bbox_inches='tight')
-
-    # max and min complement
-    fig, ax = plt.subplots(2, figsize=(10,10))
-    for i, axis in enumerate(ax):
-        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
-        axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
-        if i != (len(ax)-1) :
-            axis.set_xticklabels([])
-        else :
-            axis.set_xlabel(r"$x/D$")
-
-    for case in casesNonNewtonian:
-        ax[0].plot(axis_x, higherOrderStat[case]['maximum']/higherOrderStat[case]['minimum'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[1].plot(axis_x, higherOrderStat[case]['maximum_tail']/higherOrderStat[case]['minimum_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-
-    ax[0].set_ylabel(r"$max/min$")
-    ax[1].set_ylabel(r"$max/min(tail)$")
-
-    ax[0].text(-0.12, 0.9,'(j)', transform=ax[0].transAxes)
-    ax[1].text(-0.12, 0.9,'(k)', transform=ax[1].transAxes)
-    fig.savefig("./"+"nu_mean_MinMax1.png",  bbox_inches='tight')
-
-    # tail
-    fig, ax = plt.subplots(3, figsize=(10,10))
-    for i, axis in enumerate(ax):
-        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
-        axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
-        if i != (len(ax)-1) :
-            axis.set_xticklabels([])
-        else :
-            axis.set_xlabel(r"$x/D$")
-
-    for case in casesNonNewtonian:
-        ax[0].plot(axis_x, higherOrderStat[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[1].plot(axis_x, higherOrderStat[case]['rms_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[2].plot(axis_x, (higherOrderStat[case]['mean']+higherOrderStat[case]['rms'])/higherOrderStat[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-
-    ax[0].set_ylabel(r"$\mu_{\overline{\nu}}(tail)$")
-    ax[1].set_ylabel(r"$\sigma_{\overline{\nu}}(tail)$")
-    ax[2].set_ylabel(r"$\zeta_{\overline{\nu}}$")
-
-    ax[0].text(-0.12, 0.9,'(l)', transform=ax[0].transAxes)
-    ax[1].text(-0.12, 0.9,'(m)', transform=ax[1].transAxes)
-    ax[2].text(-0.12, 0.9,'(n)', transform=ax[2].transAxes)
-    fig.savefig("./"+"nu_mean_tail0.png",  bbox_inches='tight')
-
-    # factors
-    fig, ax = plt.subplots(3,figsize=(10,10))
-    for axis in ax:
-        axis.tick_params(axis='both', direction='in', length=4, width=1.5)
-
-    for case in casesNonNewtonian:
-        ax[0].plot(axis_x, higherOrderStat[case]['factor0'],label='factor0', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[1].plot(axis_x, higherOrderStat[case]['factor1']/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[2].plot(axis_x, higherOrderStat[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-
-    ax[0].set_ylim(0.5,1)
-    ax[0].axhline(y=0.7, linestyle='-.', color='black')
-    ax[0].set_ylabel(r"$\zeta_{\overline{\nu}}$")
-    ax[1].set_ylim(0,2.5)
-    ax[1].axhline(y=1., linestyle='-.', color='black')
-    ax[1].set_ylabel(r"$(\mu_{\overline{\nu}}+\sigma_{\overline{\nu}})/\nu_{ref}$")
-    ax[2].set_ylim(0,0.5)
-    ax[2].set_ylabel(r"$\psi(\nu_{ref})$")
-    ax[2].set_xlabel(r"$x/D$")
-    fig.savefig("./"+"nu_mean_factors.png",  bbox_inches='tight')
+    nu_mean_moment12(axis_x, higherOrderStat)
+    nu_mean_moment34(axis_x, higherOrderStat)
+    nu_mean_MinMax0(axis_x, higherOrderStat)
+    nu_mean_MinMax1(axis_x, higherOrderStat)
+    nu_mean_tail0(axis_x, higherOrderStat)
+    nu_mean_factors(axis_x, higherOrderStat)
+    
               
 def main():
     plot_nu_mean()
