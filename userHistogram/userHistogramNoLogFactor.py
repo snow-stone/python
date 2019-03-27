@@ -97,9 +97,12 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, i
     
     rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
     
+    print "============================"
     nu = rawData[:,0]
     mean = np.mean(nu)
     rms  = np.std(nu)
+    maximum = np.max(nu)
+    minimum = np.min(nu)
     print "casename : ", caseName
     print "mean     : ", mean
 
@@ -156,13 +159,16 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, i
 	#    ax.text(3e-5, -0.03, r'$10^{-4}$', fontsize=40)
 	    fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_noLog.png",  bbox_inches='tight')
 
+    print "----------------------------"
+    print "Tail :"
     nu_Filtered = filter(lambda x: x > (mean+rms), nu)
     print "len(nu)", len(nu)
     print "len(nu_Filtered)", len(nu_Filtered)
-    mean_Filtered = np.mean(nu_Filtered)
-    rms_Filtered  = np.std(nu_Filtered)
-    print "casename : ", caseName, " with ", dataFileName+".csv"
-    print "mean     : ", mean_Filtered
+    mean_tail = np.mean(nu_Filtered)
+    rms_tail  = np.std(nu_Filtered)
+    maximum_tail = np.max(nu_Filtered)
+    minimum_tail = np.min(nu_Filtered)
+    print "mean     : ", mean_tail
 
     if ifPlotHist :
 	    fig1, ax1 = plt.subplots()
@@ -179,11 +185,11 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, i
 	    if (mean+rms) < MAX:
 	        ax1.axvline(x=mean+rms, color='black', linewidth=5, linestyle='--')
         # draw the filtered data
-	    ax1.axvline(x=mean_Filtered, color='mediumvioletred', linewidth=5)
-	    if (mean_Filtered-rms_Filtered) > MIN:
-	        ax1.axvline(x=mean_Filtered-rms_Filtered, color='darkmagenta', linewidth=5, linestyle='--')
-	    if (mean_Filtered+rms_Filtered) < MAX:
-	        ax1.axvline(x=mean_Filtered+rms_Filtered, color='darkmagenta', linewidth=5, linestyle='--')
+	    ax1.axvline(x=mean_tail, color='mediumvioletred', linewidth=5)
+	    if (mean_tail-rms_tail) > MIN:
+	        ax1.axvline(x=mean_tail-rms_tail, color='darkmagenta', linewidth=5, linestyle='--')
+	    if (mean_tail+rms_tail) < MAX:
+	        ax1.axvline(x=mean_tail+rms_tail, color='darkmagenta', linewidth=5, linestyle='--')
 	
 	    fig1.savefig(path2Data+"/"+caseName+"/"+"histFiltered_"+dataFileName[:-1]+"_noLog.png",  bbox_inches='tight')
     
@@ -191,7 +197,7 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, i
     
     skew = stats.skew(nu)
     kurt = stats.kurtosis(nu)
-    ratio0 = (mean+rms)/mean_Filtered
+    ratio0 = (mean+rms)/mean_tail
     ratio1 = mean+rms
 
     if ifPlotHist :
@@ -199,7 +205,7 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, i
         print "ratio2 :", ratio2
         return skew, kurt, ratio0, ratio1, ratio2
     else :
-        return mean, rms, skew, kurt, ratio0, ratio1, mean_Filtered, rms_Filtered
+        return mean, rms, minimum, maximum, skew, kurt, ratio0, ratio1, mean_tail, rms_tail, minimum_tail, maximum_tail
     
 def writeData_T_mean():
 
@@ -343,14 +349,16 @@ def writeData_nu_mean_noLog():
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
         #higherOrderStat[case]={'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[], 'mean_tail':[]}
-        higherOrderStat[case]={'mean':[],'rms':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[]}
+        higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
 
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
             #skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
-            mean, rms, skew, kurt, factor0, factor1, mean_tail, rms_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
+            mean, rms, minimum, maximum, skew, kurt, factor0, factor1, mean_tail, rms_tail, minimum_tail, maximum_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
             higherOrderStat[case]['mean'].append(mean)
             higherOrderStat[case]['rms'].append(rms)
+            higherOrderStat[case]['minimum'].append(minimum)
+            higherOrderStat[case]['maximum'].append(maximum)
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
             higherOrderStat[case]['factor0'].append(factor0)
@@ -358,6 +366,8 @@ def writeData_nu_mean_noLog():
             #higherOrderStat[case]['factor2'].append(factor2)
             higherOrderStat[case]['mean_tail'].append(mean_tail)
             higherOrderStat[case]['rms_tail'].append(rms_tail)
+            higherOrderStat[case]['minimum_tail'].append(minimum_tail)
+            higherOrderStat[case]['maximum_tail'].append(maximum_tail)
             print "========================"
             print "\n"
     
