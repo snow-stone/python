@@ -369,7 +369,7 @@ def plot_nu_mean():
     fig.savefig("./"+"nu_mean_MinMax1.png",  bbox_inches='tight')
 
     # tail
-    fig, ax = plt.subplots(2, figsize=(10,10))
+    fig, ax = plt.subplots(3, figsize=(10,10))
     for i, axis in enumerate(ax):
         axis.tick_params(axis='both', direction='in', length=4, width=1.5)
         axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
@@ -381,12 +381,15 @@ def plot_nu_mean():
     for case in casesNonNewtonian:
         ax[0].plot(axis_x, higherOrderStat[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
         ax[1].plot(axis_x, higherOrderStat[case]['rms_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+        ax[2].plot(axis_x, (higherOrderStat[case]['mean']+higherOrderStat[case]['rms'])/higherOrderStat[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
 
     ax[0].set_ylabel(r"$\mu_{\overline{\nu}}(tail)$")
     ax[1].set_ylabel(r"$\sigma_{\overline{\nu}}(tail)$")
+    ax[2].set_ylabel(r"$\zeta_{\overline{\nu}}$")
 
     ax[0].text(-0.12, 0.9,'(l)', transform=ax[0].transAxes)
     ax[1].text(-0.12, 0.9,'(m)', transform=ax[1].transAxes)
+    ax[2].text(-0.12, 0.9,'(n)', transform=ax[2].transAxes)
     fig.savefig("./"+"nu_mean_tail0.png",  bbox_inches='tight')
 
     # factors
