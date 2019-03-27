@@ -227,8 +227,8 @@ def plot_nu_mean():
     
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
-        #higherOrderStat[case]={'mean':[],'rms':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[]}
-        higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
+        higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
+        #higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
 
     for case in casesNonNewtonian:
         #for i, x in enumerate(axis_x):
@@ -399,8 +399,8 @@ def plot_nu_mean():
 
     for case in casesNonNewtonian:
         ax[0].plot(axis_x, higherOrderStat[case]['factor0'],label='factor0', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        ax[1].plot(axis_x, np.asarray(higherOrderStat[case]['factor1'])/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-        #ax[2].plot(axis_x, higherOrderStat[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+        ax[1].plot(axis_x, higherOrderStat[case]['factor1']/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+        ax[2].plot(axis_x, higherOrderStat[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
 
     ax[0].set_ylim(0.5,1)
     ax[0].axhline(y=0.7, linestyle='-.', color='black')
