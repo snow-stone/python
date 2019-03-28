@@ -299,7 +299,6 @@ def plot_nu_mean():
         fig.savefig("./"+"nu_mean_moment12.png",  bbox_inches='tight')
 
     def nu_mean_moment34(x, databaseDict):
-        # skew and kurt
         fig, ax = plt.subplots(2, figsize=(10,10))
         for axis in ax:
             axis.tick_params(axis='both', direction='in', length=4, width=1.5)
@@ -308,11 +307,9 @@ def plot_nu_mean():
             ax[0].plot(x, databaseDict[case]['skew'],label='skew', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
             ax[1].plot(x, databaseDict[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
     
-        #ax[0].legend()
         ax[0].set_ylim(0,25)
         ax[0].set_ylabel(r"$\gamma_{\overline{\nu}}$")
         ax[1].axhline(y=0., linestyle='-.', color='black')
-        #ax[1].legend(bbox_to_anchor=(1, 2.5), ncol=3, shadow=True, fontsize=20, handlelength=2.5)
         ax[1].set_ylim(-10,700)
         ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
         ax[1].set_xlabel(r"$x/D$")
@@ -322,8 +319,35 @@ def plot_nu_mean():
         ax[0].set_xticklabels([])
         fig.savefig("./"+"nu_mean_moment34.png",  bbox_inches='tight')
 
+    def nu_mean_moment34_ratio(x, databaseDict):
+        fig, ax = plt.subplots(3, figsize=(10,10))
+        for i, axis in enumerate(ax):
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+            axis.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
+            if i != (len(ax)-1) :
+                axis.set_xticklabels([])
+            else :
+                axis.set_xlabel(r"$x/D$")
+    
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['skew'],label='skew', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[2].plot(x, databaseDict[case]['maximum']/databaseDict[case]['minimum'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    
+        ax[0].set_ylim(0,25)
+        ax[0].set_ylabel(r"$\gamma_{\overline{\nu}}$")
+        ax[1].axhline(y=0., linestyle='-.', color='black')
+        ax[1].set_ylim(-100,700)
+        ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
+        ax[2].set_ylim(0,75)
+        ax[2].set_ylabel(r"$\overline{\nu}_{max}/\overline{\nu}_{min}$")
+    
+        ax[0].text(-0.12, 0.9,'(d)', transform=ax[0].transAxes)
+        ax[1].text(-0.12, 1.0,'(e)', transform=ax[1].transAxes)
+        ax[2].text(-0.12, 1.0,'(f)', transform=ax[2].transAxes)
+        fig.savefig("./"+"nu_mean_moment34_ratio.png",  bbox_inches='tight')
+        
     def nu_mean_MinMax0(x, databaseDict):
-        # max and min
         fig, ax = plt.subplots(4, figsize=(10,10))
         for i, axis in enumerate(ax):
             axis.tick_params(axis='both', direction='in', length=4, width=1.5)
@@ -351,7 +375,6 @@ def plot_nu_mean():
         fig.savefig("./"+"nu_mean_MinMax0.png",  bbox_inches='tight')
 
     def nu_mean_MinMax1(x, databaseDict):
-        # max and min complement
         fig, ax = plt.subplots(2, figsize=(10,10))
         for i, axis in enumerate(ax):
             axis.tick_params(axis='both', direction='in', length=4, width=1.5)
@@ -373,7 +396,6 @@ def plot_nu_mean():
         fig.savefig("./"+"nu_mean_MinMax1.png",  bbox_inches='tight')
 
     def nu_mean_tail0(x, databaseDict):
-        # tail
         fig, ax = plt.subplots(3, figsize=(10,10))
         for i, axis in enumerate(ax):
             axis.tick_params(axis='both', direction='in', length=4, width=1.5)
@@ -388,17 +410,52 @@ def plot_nu_mean():
             ax[1].plot(x, databaseDict[case]['rms_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
             ax[2].plot(x, (databaseDict[case]['mean']+higherOrderStat[case]['rms'])/higherOrderStat[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
     
-        ax[0].set_ylabel(r"$\mu_{\overline{\nu}}(tail)$")
-        ax[1].set_ylabel(r"$\sigma_{\overline{\nu}}(tail)$")
-        ax[2].set_ylabel(r"$\zeta_{\overline{\nu}}$")
+        ax[0].set_ylabel(r"$\mu^t_{\overline{\nu}}$")
+        ax[1].set_ylabel(r"$\sigma^t_{\overline{\nu}}$")
+        ax[2].set_ylabel(r"$\zeta$")
     
-        ax[0].text(-0.12, 0.9,'(l)', transform=ax[0].transAxes)
-        ax[1].text(-0.12, 0.9,'(m)', transform=ax[1].transAxes)
-        ax[2].text(-0.12, 0.9,'(n)', transform=ax[2].transAxes)
+        ax[0].text(-0.12, 0.9,'(a)', transform=ax[0].transAxes)
+        ax[1].text(-0.12, 0.9,'(b)', transform=ax[1].transAxes)
+        ax[2].text(-0.12, 0.9,'(c)', transform=ax[2].transAxes)
         fig.savefig("./"+"nu_mean_tail0.png",  bbox_inches='tight')
 
+    def nu_mean_tail1(x, databaseDict):
+        from matplotlib.ticker import FuncFormatter
+        def to_percent(y, position):
+            # Ignore the passed in position. This has the effect of scaling the default
+            # tick locations.
+            s = str(round((100 * y)))
+        
+            # The percent symbol needs escaping in latex
+            if matplotlib.rcParams['text.usetex'] is True:
+                return s + r'$\%$'
+            else:
+                return s + '%'
+        formatter = FuncFormatter(to_percent)
+
+        fig, ax = plt.subplots(2, figsize=(10,10))
+        for i, axis in enumerate(ax):
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+            if i != (len(ax)-1) :
+                axis.set_xticklabels([])
+            else :
+                axis.set_xlabel(r"$x/D$")
+    
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['mean']+databaseDict[case]['rms'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['factor2'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    
+        ax[0].ticklabel_format(axis='y',style='sci',scilimits=(0,0))
+        ax[0].set_ylabel(r"$\mu_{\overline{\nu}}+\sigma_{\overline{\nu}}$")
+        ax[1].set_ylim(0,0.5)
+        ax[1].yaxis.set_major_formatter(formatter)
+        ax[1].set_ylabel(r"$P(\overline{\nu} \ge \nu_{ref})$")
+    
+        ax[0].text(-0.16, 1.0,'(d)', transform=ax[0].transAxes)
+        ax[1].text(-0.16, 1.0,'(e)', transform=ax[1].transAxes)
+        fig.savefig("./"+"nu_mean_tail1.png",  bbox_inches='tight')
+
     def nu_mean_factors(x, databaseDict):
-        # factors
         fig, ax = plt.subplots(3,figsize=(10,10))
         for axis in ax:
             axis.tick_params(axis='both', direction='in', length=4, width=1.5)
@@ -422,9 +479,11 @@ def plot_nu_mean():
 
     nu_mean_moment12(axis_x, higherOrderStat)
     nu_mean_moment34(axis_x, higherOrderStat)
+    nu_mean_moment34_ratio(axis_x, higherOrderStat)
     nu_mean_MinMax0(axis_x, higherOrderStat)
     nu_mean_MinMax1(axis_x, higherOrderStat)
     nu_mean_tail0(axis_x, higherOrderStat)
+    nu_mean_tail1(axis_x, higherOrderStat)
     nu_mean_factors(axis_x, higherOrderStat)
     
               
