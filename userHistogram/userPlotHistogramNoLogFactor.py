@@ -408,7 +408,7 @@ def plot_nu_mean():
         for case in casesNonNewtonian:
             ax[0].plot(x, databaseDict[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
             ax[1].plot(x, databaseDict[case]['rms_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
-            ax[2].plot(x, (databaseDict[case]['mean']+higherOrderStat[case]['rms'])/higherOrderStat[case]['mean_tail'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[2].plot(x, higherOrderStat[case]['mean_tail']/(databaseDict[case]['mean']+higherOrderStat[case]['rms']), linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
     
         ax[0].set_ylabel(r"$\mu^t_{\overline{\nu}}$")
         ax[1].set_ylabel(r"$\sigma^t_{\overline{\nu}}$")
