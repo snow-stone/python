@@ -202,7 +202,19 @@ def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, i
     if ifPlotHist :
         ratio2 = sum(n[33:]) # approx= 1000/30.
         print "ratio2 :", ratio2
-        return mean, rms, minimum, maximum, skew, kurt, ratio0, ratio1, ratio2, mean_tail, rms_tail, minimum_tail, maximum_tail
+
+        ref=1e-5
+        n_start = int(1000 * (ref-MIN) / (MAX-MIN))
+        print "n_start : ", n_start
+        ratio3 = sum(n[n_start:]) 
+        print "ratio3 :", ratio3
+
+        ref=mean+rms
+        n_start = int(1000 * (ref-MIN) / (MAX-MIN))
+        print "n_start : ", n_start
+        ratio4 = sum(n[n_start:]) 
+        print "ratio4 :", ratio4
+        return mean, rms, minimum, maximum, skew, kurt, ratio0, ratio1, ratio2, ratio3, ratio4, mean_tail, rms_tail, minimum_tail, maximum_tail
     else :
         return mean, rms, minimum, maximum, skew, kurt, ratio0, ratio1, mean_tail, rms_tail, minimum_tail, maximum_tail
     
@@ -347,12 +359,12 @@ def writeData_nu_mean_noLog():
     
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
-        higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
+        higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[], 'factor3':[], 'factor4':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
         #higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
 
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
-            mean, rms, minimum, maximum, skew, kurt, factor0, factor1, factor2, mean_tail, rms_tail, minimum_tail, maximum_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
+            mean, rms, minimum, maximum, skew, kurt, factor0, factor1, factor2, factor3, factor4, mean_tail, rms_tail, minimum_tail, maximum_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
             #mean, rms, minimum, maximum, skew, kurt, factor0, factor1, mean_tail, rms_tail, minimum_tail, maximum_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
             higherOrderStat[case]['mean'].append(mean)
             higherOrderStat[case]['rms'].append(rms)
@@ -363,6 +375,8 @@ def writeData_nu_mean_noLog():
             higherOrderStat[case]['factor0'].append(factor0)
             higherOrderStat[case]['factor1'].append(factor1)
             higherOrderStat[case]['factor2'].append(factor2)
+            higherOrderStat[case]['factor3'].append(factor3)
+            higherOrderStat[case]['factor4'].append(factor4)
             higherOrderStat[case]['mean_tail'].append(mean_tail)
             higherOrderStat[case]['rms_tail'].append(rms_tail)
             higherOrderStat[case]['minimum_tail'].append(minimum_tail)

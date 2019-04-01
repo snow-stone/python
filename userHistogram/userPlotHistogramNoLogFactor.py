@@ -227,7 +227,7 @@ def plot_nu_mean():
     
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
-        higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
+        higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[], 'factor3':[], 'factor4':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
         #higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
 
     for case in casesNonNewtonian:
@@ -456,7 +456,7 @@ def plot_nu_mean():
         fig.savefig("./"+"nu_mean_tail1.png",  bbox_inches='tight')
 
     def nu_mean_factors(x, databaseDict):
-        fig, ax = plt.subplots(3,figsize=(10,10))
+        fig, ax = plt.subplots(5,figsize=(10,10))
         for axis in ax:
             axis.tick_params(axis='both', direction='in', length=4, width=1.5)
     
@@ -464,6 +464,8 @@ def plot_nu_mean():
             ax[0].plot(x, databaseDict[case]['factor0'],label='factor0', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
             ax[1].plot(x, databaseDict[case]['factor1']/1e-5,label='factor1', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
             ax[2].plot(x, databaseDict[case]['factor2'],label='factor2', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[3].plot(x, databaseDict[case]['factor3'],label='factor3', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[4].plot(x, databaseDict[case]['factor4'],label='factor4', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
     
         ax[0].set_ylim(0.5,1)
         ax[0].axhline(y=0.7, linestyle='-.', color='black')
@@ -472,8 +474,14 @@ def plot_nu_mean():
         ax[1].axhline(y=1., linestyle='-.', color='black')
         ax[1].set_ylabel(r"$(\mu_{\overline{\nu}}+\sigma_{\overline{\nu}})/\nu_{ref}$")
         ax[2].set_ylim(0,0.5)
-        ax[2].set_ylabel(r"$\psi(\nu_{ref})$")
+        ax[2].set_ylabel(r"$P(\nu \ge \nu_{ref})$")
         ax[2].set_xlabel(r"$x/D$")
+        ax[3].set_ylim(0,0.5)
+        ax[3].set_ylabel(r"$P_1(\nu \ge \nu_{ref})$")
+        ax[3].set_xlabel(r"$x/D$")
+        ax[4].set_ylim(0,0.5)
+        ax[4].set_ylabel(r"$P(\nu \ge \mu_{\nu}+\sigma_{\nu})$")
+        ax[4].set_xlabel(r"$x/D$")
         fig.savefig("./"+"nu_mean_factors.png",  bbox_inches='tight')
 
 
