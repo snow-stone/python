@@ -47,13 +47,13 @@ def main():
 #            '2DstreamLines_6p0D'            
 #            ]
     imageNames = [
-            'nu_mean_slice_yNormal_y_Eq_p3mm',
-            'nu_mean_slice_yNormal_y_Eq_p2mm',
-            'nu_mean_slice_yNormal_y_Eq_p1mm',
-            'nu_mean_slice_yNormal_y_Eq_0mm',
-            'nu_mean_slice_yNormal_y_Eq_n1mm',
-            'nu_mean_slice_yNormal_y_Eq_n2mm',
-            'nu_mean_slice_yNormal_y_Eq_n3mm'
+            'nu_mean_slice_yNormal_y_Eq_p3mm_addInlet2',
+            'nu_mean_slice_yNormal_y_Eq_p2mm_addInlet2',
+            'nu_mean_slice_yNormal_y_Eq_p1mm_addInlet2',
+            'nu_mean_slice_yNormal_y_Eq_0mm_addInlet2',
+            'nu_mean_slice_yNormal_y_Eq_n1mm_addInlet2',
+            'nu_mean_slice_yNormal_y_Eq_n2mm_addInlet2',
+            'nu_mean_slice_yNormal_y_Eq_n3mm_addInlet2'
                 ]
     
     coords_dict= {
@@ -105,13 +105,13 @@ def main():
             'nu_mean_slice_zNormal_z_Eq_p1p5mm'             : (402, 681, 2130, 1155),
             'nu_mean_slice_zNormal_z_Eq_p1mm'               : (402, 681, 2130, 1155),
             'nu_mean_slice_zNormal_z_Eq_p0p5mm'             : (402, 681, 2130, 1155),
-            'nu_mean_slice_yNormal_y_Eq_p3mm'               : (387, 756, 2142, 1080),
-            'nu_mean_slice_yNormal_y_Eq_p2mm'               : (387, 756, 2142, 1080),
-            'nu_mean_slice_yNormal_y_Eq_p1mm'               : (387, 756, 2142, 1080),
-            'nu_mean_slice_yNormal_y_Eq_0mm'                : (387, 756, 2142, 1080),
-            'nu_mean_slice_yNormal_y_Eq_n1mm'               : (387, 756, 2142, 1080),
-            'nu_mean_slice_yNormal_y_Eq_n2mm'               : (387, 756, 2142, 1080),
-            'nu_mean_slice_yNormal_y_Eq_n3mm'               : (387, 756, 2142, 1080)
+            'nu_mean_slice_yNormal_y_Eq_p3mm_addInlet2'     : (387, 756, 2142, 1080),
+            'nu_mean_slice_yNormal_y_Eq_p2mm_addInlet2'     : (387, 756, 2142, 1080),
+            'nu_mean_slice_yNormal_y_Eq_p1mm_addInlet2'     : (387, 756, 2142, 1080),
+            'nu_mean_slice_yNormal_y_Eq_0mm_addInlet2'      : (387, 756, 2142, 1080),
+            'nu_mean_slice_yNormal_y_Eq_n1mm_addInlet2'     : (387, 756, 2142, 1080),
+            'nu_mean_slice_yNormal_y_Eq_n2mm_addInlet2'     : (387, 756, 2142, 1080),
+            'nu_mean_slice_yNormal_y_Eq_n3mm_addInlet2'     : (387, 756, 2142, 1080)
             }    
     
     

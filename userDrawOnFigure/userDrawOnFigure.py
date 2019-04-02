@@ -31,23 +31,36 @@ def main():
             'BirdCarreau/inlet_0p3-a_0p5-setT_St_5'
            ]
            
-    imageNames = ['nu_mean_slice_yNomal_y_Eq_neg3mm',
-                  'nu_mean_slice_yNomal_y_Eq_0mm',
-                  'nu_mean_slice_yNomal_y_Eq_pos3mm']
+    imageNames = [
+            'nu_mean_slice_yNormal_y_Eq_p3mm',
+            'nu_mean_slice_yNormal_y_Eq_p2mm',
+            'nu_mean_slice_yNormal_y_Eq_p1mm',
+            'nu_mean_slice_yNormal_y_Eq_0mm',
+            'nu_mean_slice_yNormal_y_Eq_n1mm',
+            'nu_mean_slice_yNormal_y_Eq_n2mm',
+            'nu_mean_slice_yNormal_y_Eq_n3mm'            
+            ]
     
     xy_dict= {
-            'Ux_mean_slice_yNomal_y_Eq_neg3mm' : [(888,755), (1219.5, 1078.5)],
-            'Ux_mean_slice_yNomal_y_Eq_0mm'    : [(888,755), (1219.5, 1078.5)],
-            'Ux_mean_slice_yNomal_y_Eq_pos3mm' : [(888,755), (1219.5, 1078.5)],
-            'Uy_mean_slice_yNomal_y_Eq_neg3mm' : [(909,760.5), (1215, 1072.5)],
-            'Uy_mean_slice_yNomal_y_Eq_0mm'    : [(909,760.5), (1215, 1072.5)],
-            'Uy_mean_slice_yNomal_y_Eq_pos3mm' : [(909,760.5), (1215, 1072.5)],
-            'Uz_mean_slice_yNomal_y_Eq_neg3mm' : [(909,760.5), (1215, 1072.5)],
-            'Uz_mean_slice_yNomal_y_Eq_0mm'    : [(909,760.5), (1215, 1072.5)],
-            'Uz_mean_slice_yNomal_y_Eq_pos3mm' : [(909,760.5), (1215, 1072.5)],
-            'nu_mean_slice_yNomal_y_Eq_neg3mm' : [(928.5, 760), (1234.5, 1075)],
-            'nu_mean_slice_yNomal_y_Eq_0mm'    : [(928.5, 760), (1234.5, 1075)],
-            'nu_mean_slice_yNomal_y_Eq_pos3mm' : [(928.5, 760), (1234.5, 1075)]                                                  
+#            'Ux_mean_slice_yNomal_y_Eq_neg3mm' : [(888,755), (1219.5, 1078.5)],
+#            'Ux_mean_slice_yNomal_y_Eq_0mm'    : [(888,755), (1219.5, 1078.5)],
+#            'Ux_mean_slice_yNomal_y_Eq_pos3mm' : [(888,755), (1219.5, 1078.5)],
+#            'Uy_mean_slice_yNomal_y_Eq_neg3mm' : [(909,760.5), (1215, 1072.5)],
+#            'Uy_mean_slice_yNomal_y_Eq_0mm'    : [(909,760.5), (1215, 1072.5)],
+#            'Uy_mean_slice_yNomal_y_Eq_pos3mm' : [(909,760.5), (1215, 1072.5)],
+#            'Uz_mean_slice_yNomal_y_Eq_neg3mm' : [(909,760.5), (1215, 1072.5)],
+#            'Uz_mean_slice_yNomal_y_Eq_0mm'    : [(909,760.5), (1215, 1072.5)],
+#            'Uz_mean_slice_yNomal_y_Eq_pos3mm' : [(909,760.5), (1215, 1072.5)],
+#            'nu_mean_slice_yNomal_y_Eq_neg3mm' : [(928.5, 760), (1234.5, 1075)],
+#            'nu_mean_slice_yNomal_y_Eq_0mm'    : [(928.5, 760), (1234.5, 1075)],
+#            'nu_mean_slice_yNomal_y_Eq_pos3mm' : [(928.5, 760), (1234.5, 1075)],
+            'nu_mean_slice_yNormal_y_Eq_p3mm'  : [(555  , 759), (877   , 1075)],
+            'nu_mean_slice_yNormal_y_Eq_p2mm'  : [(555  , 759), (877   , 1075)],       
+            'nu_mean_slice_yNormal_y_Eq_p1mm'  : [(555  , 759), (877   , 1075)],
+            'nu_mean_slice_yNormal_y_Eq_0mm'   : [(555  , 759), (877   , 1075)],
+            'nu_mean_slice_yNormal_y_Eq_n1mm'  : [(555  , 759), (877   , 1075)],
+            'nu_mean_slice_yNormal_y_Eq_n2mm'  : [(555  , 759), (877   , 1075)],          
+            'nu_mean_slice_yNormal_y_Eq_n3mm'  : [(555  , 759), (877   , 1075)],                                                       
             }
             
 #    for i, path in enumerate(paths):
