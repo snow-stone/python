@@ -1734,7 +1734,7 @@ renderView1.CameraFocalPoint = [0.013999999035149813, -0.0020000000949949026, -7
 renderView1.CameraParallelScale = 0.022803508012705226
 
 # save screenshot
-SaveScreenshot(dirName+'/nu_mean_slice_zNormal_z_Eq_'+zPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2534, 1838],
+SaveScreenshot(dirName+'/nu_mean_slice_zNormal_z_Eq_'+zPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2534, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
