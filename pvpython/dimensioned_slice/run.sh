@@ -6,7 +6,7 @@ Newtonian=/store/8simu_tmp/shape_square/2a_3_T/Newtonian
 contourUx=Ux_mean_slice_yNormal.py
 contourUy=Uy_mean_slice_yNormal.py
 contourUz=Uz_mean_slice_yNormal.py
-contourNu_y=nu_mean_slice_yNormal-logScale.py
+contourNu_y=nu_mean_slice_yNormal-logScale_clipped.py
 contourNu_z=nu_mean_slice_zNormal-logScale_clipped_beta.py
 #contourNu_x=nu_mean_slice_xNormal-logScale.py
 contourNu_x=nu_mean_slice_x-logScale.py
@@ -15,62 +15,119 @@ contourT_z=T_mean_slice_zNormal_noClipped.py
 
 kidneyVortices_decked=kidneyVortices_decked.py
 
-pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0005 p0p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0005 p0p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0005 p0p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0005 p0p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0005 p0p5mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.003 p3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.003 p3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.003 p3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.003 p3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.003 p3mm &&
 echo "---------------" &&
-echo "Finish Nu_z p0p5mm" &&
+echo "Finish Nu_y p3mm" &&
 echo "---------------" &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.001 p1mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.001 p1mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.001 p1mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.001 p1mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.001 p1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.002 p2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.002 p2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.002 p2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.002 p2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.002 p2mm &&
 echo "---------------" &&
-echo "Finish Nu_z p1mm" &&
+echo "Finish Nu_y p2mm" &&
 echo "---------------" &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0015 p1p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0015 p1p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0015 p1p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0015 p1p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0015 p1p5mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.001 p1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.001 p1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.001 p1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.001 p1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.001 p1mm &&
 echo "---------------" &&
-echo "Finish Nu_z p1p5mm" &&
+echo "Finish Nu_y p1mm" &&
 echo "---------------" &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.002 p2mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.002 p2mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.002 p2mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.002 p2mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.002 p2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0 0mm &&
+pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0 0mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0 0mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0 0mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm &&
 echo "---------------" &&
-echo "Finish Nu_z p2mm" &&
+echo "Finish Nu_y 0mm" &&
 echo "---------------" &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0025 p2p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0025 p2p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0025 p2p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0025 p2p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0025 p2p5mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.003 n3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.003 n3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.003 n3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.003 n3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.003 n3mm &&
 echo "---------------" &&
-echo "Finish Nu_z p2p5mm" &&
+echo "Finish Nu_y n3mm" &&
 echo "---------------" &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.003 p3mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.003 p3mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.003 p3mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.003 p3mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.003 p3mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.002 n2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.002 n2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.002 n2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.002 n2mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.002 n2mm &&
 echo "---------------" &&
-echo "Finish Nu_z p3mm" &&
+echo "Finish Nu_y n2mm" &&
 echo "---------------" &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0035 p3p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0035 p3p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0035 p3p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0035 p3p5mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0035 p3p5mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.001 n1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.001 n1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.001 n1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.001 n1mm &&
+pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.001 n1mm &&
 echo "---------------" &&
-echo "Finish Nu_z p3p5mm" &&
-echo "---------------"
+echo "Finish Nu_y n1mm" &&
+echo "---------------" 
+
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0005 p0p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0005 p0p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0005 p0p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0005 p0p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0005 p0p5mm &&
+#echo "---------------" &&
+#echo "Finish Nu_z p0p5mm" &&
+#echo "---------------" &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.001 p1mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.001 p1mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.001 p1mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.001 p1mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.001 p1mm &&
+#echo "---------------" &&
+#echo "Finish Nu_z p1mm" &&
+#echo "---------------" &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0015 p1p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0015 p1p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0015 p1p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0015 p1p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0015 p1p5mm &&
+#echo "---------------" &&
+#echo "Finish Nu_z p1p5mm" &&
+#echo "---------------" &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.002 p2mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.002 p2mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.002 p2mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.002 p2mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.002 p2mm &&
+#echo "---------------" &&
+#echo "Finish Nu_z p2mm" &&
+#echo "---------------" &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0025 p2p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0025 p2p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0025 p2p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0025 p2p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0025 p2p5mm &&
+#echo "---------------" &&
+#echo "Finish Nu_z p2p5mm" &&
+#echo "---------------" &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.003 p3mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.003 p3mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.003 p3mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.003 p3mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.003 p3mm &&
+#echo "---------------" &&
+#echo "Finish Nu_z p3mm" &&
+#echo "---------------" &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0035 p3p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0035 p3p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0035 p3p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.0035 p3p5mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.0035 p3p5mm &&
+#echo "---------------" &&
+#echo "Finish Nu_z p3p5mm" &&
+#echo "---------------"
 
 #pvpython $contourUx $BirdCarreau/inlet_0p5 -0.003 neg3mm &&
 #pvpython $contourUx $BirdCarreau/inlet0p5_impinging -0.003 neg3mm &&
