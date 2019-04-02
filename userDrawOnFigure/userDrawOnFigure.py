@@ -37,16 +37,16 @@ def main():
     
     xy_dict= {
             'Ux_mean_slice_yNomal_y_Eq_neg3mm' : [(888,755), (1219.5, 1078.5)],
-            'Ux_mean_slice_yNomal_y_Eq_0mm' : [(888,755), (1219.5, 1078.5)],
+            'Ux_mean_slice_yNomal_y_Eq_0mm'    : [(888,755), (1219.5, 1078.5)],
             'Ux_mean_slice_yNomal_y_Eq_pos3mm' : [(888,755), (1219.5, 1078.5)],
             'Uy_mean_slice_yNomal_y_Eq_neg3mm' : [(909,760.5), (1215, 1072.5)],
-            'Uy_mean_slice_yNomal_y_Eq_0mm' : [(909,760.5), (1215, 1072.5)],
+            'Uy_mean_slice_yNomal_y_Eq_0mm'    : [(909,760.5), (1215, 1072.5)],
             'Uy_mean_slice_yNomal_y_Eq_pos3mm' : [(909,760.5), (1215, 1072.5)],
             'Uz_mean_slice_yNomal_y_Eq_neg3mm' : [(909,760.5), (1215, 1072.5)],
-            'Uz_mean_slice_yNomal_y_Eq_0mm' : [(909,760.5), (1215, 1072.5)],
+            'Uz_mean_slice_yNomal_y_Eq_0mm'    : [(909,760.5), (1215, 1072.5)],
             'Uz_mean_slice_yNomal_y_Eq_pos3mm' : [(909,760.5), (1215, 1072.5)],
             'nu_mean_slice_yNomal_y_Eq_neg3mm' : [(928.5, 760), (1234.5, 1075)],
-            'nu_mean_slice_yNomal_y_Eq_0mm' : [(928.5, 760), (1234.5, 1075)],
+            'nu_mean_slice_yNomal_y_Eq_0mm'    : [(928.5, 760), (1234.5, 1075)],
             'nu_mean_slice_yNomal_y_Eq_pos3mm' : [(928.5, 760), (1234.5, 1075)]                                                  
             }
             
