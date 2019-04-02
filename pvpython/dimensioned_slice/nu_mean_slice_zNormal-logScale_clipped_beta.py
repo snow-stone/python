@@ -15,7 +15,7 @@ zPositionInSlice          = float(sys.argv[2])
 zPositionInSaveScreenShot = sys.argv[3]
 
 # create a new 'OpenFOAMReader'
-inlet_0p3foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p3/inlet_0p3.foam')
+inlet_0p3foam = OpenFOAMReader(FileName=dirName+'/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p3/inlet_0p3.foam')
 inlet_0p3foam.SkipZeroTime = 1
 inlet_0p3foam.CaseType = 'Reconstructed Case'
 inlet_0p3foam.LabelSize = '32-bit'
