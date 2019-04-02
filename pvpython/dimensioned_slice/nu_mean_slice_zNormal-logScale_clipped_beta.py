@@ -1733,6 +1733,9 @@ renderView1.CameraPosition = [0.013999999035149813, -0.0020000000949949026, 0.08
 renderView1.CameraFocalPoint = [0.013999999035149813, -0.0020000000949949026, -7.703719777548943e-34]
 renderView1.CameraParallelScale = 0.022803508012705226
 
+# reset view to fit data
+renderView1.ResetCamera()
+
 # save screenshot
 SaveScreenshot(dirName+'/nu_mean_slice_zNormal_z_Eq_'+zPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2534, 1835],
     FontScaling='Scale fonts proportionally',
