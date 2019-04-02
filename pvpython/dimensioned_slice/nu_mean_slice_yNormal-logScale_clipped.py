@@ -8,8 +8,14 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName                   = sys.argv[1]
+yPositionInSlice          = float(sys.argv[2])
+yPositionInSaveScreenShot = sys.argv[3]
+
 # create a new 'OpenFOAMReader'
-inlet_0p5foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p5/inlet_0p5.foam')
+inlet_0p5foam = OpenFOAMReader(FileName=dirName+'/inlet_0p5.foam')
 inlet_0p5foam.SkipZeroTime = 1
 inlet_0p5foam.CaseType = 'Reconstructed Case'
 inlet_0p5foam.LabelSize = '32-bit'
@@ -995,7 +1001,7 @@ slice1.SliceType.Origin = [0.013999999035149813, 0.0, 0.0]
 slice1.SliceType.Normal = [0.0, 1.0, 0.0]
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.013999999035149813, 0.0, 0.0]
+slice1.SliceType.Origin = [0.013999999035149813, yPositionInSlice, 0.0]
 slice1.SliceType.Normal = [0.0, 1.0, 0.0]
 
 # show data in view
@@ -1406,6 +1412,11 @@ nu_meanLUTColorBar.WindowLocation = 'AnyLocation'
 nu_meanLUTColorBar.Position = [0.300426203630624, 0.7306093579978237]
 nu_meanLUTColorBar.ScalarBarLength = 0.32999999999999996
 
+nu_meanLUTColorBar.TitleFontSize = 4
+nu_meanLUTColorBar.LabelFontSize = 4
+nu_meanLUTColorBar.ScalarBarThickness = 5
+nu_meanLUTColorBar.ScalarBarLength = 0.5
+
 # reset view to fit data bounds
 renderView1.ResetCamera(-0.00800000037998, 0.0359999984503, -1.54074395551e-33, 0.0, -0.00400000018999, 0.00400000018999)
 
@@ -1416,10 +1427,16 @@ renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraParallelScale = 0.022360679233547745
 
 # save screenshot
-SaveScreenshot('/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p5/nu_mean_slice_yNormal_y_Eq_0mm.png', renderView1, ImageResolution=[2534, 1835],
+SaveScreenshot(dirName+'/nu_mean_slice_yNormal_y_Eq_'+yPositionInSaveScreenShot+'.png', renderView1, ImageResolution=[2534, 1835],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',
     TransparentBackground=0, 
     # PNG options
     CompressionLevel='5')
+
+import os
+print "Finalizing "+ os.path.basename(__file__) +" " + "@ dir : " + dirName + " " + " @ " + yPositionInSaveScreenShot
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
