@@ -1665,10 +1665,10 @@ k_mean_nonDPWF.RescaleTransferFunction(1e-06, 1)
 k_mean_nonDLUT.ApplyPreset('Yellow - Gray - Blue', True)
 
 # convert to log space
-k_mean_nonDLUT.MapControlPointsToLogSpace()
+#k_mean_nonDLUT.MapControlPointsToLogSpace()
 
 # Properties modified on k_mean_nonDLUT
-k_mean_nonDLUT.UseLogScale = 1
+#k_mean_nonDLUT.UseLogScale = 1
 
 # get color legend/bar for k_mean_nonDLUT in view renderView1
 k_mean_nonDLUTColorBar = GetScalarBar(k_mean_nonDLUT, renderView1)
