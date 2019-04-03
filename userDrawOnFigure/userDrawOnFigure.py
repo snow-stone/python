@@ -32,10 +32,10 @@ def main():
            ]
            
     imageNames = [
-            'nu_mean_slice_yNormal_y_Eq_p3mm',
-            'nu_mean_slice_yNormal_y_Eq_p2mm',
-            'nu_mean_slice_yNormal_y_Eq_p1mm',
-            'nu_mean_slice_yNormal_y_Eq_0mm',
+#            'nu_mean_slice_yNormal_y_Eq_p3mm',
+#            'nu_mean_slice_yNormal_y_Eq_p2mm',
+#            'nu_mean_slice_yNormal_y_Eq_p1mm',
+#            'nu_mean_slice_yNormal_y_Eq_0mm',
             'nu_mean_slice_yNormal_y_Eq_n1mm',
             'nu_mean_slice_yNormal_y_Eq_n2mm',
             'nu_mean_slice_yNormal_y_Eq_n3mm'            
