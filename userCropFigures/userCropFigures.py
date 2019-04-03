@@ -47,13 +47,7 @@ def main():
 #            '2DstreamLines_6p0D'            
 #            ]
     imageNames = [
-            'nu_mean_slice_yNormal_y_Eq_p3mm_addInlet2',
-            'nu_mean_slice_yNormal_y_Eq_p2mm_addInlet2',
-            'nu_mean_slice_yNormal_y_Eq_p1mm_addInlet2',
-            'nu_mean_slice_yNormal_y_Eq_0mm_addInlet2',
-            'nu_mean_slice_yNormal_y_Eq_n1mm_addInlet2',
-            'nu_mean_slice_yNormal_y_Eq_n2mm_addInlet2',
-            'nu_mean_slice_yNormal_y_Eq_n3mm_addInlet2'
+            'nu_mean_slice_zNormal_z_Eq_0mm'
                 ]
     
     coords_dict= {
@@ -84,20 +78,20 @@ def main():
             'T_mean_slice_4.0D'             : (816, 286, 2080, 1552),
             'T_mean_slice_6.0D'             : (816, 286, 2080, 1552),
             'T_mean_slice_8.0D'             : (816, 286, 2080, 1552),
-            'Ux_mean_slice_yNomal_y_Eq_neg3mm_addInlet2' : (552, 732, 2238, 1080),
-            'Ux_mean_slice_yNomal_y_Eq_0mm_addInlet2'    : (552, 732, 2238, 1080),
-            'Ux_mean_slice_yNomal_y_Eq_pos3mm_addInlet2' : (552, 732, 2238, 1080),
-            'Uy_mean_slice_yNomal_y_Eq_neg3mm_addInlet2'    : (594, 750, 2298, 1077),
-            'Uy_mean_slice_yNomal_y_Eq_0mm_addInlet2'       : (594, 750, 2298, 1077),
-            'Uy_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (594, 750, 2298, 1077),
-            'Uz_mean_slice_yNomal_y_Eq_neg3mm_addInlet2'    : (594, 750, 2298, 1077),
-            'Uz_mean_slice_yNomal_y_Eq_0mm_addInlet2'       : (594, 750, 2298, 1077),
-            'Uz_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (594, 750, 2298, 1077),
-            'nu_mean_slice_yNomal_y_Eq_neg3mm_addInlet2'    : (621, 765, 2280, 1076),
-            'nu_mean_slice_yNomal_y_Eq_0mm_addInlet2'       : (621, 765, 2280, 1076),
-            'nu_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (621, 765, 2280, 1076),
-            'T_mean_slice_zNomal_z_Eq_0mm'                  : (1369,506, 2232,  622),
-            'nu_mean_slice_zNomal_z_Eq_0mm'                 : (1377,505, 2233,  624),
+#            'Ux_mean_slice_yNomal_y_Eq_neg3mm_addInlet2' : (552, 732, 2238, 1080),
+#            'Ux_mean_slice_yNomal_y_Eq_0mm_addInlet2'    : (552, 732, 2238, 1080),
+#            'Ux_mean_slice_yNomal_y_Eq_pos3mm_addInlet2' : (552, 732, 2238, 1080),
+#            'Uy_mean_slice_yNomal_y_Eq_neg3mm_addInlet2'    : (594, 750, 2298, 1077),
+#            'Uy_mean_slice_yNomal_y_Eq_0mm_addInlet2'       : (594, 750, 2298, 1077),
+#            'Uy_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (594, 750, 2298, 1077),
+#            'Uz_mean_slice_yNomal_y_Eq_neg3mm_addInlet2'    : (594, 750, 2298, 1077),
+#            'Uz_mean_slice_yNomal_y_Eq_0mm_addInlet2'       : (594, 750, 2298, 1077),
+#            'Uz_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (594, 750, 2298, 1077),
+#            'nu_mean_slice_yNomal_y_Eq_neg3mm_addInlet2'    : (621, 765, 2280, 1076),
+#            'nu_mean_slice_yNomal_y_Eq_0mm_addInlet2'       : (621, 765, 2280, 1076),
+#            'nu_mean_slice_yNomal_y_Eq_pos3mm_addInlet2'    : (621, 765, 2280, 1076),
+#            'T_mean_slice_zNomal_z_Eq_0mm'                  : (1369,506, 2232,  622),
+#            'nu_mean_slice_zNomal_z_Eq_0mm'                 : (1377,505, 2233,  624),
             'nu_mean_slice_zNormal_z_Eq_p3p5mm'             : (402, 681, 2130, 1155),
             'nu_mean_slice_zNormal_z_Eq_p3mm'               : (402, 681, 2130, 1155),
             'nu_mean_slice_zNormal_z_Eq_p2p5mm'             : (402, 681, 2130, 1155),
@@ -105,13 +99,22 @@ def main():
             'nu_mean_slice_zNormal_z_Eq_p1p5mm'             : (402, 681, 2130, 1155),
             'nu_mean_slice_zNormal_z_Eq_p1mm'               : (402, 681, 2130, 1155),
             'nu_mean_slice_zNormal_z_Eq_p0p5mm'             : (402, 681, 2130, 1155),
+            'nu_mean_slice_zNormal_z_Eq_0mm'                : (402, 681, 2130, 1155),
             'nu_mean_slice_yNormal_y_Eq_p3mm_addInlet2'     : (387, 756, 2142, 1080),
             'nu_mean_slice_yNormal_y_Eq_p2mm_addInlet2'     : (387, 756, 2142, 1080),
             'nu_mean_slice_yNormal_y_Eq_p1mm_addInlet2'     : (387, 756, 2142, 1080),
             'nu_mean_slice_yNormal_y_Eq_0mm_addInlet2'      : (387, 756, 2142, 1080),
             'nu_mean_slice_yNormal_y_Eq_n1mm_addInlet2'     : (387, 756, 2142, 1080),
             'nu_mean_slice_yNormal_y_Eq_n2mm_addInlet2'     : (387, 756, 2142, 1080),
-            'nu_mean_slice_yNormal_y_Eq_n3mm_addInlet2'     : (387, 756, 2142, 1080)
+            'nu_mean_slice_yNormal_y_Eq_n3mm_addInlet2'     : (387, 756, 2142, 1080),
+            'k_mean_nonD_slice_zNormal_z_Eq_p3p5mm'             : (402, 681, 2130, 1155),
+            'k_mean_nonD_slice_zNormal_z_Eq_p3mm'               : (402, 681, 2130, 1155),
+            'k_mean_nonD_slice_zNormal_z_Eq_p2p5mm'             : (402, 681, 2130, 1155),
+            'k_mean_nonD_slice_zNormal_z_Eq_p2mm'               : (402, 681, 2130, 1155),
+            'k_mean_nonD_slice_zNormal_z_Eq_p1p5mm'             : (402, 681, 2130, 1155),
+            'k_mean_nonD_slice_zNormal_z_Eq_p1mm'               : (402, 681, 2130, 1155),
+            'k_mean_nonD_slice_zNormal_z_Eq_p0p5mm'             : (402, 681, 2130, 1155),
+            'k_mean_nonD_slice_zNormal_z_Eq_0mm'                : (402, 681, 2130, 1155),
             }    
     
     
