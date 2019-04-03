@@ -23,4 +23,7 @@ Paraview steps :
 
 1. copy nu_mean_slice_zNormal-logScale_clipped_beta.py   
 2. raplace string "nu_mean" by "k_mean_nonD"   
-3. rescale variable k_mean_nonD
+3. rescale variable k_mean_nonD to [1e-6, 1]   
+4. remove log-scale in color map   
+
+Note : in scrpit name "logScale" is actually misleading for in step 4 we have removed that. But... the naming is retained anyhow.
