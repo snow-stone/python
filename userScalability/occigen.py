@@ -36,6 +36,7 @@ def read_cases():
     fig0, ax0 = plt.subplots(figsize=(16,10))
     fig1, ax1 = plt.subplots(figsize=(16,10)) 
     fig2, ax2 = plt.subplots(figsize=(16,10))
+    fig3, ax3 = plt.subplots(figsize=(16,10))
     
     Sp=np.zeros(len(n_procs))
     E =np.zeros(len(n_procs))
@@ -111,8 +112,19 @@ def read_cases():
             arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.5', linewidth=2,
                             color='red'))
 
+    ax3.plot(n_procs,1./Sp, linestyle='--', linewidth=4, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
+    ax3.set_xscale('log')
+    ax3.set_xlabel('Nb. de Processeurs')
+    ax3.set_ylabel('Temps CPU')
+    ax3.set_xlim(0,1000)
+    ax3.set_ylim(0,2)
+    ax3.axhline(y=1.0, color='black', linestyle='-.')
+    ax3.tick_params(axis='both', which='major', direction='out', length=8, width=4)
+    ax3.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
+
     fig0.savefig("cpuTime.png", bbox_inches='tight')
     fig1.savefig("Sp.png", bbox_inches='tight')
     fig2.savefig("E.png", bbox_inches='tight')
+    fig3.savefig("CPU_np.png", bbox_inches='tight')
 
 read_cases()
