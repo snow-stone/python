@@ -1,5 +1,17 @@
+import matplotlib
+matplotlib.use('agg')
 import numpy as np
 import matplotlib.pyplot as plt
+
+plt.style.use('seaborn-white') # from defaut
+plt.rcParams.update({'font.size': 30})
+plt.rcParams['savefig.dpi'] = 100
+
+from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+## for Palatino and other serif fonts use:
+rc('font',**{'family':'serif','serif':['Palatino']})
+rc('text', usetex=True)
 
 def plotCase(path2Data,dataDir,cut):
     data = np.genfromtxt(path2Data+"/"+dataDir+"/"+"userDefinedLog/"+"boundaryMean_p")
@@ -73,7 +85,7 @@ def main():
 
 #    plt.figure(7) # 6 figures already there !!
     bar_width=0.35
-    shift = 0.4
+    shift = 0.6
     fig, ax = plt.subplots()
     x = np.arange(len(labelTuple)) 
     ax.bar(x+shift, pressureDropList_main, bar_width, color=colorList)
