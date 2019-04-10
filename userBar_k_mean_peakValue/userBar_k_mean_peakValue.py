@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('agg')
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -82,7 +84,7 @@ def main():
     plt.xticks(x+0.75, labelTuple) # xticks can only chagned by plt object. axes don't work !!
 #    plt.xlim(0,8.5)
     plt.ylim(0,0.7)
-    plt.ylabel(r'$<k>_{max}$')
+    plt.ylabel(r'$\overline{k}_{max}$')
     plt.savefig(path2Data+"/"+'bar_k_mean_peakValue/k_mean_peakValue.png', bbox_inches='tight', dpi=300)
     
 #    print pressureDropList[0]/pressureDropList[1]
