@@ -455,6 +455,42 @@ def plot_nu_mean():
         ax[1].text(-0.16, 1.0,'(e)', transform=ax[1].transAxes)
         fig.savefig("./"+"nu_mean_tail1.png",  bbox_inches='tight')
 
+    def nu_mean_tail1a(x, databaseDict):
+        from matplotlib.ticker import FuncFormatter
+        def to_percent(y, position):
+            # Ignore the passed in position. This has the effect of scaling the default
+            # tick locations.
+            s = str(round((100 * y)))
+        
+            # The percent symbol needs escaping in latex
+            if matplotlib.rcParams['text.usetex'] is True:
+                return s + r'$\%$'
+            else:
+                return s + '%'
+        formatter = FuncFormatter(to_percent)
+
+        fig, ax = plt.subplots(2, figsize=(10,10))
+        for i, axis in enumerate(ax):
+            axis.tick_params(axis='both', direction='in', length=4, width=1.5)
+            if i != (len(ax)-1) :
+                axis.set_xticklabels([])
+            else :
+                axis.set_xlabel(r"$x/D$")
+    
+        for case in casesNonNewtonian:
+            ax[0].plot(x, databaseDict[case]['mean']+databaseDict[case]['rms'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+            ax[1].plot(x, databaseDict[case]['factor3'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
+    
+        ax[0].ticklabel_format(axis='y',style='sci',scilimits=(0,0))
+        ax[0].set_ylabel(r"$\mu_{\overline{\nu}}+\sigma_{\overline{\nu}}$")
+        ax[1].set_ylim(0,0.5)
+        ax[1].yaxis.set_major_formatter(formatter)
+        ax[1].set_ylabel(r"$P(\overline{\nu} \ge \nu_{ref})$")
+    
+        ax[0].text(-0.16, 1.0,'(d)', transform=ax[0].transAxes)
+        ax[1].text(-0.16, 1.0,'(e)', transform=ax[1].transAxes)
+        fig.savefig("./"+"nu_mean_tail1a.png",  bbox_inches='tight')
+
     def nu_mean_factors(x, databaseDict):
         fig, ax = plt.subplots(5,figsize=(10,10))
         for axis in ax:
@@ -492,6 +528,7 @@ def plot_nu_mean():
     nu_mean_MinMax1(axis_x, higherOrderStat)
     nu_mean_tail0(axis_x, higherOrderStat)
     nu_mean_tail1(axis_x, higherOrderStat)
+    nu_mean_tail1a(axis_x, higherOrderStat)
     nu_mean_factors(axis_x, higherOrderStat)
     
               
