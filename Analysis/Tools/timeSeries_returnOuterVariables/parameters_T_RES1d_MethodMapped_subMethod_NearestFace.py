@@ -24,7 +24,11 @@ dataEntry={
         'endTime':7.2,
         'chunkStep':50,
         'NbOfFiles':171,
-        'path':"/store/caseByGeometry/T/new-mesh/pointwise/postProcessing/1d_mapped_NearestFace",
+        #old path : 
+        #'path':"/store/caseByGeometry/T/new-mesh/pointwise/postProcessing/1d_mapped_NearestFace",
+        #data position :
+        #/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/
+        'path':'/store/T_c/1d_mapped_NearestFace'
         }
 
 parameters={
