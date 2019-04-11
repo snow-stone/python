@@ -4,7 +4,8 @@ from PIL import Image, ImageDraw
 def addInlet2(fullPathToImg, xy, saveLocation, saveAs):
     img = Image.open(fullPathToImg)
     draw = ImageDraw.Draw(img)
-    draw.rectangle(xy, outline='black')
+#    draw.rectangle(xy, outline='black')
+    draw.rectangle(xy, outline='green')
     
     img.show()
     img.save(saveLocation+'/'+saveAs)
@@ -32,13 +33,13 @@ def main():
            ]
            
     imageNames = [
-#            'nu_mean_slice_yNormal_y_Eq_p3mm',
-#            'nu_mean_slice_yNormal_y_Eq_p2mm',
-#            'nu_mean_slice_yNormal_y_Eq_p1mm',
-#            'nu_mean_slice_yNormal_y_Eq_0mm',
-            'nu_mean_slice_yNormal_y_Eq_n1mm',
-            'nu_mean_slice_yNormal_y_Eq_n2mm',
-            'nu_mean_slice_yNormal_y_Eq_n3mm'            
+            'k_mean_nonD_slice_yNormal_y_Eq_p3mm'  ,
+            'k_mean_nonD_slice_yNormal_y_Eq_p2mm'  ,       
+            'k_mean_nonD_slice_yNormal_y_Eq_p1mm'  ,
+            'k_mean_nonD_slice_yNormal_y_Eq_0mm'   ,
+            'k_mean_nonD_slice_yNormal_y_Eq_n1mm'  ,
+            'k_mean_nonD_slice_yNormal_y_Eq_n2mm'  ,          
+            'k_mean_nonD_slice_yNormal_y_Eq_n3mm'  ,                                                       
             ]
     
     xy_dict= {
@@ -60,11 +61,18 @@ def main():
             'nu_mean_slice_yNormal_y_Eq_0mm'   : [(555  , 759), (877   , 1075)],
             'nu_mean_slice_yNormal_y_Eq_n1mm'  : [(555  , 759), (877   , 1075)],
             'nu_mean_slice_yNormal_y_Eq_n2mm'  : [(555  , 759), (877   , 1075)],          
-            'nu_mean_slice_yNormal_y_Eq_n3mm'  : [(555  , 759), (877   , 1075)],                                                       
+            'nu_mean_slice_yNormal_y_Eq_n3mm'  : [(555  , 759), (877   , 1075)],
+            'k_mean_nonD_slice_yNormal_y_Eq_p3mm'  : [(555  , 759), (877   , 1075)],
+            'k_mean_nonD_slice_yNormal_y_Eq_p2mm'  : [(555  , 759), (877   , 1075)],       
+            'k_mean_nonD_slice_yNormal_y_Eq_p1mm'  : [(555  , 759), (877   , 1075)],
+            'k_mean_nonD_slice_yNormal_y_Eq_0mm'   : [(555  , 759), (877   , 1075)],
+            'k_mean_nonD_slice_yNormal_y_Eq_n1mm'  : [(555  , 759), (877   , 1075)],
+            'k_mean_nonD_slice_yNormal_y_Eq_n2mm'  : [(555  , 759), (877   , 1075)],          
+            'k_mean_nonD_slice_yNormal_y_Eq_n3mm'  : [(555  , 759), (877   , 1075)],                                                       
             }
             
-#    for i, path in enumerate(paths):
-    for i, path in enumerate(pathsNonNewtonian):
+    for i, path in enumerate(paths):
+#    for i, path in enumerate(pathsNonNewtonian):
         for imageName in imageNames:
             imageFullPath = dataBase + '/' + path + '/' + imageName + '.png'
             addInlet2(imageFullPath, xy_dict[imageName], saveLocation = dataBase + '/' + path, saveAs= imageName +'_addInlet2'+'.png')
