@@ -5,8 +5,19 @@ Created on Thu Oct 18 09:06:42 2018
 @author: hluo
 """
 
+import matplotlib
+matplotlib.use("agg")
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
+sys.path.append('/home/hluo/work/git/thesis/Thesis_hluo_new/reference_database') # for rdb
+import reference_database as rdb
+
+from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+## for Palatino and other serif fonts use:
+rc('font',**{'family':'serif','serif':['Palatino']})
+rc('text', usetex=True)
 
 gama = np.linspace(0.1,100000,10000000)
 
@@ -42,8 +53,19 @@ font = {'family': 'serif',
         'size': 25,
         }
 ax.text(5, 1e-5, r'$\nu \propto \dot{\gamma}^{1-n}$', fontdict=font)
-ax.plot(gama,nu,linewidth=4, label='Xanthan gum')
+ax.plot(gama,nu,linewidth=4, label='Approx. BirdCarreau')
 ax.plot(gama,nu1,linewidth=4,linestyle='--',color='darkred')
+
+x, y = rdb.Dai_thesis.Fig12p2_XG()
+ax.plot(x,y, linestyle='--', linewidth=1, marker='s', markerfacecolor='none', markersize= 8, markeredgewidth=4, label=r'Exp. \, $0.1\% \, XG$')
+ax.axvline(x=1,linestyle='-.',linewidth=1, color='black')
+ax.axhline(y=3e-4, xmin= 0, xmax= 0.22, linestyle='-.',linewidth=1, color='black')
+ax.axhline(y=2e-6, xmin= 0.84, xmax= 1, linestyle='-.',linewidth=1, color='black')
+
+ax.text(3 , 3e-4, r'$\nu_0$', fontsize=25)#, transform=ax.transAxes)
+ax.text(1e4, 1.3e-6, r'$\nu_{\infty}$', fontsize=25)#, transform=ax.transAxes)
+ax.text(1.5, 2e-6, r'$\dot{\gamma}=\lambda^{-1}$', fontsize=20)#, transform=ax.transAxes)
+
 ax.legend(fancybox=True, bbox_to_anchor=(1, 1), ncol=1,frameon=False, fontsize=25)
 fig.savefig('BirdCarreau.png',dpi=100, bbox_inches='tight')
 
