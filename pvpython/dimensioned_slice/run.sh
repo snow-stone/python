@@ -9,10 +9,13 @@ contourUz=Uz_mean_slice_yNormal.py
 contourNu_y=nu_mean_slice_yNormal-logScale_clipped.py
 contourNu_z=nu_mean_slice_zNormal-logScale_clipped_beta.py
 contourk_mean_nonD_z=k_mean_nonD_slice_zNormal-logScale_clipped_beta.py
+contourk_mean_nonD_y=k_mean_nonD_slice_yNormal-logScale_clipped.py
 #contourNu_x=nu_mean_slice_xNormal-logScale.py
 contourNu_x=nu_mean_slice_x-logScale.py
 contourT_x=T_mean_slice_x.py
 contourT_z=T_mean_slice_zNormal_noClipped.py
+
+Q2=Q2_demo.py
 
 kidneyVortices_decked=kidneyVortices_decked.py
 
@@ -48,39 +51,119 @@ kidneyVortices_decked=kidneyVortices_decked.py
 #echo "---------------" &&
 #echo "Finish Nu_y 0mm" &&
 #echo "---------------" &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.003 n3mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.003 n3mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.003 n3mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.003 n3mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.003 n3mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p5                 -0.003 n3mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        -0.003 n3mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3                 -0.003 n3mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 -0.003 n3mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 -0.003 n3mm &&
 #echo "---------------" &&
 #echo "Finish Nu_y n3mm" &&
 #echo "---------------" &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.002 n2mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.002 n2mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.002 n2mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.002 n2mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.002 n2mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p5                 -0.002 n2mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        -0.002 n2mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3                 -0.002 n2mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 -0.002 n2mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 -0.002 n2mm &&
 #echo "---------------" &&
 #echo "Finish Nu_y n2mm" &&
 #echo "---------------" &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p5                 0.001 n1mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        0.001 n1mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3                 0.001 n1mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.001 n1mm &&
-#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.001 n1mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p5                 -0.001 n1mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet0p5_impinging        -0.001 n1mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3                 -0.001 n1mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 -0.001 n1mm &&
+#pvpython $contourNu_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 -0.001 n1mm &&
 #echo "---------------" &&
 #echo "Finish Nu_y n1mm" &&
 #echo "---------------" 
 
-pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0 0mm &&
-pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0 0mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0 0mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0 0mm &&
-pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm &&
-echo "---------------" &&
-echo "Finish Nu_z 0mm" &&
-echo "---------------"
+
+
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p5                 0.003 p3mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet0p5_impinging        0.003 p3mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3                 0.003 p3mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.003 p3mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.003 p3mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re2400                      0.003 p3mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000                      0.003 p3mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000_impinging            0.003 p3mm &&
+#echo "---------------" &&
+#echo "Finish k_mean_nonD_y p3mm" &&
+#echo "---------------" &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p5                 0.002 p2mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet0p5_impinging        0.002 p2mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3                 0.002 p2mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.002 p2mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.002 p2mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re2400                      0.002 p2mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000                      0.002 p2mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000_impinging            0.002 p2mm &&
+#echo "---------------" &&
+#echo "Finish k_mean_nonD_y p2mm" &&
+#echo "---------------" &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p5                 0.001 p1mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet0p5_impinging        0.001 p1mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3                 0.001 p1mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0.001 p1mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0.001 p1mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re2400                      0.001 p1mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000                      0.001 p1mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000_impinging            0.001 p1mm &&
+#echo "---------------" &&
+#echo "Finish k_mean_nonD_y p1mm" &&
+#echo "---------------" &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p5                 0 0mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet0p5_impinging        0 0mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3                 0 0mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0 0mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re2400                      0 0mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000                      0 0mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000_impinging            0 0mm &&
+#echo "---------------" &&
+#echo "Finish k_mean_nonD_y 0mm" &&
+#echo "---------------" &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p5                 -0.003 n3mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet0p5_impinging        -0.003 n3mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3                 -0.003 n3mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 -0.003 n3mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 -0.003 n3mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re2400                      -0.003 n3mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000                      -0.003 n3mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000_impinging            -0.003 n3mm &&
+#echo "---------------" &&
+#echo "Finish k_mean_nonD_y n3mm" &&
+#echo "---------------" &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p5                 -0.002 n2mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet0p5_impinging        -0.002 n2mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3                 -0.002 n2mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 -0.002 n2mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 -0.002 n2mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re2400                      -0.002 n2mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000                      -0.002 n2mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000_impinging            -0.002 n2mm &&
+#echo "---------------" &&
+#echo "Finish k_mean_nonD_y n2mm" &&
+#echo "---------------" &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p5                 -0.001 n1mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet0p5_impinging        -0.001 n1mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3                 -0.001 n1mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 -0.001 n1mm &&
+#pvpython $contourk_mean_nonD_y $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 -0.001 n1mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re2400                      -0.001 n1mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000                      -0.001 n1mm &&
+#pvpython $contourk_mean_nonD_y $Newtonian/Re4000_impinging            -0.001 n1mm &&
+#echo "---------------" &&
+#echo "Finish k_mean_nonD_y n1mm" &&
+#echo "---------------" 
+
+#pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0 0mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0 0mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0 0mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 0 0mm &&
+#pvpython $contourNu_z $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 0 0mm &&
+#echo "---------------" &&
+#echo "Finish Nu_z 0mm" &&
+#echo "---------------"
 #pvpython $contourNu_z $BirdCarreau/inlet_0p5                 0.0005 p0p5mm &&
 #pvpython $contourNu_z $BirdCarreau/inlet0p5_impinging        0.0005 p0p5mm &&
 #pvpython $contourNu_z $BirdCarreau/inlet_0p3                 0.0005 p0p5mm &&
@@ -584,3 +667,13 @@ echo "---------------"
 #echo "---------------" &&
 #echo "Finish k_mean_nonD_z p3p5mm" &&
 #echo "---------------"
+
+
+pvpython $Q2 $BirdCarreau/inlet_0p5                 &&
+pvpython $Q2 $BirdCarreau/inlet0p5_impinging        &&
+pvpython $Q2 $BirdCarreau/inlet_0p3                 &&
+pvpython $Q2 $BirdCarreau/inlet_0p3-a_0p5-setT_St_1 &&
+pvpython $Q2 $BirdCarreau/inlet_0p3-a_0p5-setT_St_5 &&
+pvpython $Q2 $Newtonian/Re2400                      &&
+pvpython $Q2 $Newtonian/Re4000                      &&
+pvpython $Q2 $Newtonian/Re4000_impinging            
