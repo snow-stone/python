@@ -19,15 +19,27 @@ def runJob(cmd):
 
 def tryJob(sourceDir, targetDir):
 
-    #sourceDir="/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge/postProcessing"
-    #targetDir="1b_mirrorMerge"
-    cmd = "rsync -av newton:%s %s/" % (sourceDir, targetDir)
-    status, jobOutput = runJob(cmd)
+    cmd = "rsync -av %s %s/" % (sourceDir, targetDir)
+
+    return runJob(cmd)
 
 def main():
 
-    sourceDir="/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge/postProcessing"
-    targetDir="1b_mirrorMerge"
-    tryJob(sourceDir, targetDir)
+    caseByAlias=[
+        "1b_1"
+    ]
+
+    caseInfo=dict.fromkeys(caseByAlias)
+    for case in caseByAlias:
+        caseInfo[case]={
+            'sourceDir':[],
+            'targetDir':[]
+            }
+
+    caseInfo["1b_1"]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge/postProcessing/"
+    caseInfo["1b_1"]['targetDir']="1b_mirrorMerge"
+
+    for case in caseByAlias:
+        stat, output = tryJob(caseInfo[case]['sourceDir'], caseInfo[case]['targetDir'])
     
 main()
