@@ -30,25 +30,25 @@ def main():
     l_1d_map2 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2")
     db_1d_map2 = tsR.process(ps_map.parameters,validDataList=l_1d_map2,colonNb=1)
 
-    ps_map.parameters['sampling']['dataShape']=(195,4)
-    l_1d_map2a3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2a3")
-    db_1d_map2a3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2a3,colonNb=1)
-    
-    ps_map.parameters['sampling']['dataShape']=(192,4)
-    l_1d_map2b3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2b3")
-    db_1d_map2b3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2b3,colonNb=1)
-
-    ps_map.parameters['sampling']['dataShape']=(190,4)
-    l_1d_map2c3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2c3")
-    db_1d_map2c3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2c3,colonNb=1)
-
-    ps_map.parameters['sampling']['dataShape']=(190,4)
-    l_1d_map2d3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2d3")
-    db_1d_map2d3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2d3,colonNb=1)
-
-    ps_map.parameters['sampling']['dataShape']=(188,4)
-    l_1d_map2e3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2e3")
-    db_1d_map2e3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2e3,colonNb=1)
+#    ps_map.parameters['sampling']['dataShape']=(195,4)
+#    l_1d_map2a3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2a3")
+#    db_1d_map2a3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2a3,colonNb=1)
+#    
+#    ps_map.parameters['sampling']['dataShape']=(192,4)
+#    l_1d_map2b3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2b3")
+#    db_1d_map2b3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2b3,colonNb=1)
+#
+#    ps_map.parameters['sampling']['dataShape']=(190,4)
+#    l_1d_map2c3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2c3")
+#    db_1d_map2c3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2c3,colonNb=1)
+#
+#    ps_map.parameters['sampling']['dataShape']=(190,4)
+#    l_1d_map2d3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2d3")
+#    db_1d_map2d3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2d3,colonNb=1)
+#
+#    ps_map.parameters['sampling']['dataShape']=(188,4)
+#    l_1d_map2e3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-2e3")
+#    db_1d_map2e3 = tsR.process(ps_map.parameters,validDataList=l_1d_map2e3,colonNb=1)
     
     ps_map.parameters['sampling']['dataShape']=(188,4)    
     l_1d_map3 = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-3")
