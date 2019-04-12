@@ -13,8 +13,8 @@ sampling={
         'raw_sample_size':160,
 #        'dataShape':(199,4)     # uniform
 #        'dataShape':(321,4)     # face 3
-#        'dataShape':(195,4)     # face 1
-        'dataShape':(332,4)     # face 2
+        'dataShape':(195,4)     # face 1
+#        'dataShape':(332,4)     # face 2
         }
 
 # data entry parameters

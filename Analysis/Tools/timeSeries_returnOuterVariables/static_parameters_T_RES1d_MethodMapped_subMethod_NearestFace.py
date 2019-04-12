@@ -18,8 +18,8 @@ physics={
 sampling={
         'raw_sample_size':160,
 #        'dataShape':(199,4)     # uniform
-#        'dataShape':(188,4)     # face 3
-        'dataShape':(195,4)     # face 2
+        'dataShape':(188,4)     # face 3
+#        'dataShape':(195,4)     # face 2
 #        'dataShape':(195,4)     # face 1
         }
 
