@@ -2,13 +2,10 @@
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
-#import general_settings as gs
 import reference_database as rdb
 
 
 from matplotlib import rc
-#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
-## for Palatino and other serif fonts use:
 rc('font',**{'family':'serif','serif':['Palatino']})
 rc('text', usetex=True)    
 plt.style.use('seaborn-white') # from defaut
@@ -17,9 +14,10 @@ plt.rcParams['savefig.dpi'] = 200
 
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
-#    import parameters_T_RES1b_MethodSynthetic as ps_syn
     import static_parameters_T_RES1d_lR2 as ps_map
-#    import copy
+    import sys
+
+    saveDir = sys.argv[1]
     
     fig1,ax1 = plt.subplots()
     fig2,ax2 = plt.subplots()
@@ -115,7 +113,7 @@ def main():
     ax3.legend(bbox_to_anchor=(0.45, 1), ncol=1, fancybox=True, shadow=True)
     ax3.set_xlabel(r'$r/D$')
     ax3.set_ylabel(r'$\frac{\overline{\bf{u}_x}}{\bf{u}_{bulk}}$')
-    fig3.savefig("./"+"cut2_abcde_3_new_lR2_profil2a.png",  bbox_inches='tight')
+    fig3.savefig(saveDir+"cut2_abcde_3_new_lR2_profil2a.png",  bbox_inches='tight')
 
     fig4,ax4 = plt.subplots()
     ax4.plot(db_1d_map2['rByD'],db_1d_map2['std']/Ux_bulk_Dai,label='1dlR2-mapped',linewidth=4, color='steelblue')
@@ -126,7 +124,7 @@ def main():
     ax4.legend(bbox_to_anchor=(0.45, 1), ncol=1, fancybox=True, shadow=True)
     ax4.set_xlabel(r'$r/D$')
     ax4.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
-    fig4.savefig("./"+"cut2_abcde_3_new_lR2_profil2b.png",  bbox_inches='tight')
+    fig4.savefig(saveDir+"cut2_abcde_3_new_lR2_profil2b.png",  bbox_inches='tight')
 
     # For cut 3
     fig3,ax3 = plt.subplots()
@@ -138,7 +136,7 @@ def main():
     ax3.legend(bbox_to_anchor=(0.55, 1), ncol=1, fancybox=True, shadow=True)
     ax3.set_xlabel(r'$r/D$')
     ax3.set_ylabel(r'$\frac{\overline{\bf{u}_x}}{\bf{u}_{bulk}}$')
-    fig3.savefig("./"+"cut2_abcde_3_new_lR2_profil3a.png",  bbox_inches='tight')
+    fig3.savefig(saveDir+"cut2_abcde_3_new_lR2_profil3a.png",  bbox_inches='tight')
 
     fig4,ax4 = plt.subplots()
     ax4.plot(db_1d_map3['rByD'],db_1d_map3['std']/Ux_bulk_Dai,label='1dlR2-mapped',linewidth=4, color='steelblue')
@@ -149,6 +147,6 @@ def main():
     ax4.legend(bbox_to_anchor=(0.55, 1), ncol=1, fancybox=True, shadow=True)
     ax4.set_xlabel(r'$r/D$')
     ax4.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
-    fig4.savefig("./"+"cut2_abcde_3_new_lR2_profil3b.png",  bbox_inches='tight')
+    fig4.savefig(saveDir+"cut2_abcde_3_new_lR2_profil3b.png",  bbox_inches='tight')
 
 main()

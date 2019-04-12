@@ -5,8 +5,6 @@ import matplotlib.pyplot as plt
 import reference_database as rdb
 
 from matplotlib import rc
-#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
-## for Palatino and other serif fonts use:
 rc('font',**{'family':'serif','serif':['Palatino']})
 rc('text', usetex=True)    
 plt.style.use('seaborn-white') # from defaut
@@ -17,8 +15,10 @@ def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
     import static_parameters_T_RES1b_MethodSynthetic as ps_syn
     import static_parameters_T_RES1d_lR2 as ps_map
-#    import copy
+    import sys
     
+    saveDir = sys.argv[1]
+
     fig1,ax1 = plt.subplots()
     fig2,ax2 = plt.subplots()
 
@@ -53,16 +53,14 @@ def main():
     ax1.legend(bbox_to_anchor=(0.6, 1), ncol=1, fancybox=True, shadow=True)
     ax1.set_xlabel(r'$r/D$')
     ax1.set_ylabel(r'$\frac{\overline{\bf{u}_x}}{\bf{u}_{bulk}}$')
-    #ax1.set_title('time stat. @'+r'$-D$'+' cut')
 
     ax2.set_xlim(0,1)
     ax2.set_ylim(0,1)
     ax2.legend(bbox_to_anchor=(0.6, 1), ncol=1, fancybox=True, shadow=True)
     ax2.set_xlabel(r'$r/D$')
-    #ax2.set_ylabel(r'${U_x}_{rms}$')
     ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
     
-    fig1.savefig("./"+"cut1_new_1d_lR2_profil1a.png",  bbox_inches='tight')
-    fig2.savefig("./"+"cut1_new_1d_lR2_profil1b.png",  bbox_inches='tight')
+    fig1.savefig(saveDir+"cut1_new_1d_lR2_profil1a.png",  bbox_inches='tight')
+    fig2.savefig(saveDir+"cut1_new_1d_lR2_profil1b.png",  bbox_inches='tight')
 
 main()
