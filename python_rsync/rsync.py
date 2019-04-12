@@ -2,6 +2,12 @@ import sys
 import commands, os
 import scipy.io as io
 
+def makeDirectory(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    else:
+        print directory, " exists"
+
 def runJob(cmd):
     print "running Job using bash command : %s" % cmd
     status, jobOutput = commands.getstatusoutput(cmd)
@@ -33,7 +39,8 @@ def main():
         "D1-1d_lR2_afterAugust",
         #1j
         "D2-NN-1j_test_from0",
-        "D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05"
+        "D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05",
+        "D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05"
     ]
 
     caseInfo=dict.fromkeys(caseByAlias)
@@ -51,22 +58,37 @@ def main():
     # IMPORTANT : no backslash at the end
     dirName="/postProcessing"
 
-    caseInfo["D1-1b"]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge"+dirName
-    caseInfo["D1-1b"]['targetDir']="/store/T_c/1b_mirrorMerge"
+    alias="D1-1b"
+    caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1b"+"/"+alias
+    makeDirectory(caseInfo[alias]['targetDir'])
 
-    caseInfo["D1-1d"]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1d_mapped_NearestFace"+dirName
-    caseInfo["D1-1d"]['targetDir']="/store/T_c/1d_mapped_NearestFace"
+    alias="D1-1d"
+    caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1d_mapped_NearestFace"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1d"+"/"+alias
+    makeDirectory(caseInfo[alias]['targetDir'])
 
-    caseInfo["D1-1d_lR2_afterAugust"]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByMachine/occigen/T/passiveScalar/Newtonian/mapped/flowRate/min/1d_lR2/afterAugust"+dirName
-    caseInfo["D1-1d_lR2_afterAugust"]['targetDir']="/store/T_c/1d_lR2"
+    alias="D1-1d_lR2_afterAugust"
+    caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByMachine/occigen/T/passiveScalar/Newtonian/mapped/flowRate/min/1d_lR2/afterAugust"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1d_lR2"+"/"+alias
+    makeDirectory(caseInfo[alias]['targetDir'])
 
     base_1j="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/BirdCarreau/synthetic/flowRate/medium/fluctuation_off/1j"
 
-    caseInfo["D2-NN-1j_test_from0"]['sourceDir']=base_1j+"/"+"test_from0"+dirName
-    caseInfo["D2-NN-1j_test_from0"]['targetDir']="/store/T_c/1j/D2-NN_test_from0"
+    alias="D2-NN-1j_test_from0"
+    caseInfo[alias]['sourceDir']=base_1j+"/"+"test_from0"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    makeDirectory(caseInfo[alias]['targetDir'])
 
-    caseInfo["D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05"]['sourceDir']=base_1j+"/"+"synthetic_phasedStepFrom_test_from_0/From0p3_3_of3"+dirName
-    caseInfo["D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05"]['targetDir']="/store/T_c/1j/D2-NN_test_from0p3_forcingStep_St1_A_eq_0p05"
+    alias="D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05"
+    caseInfo[alias]['sourceDir']=base_1j+"/"+"synthetic_phasedStepFrom_test_from_0/From0p3_3_of3"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    alias="D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05"
+    caseInfo[alias]['sourceDir']=base_1j+"/"+"synthetic_phasedSinusFrom_test_from_0/From0p3_2_of3"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    makeDirectory(caseInfo[alias]['targetDir'])
 
     for case in caseByAlias:
         print ""

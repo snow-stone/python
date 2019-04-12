@@ -39,6 +39,7 @@ parameters={
         'physics':physics,
         'sampling':sampling,
         'dataEntry':dataEntry,
+        'alias':alias
         }
 
 #plotSavePath="10D_5Dforced/"

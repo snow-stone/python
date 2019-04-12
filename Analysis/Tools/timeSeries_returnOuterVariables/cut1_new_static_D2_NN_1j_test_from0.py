@@ -14,8 +14,7 @@ plt.rcParams['savefig.dpi'] = 200
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
     import static_parameters_T_RES1b_MethodSynthetic as ps_syn
-    #import static_parameters_T_RES1d_MethodMapped_subMethod_NearestFace as ps_map
-    import static_parameters_D2_NN_1j_test_from0 as ps_map
+    ps_map = getattr(__import__("static_parameters_D2_NN_1j_test_from0"),"parameters")
     import sys
 
     saveDir = sys.argv[1]
@@ -28,20 +27,19 @@ def main():
     l_1b_syn = tsR.pre_check(ps_syn.parameters,"Dai_lines_typeFace_cell-1")
     db_1b_syn = tsR.process(ps_syn.parameters,validDataList=l_1b_syn,colonNb=1)
 
-    ps_map.parameters['sampling']['dataShape']=(220,4)
-    l_1d_map = tsR.pre_check(ps_map.parameters,"Dai_lines_typeFace_cell-1")
-    db_1d_map = tsR.process(ps_map.parameters,validDataList=l_1d_map,colonNb=1)  
+    ps_map['sampling']['dataShape']=(220,4)
+    l_1d_map = tsR.pre_check(ps_map,"Dai_lines_typeFace_cell-1")
+    db_1d_map = tsR.process(ps_map,validDataList=l_1d_map,colonNb=1)  
 
-    print "1"
 #   No-dimnesionize and plot
     Ux_1p5M_syn=0.25
     Ux_bulk_Dai=0.3
 
     ax1.plot(db_1b_syn['rByD'],db_1b_syn['mean']/Ux_1p5M_syn,label='1b-synthetic',linewidth=4, color='orange')
-    ax1.plot(db_1d_map['rByD'],db_1d_map['mean']/Ux_bulk_Dai,label='1d-mapped',linewidth=4, color='steelblue')
+    ax1.plot(db_1d_map['rByD'],db_1d_map['mean']/Ux_bulk_Dai,label=ps_map['alias'],linewidth=4, color='steelblue')
 
     ax2.plot(db_1b_syn['rByD'],db_1b_syn['std']/Ux_1p5M_syn,label='1b-synthetic',linewidth=4, color='orange')  
-    ax2.plot(db_1d_map['rByD'],db_1d_map['std']/Ux_bulk_Dai,label='1d-mapped',linewidth=4, color='steelblue')
+    ax2.plot(db_1d_map['rByD'],db_1d_map['std']/Ux_bulk_Dai,label=ps_map['alias'],linewidth=4, color='steelblue')
     
 #   reference plot       
     x1,y1 = rdb.Dai_thesis.Fig4p8a('EAU')
