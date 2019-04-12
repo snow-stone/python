@@ -2,10 +2,8 @@ import sys
 import commands, os
 
 def runJob(cmd):
-    print "running job using : %s" % cmd
+    print "running Job using bash command : %s" % cmd
     status, jobOutput = commands.getstatusoutput(cmd)
-    print ""
-    print "===================="
     if status == 0 :
         print "Job return value : 0"
         print "Job output :"
@@ -40,6 +38,9 @@ def main():
     caseInfo["1b_1"]['targetDir']="1b_mirrorMerge"
 
     for case in caseByAlias:
+        print ""
+        print "===================="
+        print "running Job for case with alias : %s" % case
         stat, output = tryJob(caseInfo[case]['sourceDir'], caseInfo[case]['targetDir'])
     
 main()
