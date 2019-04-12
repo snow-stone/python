@@ -2,8 +2,7 @@
 import json
 
 database=json.load(open("/home/hluo/work/git/python/python_rsync/database.txt"))
-
-#print database['D1-1d']['targetDir']
+alias='D1-1d'
 
 # physical parameters
 
@@ -36,7 +35,7 @@ dataEntry={
         #/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/
         #/home/lmfa/hluo/LocalSoftware/OpenFOAM/hluo-2.3.x/run/T/1d_mapped_NearestFace
         #'path':'/store/T_c/1d_mapped_NearestFace'
-        'path':database['D1-1d']['targetDir']
+        'path':database[alias]['targetDir']
         }
 
 parameters={

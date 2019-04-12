@@ -2,8 +2,7 @@
 import json
 
 database=json.load(open("/home/hluo/work/git/python/python_rsync/database.txt"))
-
-#print database['D1-1d_lR2_afterAugust']['targetDir']
+alias='D1-1d_lR2_afterAugust'
 
 # physical parameters
 
@@ -33,7 +32,7 @@ dataEntry={
         #data position :
         #newton:/store/lmfa/fct/hluo/zaurak/caseByMachine/occigen/T/passiveScalar/Newtonian/mapped/flowRate/min/1d_lR2/afterAugust/postProcessing
         #'path':'/store/T_c/1d_lR2'
-	'path':database['D1-1d_lR2_afterAugust']['targetDir']
+	    'path':database[alias]['targetDir']
         }
 
 parameters={

@@ -2,8 +2,7 @@
 import json
 
 database=json.load(open("/home/hluo/work/git/python/python_rsync/database.txt"))
-
-#print database['D1-1b']['targetDir']
+alias='D1-1b'
 
 # physical parameters
 
@@ -35,7 +34,7 @@ dataEntry={
         # data position :
         # /store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge/postProcessing
         #'path':'/store/T_c/1b_mirrorMerge'
-        'path':database['D1-1b']['targetDir']
+        'path':database[alias]['targetDir']
         }
 
 parameters={
