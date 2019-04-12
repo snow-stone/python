@@ -74,9 +74,17 @@ def main():
         print "running Job for case with alias : %s" % case
         stat, output = tryJob(caseInfo[case]['sourceDir'], caseInfo[case]['targetDir'])
     
+    #print "--------------------"
+    #print "print keys : ", caseInfo.keys()
+    #print "writing database to dataBase.mat"
+    #print "--------------------"
+    #io.savemat("dataBase",caseInfo)
+
+    import json
     print "--------------------"
-    print "writing database to dataBase.mat"
+    print "print keys : ", caseInfo.keys()
+    print "writing database to json"
     print "--------------------"
-    io.savemat("dataBase",caseInfo)
+    json.dump(caseInfo, open("database.txt",'w'))
 
 main()
