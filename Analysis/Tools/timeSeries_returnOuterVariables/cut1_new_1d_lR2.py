@@ -47,13 +47,15 @@ def main():
 
 #   plot settings    
     ax1.set_xlim(0,1)
-    ax1.legend(bbox_to_anchor=(0.6, 0.4), ncol=1, fancybox=True, shadow=True)
+    ax1.set_ylim(-0.5,4)
+    ax1.legend(bbox_to_anchor=(0.6, 1), ncol=1, fancybox=True, shadow=True)
     ax1.set_xlabel(r'$r/D$')
     ax1.set_ylabel(r'$\frac{\overline{\bf{u}_x}}{\bf{u}_{bulk}}$')
     #ax1.set_title('time stat. @'+r'$-D$'+' cut')
 
     ax2.set_xlim(0,1)
-    ax2.legend(bbox_to_anchor=(0.8, 1), ncol=1, fancybox=True, shadow=True)
+    ax2.set_ylim(0,1)
+    ax2.legend(bbox_to_anchor=(0.6, 1), ncol=1, fancybox=True, shadow=True)
     ax2.set_xlabel(r'$r/D$')
     #ax2.set_ylabel(r'${U_x}_{rms}$')
     ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')

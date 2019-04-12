@@ -28,6 +28,7 @@ dataEntry={
         #'path':"/store/caseByGeometry/T/new-mesh/pointwise/postProcessing/1d_mapped_NearestFace",
         #data position :
         #/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/
+        #/home/lmfa/hluo/LocalSoftware/OpenFOAM/hluo-2.3.x/run/T/1d_mapped_NearestFace
         'path':'/store/T_c/1d_mapped_NearestFace'
         }
 
