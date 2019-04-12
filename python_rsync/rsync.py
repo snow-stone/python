@@ -1,30 +1,33 @@
 import sys
 import commands, os
 
-def submitJob(cmd):
-    print "submitting job using : %s" % cmd
+def runJob(cmd):
+    print "running job using : %s" % cmd
     status, jobOutput = commands.getstatusoutput(cmd)
     print ""
     print "===================="
     if status == 0 :
-        print "job return value : 0"
-        print "job output :"
+        print "Job return value : 0"
+        print "Job output :"
         print jobOutput
     else :
-        print "job failed"
-        print "job output :"
+        print "Job failed"
+        print "Job output :"
         print jobOutput
 
     return status, jobOutput
 
-def tryJob(job_number):
+def tryJob(sourceDir, targetDir):
 
-    sourceDir="/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge/postProcessing"
-    cmd = "rsync -av newton:%s 1b_mirrorMerge/" % sourceDir
-    status, jobOutput = submitJob(cmd)
+    #sourceDir="/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge/postProcessing"
+    #targetDir="1b_mirrorMerge"
+    cmd = "rsync -av newton:%s %s/" % (sourceDir, targetDir)
+    status, jobOutput = runJob(cmd)
 
 def main():
-    #queue = sys.argv[1]
-    tryJob(1)
+
+    sourceDir="/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge/postProcessing"
+    targetDir="1b_mirrorMerge"
+    tryJob(sourceDir, targetDir)
     
 main()
