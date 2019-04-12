@@ -22,5 +22,26 @@ d.pop("__version__")
 print "after removing extra keys other than case alias"
 print "keys : ", d.keys()
 
-for alias in d:
-    printBijection(d, alias)
+#for alias in d:
+#    printBijection(d, alias)
+
+a = d['D1-1d']
+
+print "a"
+print a
+
+print "a.dtype"
+print a.dtype
+
+print "a.size"
+print a.size
+
+print "a.shape"
+print a.shape
+
+print "a[0][0]"
+print a[0][0]
+
+print "a['sourceDir']"
+print a['sourceDir']
+
