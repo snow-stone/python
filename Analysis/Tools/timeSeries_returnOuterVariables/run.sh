@@ -1,7 +1,14 @@
 #!/bin/bash
 
-python cut1_new_static.py /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/1d/
-python cut2_abcde_3_new_static.py /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/1d/
+caseAlias=D1-1d
+#python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
 
-python cut1_new_1d_lR2_static.py /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/1d_lR2/
-python cut2_abcde_3_new_1d_lR2_static.py /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/1d_lR2/
+caseAlias=D1-1d_lR2_afterAugust
+#python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
+python cut2_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
+python cut3_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
+
+caseAlias=D2-NN-1j_test_from0
+#python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
+#python cut2_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
+#python cut3_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
