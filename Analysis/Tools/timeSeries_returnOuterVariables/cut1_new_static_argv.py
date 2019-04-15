@@ -23,7 +23,14 @@ def D1_Dai_EAU_rms(ax):
 def D2_Dai_EAU_mean(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p8b('EAU')
     ax.plot(x1+0.5, y1, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig4p8b('XG')
+    ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
+def D2_Dai_EAU_rms(ax):
+    x1,y1 = rdb.Dai_thesis.Fig4p11b('EAU')
+    ax.plot(x1+0.5, y1, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig4p11b('XG')
+    ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
@@ -50,7 +57,7 @@ def main():
 #   reference plot       
 
     D2_Dai_EAU_mean(ax1)
-    #D1_Dai_EAU_rms(ax2)
+    D2_Dai_EAU_rms(ax2)
 
 #   plot settings    
     ax1.set_xlim(0,1)
