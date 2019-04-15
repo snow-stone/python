@@ -36,6 +36,18 @@ def D2_Dai_EAU_rms(ax):
     x2,y2 = rdb.Dai_thesis.Fig4p11b('XG')
     ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
+def D3_Dai_EAU_mean(ax):
+    x1,y1 = rdb.Dai_thesis.Fig4p8c('EAU')
+    ax.plot(x1+0.5, y1, label='D3-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig4p8c('XG')
+    ax.plot(x2+0.5, y2, label='D3-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+
+def D3_Dai_EAU_rms(ax):
+    x1,y1 = rdb.Dai_thesis.Fig4p11c('EAU')
+    ax.plot(x1+0.5, y1, label='D3-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig4p11c('XG')
+    ax.plot(x2+0.5, y2, label='D3-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
 
@@ -61,6 +73,10 @@ def main():
         D1_Dai_EAU_mean(ax1)
         D1_Dai_EAU_rms(ax2)
         Ux_bulk_Dai=0.3
+    elif (parameterFileBasename[0:2] == 'D3'):
+        D1_Dai_EAU_mean(ax1)
+        D1_Dai_EAU_rms(ax2)
+        Ux_bulk_Dai=1.3
 
     if (parameterFileBasename[3:5] == 'NN'):
         simu_color='orange'
