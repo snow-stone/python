@@ -15,10 +15,14 @@ plt.rcParams['savefig.dpi'] = 200
 def D1_Dai_EAU_mean(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p8a('EAU')
     ax.plot(x1+0.5, y1, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig4p8a('XG')
+    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D1_Dai_EAU_rms(ax):
     x2,y2 = rdb.Dai_thesis.Fig4p11a('EAU')
     ax.plot(x2+0.5, y2, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig4p11a('XG')
+    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D2_Dai_EAU_mean(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p8b('EAU')
@@ -38,27 +42,31 @@ def main():
     parameterFileBasename = sys.argv[1]
     saveDir = sys.argv[2]
 
-    ps_map = getattr(__import__("parameters_"+parameterFileBasename),"parameters")
+    simu_case = getattr(__import__("parameters_"+parameterFileBasename),"parameters")
     
     fig1,ax1 = plt.subplots()
     fig2,ax2 = plt.subplots()
 
 #   get data    
-    ps_map['sampling']['dataShape']=(220,4)
-    l_1d_map = tsR.pre_check(ps_map,"Dai_lines_typeFace_cell-1")
-    db_1d_map = tsR.process(ps_map,validDataList=l_1d_map,colonNb=1)  
+    simu_case['sampling']['dataShape']=simu_case['sampling']['dataShape1']
+    fileListSimu = tsR.pre_check(simu_case,"Dai_lines_typeFace_cell-1")
+    dataBase2Plot = tsR.process(simu_case,validDataList=fileListSimu,colonNb=1)  
+
+#   reference plot       
+    if (parameterFileBasename[0:2] == 'D2'):
+        D2_Dai_EAU_mean(ax1)
+        D2_Dai_EAU_rms(ax2)
+        Ux_bulk_Dai=0.5
+    elif (parameterFileBasename[0:2] == 'D1'):
+        D1_Dai_EAU_mean(ax1)
+        D1_Dai_EAU_rms(ax2)
+        Ux_bulk_Dai=0.3
 
 #   No-dimnesionize and plot
-    Ux_bulk_Dai=0.5
 
-    ax1.plot(db_1d_map['rByD'],db_1d_map['mean']/Ux_bulk_Dai,label=ps_map['alias'],linewidth=4, color='steelblue')
-    ax2.plot(db_1d_map['rByD'],db_1d_map['std']/Ux_bulk_Dai,label=ps_map['alias'],linewidth=4, color='steelblue')
+    ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['mean']/Ux_bulk_Dai,label=simu_case['alias'],linewidth=4, color='steelblue')
+    ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_case['alias'],linewidth=4, color='steelblue')
     
-#   reference plot       
-
-    D2_Dai_EAU_mean(ax1)
-    D2_Dai_EAU_rms(ax2)
-
 #   plot settings    
     ax1.set_xlim(0,1)
     ax1.set_ylim(-0.5,4)
@@ -72,7 +80,7 @@ def main():
     ax2.set_xlabel(r'$r/D$')
     ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
     
-    fig1.savefig(saveDir+"cut1_new_profil1a.png",  bbox_inches='tight')
-    fig2.savefig(saveDir+"cut1_new_profil1b.png",  bbox_inches='tight')
+    fig1.savefig(saveDir+"cut1a.png",  bbox_inches='tight')
+    fig2.savefig(saveDir+"cut1b.png",  bbox_inches='tight')
 
 main()
