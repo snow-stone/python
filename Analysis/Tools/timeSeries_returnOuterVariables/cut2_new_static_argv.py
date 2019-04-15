@@ -62,10 +62,15 @@ def main():
         D1_Dai_EAU_rms(ax2)
         Ux_bulk_Dai=0.3
 
+    if (parameterFileBasename[3:5] == 'NN'):
+        simu_color='orange'
+    else:
+        simu_color='mediumvioletred'
+
 #   No-dimnesionize and plot
 
-    ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['mean']/Ux_bulk_Dai,label=simu_case['alias'],linewidth=4, color='steelblue')
-    ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_case['alias'],linewidth=4, color='steelblue')
+    ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['mean']/Ux_bulk_Dai,label=simu_case['alias'],linewidth=4, color=simu_color)
+    ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_case['alias'],linewidth=4, color=simu_color)
     
 #   plot settings    
     ax1.set_xlim(0,1)
