@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 #import sys
 #sys.path.insert(0,'my_plt_packages')
-import general_settings as gs
+#import general_settings as gs
 
 def convert2TimeDirName(string):
     if '.' in string:
@@ -84,13 +84,13 @@ def chart(chunkSizeList):
     maxHeight=rects.patches[0].get_height()
     
     # add some text for labels, title and axes ticks
-    ax.set_ylabel('sample Nb in every chunk. C for Chunk',fontsize=gs.sizeLabel)
+    ax.set_ylabel('sample Nb in every chunk. C for Chunk')
     ax.set_ylim(0,maxHeight*1.1)
     ax.set_title('sample Nb by chunk')
     
     ax.set_xticks(ind + width / 2)
     xlabels = ['C'+str(i+1) for i in range(N)]
-    ax.set_xticklabels(tuple(xlabels),fontsize=gs.sizeLabel)
+    ax.set_xticklabels(tuple(xlabels))
 
 def getMean(rightDataShape,data):
     mean=np.zeros(rightDataShape)

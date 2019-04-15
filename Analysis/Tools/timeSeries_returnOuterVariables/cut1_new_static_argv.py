@@ -1,8 +1,9 @@
 import matplotlib
 matplotlib.use('agg')
-
-import matplotlib.pyplot as plt
+import sys
+sys.path.append('/home/hluo/work/git/thesis/Thesis_hluo_new/reference_database') # for rdb
 import reference_database as rdb
+import matplotlib.pyplot as plt
 
 from matplotlib import rc
 rc('font',**{'family':'serif','serif':['Palatino']})
@@ -11,14 +12,22 @@ plt.style.use('seaborn-white') # from defaut
 plt.rcParams.update({'font.size': 20})
 plt.rcParams['savefig.dpi'] = 200
 
+def D1_Dai_EAU_mean(ax):
+    x1,y1 = rdb.Dai_thesis.Fig4p8a('EAU')
+    ax.plot(x1+0.5, y1, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+
+def D1_Dai_EAU_rms(ax):
+    x2,y2 = rdb.Dai_thesis.Fig4p11a('EAU')
+    ax.plot(x2+0.5, y2, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
     import static_parameters_T_RES1b_MethodSynthetic as ps_syn
-    #ps_map = getattr(__import__("static_parameters_D2_NN-1j_test_from0"),"parameters")
-    ps_map = getattr(__import__("parameters_"+"D2-NN-1j_testFrom0"),"parameters")
-    import sys
 
-    saveDir = sys.argv[1]
+    parameterFileBasename = sys.argv[1]
+    saveDir = sys.argv[2]
+
+    ps_map = getattr(__import__("parameters_"+parameterFileBasename),"parameters")
     
     fig1,ax1 = plt.subplots()
     fig2,ax2 = plt.subplots()
@@ -43,10 +52,9 @@ def main():
     ax2.plot(db_1d_map['rByD'],db_1d_map['std']/Ux_bulk_Dai,label=ps_map['alias'],linewidth=4, color='steelblue')
     
 #   reference plot       
-    x1,y1 = rdb.Dai_thesis.Fig4p8a('EAU')
-    ax1.plot(x1+0.5, y1, label='Dai-1', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p11a('EAU')
-    ax2.plot(x2+0.5, y2, label='Dai-1', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+
+    D1_Dai_EAU_mean(ax1)
+    D1_Dai_EAU_rms(ax2)
 
 #   plot settings    
     ax1.set_xlim(0,1)
