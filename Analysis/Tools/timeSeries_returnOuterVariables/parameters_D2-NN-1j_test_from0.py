@@ -2,7 +2,7 @@
 import json
 
 database=json.load(open("/home/hluo/work/git/python/python_rsync/database.txt"))
-alias="D2-NN-1j_testFrom0"
+alias="D2-NN-1j_test_from0"
 
 # physical parameters
 
@@ -39,7 +39,8 @@ parameters={
         'physics':physics,
         'sampling':sampling,
         'dataEntry':dataEntry,
-        'alias':alias
+        #'alias':alias
+        'alias':database[alias]['name2plot']
         }
 
 #plotSavePath="10D_5Dforced/"
