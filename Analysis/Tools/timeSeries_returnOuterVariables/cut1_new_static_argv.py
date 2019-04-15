@@ -20,9 +20,13 @@ def D1_Dai_EAU_rms(ax):
     x2,y2 = rdb.Dai_thesis.Fig4p11a('EAU')
     ax.plot(x2+0.5, y2, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
 
+def D2_Dai_EAU_mean(ax):
+    x1,y1 = rdb.Dai_thesis.Fig4p8b('EAU')
+    ax.plot(x1+0.5, y1, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+
+
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
-    import static_parameters_T_RES1b_MethodSynthetic as ps_syn
 
     parameterFileBasename = sys.argv[1]
     saveDir = sys.argv[2]
@@ -33,28 +37,20 @@ def main():
     fig2,ax2 = plt.subplots()
 
 #   get data    
-    ps_syn.parameters['sampling']['dataShape']=(104,4)
-    l_1b_syn = tsR.pre_check(ps_syn.parameters,"Dai_lines_typeFace_cell-1")
-    db_1b_syn = tsR.process(ps_syn.parameters,validDataList=l_1b_syn,colonNb=1)
-
     ps_map['sampling']['dataShape']=(220,4)
     l_1d_map = tsR.pre_check(ps_map,"Dai_lines_typeFace_cell-1")
     db_1d_map = tsR.process(ps_map,validDataList=l_1d_map,colonNb=1)  
 
 #   No-dimnesionize and plot
-    Ux_1p5M_syn=0.25
-    Ux_bulk_Dai=0.3
+    Ux_bulk_Dai=0.5
 
-    ax1.plot(db_1b_syn['rByD'],db_1b_syn['mean']/Ux_1p5M_syn,label='1b-synthetic',linewidth=4, color='orange')
     ax1.plot(db_1d_map['rByD'],db_1d_map['mean']/Ux_bulk_Dai,label=ps_map['alias'],linewidth=4, color='steelblue')
-
-    ax2.plot(db_1b_syn['rByD'],db_1b_syn['std']/Ux_1p5M_syn,label='1b-synthetic',linewidth=4, color='orange')  
     ax2.plot(db_1d_map['rByD'],db_1d_map['std']/Ux_bulk_Dai,label=ps_map['alias'],linewidth=4, color='steelblue')
     
 #   reference plot       
 
-    D1_Dai_EAU_mean(ax1)
-    D1_Dai_EAU_rms(ax2)
+    D2_Dai_EAU_mean(ax1)
+    #D1_Dai_EAU_rms(ax2)
 
 #   plot settings    
     ax1.set_xlim(0,1)
