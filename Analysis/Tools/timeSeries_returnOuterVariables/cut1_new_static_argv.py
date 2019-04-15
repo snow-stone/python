@@ -14,7 +14,8 @@ plt.rcParams['savefig.dpi'] = 200
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
     import static_parameters_T_RES1b_MethodSynthetic as ps_syn
-    ps_map = getattr(__import__("static_parameters_D2_NN_1j_test_from0"),"parameters")
+    #ps_map = getattr(__import__("static_parameters_D2_NN-1j_test_from0"),"parameters")
+    ps_map = getattr(__import__("parameters_"+"D2-NN-1j_testFrom0"),"parameters")
     import sys
 
     saveDir = sys.argv[1]
