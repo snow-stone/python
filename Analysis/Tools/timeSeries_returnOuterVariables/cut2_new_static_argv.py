@@ -12,29 +12,29 @@ plt.style.use('seaborn-white') # from defaut
 plt.rcParams.update({'font.size': 20})
 plt.rcParams['savefig.dpi'] = 200
 
-def D1_Dai_EAU_mean(ax):
-    x1,y1 = rdb.Dai_thesis.Fig4p8a('EAU')
-    ax.plot(x1+0.5, y1, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p8a('XG')
-    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
-
-def D1_Dai_EAU_rms(ax):
-    x2,y2 = rdb.Dai_thesis.Fig4p11a('EAU')
-    ax.plot(x2+0.5, y2, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p11a('XG')
-    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
-
-def D2_Dai_EAU_mean(ax):
-    x1,y1 = rdb.Dai_thesis.Fig4p8b('EAU')
-    ax.plot(x1+0.5, y1, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p8b('XG')
-    ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
-
-def D2_Dai_EAU_rms(ax):
-    x1,y1 = rdb.Dai_thesis.Fig4p11b('EAU')
-    ax.plot(x1+0.5, y1, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p11b('XG')
-    ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+#def D1_Dai_EAU_mean(ax):
+#    x1,y1 = rdb.Dai_thesis.Fig4p8a('EAU')
+#    ax.plot(x1+0.5, y1, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+#    x2,y2 = rdb.Dai_thesis.Fig4p8a('XG')
+#    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+#
+#def D1_Dai_EAU_rms(ax):
+#    x2,y2 = rdb.Dai_thesis.Fig4p11a('EAU')
+#    ax.plot(x2+0.5, y2, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+#    x2,y2 = rdb.Dai_thesis.Fig4p11a('XG')
+#    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+#
+#def D2_Dai_EAU_mean(ax):
+#    x1,y1 = rdb.Dai_thesis.Fig4p8b('EAU')
+#    ax.plot(x1+0.5, y1, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+#    x2,y2 = rdb.Dai_thesis.Fig4p8b('XG')
+#    ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+#
+#def D2_Dai_EAU_rms(ax):
+#    x1,y1 = rdb.Dai_thesis.Fig4p11b('EAU')
+#    ax.plot(x1+0.5, y1, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+#    x2,y2 = rdb.Dai_thesis.Fig4p11b('XG')
+#    ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
@@ -48,8 +48,8 @@ def main():
     fig2,ax2 = plt.subplots()
 
 #   get data    
-    simu_case['sampling']['dataShape']=simu_case['sampling']['dataShape1']
-    fileListSimu = tsR.pre_check(simu_case,"Dai_lines_typeFace_cell-1")
+    simu_case['sampling']['dataShape']=simu_case['sampling']['dataShape2']
+    fileListSimu = tsR.pre_check(simu_case,"Dai_lines_typeFace_cell-2")
     dataBase2Plot = tsR.process(simu_case,validDataList=fileListSimu,colonNb=1)  
 
 #   reference plot       
@@ -80,7 +80,7 @@ def main():
     ax2.set_xlabel(r'$r/D$')
     ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
     
-    fig1.savefig(saveDir+"cut1a.png",  bbox_inches='tight')
-    fig2.savefig(saveDir+"cut1b.png",  bbox_inches='tight')
+    fig1.savefig(saveDir+"cut2a.png",  bbox_inches='tight')
+    fig2.savefig(saveDir+"cut2b.png",  bbox_inches='tight')
 
 main()
