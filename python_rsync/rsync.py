@@ -47,7 +47,8 @@ def main():
     for case in caseByAlias:
         caseInfo[case]={
             'sourceDir':[],
-            'targetDir':[]
+            'targetDir':[],
+            'name2plot':[]
             }
 
     # IMPORTANT COMMENT HRER :
@@ -61,16 +62,19 @@ def main():
     alias="D1-1b"
     caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1b_mirrorMerge"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1b"+"/"+alias
+    caseInfo[alias]['name2plot']=alias
     makeDirectory(caseInfo[alias]['targetDir'])
 
     alias="D1-1d"
     caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByGeometry/T/new-mesh/pointwise/postProcessing/1d_mapped_NearestFace"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1d"+"/"+alias
+    caseInfo[alias]['name2plot']=alias
     makeDirectory(caseInfo[alias]['targetDir'])
 
     alias="D1-1d_lR2_afterAugust"
     caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByMachine/occigen/T/passiveScalar/Newtonian/mapped/flowRate/min/1d_lR2/afterAugust"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1d_lR2"+"/"+alias
+    caseInfo[alias]['name2plot']=alias
     makeDirectory(caseInfo[alias]['targetDir'])
 
     base_1j="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/BirdCarreau/synthetic/flowRate/medium/fluctuation_off/1j"
@@ -78,16 +82,19 @@ def main():
     alias="D2-NN-1j_test_from0"
     caseInfo[alias]['sourceDir']=base_1j+"/"+"test_from0"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    caseInfo[alias]['name2plot']="D2-NN-1j_{testFrom0}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     alias="D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05"
     caseInfo[alias]['sourceDir']=base_1j+"/"+"synthetic_phasedStepFrom_test_from_0/From0p3_3_of3"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    caseInfo[alias]['name2plot']="D2-NN-1j_{testFrom0.3;forcingStep,St=1,A=0.05}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     alias="D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05"
     caseInfo[alias]['sourceDir']=base_1j+"/"+"synthetic_phasedSinusFrom_test_from_0/From0p3_2_of3"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    caseInfo[alias]['name2plot']="D2-NN-1j_{testFrom0.3;forcingSinus,St=3.2,A=0.05}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     for case in caseByAlias:
