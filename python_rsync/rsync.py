@@ -74,7 +74,7 @@ def main():
     alias="D1-1d_lR2_afterAugust"
     caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/zaurak/caseByMachine/occigen/T/passiveScalar/Newtonian/mapped/flowRate/min/1d_lR2/afterAugust"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1d_lR2"+"/"+alias
-    caseInfo[alias]['name2plot']=alias
+    caseInfo[alias]['name2plot']="D1-1d_{lR2,afterAugust}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     base_1j="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/BirdCarreau/synthetic/flowRate/medium/fluctuation_off/1j"
