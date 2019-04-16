@@ -50,19 +50,22 @@ def D3_Dai_EAU_rms(ax):
 
 def main():
     import timeSeriesReader_ReturnOuterVariables as tsR
+    import os
 
     parameterFileBasename = sys.argv[1]
     saveDir = sys.argv[2]
+    ifLocalControl = sys.argv[3]
 
-    simu_case = getattr(__import__("parameters_"+parameterFileBasename),"parameters")
+    simu_module = __import__("parameters_"+parameterFileBasename)
+    simu_parameters = simu_module.parameters
     
     fig1,ax1 = plt.subplots()
     fig2,ax2 = plt.subplots()
 
 #   get data    
-    simu_case['sampling']['dataShape']=simu_case['sampling']['dataShape2']
-    fileListSimu = tsR.pre_check(simu_case,"Dai_lines_typeFace_cell-2")
-    dataBase2Plot = tsR.process(simu_case,validDataList=fileListSimu,colonNb=1)  
+    simu_parameters['sampling']['dataShape']=simu_parameters['sampling']['dataShape2']
+    fileListSimu = tsR.pre_check(simu_parameters,"Dai_lines_typeFace_cell-2")
+    dataBase2Plot = tsR.process(simu_parameters,validDataList=fileListSimu,colonNb=1)  
 
 #   reference plot       
     if (parameterFileBasename[0:2] == 'D2'):
@@ -85,19 +88,45 @@ def main():
 
 #   No-dimnesionize and plot
 
-    ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['mean']/Ux_bulk_Dai,label=simu_case['alias'],linewidth=4, color=simu_color)
-    ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_case['alias'],linewidth=4, color=simu_color)
+    ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['mean']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
+    ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
     
 #   plot settings    
     ax1.set_xlim(0,1)
     ax1.set_ylim(-0.5,4)
-    ax1.legend(bbox_to_anchor=(0.5, 1), ncol=1, fancybox=True, shadow=True)
+    if ifLocalControl == "ControlFig_usingParameters":
+        print "====================================="
+        print "For fig1 :"
+        print "In file " + os.path.basename(__file__)
+        print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__)
+        print "====================================="
+        ax1.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition2a'], ncol=1, fancybox=True, shadow=True)
+    else:
+        print "====================================="
+        print "For fig1 :"
+        print "In file " + os.path.basename(__file__)
+        print "applying local constant control on legend positioning"
+        print "====================================="
+        ax1.legend(bbox_to_anchor=(0.5, 1), ncol=1, fancybox=True, shadow=True)
     ax1.set_xlabel(r'$r/D$')
     ax1.set_ylabel(r'$\frac{\overline{\bf{u}_x}}{\bf{u}_{bulk}}$')
 
     ax2.set_xlim(0,1)
     ax2.set_ylim(0,1)
-    ax2.legend(bbox_to_anchor=(0.5, 1), ncol=1, fancybox=True, shadow=True)
+    if ifLocalControl == "ControlFig_usingParameters":
+        print "====================================="
+        print "For fig2 :"
+        print "In file " + os.path.basename(__file__)
+        print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__)
+        print "====================================="
+        ax2.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition2b'], ncol=1, fancybox=True, shadow=True)
+    else:
+        print "====================================="
+        print "For fig2 :"
+        print "In file " + os.path.basename(__file__)
+        print "applying local constant control on legend positioning"
+        print "====================================="
+        ax2.legend(bbox_to_anchor=(0.5, 1), ncol=1, fancybox=True, shadow=True)
     ax2.set_xlabel(r'$r/D$')
     ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
     

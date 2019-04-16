@@ -35,12 +35,22 @@ dataEntry={
 	    'path':database[alias]['targetDir']
         }
 
+controlFig={
+        'legendPosition1a':(1,1.4), # cut1_new_static_argv.py 
+        'legendPosition1b':(1,1.4), # cut1_new_static_argv.py 
+        'legendPosition2a':(1,1.4), # cut2_new_static_argv.py 
+        'legendPosition2b':(1,1.4), # cut2_new_static_argv.py 
+        'legendPosition3a':(1,1.4), # cut3_new_static_argv.py 
+        'legendPosition3b':(1,1.4), # cut3_new_static_argv.py 
+        }
+
 parameters={
         'physics':physics,
         'sampling':sampling,
         'dataEntry':dataEntry,
         #'alias':alias
-        'alias':database[alias]['name2plot']
+        'alias':database[alias]['name2plot'],
+        'plot': controlFig
         }
 
 #plotSavePath="10D_5Dforced/"
