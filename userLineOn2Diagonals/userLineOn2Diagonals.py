@@ -37,12 +37,12 @@ def main():
     simu_module = __import__("parameters_"+parameterFileBasename)
     simu_parameters = simu_module.parameters
 
-    fig1,ax1 = plt.subplots()
+    fig1,ax1 = plt.subplots(figsize=(16,10))
     l = reader.pre_check(simu_module.parameters,'lineOn2Diagonals','U')
     outerCoordData = reader.process(simu_module.parameters,validDataList=l,colonNb=1,innerVar=False)
     x=outerCoordData['rByD']*2
     y=outerCoordData['mean']/uTau#*max(outerCoordData['mean'])#/0.045    
-    ax1.plot(x,y,label='simu t=%.1f'%simu_module.parameters['dataEntry']['timeStep'],linewidth=2)
+    #ax1.plot(x,y,label='simu t=%.1f'%simu_module.parameters['dataEntry']['timeStep'],linewidth=2)
     output2Txt('Ux_spatialAvg',outerCoordData['rByD']*2,outerCoordData['mean']*max(outerCoordData['mean'])/0.045)
     y_sum = np.zeros(y.shape)
     counter=0
@@ -57,16 +57,16 @@ def main():
         y=outerCoordData['mean']/uTau
         y_sum = y_sum + y
         #ax1.plot(x,y,label='simu t=%.1f'%dict_['dataEntry']['timeStep'],linewidth=2)
-    ax1.plot(x,y_sum/counter,label='mean',linewidth=2)
+    ax1.plot(x,y_sum/counter,label='simu',linewidth=4,color='steelblue')
 
     x, y = rdb.Gavrilakis1992.Fig4a()
-    ax1.plot(x,y,'o',label='Gavrilakis1992')
-    ax1.legend(bbox_to_anchor=(1.5, 1.0), ncol=1, fancybox=True, shadow=True)
+    ax1.plot(x,y,label=r'$DNS_G$',linewidth=1,linestyle='--',marker='s',color='mediumvioletred',markeredgecolor='mediumvioletred', markerfacecolor='none', markersize=16, markeredgewidth=4)
+    ax1.legend(bbox_to_anchor=(1, 1), ncol=1, fancybox=True, shadow=True)
     ax1.set_ylim(0,25)
-    ax1.set_xlabel(r'$Disantce \, along \, the \, diagonal$',fontsize=20)
-    ax1.set_ylabel(r'$U_x^+$',fontsize=20)
+    ax1.set_xlabel(r'$Disantce \, along \, the \, diagonal$')
+    ax1.set_ylabel(r'$u_x^+$')
     ax1.set_title('spatial stat.')
 
-    fig1.savefig(saveDir+'/'+'mean.png',bbox_inches='tight')
+    fig1.savefig(saveDir+'/'+'UxPlus_diagonal.png',bbox_inches='tight')
 
 main()
