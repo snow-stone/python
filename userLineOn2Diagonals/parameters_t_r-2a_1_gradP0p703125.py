@@ -1,3 +1,8 @@
+# static
+import json
+
+database=json.load(open("/home/hluo/work/git/python/python_rsync/database.txt"))
+alias="t_r-2a_1_gradP0p703125"
 
 # physical parameters
 
@@ -17,14 +22,15 @@ sampling={
 # data entry parameters
 
 dataEntry={
-        'timeStep':20,
+        'timeStep':12,
         'chunkStep':40,
         'NbOfFiles':161,
-        'path':"/store/8simu_tmp/gradP0_1p0125",
+        'path':database[alias]['targetDir']
         }
 
 parameters={
         'physics':physics,
         'sampling':sampling,
         'dataEntry':dataEntry,
+        'alias':database[alias]['name2plot']
         }

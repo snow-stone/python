@@ -32,6 +32,7 @@ def main():
 
     parameterFileBasename = sys.argv[1]
     saveDir = sys.argv[2]
+    uTau=0.038
 
     simu_module = __import__("parameters_"+parameterFileBasename)
     simu_parameters = simu_module.parameters
@@ -40,18 +41,23 @@ def main():
     l = reader.pre_check(simu_module.parameters,'lineOn2Diagonals','U')
     outerCoordData = reader.process(simu_module.parameters,validDataList=l,colonNb=1,innerVar=False)
     x=outerCoordData['rByD']*2
-    y=outerCoordData['mean']/0.045#*max(outerCoordData['mean'])#/0.045    
+    y=outerCoordData['mean']/uTau#*max(outerCoordData['mean'])#/0.045    
     ax1.plot(x,y,label='simu t=%.1f'%simu_module.parameters['dataEntry']['timeStep'],linewidth=2)
     output2Txt('Ux_spatialAvg',outerCoordData['rByD']*2,outerCoordData['mean']*max(outerCoordData['mean'])/0.045)
+    y_sum = np.zeros(y.shape)
+    counter=0
 
-    for i in range(10,20,1):
+    for i in range(1,12,1):
+        counter = counter + 1
         dict_=copy.deepcopy(simu_module.parameters)
         dict_['dataEntry']['timeStep']=i
         l_ = reader.pre_check(dict_,'lineOn2Diagonals','U')
         outerCoordData = reader.process(dict_,validDataList=l_,colonNb=1,innerVar=False)
         x=outerCoordData['rByD']*2
-        y=outerCoordData['mean']/0.045
-        ax1.plot(x,y,label='simu t=%.1f'%dict_['dataEntry']['timeStep'],linewidth=2)
+        y=outerCoordData['mean']/uTau
+        y_sum = y_sum + y
+        #ax1.plot(x,y,label='simu t=%.1f'%dict_['dataEntry']['timeStep'],linewidth=2)
+    ax1.plot(x,y_sum/counter,label='mean',linewidth=2)
 
     x, y = rdb.Gavrilakis1992.Fig4a()
     ax1.plot(x,y,'o',label='Gavrilakis1992')
