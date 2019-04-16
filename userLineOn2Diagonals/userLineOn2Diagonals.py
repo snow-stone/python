@@ -28,19 +28,24 @@ def output2Txt(fileName, x, y):
 
 def main():
     import spatialSeriesReader0_module as reader
-    import para_statistic_2Diagonals as twoD
     import copy
 
+    parameterFileBasename = sys.argv[1]
+    saveDir = sys.argv[2]
+
+    simu_module = __import__("parameters_"+parameterFileBasename)
+    simu_parameters = simu_module.parameters
+
     fig1,ax1 = plt.subplots()
-    l = reader.pre_check(twoD.parameters,'lineOn2Diagonals','U')
-    outerCoordData = reader.process(twoD.parameters,validDataList=l,colonNb=1,innerVar=False)
+    l = reader.pre_check(simu_module.parameters,'lineOn2Diagonals','U')
+    outerCoordData = reader.process(simu_module.parameters,validDataList=l,colonNb=1,innerVar=False)
     x=outerCoordData['rByD']*2
     y=outerCoordData['mean']/0.045#*max(outerCoordData['mean'])#/0.045    
-    ax1.plot(x,y,label='simu t=%.1f'%twoD.parameters['dataEntry']['timeStep'],linewidth=2)
+    ax1.plot(x,y,label='simu t=%.1f'%simu_module.parameters['dataEntry']['timeStep'],linewidth=2)
     output2Txt('Ux_spatialAvg',outerCoordData['rByD']*2,outerCoordData['mean']*max(outerCoordData['mean'])/0.045)
 
     for i in range(10,20,1):
-        dict_=copy.deepcopy(twoD.parameters)
+        dict_=copy.deepcopy(simu_module.parameters)
         dict_['dataEntry']['timeStep']=i
         l_ = reader.pre_check(dict_,'lineOn2Diagonals','U')
         outerCoordData = reader.process(dict_,validDataList=l_,colonNb=1,innerVar=False)
@@ -56,6 +61,6 @@ def main():
     ax1.set_ylabel(r'$U_x^+$',fontsize=20)
     ax1.set_title('spatial stat.')
 
-    fig1.savefig('mean.png',bbox_inches='tight')
+    fig1.savefig(saveDir+'/'+'mean.png',bbox_inches='tight')
 
 main()
