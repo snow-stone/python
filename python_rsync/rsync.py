@@ -30,6 +30,10 @@ def tryJob(sourceDir, targetDir):
 
 def main():
 
+    # naming
+    # begin by D1, D2, D3 : debit min, medium, max
+    # then : dash
+    # if NN then NN, if not, directly get into resolution : 1b, 1d, 1j, 1k... 
     caseByAlias=[
         #1b
         "D1-1b",
@@ -40,7 +44,12 @@ def main():
         #1j
         "D2-NN-1j_test_from0",
         "D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05",
-        "D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05"
+        "D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05",
+        "D1-1j_mapped",
+        "D2-1j_mapped",
+        "D3-1j_mapped",
+        "D2-1j_syn",
+        "D2-NN-1j_syn"
     ]
 
     caseInfo=dict.fromkeys(caseByAlias)
@@ -95,6 +104,40 @@ def main():
     caseInfo[alias]['sourceDir']=base_1j+"/"+"synthetic_phasedSinusFrom_test_from_0/From0p3_2_of3"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
     caseInfo[alias]['name2plot']="D2-NN-1j_{testFrom0.3;forcingSinus,St=3.2,A=0.05}"
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    base_1jN="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/Newtonian/mapped/flowRate"
+
+    alias="D1-1j_mapped"
+    caseInfo[alias]['sourceDir']=base_1jN+"/"+"min/test_from_0p45_of3/syntheticMedium_FluctuationOff"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    caseInfo[alias]['name2plot']="D1-1j_{mapped}"
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    alias="D2-1j_mapped"
+    caseInfo[alias]['sourceDir']=base_1jN+"/"+"medium/test_from_0p45_of3/syntheticMedium_FluctuationOff"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    caseInfo[alias]['name2plot']="D2-1j_{mapped}"
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    alias="D3-1j_mapped"
+    caseInfo[alias]['sourceDir']=base_1jN+"/"+"max/test_from_0p45_of3/syntheticMedium_FluctuationOff"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    caseInfo[alias]['name2plot']="D3-1j_{mapped}"
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    base_1jN="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/Newtonian/synthetic/flowRate/medium/fluctuation_off/1j"
+
+    alias="D2-1j_syn"
+    caseInfo[alias]['sourceDir']=base_1jN+"/"+"test_from_0"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    caseInfo[alias]['name2plot']="D2-1j_{syn}"
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    alias="D2-NN-1j_syn"
+    caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/BirdCarreau/synthetic/flowRate/medium/fluctuation_on/medium_cmptStream"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
+    caseInfo[alias]['name2plot']="D2-NN-1j_{syn}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     for case in caseByAlias:
