@@ -74,8 +74,8 @@ def main():
         D1_Dai_EAU_rms(ax2)
         Ux_bulk_Dai=0.3
     elif (parameterFileBasename[0:2] == 'D3'):
-        D1_Dai_EAU_mean(ax1)
-        D1_Dai_EAU_rms(ax2)
+        D3_Dai_EAU_mean(ax1)
+        D3_Dai_EAU_rms(ax2)
         Ux_bulk_Dai=1.3
 
     if (parameterFileBasename[3:5] == 'NN'):
