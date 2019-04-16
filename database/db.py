@@ -25,6 +25,7 @@ def chapter2():
             "T_c/1j_NN_on:":"newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/BirdCarreau/synthetic/flowRate/medium/fluctuation_on/medium_cmptStream",
             "T_c/1j_N"   : "newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/Newtonian/mapped/flowRate",
             "T_c/1j_syn" : "newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/Newtonian/synthetic/flowRate/medium/fluctuation_off/1j",
+            "T_c/1k_4x4x4" : "newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/testMesh/T",
             "T_r"        : "newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/shape_square/2a_3_T"
             }
     
