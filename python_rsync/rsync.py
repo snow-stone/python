@@ -97,13 +97,13 @@ def main():
     alias="D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05"
     caseInfo[alias]['sourceDir']=base_1j+"/"+"synthetic_phasedStepFrom_test_from_0/From0p3_3_of3"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
-    caseInfo[alias]['name2plot']="D2-NN-1j_{testFrom0.3;forcingStep,St=1,A=0.05}"
+    caseInfo[alias]['name2plot']="D2-NN-1j_{testFrom0.3;Step,St=1,A=0.05}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     alias="D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05"
     caseInfo[alias]['sourceDir']=base_1j+"/"+"synthetic_phasedSinusFrom_test_from_0/From0p3_2_of3"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
-    caseInfo[alias]['name2plot']="D2-NN-1j_{testFrom0.3;forcingSinus,St=3.2,A=0.05}"
+    caseInfo[alias]['name2plot']="D2-NN-1j_{testFrom0.3;Sinus,St=3.2,A=0.05}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     base_1jN="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/Newtonian/mapped/flowRate"
