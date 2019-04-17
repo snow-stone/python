@@ -57,7 +57,7 @@ def main():
         y=outerCoordData['mean']/uTau
         y_sum = y_sum + y
         #ax1.plot(x,y,label='simu t=%.1f'%dict_['dataEntry']['timeStep'],linewidth=2)
-    ax1.plot(x,y_sum/counter,label='simu',linewidth=4,color='steelblue')
+    ax1.plot(x,y_sum/counter,label=r'$t_r$',linewidth=4,color='steelblue')
 
     x, y = rdb.Gavrilakis1992.Fig4a()
     ax1.plot(x,y,label=r'$DNS_G$',linewidth=1,linestyle='--',marker='s',color='mediumvioletred',markeredgecolor='mediumvioletred', markerfacecolor='none', markersize=16, markeredgewidth=4)
@@ -65,7 +65,7 @@ def main():
     ax1.set_ylim(0,25)
     ax1.set_xlabel(r'$Disantce \, along \, the \, diagonal$')
     ax1.set_ylabel(r'$u_x^+$')
-    ax1.set_title('spatial stat.')
+    #ax1.set_title('spatial stat.')
 
     fig1.savefig(saveDir+'/'+'UxPlus_diagonal.png',bbox_inches='tight')
 
