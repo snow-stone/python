@@ -45,11 +45,15 @@ def main():
         "D2-NN-1j_test_from0",
         "D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05",
         "D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05",
-        "D1-1j_mapped",
-        "D2-1j_mapped",
-        "D3-1j_mapped",
+        "D1-1j_mapped", # test_from_0p45_of3
+        "D2-1j_mapped", # test_from_0p45_of3
+        "D3-1j_mapped", # test_from_0p45_of3
         "D2-1j_syn",
-        "D2-NN-1j_syn"
+        "D2-NN-1j_syn",
+        #1k_4x4x4
+        #
+        # t_r
+        "t_r-2a_1_gradP0p703125"
     ]
 
     caseInfo=dict.fromkeys(caseByAlias)
@@ -138,6 +142,12 @@ def main():
     caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/BirdCarreau/synthetic/flowRate/medium/fluctuation_on/medium_cmptStream"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
     caseInfo[alias]['name2plot']="D2-NN-1j_{syn}"
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    alias="t_r-2a_1_gradP0p703125"
+    caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/pipes/shape_square/pw/2a_1/Newtonian/CASE_mapFields_From2b/gradP0_0p703125"+dirName
+    caseInfo[alias]['targetDir']="/store/t_r/2a_1"+"/"+alias
+    caseInfo[alias]['name2plot']="2a\_1_{gradP0p703125}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     for case in caseByAlias:
