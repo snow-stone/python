@@ -80,8 +80,8 @@ def main():
 
     ax1.set_xlabel(r'$y/h$')
     ax1.set_ylabel(r'$<-u^{\prime}v^{\prime}>/\partial^2*$')
-    #ax1.set_ylim(0,0.8)
-    #ax1.set_xlim(0,1)
+    ax1.set_ylim(0,0.8)
+    ax1.set_xlim(0,1)
     ax1.tick_params(axis='both', which='major', direction='out', length=8, width=4)
     ax1.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
     ax1.legend(bbox_to_anchor=(1.0, 1.0), ncol=1, fancybox=True, shadow=True)
