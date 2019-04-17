@@ -22,7 +22,7 @@ sampling={
 # data entry parameters
 
 dataEntry={
-        'timeStep':12,
+        'timeStep':11,
         'chunkStep':40,
         'NbOfFiles':161,
         'path':database[alias]['targetDir']
