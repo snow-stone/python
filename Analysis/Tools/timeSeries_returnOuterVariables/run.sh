@@ -20,13 +20,13 @@
 #python cut2_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
 #python cut3_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
 #
-caseAlias=D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05
+#caseAlias=D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05
 #python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ ControlFig_usingParameters
 #python cut2_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ ControlFig_usingParameters
 #python cut3_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ ControlFig_usingParameters
 
-caseAlias=D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05
-python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ ControlFig_usingParameters
+#caseAlias=D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05
+#python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ ControlFig_usingParameters
 #python cut2_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ ControlFig_usingParameters
 #python cut3_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ ControlFig_usingParameters
 
@@ -54,3 +54,13 @@ python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_
 #python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
 #python cut2_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
 #python cut3_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/
+
+caseAlias=D2-NN-1k_syn
+#python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ NoControlFig_usingParameters
+#python cut2_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ NoControlFig_usingParameters
+#python cut3_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ NoControlFig_usingParameters
+
+caseAlias=D2-NN-1k_syn_forcing
+python cut1_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ NoControlFig_usingParameters
+python cut2_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ NoControlFig_usingParameters
+python cut3_new_static_argv.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/$caseAlias/ NoControlFig_usingParameters

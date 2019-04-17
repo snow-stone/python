@@ -98,7 +98,9 @@ def main():
         print "====================================="
         print "For fig1 :"
         print "In file " + os.path.basename(__file__)
-        print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__) print "=====================================" ax1.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition3a'], ncol=1, fancybox=True, shadow=True)
+        print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__) 
+        print "=====================================" 
+        ax1.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition3a'], ncol=1, fancybox=True, shadow=True)
     else:
         print "====================================="
         print "For fig1 :"

@@ -51,7 +51,8 @@ def main():
         "D2-1j_syn",
         "D2-NN-1j_syn",
         #1k_4x4x4
-        #
+        "D2-NN-1k_syn",
+        "D2-NN-1k_syn_forcing",
         # t_r
         "t_r-2a_1_gradP0p703125"
     ]
@@ -142,6 +143,18 @@ def main():
     caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/T/BirdCarreau/synthetic/flowRate/medium/fluctuation_on/medium_cmptStream"+dirName
     caseInfo[alias]['targetDir']="/store/T_c/1j"+"/"+alias
     caseInfo[alias]['name2plot']="D2-NN-1j_{syn}"
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    alias="D2-NN-1k_syn"
+    caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/testMesh/T/flux_medium/1k_4x4x4_BC_phasedOff"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1k"+"/"+alias
+    caseInfo[alias]['name2plot']="D2-NN-1k_{syn}"
+    makeDirectory(caseInfo[alias]['targetDir'])
+
+    alias="D2-NN-1k_syn_forcing"
+    caseInfo[alias]['sourceDir']="newton:/store/lmfa/fct/hluo/occigen/caseByGeometry/testMesh/T/flux_medium/1k_4x4x4_BC_phasedOn"+dirName
+    caseInfo[alias]['targetDir']="/store/T_c/1k"+"/"+alias
+    caseInfo[alias]['name2plot']="D2-NN-1k_{syn,forcing}"
     makeDirectory(caseInfo[alias]['targetDir'])
 
     alias="t_r-2a_1_gradP0p703125"
