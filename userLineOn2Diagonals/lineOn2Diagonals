@@ -1,0 +1,1163 @@
+setFormat raw;
+
+interpolationScheme cell;
+
+fields
+(
+	U
+);
+sets
+(
+	lineOn2Diagonals-0
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.08 0.004 0.004);
+		end	(-0.08 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-1
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07936507936507936 0.004 0.004);
+		end	(-0.07936507936507936 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-2
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07873015873015873 0.004 0.004);
+		end	(-0.07873015873015873 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-3
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07809523809523809 0.004 0.004);
+		end	(-0.07809523809523809 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-4
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07746031746031747 0.004 0.004);
+		end	(-0.07746031746031747 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-5
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07682539682539682 0.004 0.004);
+		end	(-0.07682539682539682 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-6
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0761904761904762 0.004 0.004);
+		end	(-0.0761904761904762 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-7
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07555555555555556 0.004 0.004);
+		end	(-0.07555555555555556 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-8
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07492063492063492 0.004 0.004);
+		end	(-0.07492063492063492 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-9
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07428571428571429 0.004 0.004);
+		end	(-0.07428571428571429 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-10
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07365079365079365 0.004 0.004);
+		end	(-0.07365079365079365 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-11
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07301587301587302 0.004 0.004);
+		end	(-0.07301587301587302 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-12
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07238095238095238 0.004 0.004);
+		end	(-0.07238095238095238 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-13
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07174603174603175 0.004 0.004);
+		end	(-0.07174603174603175 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-14
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07111111111111111 0.004 0.004);
+		end	(-0.07111111111111111 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-15
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07047619047619047 0.004 0.004);
+		end	(-0.07047619047619047 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-16
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06984126984126984 0.004 0.004);
+		end	(-0.06984126984126984 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-17
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06920634920634922 0.004 0.004);
+		end	(-0.06920634920634922 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-18
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06857142857142857 0.004 0.004);
+		end	(-0.06857142857142857 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-19
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06793650793650793 0.004 0.004);
+		end	(-0.06793650793650793 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-20
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0673015873015873 0.004 0.004);
+		end	(-0.0673015873015873 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-21
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06666666666666667 0.004 0.004);
+		end	(-0.06666666666666667 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-22
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06603174603174604 0.004 0.004);
+		end	(-0.06603174603174604 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-23
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0653968253968254 0.004 0.004);
+		end	(-0.0653968253968254 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-24
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06476190476190477 0.004 0.004);
+		end	(-0.06476190476190477 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-25
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06412698412698413 0.004 0.004);
+		end	(-0.06412698412698413 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-26
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06349206349206349 0.004 0.004);
+		end	(-0.06349206349206349 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-27
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06285714285714286 0.004 0.004);
+		end	(-0.06285714285714286 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-28
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06222222222222222 0.004 0.004);
+		end	(-0.06222222222222222 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-29
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06158730158730159 0.004 0.004);
+		end	(-0.06158730158730159 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-30
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06095238095238095 0.004 0.004);
+		end	(-0.06095238095238095 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-31
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06031746031746032 0.004 0.004);
+		end	(-0.06031746031746032 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-32
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.059682539682539684 0.004 0.004);
+		end	(-0.059682539682539684 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-33
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05904761904761905 0.004 0.004);
+		end	(-0.05904761904761905 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-34
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.058412698412698416 0.004 0.004);
+		end	(-0.058412698412698416 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-35
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.057777777777777775 0.004 0.004);
+		end	(-0.057777777777777775 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-36
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05714285714285715 0.004 0.004);
+		end	(-0.05714285714285715 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-37
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05650793650793651 0.004 0.004);
+		end	(-0.05650793650793651 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-38
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05587301587301587 0.004 0.004);
+		end	(-0.05587301587301587 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-39
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05523809523809524 0.004 0.004);
+		end	(-0.05523809523809524 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-40
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.054603174603174605 0.004 0.004);
+		end	(-0.054603174603174605 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-41
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05396825396825397 0.004 0.004);
+		end	(-0.05396825396825397 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-42
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05333333333333334 0.004 0.004);
+		end	(-0.05333333333333334 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-43
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0526984126984127 0.004 0.004);
+		end	(-0.0526984126984127 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-44
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05206349206349206 0.004 0.004);
+		end	(-0.05206349206349206 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-45
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.051428571428571435 0.004 0.004);
+		end	(-0.051428571428571435 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-46
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.050793650793650794 0.004 0.004);
+		end	(-0.050793650793650794 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-47
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05015873015873016 0.004 0.004);
+		end	(-0.05015873015873016 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-48
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.049523809523809526 0.004 0.004);
+		end	(-0.049523809523809526 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-49
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04888888888888889 0.004 0.004);
+		end	(-0.04888888888888889 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-50
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04825396825396826 0.004 0.004);
+		end	(-0.04825396825396826 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-51
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04761904761904762 0.004 0.004);
+		end	(-0.04761904761904762 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-52
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04698412698412699 0.004 0.004);
+		end	(-0.04698412698412699 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-53
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04634920634920635 0.004 0.004);
+		end	(-0.04634920634920635 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-54
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.045714285714285714 0.004 0.004);
+		end	(-0.045714285714285714 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-55
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04507936507936508 0.004 0.004);
+		end	(-0.04507936507936508 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-56
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.044444444444444446 0.004 0.004);
+		end	(-0.044444444444444446 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-57
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04380952380952381 0.004 0.004);
+		end	(-0.04380952380952381 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-58
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04317460317460318 0.004 0.004);
+		end	(-0.04317460317460318 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-59
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.042539682539682544 0.004 0.004);
+		end	(-0.042539682539682544 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-60
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0419047619047619 0.004 0.004);
+		end	(-0.0419047619047619 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-61
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04126984126984127 0.004 0.004);
+		end	(-0.04126984126984127 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-62
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.040634920634920635 0.004 0.004);
+		end	(-0.040634920634920635 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-63
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04 0.004 0.004);
+		end	(-0.04 -0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-64
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.08 -0.004 0.004);
+		end	(-0.08 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-65
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07936507936507936 -0.004 0.004);
+		end	(-0.07936507936507936 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-66
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07873015873015873 -0.004 0.004);
+		end	(-0.07873015873015873 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-67
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07809523809523809 -0.004 0.004);
+		end	(-0.07809523809523809 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-68
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07746031746031747 -0.004 0.004);
+		end	(-0.07746031746031747 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-69
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07682539682539682 -0.004 0.004);
+		end	(-0.07682539682539682 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-70
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0761904761904762 -0.004 0.004);
+		end	(-0.0761904761904762 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-71
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07555555555555556 -0.004 0.004);
+		end	(-0.07555555555555556 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-72
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07492063492063492 -0.004 0.004);
+		end	(-0.07492063492063492 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-73
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07428571428571429 -0.004 0.004);
+		end	(-0.07428571428571429 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-74
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07365079365079365 -0.004 0.004);
+		end	(-0.07365079365079365 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-75
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07301587301587302 -0.004 0.004);
+		end	(-0.07301587301587302 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-76
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07238095238095238 -0.004 0.004);
+		end	(-0.07238095238095238 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-77
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07174603174603175 -0.004 0.004);
+		end	(-0.07174603174603175 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-78
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07111111111111111 -0.004 0.004);
+		end	(-0.07111111111111111 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-79
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.07047619047619047 -0.004 0.004);
+		end	(-0.07047619047619047 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-80
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06984126984126984 -0.004 0.004);
+		end	(-0.06984126984126984 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-81
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06920634920634922 -0.004 0.004);
+		end	(-0.06920634920634922 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-82
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06857142857142857 -0.004 0.004);
+		end	(-0.06857142857142857 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-83
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06793650793650793 -0.004 0.004);
+		end	(-0.06793650793650793 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-84
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0673015873015873 -0.004 0.004);
+		end	(-0.0673015873015873 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-85
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06666666666666667 -0.004 0.004);
+		end	(-0.06666666666666667 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-86
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06603174603174604 -0.004 0.004);
+		end	(-0.06603174603174604 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-87
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0653968253968254 -0.004 0.004);
+		end	(-0.0653968253968254 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-88
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06476190476190477 -0.004 0.004);
+		end	(-0.06476190476190477 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-89
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06412698412698413 -0.004 0.004);
+		end	(-0.06412698412698413 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-90
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06349206349206349 -0.004 0.004);
+		end	(-0.06349206349206349 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-91
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06285714285714286 -0.004 0.004);
+		end	(-0.06285714285714286 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-92
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06222222222222222 -0.004 0.004);
+		end	(-0.06222222222222222 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-93
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06158730158730159 -0.004 0.004);
+		end	(-0.06158730158730159 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-94
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06095238095238095 -0.004 0.004);
+		end	(-0.06095238095238095 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-95
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.06031746031746032 -0.004 0.004);
+		end	(-0.06031746031746032 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-96
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.059682539682539684 -0.004 0.004);
+		end	(-0.059682539682539684 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-97
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05904761904761905 -0.004 0.004);
+		end	(-0.05904761904761905 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-98
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.058412698412698416 -0.004 0.004);
+		end	(-0.058412698412698416 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-99
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.057777777777777775 -0.004 0.004);
+		end	(-0.057777777777777775 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-100
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05714285714285715 -0.004 0.004);
+		end	(-0.05714285714285715 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-101
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05650793650793651 -0.004 0.004);
+		end	(-0.05650793650793651 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-102
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05587301587301587 -0.004 0.004);
+		end	(-0.05587301587301587 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-103
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05523809523809524 -0.004 0.004);
+		end	(-0.05523809523809524 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-104
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.054603174603174605 -0.004 0.004);
+		end	(-0.054603174603174605 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-105
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05396825396825397 -0.004 0.004);
+		end	(-0.05396825396825397 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-106
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05333333333333334 -0.004 0.004);
+		end	(-0.05333333333333334 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-107
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0526984126984127 -0.004 0.004);
+		end	(-0.0526984126984127 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-108
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05206349206349206 -0.004 0.004);
+		end	(-0.05206349206349206 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-109
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.051428571428571435 -0.004 0.004);
+		end	(-0.051428571428571435 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-110
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.050793650793650794 -0.004 0.004);
+		end	(-0.050793650793650794 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-111
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.05015873015873016 -0.004 0.004);
+		end	(-0.05015873015873016 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-112
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.049523809523809526 -0.004 0.004);
+		end	(-0.049523809523809526 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-113
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04888888888888889 -0.004 0.004);
+		end	(-0.04888888888888889 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-114
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04825396825396826 -0.004 0.004);
+		end	(-0.04825396825396826 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-115
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04761904761904762 -0.004 0.004);
+		end	(-0.04761904761904762 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-116
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04698412698412699 -0.004 0.004);
+		end	(-0.04698412698412699 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-117
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04634920634920635 -0.004 0.004);
+		end	(-0.04634920634920635 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-118
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.045714285714285714 -0.004 0.004);
+		end	(-0.045714285714285714 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-119
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04507936507936508 -0.004 0.004);
+		end	(-0.04507936507936508 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-120
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.044444444444444446 -0.004 0.004);
+		end	(-0.044444444444444446 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-121
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04380952380952381 -0.004 0.004);
+		end	(-0.04380952380952381 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-122
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04317460317460318 -0.004 0.004);
+		end	(-0.04317460317460318 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-123
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.042539682539682544 -0.004 0.004);
+		end	(-0.042539682539682544 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-124
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.0419047619047619 -0.004 0.004);
+		end	(-0.0419047619047619 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-125
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04126984126984127 -0.004 0.004);
+		end	(-0.04126984126984127 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-126
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.040634920634920635 -0.004 0.004);
+		end	(-0.040634920634920635 0.004 -0.004);
+		nPoints	200;
+	}
+
+	lineOn2Diagonals-127
+	{
+		type	uniform;
+		axis	distance;
+		start	(-0.04 -0.004 0.004);
+		end	(-0.04 0.004 -0.004);
+		nPoints	200;
+	}
+
+);

@@ -1,6 +1,6 @@
 import numpy as np
 import sys
-sys.path.append('../reference_database')
+sys.path.append('/home/hluo/work/git/thesis/Thesis_hluo_new/reference_database') # for rdb
 import reference_database as rdb
 import matplotlib
 matplotlib.use('agg')
