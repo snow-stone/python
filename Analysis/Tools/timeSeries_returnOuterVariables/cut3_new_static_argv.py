@@ -119,7 +119,7 @@ def main():
         print "In file " + os.path.basename(__file__)
         print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__)
         print "====================================="
-        print simu_parameters['plot']['legendPosition2b']
+        ax1.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition3b'], ncol=1, fancybox=True, shadow=True)
     else:
         print "====================================="
         print "For fig2 :"
