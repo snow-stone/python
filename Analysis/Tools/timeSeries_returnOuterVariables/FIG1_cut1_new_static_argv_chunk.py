@@ -14,15 +14,15 @@ plt.rcParams['savefig.dpi'] = 200
 
 def D1_Dai_EAU_mean(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p8a('EAU')
-    ax.plot(x1+0.5, y1, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p8a('XG')
-    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+    ax.plot(x1+0.5, y1, label=r'$N^1_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+#    x2,y2 = rdb.Dai_thesis.Fig4p8a('XG')
+#    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D1_Dai_EAU_rms(ax):
     x2,y2 = rdb.Dai_thesis.Fig4p11a('EAU')
-    ax.plot(x2+0.5, y2, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p11a('XG')
-    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+    ax.plot(x2+0.5, y2, label=r'$N^1_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+#    x2,y2 = rdb.Dai_thesis.Fig4p11a('XG')
+#    ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D2_Dai_EAU_mean(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p8b('EAU')
@@ -60,16 +60,16 @@ def main():
     simu_parameters = simu_module.parameters
 
     alias_dict={
-        "D2-NN-1j_test_from0" : r"$NN^{2,A}_{syn-mean}$",
-        "D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05" : r"$NN^{2,A}_{Step,St=1,A=0.05}$",
-        "D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05" : r"$NN^{2,A}_{Sinus,St=3.2,A=0.05}$",
+        "D2-NN-1j_test_from0" : r"$NN^{2,A}_{syn}$",
+#        "D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05" : r"$NN^{2,A}_{Step,St=1,A=0.05}$",
+        "D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05" : r"$NN^{2,A}_{syn,St=3.2,A=0.05}$",
         "D1-1j_mapped":r"$N^{1,A}_{mapped}$",
         "D2-1j_mapped":r"$N^{2,A}_{mapped}$",
         "D3-1j_mapped":r"$N^{3,A}_{mapped}$",
-        "D2-1j_syn" :  r"$N^{2,A}_{syn-mean}$",
-        "D2-NN-1j_syn":r"$NN^{2,A}_{syn-mean-'}$",
-        "D2-NN-1k_syn":r"$NN^{2,B}_{syn-mean}$",
-        "D2-NN-1k_syn_forcing":r"$NN^{2,B}_{syn-mean,St=3.2,A=0.025}$"
+#        "D2-1j_syn" :  r"$N^{2,A}_{syn-mean}$",
+#        "D2-NN-1j_syn":r"$NN^{2,A}_{syn-mean-'}$",
+        "D2-NN-1k_syn":r"$NN^{2,B}_{syn}$",
+        "D2-NN-1k_syn_forcing":r"$NN^{2,B}_{syn,St=3.2,A=0.025}$"
     }
     
     fig1,ax1 = plt.subplots()
@@ -102,11 +102,13 @@ def main():
 #   No-dimnesionize and plot
 
     #ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['mean']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
-    for i in range(len(dataBase2Plot['chunkedMean'])):
-        ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+#    for i in range(len(dataBase2Plot['chunkedMean'])):
+#        ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+    ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedMean'][2]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
     #ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
-    for i in range(len(dataBase2Plot['chunkedMean'])):
-        ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+#    for i in range(len(dataBase2Plot['chunkedMean'])):
+#        ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+    ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][2]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
     
 #   plot settings    
     ax1.set_xlim(0,1)
@@ -117,17 +119,17 @@ def main():
         print "In file " + os.path.basename(__file__)
         print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__)
         print "====================================="
-        ax1.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition1a'], ncol=2, fancybox=True, shadow=True)
+        ax1.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition1a'], ncol=1, fancybox=True, shadow=True)
     else:
         print "====================================="
         print "For fig1 :"
         print "In file " + os.path.basename(__file__)
         print "applying local constant control on legend positioning"
         print "====================================="
-        ax1.legend(bbox_to_anchor=(1, 1), ncol=2, fancybox=True, shadow=True)
+        ax1.legend(bbox_to_anchor=(1, 1), ncol=1, fancybox=True, shadow=True)
     ax1.set_xlabel(r'$r/D$')
-    ax1.set_ylabel(r'$\frac{\overline{\bf{u}_x}}{\bf{u}_{bulk}}$')
-    ax1.set_title(alias_dict[parameterFileBasename])
+    ax1.set_ylabel(r'$\frac{\overline{\bf{U}}_x}{<\bf{U}>_{inlet}}$')
+#    ax1.set_title(alias_dict[parameterFileBasename])
 
     ax2.set_xlim(0,1)
     ax2.set_ylim(0,1)
@@ -137,17 +139,17 @@ def main():
         print "In file " + os.path.basename(__file__)
         print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__)
         print "====================================="
-        ax2.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition1b'], ncol=2, fancybox=True, shadow=True)
+        ax2.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition1b'], ncol=1, fancybox=True, shadow=True)
     else:
         print "====================================="
         print "For fig2 :"
         print "In file " + os.path.basename(__file__)
         print "applying local constant control on legend positioning"
         print "====================================="
-        ax2.legend(bbox_to_anchor=(1, 1), ncol=2, fancybox=True, shadow=True)
+        ax2.legend(bbox_to_anchor=(1, 1), ncol=1, fancybox=True, shadow=True)
     ax2.set_xlabel(r'$r/D$')
-    ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
-    ax2.set_title(alias_dict[parameterFileBasename])
+    ax2.set_ylabel(r'$\frac{rms(\bf{U}_x}{\bf{U}_{inlet}}$')
+#    ax2.set_title(alias_dict[parameterFileBasename])
     
     fig1.savefig(saveDir+"cut1a.png",  bbox_inches='tight')
     fig2.savefig(saveDir+"cut1b.png",  bbox_inches='tight')
