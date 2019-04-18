@@ -52,21 +52,21 @@ font = {'family': 'serif',
         'weight': 'normal',
         'size': 25,
         }
-ax.text(2, 1e-5, r'$\nu \propto \dot{\gamma}^{1-n}$', fontdict=font)
+#ax.text(2, 1e-5, r'$\nu \propto \dot{\gamma}^{1-n}$', fontdict=font)
 ax.plot(gama,nu,linewidth=4, label='Approx. BirdCarreau')
-ax.plot(gama,nu1,linewidth=4,linestyle='--',color='darkred')
+#ax.plot(gama,nu1,linewidth=4,linestyle='--',color='darkred')
 
 x, y = rdb.Dai_thesis.Fig12p2_XG()
 x1, y1 = rdb.Dai_thesis.Fig12p2_PAA()
 ax.plot(x,y, linestyle='--', linewidth=1, marker='s', markerfacecolor='none', markersize= 8, markeredgewidth=4, label=r'Exp. \, $0.1\% \, XG$')
 ax.plot(x1,y1, linestyle='--', linewidth=1, marker='d', markerfacecolor='none', markersize= 8, markeredgewidth=4, label=r'Exp. \, $0.1\% \, PAM$')
-ax.axvline(x=1,linestyle='-.',linewidth=1, color='black')
+#ax.axvline(x=1,linestyle='-.',linewidth=1, color='black')
 ax.axhline(y=3e-4, xmin= 0, xmax= 0.3, linestyle='-.',linewidth=1, color='black')
 ax.axhline(y=2e-6, xmin= 0.84, xmax= 1, linestyle='-.',linewidth=1, color='black')
 
 ax.text(3 , 3e-4, r'$\nu_0$', fontsize=25)#, transform=ax.transAxes)
 ax.text(1e4, 1.3e-6, r'$\nu_{\infty}$', fontsize=25)#, transform=ax.transAxes)
-ax.text(1.5, 2e-6, r'$\dot{\gamma}=\lambda^{-1}$', fontsize=20)#, transform=ax.transAxes)
+#ax.text(1.5, 2e-6, r'$\dot{\gamma}=\lambda^{-1}$', fontsize=20)#, transform=ax.transAxes)
 
 ax.legend(fancybox=True, bbox_to_anchor=(1, 1), ncol=1,frameon=False, fontsize=20)
 fig.savefig('BirdCarreau.png',dpi=100, bbox_inches='tight')
