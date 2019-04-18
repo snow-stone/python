@@ -88,8 +88,12 @@ def main():
 
 #   No-dimnesionize and plot
 
-    ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['mean']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
-    ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
+    #ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['mean']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
+    for i in range(len(dataBase2Plot['chunkedMean'])):
+        ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+    #ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
+    for i in range(len(dataBase2Plot['chunkedMean'])):
+        ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
     
 #   plot settings    
     ax1.set_xlim(0,1)
@@ -100,14 +104,14 @@ def main():
         print "In file " + os.path.basename(__file__)
         print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__)
         print "====================================="
-        ax1.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition1a'], ncol=1, fancybox=True, shadow=True)
+        ax1.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition1a'], ncol=2, fancybox=True, shadow=True)
     else:
         print "====================================="
         print "For fig1 :"
         print "In file " + os.path.basename(__file__)
         print "applying local constant control on legend positioning"
         print "====================================="
-        ax1.legend(bbox_to_anchor=(0.5, 1), ncol=1, fancybox=True, shadow=True)
+        ax1.legend(bbox_to_anchor=(1, 1), ncol=2, fancybox=True, shadow=True)
     ax1.set_xlabel(r'$r/D$')
     ax1.set_ylabel(r'$\frac{\overline{\bf{u}_x}}{\bf{u}_{bulk}}$')
 
@@ -119,14 +123,14 @@ def main():
         print "In file " + os.path.basename(__file__)
         print "applying ControlFig_usingParameters pre-described in file " + os.path.basename(simu_module.__file__)
         print "====================================="
-        ax2.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition1b'], ncol=1, fancybox=True, shadow=True)
+        ax2.legend(bbox_to_anchor=simu_parameters['plot']['legendPosition1b'], ncol=2, fancybox=True, shadow=True)
     else:
         print "====================================="
         print "For fig2 :"
         print "In file " + os.path.basename(__file__)
         print "applying local constant control on legend positioning"
         print "====================================="
-        ax2.legend(bbox_to_anchor=(0.5, 1), ncol=1, fancybox=True, shadow=True)
+        ax2.legend(bbox_to_anchor=(1, 1), ncol=2, fancybox=True, shadow=True)
     ax2.set_xlabel(r'$r/D$')
     ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
     
