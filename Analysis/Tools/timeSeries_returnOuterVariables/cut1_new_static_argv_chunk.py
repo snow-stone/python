@@ -58,6 +58,19 @@ def main():
 
     simu_module = __import__("parameters_"+parameterFileBasename)
     simu_parameters = simu_module.parameters
+
+    alias_dict={
+        "D2-NN-1j_test_from0" : r"$NN^{2,A}_{syn-mean}$",
+        "D2-NN-1j_test_from0p3_forcingStep_St1_A_eq_0p05" : r"$NN^{2,A}_{Step,St=1,A=0.05}$",
+        "D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05" : r"$NN^{2,A}_{Sinus,St=3.2,A=0.05}$",
+        "D1-1j_mapped":r"$N^{1,A}_{mapped}$",
+        "D2-1j_mapped":r"$N^{2,A}_{mapped}$",
+        "D3-1j_mapped":r"$N^{3,A}_{mapped}$",
+        "D2-1j_syn" :  r"$N^{2,A}_{syn-mean}$",
+        "D2-NN-1j_syn":r"$NN^{2,A}_{syn-mean-'}$",
+        "D2-NN-1k_syn":r"$NN^{2,B}_{syn-mean}$",
+        "D2-NN-1k_syn_forcing":r"$NN^{2,B}_{syn-mean,St=3.2,A=0.025}$"
+    }
     
     fig1,ax1 = plt.subplots()
     fig2,ax2 = plt.subplots()
@@ -114,6 +127,7 @@ def main():
         ax1.legend(bbox_to_anchor=(1, 1), ncol=2, fancybox=True, shadow=True)
     ax1.set_xlabel(r'$r/D$')
     ax1.set_ylabel(r'$\frac{\overline{\bf{u}_x}}{\bf{u}_{bulk}}$')
+    ax1.set_title(alias_dict[parameterFileBasename])
 
     ax2.set_xlim(0,1)
     ax2.set_ylim(0,1)
@@ -133,6 +147,7 @@ def main():
         ax2.legend(bbox_to_anchor=(1, 1), ncol=2, fancybox=True, shadow=True)
     ax2.set_xlabel(r'$r/D$')
     ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
+    ax2.set_title(alias_dict[parameterFileBasename])
     
     fig1.savefig(saveDir+"cut1a.png",  bbox_inches='tight')
     fig2.savefig(saveDir+"cut1b.png",  bbox_inches='tight')
