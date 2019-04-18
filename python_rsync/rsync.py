@@ -50,7 +50,7 @@ def main():
         "D3-1j_mapped", # test_from_0p45_of3
         "D2-1j_syn",
         "D2-NN-1j_syn",
-        #1k_4x4x4
+        #1k_4x4x4.pw : note that this is not "1k.pw"
         "D2-NN-1k_syn",
         "D2-NN-1k_syn_forcing",
         # t_r
