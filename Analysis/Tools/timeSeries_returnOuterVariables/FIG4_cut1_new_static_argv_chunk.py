@@ -25,16 +25,16 @@ def D1_Dai_EAU_rms(ax):
     ax.plot(x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D2_Dai_EAU_mean(ax):
-    x1,y1 = rdb.Dai_thesis.Fig4p8b('EAU')
-    ax.plot(x1+0.5, y1, label=r'$N^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-#    x2,y2 = rdb.Dai_thesis.Fig4p8b('XG')
-#    ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+#    x1,y1 = rdb.Dai_thesis.Fig4p8b('EAU')
+#    ax.plot(x1+0.5, y1, label=r'$N^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig4p8b('XG')
+    ax.plot(x2+0.5, y2, label=r'$N^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D2_Dai_EAU_rms(ax):
-    x1,y1 = rdb.Dai_thesis.Fig4p11b('EAU')
-    ax.plot(x1+0.5, y1, label=r'$N^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-#    x2,y2 = rdb.Dai_thesis.Fig4p11b('XG')
-#    ax.plot(x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+#    x1,y1 = rdb.Dai_thesis.Fig4p11b('EAU')
+#    ax.plot(x1+0.5, y1, label=r'$N^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig4p11b('XG')
+    ax.plot(x2+0.5, y2, label=r'$N^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D3_Dai_EAU_mean(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p8c('EAU')
