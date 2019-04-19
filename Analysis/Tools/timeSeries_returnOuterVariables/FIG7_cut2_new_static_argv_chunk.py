@@ -46,12 +46,12 @@ def D3_Dai_EAU_rms(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p12c('EAU')
     ax.plot(-x1+0.5, y1, label='D3-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
     x2,y2 = rdb.Dai_thesis.Fig4p12c('XG')
-    ax.plot(-x2+0.5, y2, label='D3-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
-
-def main():
-    import timeSeriesReader_ReturnOuterVariables as tsR
-    import os
-
+    ax.plot(-x2+0.5, y2, label='D3-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2) 
+    
+def main(): 
+    import timeSeriesReader_ReturnOuterVariables as tsR 
+    import os 
+    
     parameterFileBasename = sys.argv[1]
     saveDir = sys.argv[2]
     ifLocalControl = sys.argv[3]
@@ -106,13 +106,15 @@ def main():
 #        ax1.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
     y1=dataBase2Plot['chunkedMean'][4]+dataBase2Plot['chunkedMean'][5]
     y1=y1/2.0
-    ax1.plot(dataBase2Plot['rByD'],y1/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
+    #ax1.plot(dataBase2Plot['rByD'],y1/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
+    ax1.plot(dataBase2Plot['rByD'],rdb.smoothFunction.movingAvg(y1/Ux_bulk_Dai,3),label=alias_dict[parameterFileBasename],linewidth=4)
     #ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
 #    for i in range(len(dataBase2Plot['chunkedMean'])):
 #        ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
     y2=dataBase2Plot['chunkedStd'][4]+dataBase2Plot['chunkedStd'][5]
     y2=y2/2.0
-    ax2.plot(dataBase2Plot['rByD'],y2/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
+    #ax2.plot(dataBase2Plot['rByD'],y2/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
+    ax2.plot(dataBase2Plot['rByD'],rdb.smoothFunction.movingAvg(y2/Ux_bulk_Dai,3),label=alias_dict[parameterFileBasename],linewidth=4)
     
 #   plot settings    
     ax1.set_xlim(0,1)

@@ -108,7 +108,8 @@ def main():
     #ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['std']/Ux_bulk_Dai,label=simu_parameters['alias'],linewidth=4, color=simu_color)
 #    for i in range(len(dataBase2Plot['chunkedMean'])):
 #        ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
-    ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][2]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
+    #ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][2]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
+    ax2.plot(dataBase2Plot['rByD'],rdb.smoothFunction.movingAvg(dataBase2Plot['chunkedStd'][2]/Ux_bulk_Dai,3),label=alias_dict[parameterFileBasename],linewidth=4)
     
 #   plot settings    
     ax1.set_xlim(0,1)

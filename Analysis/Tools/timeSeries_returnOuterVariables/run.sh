@@ -154,9 +154,9 @@
 
 
 caseAlias=D1-1j_mapped
-#python FIG1_cut1_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
-#python FIG1_cut2_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
-#python FIG1_cut3_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
+python FIG1_cut1_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
+python FIG1_cut2_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
+python FIG1_cut3_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
 
 caseAlias=D2-1j_mapped
 #python FIG2_cut1_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
@@ -184,6 +184,6 @@ caseAlias=D2-NN-1k_syn
 #python FIG6_cut3_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
 
 caseAlias=D2-NN-1k_syn_forcing
-python FIG7_cut1_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
-python FIG7_cut2_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
-python FIG7_cut3_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
+#python FIG7_cut1_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
+#python FIG7_cut2_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters
+#python FIG7_cut3_new_static_argv_chunk.py $caseAlias /home/hluo/work/git/LatexTemplate/T_c_draft/PICTURE/chunkPlots/$caseAlias/ NoControlFig_usingParameters

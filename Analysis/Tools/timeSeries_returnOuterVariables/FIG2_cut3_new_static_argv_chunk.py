@@ -112,6 +112,8 @@ def main():
 #        ax2.plot(dataBase2Plot['rByD'],dataBase2Plot['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
     y2=dataBase2Plot['chunkedStd'][3]+dataBase2Plot['chunkedStd'][4]
     y2=y2/2.0
+    y2=rdb.smoothFunction.movingAvg(y2,3)
+    y2=rdb.smoothFunction.movingAvg(y2,3)
     ax2.plot(dataBase2Plot['rByD'],y2/Ux_bulk_Dai,label=alias_dict[parameterFileBasename],linewidth=4)
     
 #   plot settings    
