@@ -116,7 +116,11 @@ def main():
 #    for i in range(len(dataBase2Plot1['chunkedMean'])):
 #        ax2.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
     ax2.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][1]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename1],linewidth=4)
-    ax2.plot(dataBase2Plot2['rByD'],rdb.smoothFunction.movingAvg(dataBase2Plot2['chunkedStd'][2]/Ux_bulk_Dai,3),label=alias_dict[parameterFileBasename2],linewidth=4)
+    #ax2.plot(dataBase2Plot2['rByD'],rdb.smoothFunction.movingAvg(dataBase2Plot2['chunkedStd'][2]/Ux_bulk_Dai,3),label=alias_dict[parameterFileBasename2],linewidth=4)
+    y=dataBase2Plot1['chunkedStd'][1]/Ux_bulk_Dai
+    y=rdb.smoothFunction.movingAvg(y,10)
+    y=rdb.smoothFunction.movingAvg(y,10)
+    ax2.plot(dataBase2Plot1['rByD'],y,label=alias_dict[parameterFileBasename2],linewidth=4)
     
 #   plot settings    
     ax1.set_xlim(0,1)
