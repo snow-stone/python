@@ -111,7 +111,9 @@ def main():
 #    for i in range(len(dataBase2Plot1['chunkedMean'])):
 #        ax1.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
     #ax1.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][1]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename1],linewidth=4)
-    ax1.plot(dataBase2Plot1['rByD'],rdb.smoothFunction.movingAvg(dataBase2Plot1['chunkedMean'][1]/Ux_bulk_Dai,3),label=alias_dict[parameterFileBasename1],linewidth=4)
+    y0=dataBase2Plot1['chunkedMean'][3]+dataBase2Plot1['chunkedMean'][4]
+    y0=y0/2.0
+    ax1.plot(dataBase2Plot1['rByD'],rdb.smoothFunction.movingAvg(y0/Ux_bulk_Dai,3),label=alias_dict[parameterFileBasename1],linewidth=4)
 
     y1=dataBase2Plot2['chunkedMean'][4]+dataBase2Plot2['chunkedMean'][5]
     y1=y1/2.0
@@ -121,7 +123,9 @@ def main():
 #    for i in range(len(dataBase2Plot1['chunkedMean'])):
 #        ax2.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
 #    ax2.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][1]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename1],linewidth=4)
-    ax2.plot(dataBase2Plot1['rByD'],rdb.smoothFunction.movingAvg(dataBase2Plot1['chunkedStd'][1]/Ux_bulk_Dai,10),label=alias_dict[parameterFileBasename1],linewidth=4)
+    y0=dataBase2Plot1['chunkedStd'][3]+dataBase2Plot1['chunkedStd'][4]
+    y0=y0/2.0
+    ax2.plot(dataBase2Plot1['rByD'],rdb.smoothFunction.movingAvg(y0/Ux_bulk_Dai,10),label=alias_dict[parameterFileBasename1],linewidth=4)
 
     y2=dataBase2Plot2['chunkedStd'][4]+dataBase2Plot2['chunkedStd'][5]
     y2=y2/2.0
