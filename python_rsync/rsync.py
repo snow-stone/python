@@ -217,7 +217,7 @@ def main():
     ]
 
     for case in caseByAlias :
-        #read_database_and_rsync(database, case, 'postProcessing')
+        read_database_and_rsync(database, case, 'postProcessing')
         read_database_and_rsync(database, case, '{'+database[case]['latestTime']+','+'constant,system}')
 
 main()
