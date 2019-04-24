@@ -16,8 +16,10 @@ def crop(image_path, coords, saved_location):
 def main():
 #    image = 'example.png'
 #    Image.open(image).show()
-    dataBase = '/store/8simu_tmp/shape_square/2a_3_T'
-    paths = [
+#    dataBase = '/store/8simu_tmp/shape_square/2a_3_T'
+    dataBase = '/store/T_c'
+    
+    paths1 = [
             'BirdCarreau/inlet_0p5',
             'Newtonian/Re4000',
             'BirdCarreau/inlet0p5_impinging',
@@ -27,6 +29,14 @@ def main():
             'BirdCarreau/inlet_0p3-a_0p5-setT_St_1',
             'BirdCarreau/inlet_0p3-a_0p5-setT_St_5'
            ]
+
+    paths2 = [
+            '1j/D1-1j_mapped',
+            '1j/D2-1j_mapped',
+            '1j/D3-1j_mapped',
+            '1j/D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05',
+            '1k/D2-NN-1k_syn_forcing'
+            ]
 
     pathsNonNewtonian = [
             'BirdCarreau/inlet_0p5',
@@ -47,13 +57,7 @@ def main():
 #            '2DstreamLines_6p0D'            
 #            ]
     imageNames = [
-            'k_mean_nonD_slice_yNormal_y_Eq_p3mm_addInlet2',
-            'k_mean_nonD_slice_yNormal_y_Eq_p2mm_addInlet2',
-            'k_mean_nonD_slice_yNormal_y_Eq_p1mm_addInlet2',
-            'k_mean_nonD_slice_yNormal_y_Eq_0mm_addInlet2' ,
-            'k_mean_nonD_slice_yNormal_y_Eq_n1mm_addInlet2',
-            'k_mean_nonD_slice_yNormal_y_Eq_n2mm_addInlet2',
-            'k_mean_nonD_slice_yNormal_y_Eq_n3mm_addInlet2',
+            'k_mean_nonD_slice_zNormal_z_Eq_0mm'
                 ]
     
     coords_dict= {
@@ -131,7 +135,7 @@ def main():
             }    
     
     
-    for i, path in enumerate(paths):
+    for i, path in enumerate(paths2):
 #    for i, path in enumerate(pathsNonNewtonian):
         for imageName in imageNames:
             image = dataBase + '/' + path + '/' + imageName + '.png'
