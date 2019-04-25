@@ -16,7 +16,9 @@ physics={
 
 sampling={
         'raw_sample_size':160,
-        'dataShape3':(205,4),    # face 3
+        'TdataShape3':(205,2),    # face 3
+        'TdataShape2':(220,2),    # face 2
+        'dataShape3':(220,4),    # face 3
         'dataShape2':(220,4),    # face 2
         'dataShape1':(220,4),    # face 1
         'dataShape': None

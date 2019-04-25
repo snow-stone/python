@@ -12,29 +12,29 @@ plt.style.use('seaborn-white') # from defaut
 plt.rcParams.update({'font.size': 20})
 plt.rcParams['savefig.dpi'] = 200
 
-def D1_Dai_EAU_mean(ax):
-    x1,y1 = rdb.Dai_thesis.Fig4p10a('EAU')
-    ax.plot(-x1+0.5, y1, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p10a('XG')
-    ax.plot(-x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
-
-def D1_Dai_EAU_rms(ax):
-    x2,y2 = rdb.Dai_thesis.Fig4p13a('EAU')
-    ax.plot(-x2+0.5, y2, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-    x2,y2 = rdb.Dai_thesis.Fig4p13a('XG')
-    ax.plot(-x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+#def D1_Dai_EAU_mean(ax):
+#    x1,y1 = rdb.Dai_thesis.Fig4p10a('EAU')
+#    ax.plot(-x1+0.5, y1, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+#    x2,y2 = rdb.Dai_thesis.Fig4p10a('XG')
+#    ax.plot(-x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+#
+#def D1_Dai_EAU_rms(ax):
+#    x2,y2 = rdb.Dai_thesis.Fig4p13a('EAU')
+#    ax.plot(-x2+0.5, y2, label='D1-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
+#    x2,y2 = rdb.Dai_thesis.Fig4p13a('XG')
+#    ax.plot(-x2+0.5, y2, label='D1-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D2_Dai_EAU_mean(ax):
-    x1,y1 = rdb.Dai_thesis.Fig4p10b('EAU')
+    x1,y1 = rdb.Dai_thesis.Fig5p6b('EAU')
     ax.plot(-x1+0.5, y1, label=r'$N^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-#    x2,y2 = rdb.Dai_thesis.Fig4p10b('XG')
-#    ax.plot(-x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig5p6b('XG')
+    ax.plot(-x2+0.5, y2, label=r'$NN^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D2_Dai_EAU_rms(ax):
-    x2,y2 = rdb.Dai_thesis.Fig4p13b('EAU')
+    x2,y2 = rdb.Dai_thesis.Fig5p11b('EAU')
     ax.plot(-x2+0.5, y2, label=r'$N^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
-#    x2,y2 = rdb.Dai_thesis.Fig4p13b('XG')
-#    ax.plot(-x2+0.5, y2, label='D2-Dai-XG', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+    x2,y2 = rdb.Dai_thesis.Fig5p11b('XG')
+    ax.plot(-x2+0.5, y2, label=r'$NN^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
 
 def D3_Dai_EAU_mean(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p10c('EAU')
