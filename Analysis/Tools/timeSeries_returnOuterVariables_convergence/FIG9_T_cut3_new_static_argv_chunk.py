@@ -172,7 +172,7 @@ def main():
     ax4.set_xlabel(r'$N_i$')
     ax4.set_ylabel(r'$Error_{rms}$')
     ax4.plot(rms_diff, marker='d')
-    fig3.savefig(saveDir+"cut3a_error.png",  bbox_inches='tight')
-    fig4.savefig(saveDir+"cut3b_error.png",  bbox_inches='tight')
+    fig3.savefig(saveDir+"T_cut3a_error.png",  bbox_inches='tight')
+    fig4.savefig(saveDir+"T_cut3b_error.png",  bbox_inches='tight')
 
 main()
