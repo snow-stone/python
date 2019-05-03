@@ -28,13 +28,17 @@ def D2_Dai_EAU_mean(ax):
 #    x1,y1 = rdb.Dai_thesis.Fig4p10b('EAU')
 #    ax.plot(-x1+0.5, y1, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
     x2,y2 = rdb.Dai_thesis.Fig4p10b('XG')
-    ax.plot(-x2+0.5, y2, label=r'$NN^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+    x2=-x2+0.5
+    ax.plot(x2, y2, label=r'$NN^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+    return x2,y2
 
 def D2_Dai_EAU_rms(ax):
 #    x2,y2 = rdb.Dai_thesis.Fig4p13b('EAU')
 #    ax.plot(-x2+0.5, y2, label='D2-Dai-EAU', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='mediumvioletred', color='mediumvioletred', markeredgewidth=2)
     x2,y2 = rdb.Dai_thesis.Fig4p13b('XG')
-    ax.plot(-x2+0.5, y2, label=r'$NN^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+    x2=-x2+0.5
+    ax.plot(x2, y2, label=r'$NN^2_{Exp}$', marker='s', markerfacecolor='none', linewidth=1, linestyle='--', markersize=16, markeredgecolor='orange', color='orange', markeredgewidth=2)
+    return x2,y2
 
 def D3_Dai_EAU_mean(ax):
     x1,y1 = rdb.Dai_thesis.Fig4p10c('EAU')
@@ -77,6 +81,8 @@ def main():
     
     fig1,ax1 = plt.subplots()
     fig2,ax2 = plt.subplots()
+    fig3,ax3 = plt.subplots()
+    fig4,ax4 = plt.subplots()
 
 #   get data    
     simu_parameters1['sampling']['dataShape']=simu_parameters1['sampling']['dataShape3']
@@ -88,8 +94,8 @@ def main():
     dataBase2Plot2 = tsR.process(simu_parameters2,validDataList=fileListSimu,colonNb=1)  
 #   reference plot       
     if (parameterFileBasename1[0:2] == 'D2'):
-        D2_Dai_EAU_mean(ax1)
-        D2_Dai_EAU_rms(ax2)
+        x1,y1=D2_Dai_EAU_mean(ax1)
+        x2,y2=D2_Dai_EAU_rms(ax2)
         Ux_bulk_Dai=0.5
     elif (parameterFileBasename1[0:2] == 'D1'):
         D1_Dai_EAU_mean(ax1)
@@ -107,20 +113,32 @@ def main():
 
 #   No-dimnesionize and plot
 
-    #ax1.plot(dataBase2Plot1['rByD'],dataBase2Plot1['mean']/Ux_bulk_Dai,label=simu_parameters1['alias'],linewidth=4, color=simu_color)
-#    for i in range(len(dataBase2Plot1['chunkedMean'])):
-#        ax1.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
-    ax1.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][1]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename1],linewidth=4)
-    ax1.plot(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedMean'][2]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename2],linewidth=4)
-    #ax2.plot(dataBase2Plot1['rByD'],dataBase2Plot1['std']/Ux_bulk_Dai,label=simu_parameters1['alias'],linewidth=4, color=simu_color)
-#    for i in range(len(dataBase2Plot1['chunkedMean'])):
-#        ax2.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
-    ax2.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][1]/Ux_bulk_Dai,label=alias_dict[parameterFileBasename1],linewidth=4)
-    #ax2.plot(dataBase2Plot2['rByD'],rdb.smoothFunction.movingAvg(dataBase2Plot2['chunkedStd'][2]/Ux_bulk_Dai,3),label=alias_dict[parameterFileBasename2],linewidth=4)
-    y=dataBase2Plot1['chunkedStd'][1]/Ux_bulk_Dai
-    y=rdb.smoothFunction.movingAvg(y,10)
-    y=rdb.smoothFunction.movingAvg(y,10)
-    ax2.plot(dataBase2Plot1['rByD'],y,label=alias_dict[parameterFileBasename2],linewidth=4)
+    import numpy as np
+    N=len(dataBase2Plot1['chunkedMean'])
+    mean_diff1=np.zeros(N)
+    mean_diff2=np.zeros(N)
+    rms_diff1=np.zeros(N)
+    rms_diff2=np.zeros(N)
+
+    for i in range(len(dataBase2Plot1['chunkedMean'])):
+        ax1.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+        ax1.plot(x1,rdb.tools.returnInterpolatedArray(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][i]/Ux_bulk_Dai,x1),label=str(i),marker='o')
+        mean_diff1[i]=rdb.tools.diffNormL2(rdb.tools.returnInterpolatedArray(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][i]/Ux_bulk_Dai,x1),y1)
+
+        ax1.plot(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+        ax1.plot(x1,rdb.tools.returnInterpolatedArray(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedMean'][i]/Ux_bulk_Dai,x1),label=str(i),marker='o')
+        mean_diff2[i]=rdb.tools.diffNormL2(rdb.tools.returnInterpolatedArray(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedMean'][i]/Ux_bulk_Dai,x1),y1)
+
+
+    for i in range(len(dataBase2Plot1['chunkedMean'])):
+        ax2.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+        ax2.plot(x2,rdb.tools.returnInterpolatedArray(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][i]/Ux_bulk_Dai,x2),label=str(i),marker='o')
+        rms_diff1[i]=rdb.tools.diffNormL2(rdb.tools.returnInterpolatedArray(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][i]/Ux_bulk_Dai,x2),y2)
+
+        ax2.plot(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
+        ax2.plot(x2,rdb.tools.returnInterpolatedArray(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedStd'][i]/Ux_bulk_Dai,x2),label=str(i),marker='o')
+        rms_diff2[i]=rdb.tools.diffNormL2(rdb.tools.returnInterpolatedArray(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedStd'][i]/Ux_bulk_Dai,x2),y2)
+
     
 #   plot settings    
     ax1.set_xlim(0,1)
@@ -163,7 +181,18 @@ def main():
     ax2.set_ylabel(r'$\frac{rms(\bf{U}_x}{\bf{U}_{inlet}}$')
     #ax2.set_title(alias_dict[parameterFileBasename1])
     
-    fig1.savefig(saveDir+"cut3a.png",  bbox_inches='tight')
-    fig2.savefig(saveDir+"cut3b.png",  bbox_inches='tight')
+    #fig1.savefig(saveDir+"cut3a.png",  bbox_inches='tight')
+    #fig2.savefig(saveDir+"cut3b.png",  bbox_inches='tight')
+
+    ax3.plot(mean_diff1, marker='o')
+    ax3.plot(mean_diff2, marker='<')
+    ax3.set_xlabel(r'$N_i$')
+    ax3.set_ylabel(r'$Error_{mean}$')
+    ax4.plot(rms_diff1, marker='d')
+    ax4.plot(rms_diff2, marker='>')
+    ax4.set_xlabel(r'$N_i$')
+    ax4.set_ylabel(r'$Error_{rms}$')
+    fig3.savefig(saveDir+"cut3a_error.png",  bbox_inches='tight')
+    fig4.savefig(saveDir+"cut3b_error.png",  bbox_inches='tight')
 
 main()
