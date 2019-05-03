@@ -92,6 +92,23 @@ if 1:
                         )
 
     ax.add_artist(ab)
+    
+    # add cat image
+    cat_img = plt.imread('cat.png', format='png')
+    imagebox = OffsetImage(cat_img)
+    imagebox.image.axes = ax
+
+    cat = AnnotationBbox(imagebox, xy,
+                        xybox=(-50., -50.),
+                        xycoords='data',
+                        boxcoords="offset points",
+                        pad=0.5,
+                        arrowprops=dict(
+                            arrowstyle="->",
+                            connectionstyle="angle,angleA=0,angleB=90,rad=3")
+                        )
+
+    ax.add_artist(cat)
 
     # Fix the display limits to see everything
     ax.set_xlim(0, 1)
