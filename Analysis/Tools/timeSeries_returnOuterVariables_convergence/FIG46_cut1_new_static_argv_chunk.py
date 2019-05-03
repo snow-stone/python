@@ -115,17 +115,19 @@ def main():
 #   No-dimnesionize and plot
 
     import numpy as np
-    N=len(dataBase2Plot1['chunkedMean'])
-    mean_diff1=np.zeros(N)
-    mean_diff2=np.zeros(N)
-    rms_diff1=np.zeros(N)
-    rms_diff2=np.zeros(N)
+    N1=len(dataBase2Plot1['chunkedMean'])
+    N2=len(dataBase2Plot2['chunkedMean'])
+    mean_diff1=np.zeros(N1)
+    mean_diff2=np.zeros(N2)
+    rms_diff1=np.zeros(N1)
+    rms_diff2=np.zeros(N2)
 
     for i in range(len(dataBase2Plot1['chunkedMean'])):
         ax1.plot(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
         ax1.plot(x1,rdb.tools.returnInterpolatedArray(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][i]/Ux_bulk_Dai,x1),label=str(i),marker='o')
         mean_diff1[i]=rdb.tools.diffNormL2(rdb.tools.returnInterpolatedArray(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedMean'][i]/Ux_bulk_Dai,x1),y1)
 
+    for i in range(len(dataBase2Plot2['chunkedMean'])):
         ax1.plot(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedMean'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
         ax1.plot(x1,rdb.tools.returnInterpolatedArray(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedMean'][i]/Ux_bulk_Dai,x1),label=str(i),marker='o')
         mean_diff2[i]=rdb.tools.diffNormL2(rdb.tools.returnInterpolatedArray(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedMean'][i]/Ux_bulk_Dai,x1),y1)
@@ -136,6 +138,7 @@ def main():
         ax2.plot(x2,rdb.tools.returnInterpolatedArray(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][i]/Ux_bulk_Dai,x2),label=str(i),marker='o')
         rms_diff1[i]=rdb.tools.diffNormL2(rdb.tools.returnInterpolatedArray(dataBase2Plot1['rByD'],dataBase2Plot1['chunkedStd'][i]/Ux_bulk_Dai,x2),y2)
 
+    for i in range(len(dataBase2Plot2['chunkedMean'])):
         ax2.plot(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedStd'][i]/Ux_bulk_Dai,label=str(i),linewidth=4)
         ax2.plot(x2,rdb.tools.returnInterpolatedArray(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedStd'][i]/Ux_bulk_Dai,x2),label=str(i),marker='o')
         rms_diff2[i]=rdb.tools.diffNormL2(rdb.tools.returnInterpolatedArray(dataBase2Plot2['rByD'],dataBase2Plot2['chunkedStd'][i]/Ux_bulk_Dai,x2),y2)
