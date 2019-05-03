@@ -173,6 +173,12 @@ def main():
     ax4.plot(rms_diff, marker='d')
     ax3.set_ylim(0,1)
     ax4.set_ylim(0,1)
+
+    im = plt.imread('cutPositions_cropped_cut3.png')
+    rect=[0.1, 0.8, 0.3, 0.3]
+    ax3_new = fig3.add_axes(rect, anchor='NE', zorder=-1)
+    ax3_new.imshow(im)
+    ax3_new.axis('off')
     fig3.savefig(saveDir+"cut3a_error.png",  bbox_inches='tight')
     fig4.savefig(saveDir+"cut3b_error.png",  bbox_inches='tight')
 
