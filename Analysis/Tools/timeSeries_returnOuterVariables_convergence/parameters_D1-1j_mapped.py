@@ -27,7 +27,8 @@ sampling={
 dataEntry={
         'startTime':0.45,  
         'endTime':0.6,
-        'chunkStep':50,
+        #'chunkStep':50,
+        'chunkStep':15,
         'NbOfFiles':151,
         #data position :
         #newton:/store/lmfa/fct/hluo/zaurak/caseByMachine/occigen/T/passiveScalar/Newtonian/mapped/flowRate/min/1d_lR2/afterAugust/postProcessing

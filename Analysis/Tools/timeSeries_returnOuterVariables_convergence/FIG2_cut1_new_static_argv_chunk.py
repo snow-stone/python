@@ -172,6 +172,8 @@ def main():
     ax4.set_xlabel(r'$N_i$')
     ax4.set_ylabel(r'$Error_{rms}$')
     ax4.plot(rms_diff, marker='d')
+    ax3.set_ylim(0,1)
+    ax4.set_ylim(0,1)
     fig3.savefig(saveDir+"cut1a_error.png",  bbox_inches='tight')
     fig4.savefig(saveDir+"cut1b_error.png",  bbox_inches='tight')
 
