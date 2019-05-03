@@ -170,6 +170,13 @@ def main():
     ax2.set_ylabel(r'$\frac{rms(\bf{u}_x)}{\bf{u}_{bulk}}$')
     #ax2.set_title(alias_dict[parameterFileBasename1])
     
+    im = plt.imread('cutPositions_cropped_cut3.png')
+    rect=[0.1, 0.8, 0.3, 0.3]
+    ax1_new = fig1.add_axes(rect, anchor='NE', zorder=-1)
+    ax1_new.imshow(im)
+    ax1_new.axis('off')
+    ax1.get_legend().remove()
+    ax2.get_legend().remove()
     fig1.savefig(saveDir+"cut3a.png",  bbox_inches='tight')
     fig2.savefig(saveDir+"cut3b.png",  bbox_inches='tight')
 
