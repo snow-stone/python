@@ -186,14 +186,20 @@ def main():
     #fig1.savefig(saveDir+"cut2a.png",  bbox_inches='tight')
     #fig2.savefig(saveDir+"cut2b.png",  bbox_inches='tight')
 
-    ax3.plot(mean_diff1, marker='o')
-    ax3.plot(mean_diff2, marker='<')
+    ax3.plot(mean_diff1, marker='o',label=alias_dict[parameterFileBasename1],linestyle='--',markerfacecolor='none',markersize=6)
+    ax3.plot(mean_diff2, marker='<',label=alias_dict[parameterFileBasename2],linestyle='-.',markerfacecolor='none',markersize=6)
     ax3.set_xlabel(r'$N_i$')
     ax3.set_ylabel(r'$Error_{mean}$')
-    ax4.plot(rms_diff1, marker='d')
-    ax4.plot(rms_diff2, marker='>')
+    ax4.plot(rms_diff1, marker='o',label=alias_dict[parameterFileBasename1],linestyle='--',markerfacecolor='none',markersize=6)
+    ax4.plot(rms_diff2, marker='<',label=alias_dict[parameterFileBasename2],linestyle='-.',markerfacecolor='none',markersize=6)
     ax4.set_xlabel(r'$N_i$')
     ax4.set_ylabel(r'$Error_{rms}$')
+
+    im = plt.imread('cutPositions_cropped_cut2.png')
+    rect=[0.1, 0.8, 0.3, 0.3]
+    ax3_new = fig3.add_axes(rect, anchor='NE', zorder=-1)
+    ax3_new.imshow(im)
+    ax3_new.axis('off') 
     fig3.savefig(saveDir+"cut2a_error.png",  bbox_inches='tight')
     fig4.savefig(saveDir+"cut2b_error.png",  bbox_inches='tight')
 
