@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 plt.style.use('seaborn-white') # from defaut
-plt.rcParams.update({'font.size': 30})
+plt.rcParams.update({'font.size': 40})
 plt.rcParams['savefig.dpi'] = 100
 
 from matplotlib import rc
