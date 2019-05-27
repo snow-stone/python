@@ -18,6 +18,11 @@ sampling={
         'raw_sample_size':160,
         'TdataShape3':(205,2),    # face 3
         'TdataShape2':(220,2),    # face 2
+        'nudataShape5':(221,2),    
+        'nudataShape4':(198,2),    
+        'nudataShape3':(171,2),    
+        'nudataShape2':(143,2),   
+        'nudataShape1':(124,2),   
         'dataShape3':(205,4),    # face 3
         'dataShape2':(220,4),    # face 2
         'dataShape1':(220,4),    # face 1
