@@ -57,8 +57,12 @@ def read_cases():
 #        ax2.plot(n_procs[i],eff,marker='o')
     
     ax1.plot(n_procs,Sp, linestyle='--', linewidth=4, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
+    x1=np.arange(48,1000,10)
+    ax1.plot(x1,x1/48.0,linestyle='-.', linewidth=4, color='black', label=r'$id\'eal$')
     ax1.set_xscale('log')
     ax2.plot(n_procs,E, linestyle='--', linewidth=4, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
+    x2=np.arange(48,1000,10)
+    ax2.plot(x2,np.full(x2.shape,1),linestyle='-.', linewidth=4, color='black', label=r'$id\'eal$')
     ax2.set_xscale('log')
     
     
@@ -113,15 +117,20 @@ def read_cases():
                             color='red'))
 
     ax3.plot(n_procs,1./Sp, linestyle='--', linewidth=4, markersize=16, marker='o', markerfacecolor='none', color='mediumvioletred', markeredgewidth=4)
+    x3=np.arange(48,1000,10)
+    ax3.plot(x3,48.0/x3,linestyle='-.', linewidth=4, color='black', label=r'$id\'eal$')
     ax3.set_xscale('log')
     ax3.set_xlabel('Nb. de Processeurs')
     ax3.set_ylabel('Temps CPU')
     ax3.set_xlim(0,1000)
     ax3.set_ylim(0,2)
-    ax3.axhline(y=1.0, color='black', linestyle='-.')
+    #ax3.axhline(y=1.0, color='black', linestyle='-.')
     ax3.tick_params(axis='both', which='major', direction='out', length=8, width=4)
     ax3.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
 
+    ax1.legend()
+    ax2.legend()
+    ax3.legend()
     fig0.savefig("cpuTime.png", bbox_inches='tight')
     fig1.savefig("Sp.png", bbox_inches='tight')
     fig2.savefig("E.png", bbox_inches='tight')
