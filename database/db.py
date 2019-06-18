@@ -30,9 +30,16 @@ def chapter2():
             }
     
     datasize = {
-            "pipe_c" : "203G",
-            "pipe_r1": "171G",
-            "pipe_r1": " 24G"
+            "pipe_c" :        "203G",
+            "pipe_r1":        "171G",
+            "pipe_r1":        " 24G",
+            "T_c/1d_lR2":     "184G",
+            "T_c/1j_NN_off":  "2,2T",
+            "T_c/1j_NN_on ":  "308G",
+            "T_c/1j_N"     :  "1,2T",
+            "T_c/1j_N_syn" :  "675G",
+            "T_c/1k_4x4x4" :  "1.5T",
+            "T_r"          :  "41 T"
             }
     
     case = sys.argv[1]
