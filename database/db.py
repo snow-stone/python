@@ -39,7 +39,7 @@ def chapter2():
             "T_c/1j_N"     :  "1,2T",
             "T_c/1j_N_syn" :  "675G",
             "T_c/1k_4x4x4" :  "1.5T",
-            "T_r"          :  "41 T"
+            "T_r"          :  "24 T"
             }
     
     case = sys.argv[1]
