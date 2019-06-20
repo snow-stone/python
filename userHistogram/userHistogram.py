@@ -285,8 +285,8 @@ def main():
     ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
     ax[1].set_xlabel(r"$x/D$")
 
-    ax[0].text(-0.12, 0.9,'(d)', transform=ax[0].transAxes)
-    ax[1].text(-0.12, 1.0,'(e)', transform=ax[1].transAxes)
+    ax[0].text(-0.12, 0.9,'(c)', transform=ax[0].transAxes)
+    ax[1].text(-0.12, 1.0,'(d)', transform=ax[1].transAxes)
     ax[0].set_xticklabels([])
     fig.savefig("./"+"higherOrderStat.png",  bbox_inches='tight')
               

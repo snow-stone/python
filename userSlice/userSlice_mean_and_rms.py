@@ -5,6 +5,8 @@ Created on Wed Dec 12 21:08:57 2018
 @author: hluo
 """
 
+import matplotlib
+matplotlib.use('agg')
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -454,7 +456,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
 #    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
     axes[0].text(-0.1,3.4,'(a)',size=20, transform=ax.transAxes)
     axes[1].text(-0.1,2.2,'(b)',size=20, transform=ax.transAxes)
-    axes[2].text(-0.1,1,'(c)',size=20, transform=ax.transAxes)
+    #axes[2].text(-0.1,1,'(c)',size=20, transform=ax.transAxes)
     fig.savefig(path2Data+"/"+saveFigDir+'/mixing_ref_local_1.png', bbox_inches='tight', fontsize=20)
 
 
@@ -615,7 +617,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 
     
 #    fig, ax_principle0 = plt.subplots()
-    fig, axes = plt.subplots(3, 1, sharex=True, figsize=(10,10))
+    fig, axes = plt.subplots(2, 1, sharex=True, figsize=(10,10))
     for ax in axes:
         ax.tick_params(axis='both', direction='in', length=4, width=1.5)
 
@@ -624,7 +626,7 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
         plotCaseWithSlices_local_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0, ifPlotInter=False)
 #        plotCaseWithSlices_Dai_mean(axes[0], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
     
-    axes[0].set_xlabel(r"$x/D$")
+    #axes[0].set_xlabel(r"$x/D$")
 #    axes[0].set_ylabel(r"$\nu_{ref} \, = \, <\nu>_{(y,z)}$")
     axes[0].set_ylabel(r"$\mu_{\overline{\nu}}$")
 #    ax_principle0.set_title(r"$statistics \quad on \quad slices$")
@@ -663,21 +665,21 @@ def nu_mean_Figure_ref_local(caseList, path2Data, saveFigDir):
 
 #    fig, ax_principle2 = plt.subplots()
 
-    for i, caseDir in enumerate(caseList):
-        print "caseDir : ", caseDir
+    #for i, caseDir in enumerate(caseList):
+    #    print "caseDir : ", caseDir
 #        plotCaseWithSlices_local_MI(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, cut=0.7, ifPlotInter=False)
-        plotCaseWithSlices_local_MI_1(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0, ifPlotInter=False)
+    #    plotCaseWithSlices_local_MI_1(axes[2], path2Data, caseDir, positionList, aliasDict, markerDict, colorDict, linestyleDict, linewidthDict, markerfacecolorDict, cut=0, ifPlotInter=False)
         
-    axes[2].set_xlabel(r"$x/D$")
+    #axes[2].set_xlabel(r"$x/D$")
 #    axes[2].set_ylabel(r"$\frac{[<T-T_{ref}>_{(y,z)}^2]^{1/2}}{[<T-T_{ref}>_{(y,z)}^2]^{1/2}|_{x=0}}$")
 #    axes[2].set_ylabel(r"$\frac{[<\nu-\nu_{ref}>_{(y,z)}^2]^{1/2}}{<\nu>_{y,z}}$")
-    axes[2].set_ylabel(r"$\sigma_{\overline{\nu}} / \mu_{\overline{\nu}}$")
+    #axes[2].set_ylabel(r"$\sigma_{\overline{\nu}} / \mu_{\overline{\nu}}$")
 #    axes[2].legend(bbox_to_anchor=(1, 1), ncol=2, shadow=True)
 #    ax_principle2.set_ylim(0,1.0)
 #    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
-    axes[0].text(-0.1,3.5,'(a)',size=20, transform=ax.transAxes)
-    axes[1].text(-0.1,2.2,'(b)',size=20, transform=ax.transAxes)
-    axes[2].text(-0.1,1,'(c)',size=20, transform=ax.transAxes)
+    axes[0].text(-0.1,2.2,'(a)',size=20, transform=ax.transAxes)
+    axes[1].text(-0.1,1,'(b)',size=20, transform=ax.transAxes)
+    #axes[2].text(-0.1,1,'(c)',size=20, transform=ax.transAxes)
     fig.savefig(path2Data+"/"+saveFigDir+'/nu_mixing_ref_local_1.png', bbox_inches='tight', fontsize=20)
 
 def Figure_ref_0p5_0p8_nonDimension(caseList, path2Data, saveFigDir):

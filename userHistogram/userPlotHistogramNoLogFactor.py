@@ -485,10 +485,10 @@ def plot_nu_mean():
         ax[0].set_ylabel(r"$\mu_{\overline{\nu}}+\sigma_{\overline{\nu}}$")
         ax[1].set_ylim(0,0.5)
         ax[1].yaxis.set_major_formatter(formatter)
-        ax[1].set_ylabel(r"$P(\overline{\nu} \ge \nu_{ref})$")
+        ax[1].set_ylabel(r"$P(\overline{\nu} \ge \overline{\nu}_{ex}(x=0))$")
     
-        ax[0].text(-0.16, 1.0,'(d)', transform=ax[0].transAxes)
-        ax[1].text(-0.16, 1.0,'(e)', transform=ax[1].transAxes)
+        ax[0].text(-0.16, 1.0,'(a)', transform=ax[0].transAxes)
+        ax[1].text(-0.16, 1.0,'(b)', transform=ax[1].transAxes)
         fig.savefig("./"+"nu_mean_tail1a.png",  bbox_inches='tight')
 
     def nu_mean_factors(x, databaseDict):
