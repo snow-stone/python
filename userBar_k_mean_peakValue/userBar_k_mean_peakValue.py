@@ -61,8 +61,8 @@ def main():
     labelTuple = (
                 r'$NN^{1}_{d}$',
                 r'$N^{1}_{d}$',
-                r'$NN^{1}_{d,St=1}$',
-                r'$NN^{1}_{d,St=5}$',
+   #             r'$NN^{1}_{d,St=1}$',
+   #             r'$NN^{1}_{d,St=5}$',
                 r'$NN^{2}_{d}$',
                 r'$N^{2}_{d}$',
                 r'$NN^{2}_{i}$',
@@ -71,8 +71,8 @@ def main():
     colorList = [
                 "red",
                 "blue",
-                "red",
-                "red",
+   #             "red",
+   #             "red",
                 "red",
                 "blue",
                 "red",
@@ -81,8 +81,8 @@ def main():
     k_mean_peak = [
                 0.0083,
                 0.08,
-                0.05,
-                0.098,
+   #             0.05,
+   #             0.098,
                 0.16,
                 0.26,
                 0.476,
@@ -92,10 +92,10 @@ def main():
     plt.figure(1)
     x = np.linspace(0, len(labelTuple)*1.5, len(labelTuple))
     plt.bar(x+0.5, height = k_mean_peak, width=0.4, color=colorList)
-    plt.xticks(x+0.75, labelTuple) # xticks can only chagned by plt object. axes don't work !!
+    plt.xticks(x+0.55, labelTuple) # xticks can only chagned by plt object. axes don't work !!
 #    plt.xlim(0,8.5)
     plt.ylim(0,0.7)
-    plt.ylabel(r'$\overline{k}_{max}$')
+    plt.ylabel(r'$k_{max}$')
     plt.savefig(path2Data+"/"+'bar_k_mean_peakValue/k_mean_peakValue.png', bbox_inches='tight', dpi=300)
     
 #    print pressureDropList[0]/pressureDropList[1]
