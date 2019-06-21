@@ -482,7 +482,7 @@ def plot_nu_mean():
             ax[1].plot(x, databaseDict[case]['factor3'], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
     
         ax[0].ticklabel_format(axis='y',style='sci',scilimits=(0,0))
-        ax[0].set_ylabel(r"$\mu_{\overline{\nu}}+\sigma_{\overline{\nu}}$")
+        ax[0].set_ylabel(r"$\overline{\nu}_{ex}$")
         ax[1].set_ylim(0,0.5)
         ax[1].yaxis.set_major_formatter(formatter)
         ax[1].set_ylabel(r"$P(\overline{\nu} \ge \overline{\nu}_{ex}(x=0))$")
