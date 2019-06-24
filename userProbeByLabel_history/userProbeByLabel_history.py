@@ -73,9 +73,9 @@ def main():
     path2Data="/store/8simu_tmp/shape_square/2a_3_T/python_postProcessing"
     cases = [
              "BirdCarreau"+"/"+"inlet_0p3",
-             "Newtonian"+"/"+"Re2400",
              "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
 		    "BirdCarreau/inlet_0p3-a_0p5-setT_St_5",
+             "Newtonian"+"/"+"Re2400",
              "BirdCarreau"+"/"+"inlet_0p5",
              "Newtonian"+"/"+"Re4000",
              "BirdCarreau/inlet0p5_impinging",
