@@ -5,6 +5,8 @@ Created on Wed Dec 12 21:08:57 2018
 @author: hluo
 """
 
+import matplotlib
+matplotlib.use('agg')
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -51,7 +53,7 @@ def userProbeByLabel(ax, caseName, path2Data, fieldName, sample, positions, colo
 
 def main():
     plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 25})
+    plt.rcParams.update({'font.size': 35})
     plt.rcParams['savefig.dpi'] = 100
     
     from matplotlib import rc
@@ -80,7 +82,7 @@ def main():
              "Newtonian/Re4000_impinging"
             ]
 
-    fieldNames=["U_y", "T"]
+    fieldNames=["U_x","U_y","U_z", "T"]
     
     colorDict = {
                   "U_x" : "blue",
@@ -115,7 +117,7 @@ def main():
         p=positionSubSet[k]
         print "position : " , allProbePosition[p]
         #figsize should be in inches.
-        fig, axses_case = plt.subplots(len(cases), 1, sharex=True, figsize=(20,10))# figsize is an additional parameter for class matplotlib.pyplot.subplots: passed by **fig_kw
+        fig, axses_case = plt.subplots(len(cases), 1, sharex=True, figsize=(30,25))# figsize is an additional parameter for class matplotlib.pyplot.subplots: passed by **fig_kw
         mean = np.zeros((len(allProbePosition),len(cases)))
         std = np.zeros((len(allProbePosition),len(cases)))
         for j, case in enumerate(cases):
