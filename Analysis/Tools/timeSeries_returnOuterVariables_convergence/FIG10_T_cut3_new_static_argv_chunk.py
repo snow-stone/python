@@ -192,10 +192,12 @@ def main():
     ax3.plot(mean_diff2, marker='<',label=alias_dict[parameterFileBasename2],linestyle='-.',markerfacecolor='none',markersize=6)
     ax3.set_xlabel(r'$N_i$')
     ax3.set_ylabel(r'$Error_{mean}$')
+    ax3.set_ylim(0,1.2)
     ax4.plot(rms_diff1, marker='o',label=alias_dict[parameterFileBasename1],linestyle='--',markerfacecolor='none',markersize=6)
     ax4.plot(rms_diff2, marker='<',label=alias_dict[parameterFileBasename2],linestyle='-.',markerfacecolor='none',markersize=6)
     ax4.set_xlabel(r'$N_i$')
     ax4.set_ylabel(r'$Error_{rms}$')
+    ax4.set_ylim(0,1.2)
 
     im = plt.imread('cutPositions_cropped_cut3.png')
     rect=[0.1, 0.8, 0.3, 0.3]

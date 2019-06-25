@@ -174,7 +174,7 @@ def main():
     ax4.set_ylabel(r'$Error_{rms}$')
     ax4.plot(rms_diff, marker='d')
     ax3.set_ylim(0,1)
-    ax4.set_ylim(0,1.5)
+    ax4.set_ylim(0,1.2)
 
     im = plt.imread('cutPositions_cropped_cut2.png')
     rect=[0.1, 0.8, 0.3, 0.3]
