@@ -138,7 +138,7 @@ def main():
         print "In file " + os.path.basename(__file__)
         print "applying local constant control on legend positioning"
         print "====================================="
-        ax1.legend(bbox_to_anchor=(1, 1.5), ncol=2, fancybox=True, shadow=True)
+        ax1.legend(bbox_to_anchor=(1, 1.4), ncol=1, fancybox=True, shadow=True)
     ax1.set_xlabel(r'$r/D$')
     ax1.set_ylabel(r'$\overline{c}$')
     #ax1.set_title(alias_dict[parameterFileBasename])
@@ -168,7 +168,7 @@ def main():
     ax1_new = fig1.add_axes(rect, anchor='NE', zorder=-1)
     ax1_new.imshow(im)
     ax1_new.axis('off')
-    ax1.get_legend().remove()
+    #ax1.get_legend().remove()
     ax2.get_legend().remove()
     fig1.savefig(saveDir+"T_cut3a.png",  bbox_inches='tight')
     fig2.savefig(saveDir+"T_cut3b.png",  bbox_inches='tight')

@@ -29,8 +29,9 @@ caseAlias=D3-1j_mapped
 ##python FIG57_cut1_new_static_argv_chunk_nu.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
 ##python FIG57_cut2_new_static_argv_chunk_nu.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
 ##python FIG57_cut3_new_static_argv_chunk_nu.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
-python FIG57_cut4_new_static_argv_chunk_nu.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
-python FIG57_cut5_new_static_argv_chunk_nu.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
+##python FIG57_cut4_new_static_argv_chunk_nu.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
+##python FIG57_cut5_new_static_argv_chunk_nu.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
+python FIG57_cut6_new_static_argv_chunk_nu.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
 #python FIG57_cut2_new_static_argv_chunk.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
 #python FIG57_cut3_new_static_argv_chunk.py D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05 D2-NN-1k_syn_forcing /home/hluo/work/git/thesis/Thesis_hluo_new/ch3/images/lines/FIG57/ NoControlFig_usingParameters
 

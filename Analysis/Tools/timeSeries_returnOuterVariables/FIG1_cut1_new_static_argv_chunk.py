@@ -156,7 +156,10 @@ def main():
     ax1_new = fig1.add_axes(rect, anchor='NE', zorder=-1)
     ax1_new.imshow(im)
     ax1_new.axis('off')
-    ax2.get_legend().remove()
+    ax2_new = fig2.add_axes(rect, anchor='NE', zorder=-1)
+    ax2_new.imshow(im)
+    ax2_new.axis('off')
+    #ax2.get_legend().remove()
     fig1.savefig(saveDir+"cut1a.png",  bbox_inches='tight')
     fig2.savefig(saveDir+"cut1b.png",  bbox_inches='tight')
 

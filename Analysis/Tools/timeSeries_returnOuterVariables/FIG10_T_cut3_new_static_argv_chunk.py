@@ -179,7 +179,7 @@ def main():
     ax1_new = fig1.add_axes(rect, anchor='NE', zorder=-1)
     ax1_new.imshow(im)
     ax1_new.axis('off')
-    ax1.get_legend().remove()
+    #ax1.get_legend().remove()
     ax2.get_legend().remove() 
     fig1.savefig(saveDir+"T_cut3a.png",  bbox_inches='tight')
     fig2.savefig(saveDir+"T_cut3b.png",  bbox_inches='tight')
