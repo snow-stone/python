@@ -1,7 +1,7 @@
 
 from PIL import Image
 #import sys
- def crop(image_path, coords, saved_location):
+def crop(image_path, coords, saved_location):
     """
     @param image_path: The path to the image to edit
     @param coords: A tuple of x/y coordinates (x1, y1, x2, y2)
@@ -19,23 +19,22 @@ def main():
     dataBase = '/home/hluo/work/git/thesis/Thesis_hluo_new'
     
     paths = [
-            'ch3/images/contours/hluo14_T_c_Q2_0p3'
+            #'ch3/images/lines/FIG2',
+            #'ch3/images/lines/FIG3',
+            'ch3/images/lines/FIG46',
+            'ch3/images/lines/FIG57'
            ]
     imageNames = [
-            'D1-1j_mapped',
-            'D2-1j_mapped',
-            'D3-1j_mapped',
-            'D2-NN-1j_test_from0',
-            'D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05',
-            'D2-NN-1k_syn_forcing'
+            'cut2a',
+            'cut2b',
+            'cut3a',
+            'cut3b'
                 ]
     coords_dict = {
-            'D1-1j_mapped': (657, 21, 2631, 846),
-            'D2-1j_mapped': (657, 21, 2631, 846),
-            'D3-1j_mapped': (657, 21, 2631, 846),
-            'D2-NN-1j_test_from0': (657, 21, 2631, 846),
-            'D2-NN-1j_test_from0p3_forcingSinus_St3p2_A_eq_0p05': (657, 21, 2631, 846),
-            'D2-NN-1k_syn_forcing': (657, 21, 2631, 846)
+            'cut2a': (0, 220, 1200, 1120),
+            'cut2b': (0, 220, 1240, 1120),
+            'cut3a': (0, 220, 1200, 1120),
+            'cut3b': (0, 220, 1240, 1120)
                 }
     
     for i, path in enumerate(paths):
