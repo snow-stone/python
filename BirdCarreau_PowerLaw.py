@@ -44,8 +44,8 @@ ax.set_ylim(1e-6,5e-4)
 ax.set_xscale("log")
 ax.set_yscale("log")
 ax.tick_params(axis='both', direction='out', length=4, width=1, labelsize=25)
-ax.set_xlabel(r'$\dot{\gamma}$',fontsize=25)
-ax.set_ylabel(r'$\nu$',fontsize=25)
+ax.set_xlabel(r'$\dot{\gamma} (s^{-1})$',fontsize=25)
+ax.set_ylabel(r'$\nu (m^2/s)$',fontsize=25)
 
 font = {'family': 'serif',
         'color':  'darkred',
