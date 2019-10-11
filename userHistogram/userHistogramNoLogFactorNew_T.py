@@ -22,19 +22,39 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias, ifPlotHi
     plt.rcParams['savefig.dpi'] = 100
     
     rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
+    print "data name : ", path2Data+"/"+caseName+"/"+dataFileName+".csv"
+
+    dS_data = np.genfromtxt("/store/8simu_tmp/shape_square/2a_3_T/sliceStore/dS.csv",delimiter=',', skip_header=0)
 
     T = rawData[:,0]
+    label = rawData[:,1]
     mean = np.mean(T)
     rms  = np.std(T)
+
+    #dS = dS_data[:,0] # IndexError: too many indices for array
+    dS = dS_data
+    S  = 0.008**2
+    dS = dS/S
+
+    real_mean = 0.0
+    real_rms  = 0.0
+    print "len = ", len(T)
+    for i in range(len(T)):
+        real_mean = real_mean + T[i] * dS[i]
+    for i in range(len(T)):
+        real_rms = real_rms + (T[i]-real_mean)**2 * dS[i]
+    real_rms = np.sqrt(real_rms)
     
     print "casename : ", caseName, " with ", dataFileName+".csv"
     print "mean     : ", mean
+    print "real_mean: ", real_mean
     
     if ifPlotHist :
         fig, ax = plt.subplots()
     
     #    n, bins, patches = ax.hist(T, bins=40, weights=np.ones(len(T)) / len(T), color='g')    
-        n, bins, patches = ax.hist(T, np.linspace(-0.05,1.05,50), weights=np.ones(len(T)) / len(T), color='darkcyan', normed=False, histtype='stepfilled', alpha=1)
+#        n, bins, patches = ax.hist(T, np.linspace(-0.05,1.05,50), weights=np.ones(len(T)) / len(T), color='darkcyan', normed=False, histtype='stepfilled', alpha=1)
+        n, bins, patches = ax.hist(T, np.linspace(-0.05,1.05,50), weights=dS, color='darkcyan', normed=False, histtype='stepfilled', alpha=1)
     #    n, bins, patches = ax.hist(T, bins=np.linspace(0,1,40), weights=np.ones(len(T)) / len(T), color='g')
     #    n, bins, patches = ax.hist(T, bins=40, color='g', normed=True)
         
@@ -59,11 +79,16 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias, ifPlotHi
         ax.set_yticklabels([''])
         
     #    ax.axvline(x=0.5, color='blue', linewidth=1)
-        ax.axvline(x=mean, color='red', linewidth=3)
-        if (mean-rms) > 0:
-            ax.axvline(x=mean-rms, color='black', linewidth=3, linestyle='--')
-        if (mean+rms) < 1.0:
-            ax.axvline(x=mean+rms, color='black', linewidth=3, linestyle='--')
+        #ax.axvline(x=mean, color='red', linewidth=3)
+        #if (mean-rms) > 0:
+        #    ax.axvline(x=mean-rms, color='black', linewidth=3, linestyle='--')
+        #if (mean+rms) < 1.0:
+        #    ax.axvline(x=mean+rms, color='black', linewidth=3, linestyle='--')
+        ax.axvline(x=real_mean, color='red', linewidth=3)
+        if (real_mean-real_rms) > 0:
+            ax.axvline(x=real_mean-real_rms, color='black', linewidth=3, linestyle='--')
+        if (real_mean+real_rms) < 1.0:
+            ax.axvline(x=real_mean+real_rms, color='black', linewidth=3, linestyle='--')
         
     #    ax.set_title(r"$@%s$" % marker)
     #    ax.set_xlabel(r'$\overline{T}$')
@@ -81,7 +106,8 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias, ifPlotHi
         ax.text(0.45, -0.05, r'$0.5$', fontsize=30)
         ax.text(1, -0.05, r'$1$', fontsize=30)
         
-        fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+".png",  bbox_inches='tight')
+        #fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_New_uniform.png",  bbox_inches='tight')
+        fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_New.png",  bbox_inches='tight')
 
     import scipy.stats as stats
     
@@ -145,10 +171,10 @@ def writeData_T_mean():
         "Newtonian/Re4000_impinging"           : 'darkcyan'
     }
 
-    axis_x1 = np.linspace(0, 1.875, 16)
-    axis_x2 = np.linspace(2, 9.5, 16)
-    axis_x  = np.append(axis_x1, axis_x2)
-    #axis_x  = np.linspace(0, 8, 5)
+    #axis_x1 = np.linspace(0, 1.875, 16)
+    #axis_x2 = np.linspace(2, 9.5, 16)
+    #axis_x  = np.append(axis_x1, axis_x2)
+    axis_x  = np.linspace(0, 8, 3)
     
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
@@ -158,7 +184,7 @@ def writeData_T_mean():
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
             #skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
-            skew, kurt = slice_T_mean_hist("T_mean_slice_"+str(x)+"D0",str(x)+"D_New",path2Data, case, aliasDict[case], ifPlotHist=True)
+            skew, kurt = slice_T_mean_hist("T_mean_slice_"+str(x)+"D_New",str(x),path2Data, case, aliasDict[case], ifPlotHist=True)
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
             #higherOrderStat[case]['factor0'].append(factor0)
