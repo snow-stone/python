@@ -90,133 +90,6 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias, ifPlotHi
 
     return skew, kurt
     
-def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, ifPlotHist):
-    plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 20})
-    plt.rcParams['savefig.dpi'] = 100
-    
-    rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
-    
-    print "============================"
-    nu = rawData[:,0]
-    mean = np.mean(nu)
-    rms  = np.std(nu)
-    maximum = np.max(nu)
-    minimum = np.min(nu)
-    print "casename : ", caseName
-    print "mean     : ", mean
-
-    if ifPlotHist :
-        fig, ax = plt.subplots()
-        
-        MIN, MAX = 2e-06, 3e-4
-    #    ax.hist(nu, bins=10 ** np.linspace(np.log10(MIN), np.log10(MAX), 50), facecolor='g', normed=1)
-        n, bins, patches = ax.hist(nu, bins=np.linspace(MIN, MAX, 1000), weights=np.ones(len(nu)) / len(nu),facecolor='darkcyan')
-        
-        #ax.set_xlim(2e-06,2e-5)
-        if caseName == "BirdCarreau/inlet_0p3" or \
-           caseName == "BirdCarreau/inlet_0p3-a_0p5-setT_St_1" or \
-           caseName == "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":
-            ax.set_xlim(2e-06,5e-5)
-        else :
-            ax.set_xlim(2e-06,2e-5)
-        ax.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
-        ax.set_ylim(0,0.15)
-    #    xmax=1
-    #    ymax=30
-    #    ax.text(xmax*0.7, ymax*0.8, r'$\mu=%.2f$'% mean)
-    #    ax.text(xmax*0.7, ymax*0.7, r'$\sigma=%.2f$'% rms)
-    #    ax.grid(True)
-        ax.tick_params(axis='both', which='major', direction='out', length=8, width=4)
-    #    ax.tick_params(axis='x', which='minor', direction='out', length=8, width=2)
-    #    ax.set_xticklabels([''])
-    #    ax.set_yticklabels([''])
-        
-    #    import matplotlib
-    ##    locmin = matplotlib.ticker.LogLocator(base=10.0, subs=(0.1,0.2,0.4,0.6,0.8,1,2,4,6,8,10 ))
-    #    locmin = matplotlib.ticker.LogLocator(base=10.0,subs=(0.2,0.4,0.6,0.8),numticks=4)
-    #    ax.xaxis.set_minor_locator(locmin)
-    #    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
-        
-    #    ax.axvline(x=0.5, color='blue', linewidth=1)
-        ax.axvline(x=MIN, color='orange', linewidth=5, linestyle='-.')
-    #    ax.axvline(x=MAX, color='orange', linewidth=3, linestyle=':')
-        ax.axvline(x=mean, color='red', linewidth=5)
-        if (mean-rms) > MIN:
-            ax.axvline(x=mean-rms, color='black', linewidth=5, linestyle='--')
-        if (mean+rms) < MAX:
-            ax.axvline(x=mean+rms, color='black', linewidth=5, linestyle='--')
-        
-    #    ax.set_title(r"$@%s$" % marker)
-    #    ax.set_xlabel(r'$\overline{T}$')
-    #    ax.set_ylabel('The number of cells in '+r'$\%$')
-    #    ax.text(-0.1, -0.1, r'$0$', fontsize=40, transform=ax.transAxes)
-    #    ax.text(6e-7, 0., r'$0$', fontsize=40)
-    #    ax.text(3e-7, 0.13, r'$0.15$', fontsize=40)
-    #    ax.text(1e-6, -0.03, r'$10^{-6}$', fontsize=40)
-    #    ax.text(5e-6, -0.03, r'$10^{-5}$', fontsize=40)
-    #    ax.text(3e-5, -0.03, r'$10^{-4}$', fontsize=40)
-        fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_noLog.png",  bbox_inches='tight')
-
-    print "----------------------------"
-    print "Tail :"
-    nu_Filtered = filter(lambda x: x > (mean+rms), nu)
-    print "len(nu)", len(nu)
-    print "len(nu_Filtered)", len(nu_Filtered)
-    mean_tail = np.mean(nu_Filtered)
-    rms_tail  = np.std(nu_Filtered)
-    maximum_tail = np.max(nu_Filtered)
-    minimum_tail = np.min(nu_Filtered)
-    print "mean     : ", mean_tail
-
-    if ifPlotHist :
-        fig1, ax1 = plt.subplots()
-        n_Filtered, bins_Filetered, patches_Filtered = ax1.hist(nu_Filtered, bins=np.linspace(MIN, MAX, 1000), weights=np.ones(len(nu_Filtered)) / len(nu_Filtered),facecolor='darkcyan')
-        ax1.set_xlim(1e-06,5e-5)
-        ax1.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
-        ax1.set_ylim(0,0.15)
-        ax1.tick_params(axis='both', which='major', direction='out', length=8, width=4)
-        # redraw what is in ax, fig
-        ax1.axvline(x=MIN, color='orange', linewidth=5, linestyle='-.')
-        ax1.axvline(x=mean, color='red', linewidth=5)
-        if (mean-rms) > MIN:
-            ax1.axvline(x=mean-rms, color='black', linewidth=5, linestyle='--')
-        if (mean+rms) < MAX:
-            ax1.axvline(x=mean+rms, color='black', linewidth=5, linestyle='--')
-        # draw the filtered data
-        ax1.axvline(x=mean_tail, color='mediumvioletred', linewidth=5)
-        if (mean_tail-rms_tail) > MIN:
-            ax1.axvline(x=mean_tail-rms_tail, color='darkmagenta', linewidth=5, linestyle='--')
-        if (mean_tail+rms_tail) < MAX:
-            ax1.axvline(x=mean_tail+rms_tail, color='darkmagenta', linewidth=5, linestyle='--')
-    
-        fig1.savefig(path2Data+"/"+caseName+"/"+"histFiltered_"+dataFileName[:-1]+"_noLog.png",  bbox_inches='tight')
-    
-    import scipy.stats as stats
-    
-    skew = stats.skew(nu)
-    kurt = stats.kurtosis(nu)
-    ratio0 = (mean+rms)/mean_tail
-    ratio1 = mean+rms
-
-    if ifPlotHist :
-        ratio2 = sum(n[33:]) # approx= 1000/30.
-        print "ratio2 :", ratio2
-
-        ref=1e-5
-        n_start = int(1000 * (ref-MIN) / (MAX-MIN))
-        print "n_start : ", n_start
-        ratio3 = sum(n[n_start:]) 
-        print "ratio3 :", ratio3
-
-        ref=mean+rms
-        n_start = int(1000 * (ref-MIN) / (MAX-MIN))
-        print "n_start : ", n_start
-        ratio4 = sum(n[n_start:]) 
-        print "ratio4 :", ratio4
-        return mean, rms, minimum, maximum, skew, kurt, ratio0, ratio1, ratio2, ratio3, ratio4, mean_tail, rms_tail, minimum_tail, maximum_tail
-    else :
-        return mean, rms, minimum, maximum, skew, kurt, ratio0, ratio1, mean_tail, rms_tail, minimum_tail, maximum_tail
     
 def writeData_T_mean():
 
@@ -285,7 +158,7 @@ def writeData_T_mean():
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
             #skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
-            skew, kurt = slice_T_mean_hist("T_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
+            skew, kurt = slice_T_mean_hist("T_mean_slice_"+str(x)+"D0",str(x)+"D_New",path2Data, case, aliasDict[case], ifPlotHist=True)
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
             #higherOrderStat[case]['factor0'].append(factor0)
