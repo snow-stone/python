@@ -8,8 +8,14 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
+import sys
+
+dirName                   = sys.argv[1]
+xPositionInSlice          = float(sys.argv[2])
+xPositionInSaveScreenShot = sys.argv[3]
+
 # create a new 'OpenFOAMReader'
-inlet_0p3foam = OpenFOAMReader(FileName='/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p3/inlet_0p3.foam')
+inlet_0p3foam = OpenFOAMReader(FileName=dirName+'/inlet_0p3.foam')
 inlet_0p3foam.SkipZeroTime = 1
 inlet_0p3foam.CaseType = 'Reconstructed Case'
 inlet_0p3foam.LabelSize = '32-bit'
@@ -351,13 +357,13 @@ slice1.SliceType.Offset = 0.0
 Hide3DWidgets(proxy=slice1.SliceType)
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.012, -0.037999999010935426, 0.0]
+slice1.SliceType.Origin = [xPositionInSlice, -0.037999999010935426, 0.0]
 
 # Properties modified on slice1
 slice1.Triangulatetheslice = 0
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.012, -0.037999999010935426, 0.0]
+slice1.SliceType.Origin = [xPositionInSlice, -0.037999999010935426, 0.0]
 
 # show data in view
 slice1Display = Show(slice1, renderView1)
@@ -742,7 +748,7 @@ spreadSheetView1.HiddenColumnLabels = ['Cell Type']
 spreadSheetView1.HiddenColumnLabels = ['Cell Type', 'Block Number']
 
 # export view
-ExportView('/store/8simu_tmp/shape_square/2a_3_T/BirdCarreau/inlet_0p3/T_mean_slice_1.0D_New.csv', view=spreadSheetView1)
+ExportView(dirName+'/T_mean_slice_'+xPositionInSaveScreenShot+'_New.csv', view=spreadSheetView1)
 
 #### saving camera placements for all active views
 
@@ -755,3 +761,8 @@ renderView1.CameraParallelScale = 0.005656854518178539
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+print "Finalizing T_mean_slice_x_labels.py " + "@ dir : " + dirName + " " + " @ " + xPositionInSaveScreenShot
+import datetime
+print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print "==============================="
