@@ -107,7 +107,7 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias, ifPlotHi
         ax.text(1, -0.05, r'$1$', fontsize=30)
         
         #fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_New_uniform.png",  bbox_inches='tight')
-        fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_New.png",  bbox_inches='tight')
+        fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName+".png",  bbox_inches='tight')
 
     #import scipy.stats as stats
     
