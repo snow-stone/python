@@ -244,10 +244,10 @@ def writeData_T_mean():
     
     casesNonNewtonian=[
                 "BirdCarreau/inlet_0p3",
-                "BirdCarreau/inlet_0p5",
-                "BirdCarreau/inlet0p5_impinging",
-                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
-                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
+#                "BirdCarreau/inlet_0p5",
+#                "BirdCarreau/inlet0p5_impinging",
+#                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
+#                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
     ]
               
     aliasDict={
@@ -285,7 +285,7 @@ def writeData_T_mean():
     for case in casesNonNewtonian:
         for i, x in enumerate(axis_x):
             #skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
-            skew, kurt = slice_T_mean_hist("T_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
+            skew, kurt = slice_T_mean_hist("T_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
             higherOrderStat[case]['skew'].append(skew)
             higherOrderStat[case]['kurt'].append(kurt)
             #higherOrderStat[case]['factor0'].append(factor0)
@@ -298,98 +298,7 @@ def writeData_T_mean():
         for key, value in higherOrderStat[case].iteritems():
             output2Txt(path2Data + "/" + case + "/T_mean_" + key, axis_x, value) 
 
-
-def writeData_nu_mean_noLog():
-
-    from matplotlib import rc
-#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
-    ## for Palatino and other serif fonts use:
-    rc('font',**{'family':'serif','serif':['Palatino']})
-    rc('text', usetex=True)    
-    plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 20})
-    plt.rcParams['savefig.dpi'] = 100
-
-    path2Data="/store/8simu_tmp/shape_square/2a_3_T"
-    
-    caseList=[
-                "BirdCarreau/inlet_0p3",
-                "BirdCarreau/inlet_0p5",
-                "BirdCarreau/inlet0p5_impinging",
-                "Newtonian/Re2400",
-                "Newtonian/Re4000",
-                "Newtonian/Re4000_impinging",
-                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
-                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
-              ]
-    
-    casesNonNewtonian=[
-                "BirdCarreau/inlet_0p3",
-                "BirdCarreau/inlet_0p5",
-                "BirdCarreau/inlet0p5_impinging",
-                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
-                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
-    ]
-              
-    aliasDict={
-        "BirdCarreau/inlet_0p3"                :r'$NN^{1}_{d}$',
-        "Newtonian/Re2400"                     :r'$N^{1}_{d}$',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":r'$NN^{1}_{d,St=1}$',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":r'$NN^{1}_{d,St=5}$',
-        "BirdCarreau/inlet_0p5"                :r'$NN^{2}_{d}$',
-        "Newtonian/Re4000"                     :r'$N^{2}_{d}$',
-        "BirdCarreau/inlet0p5_impinging"       :r'$NN^{2}_{i}$',
-        "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
-    }
-
-    colorDict={
-        "BirdCarreau/inlet_0p3"                : 'mediumvioletred',
-        "Newtonian/Re2400"                     : 'darkred',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'red',
-        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'red',
-        "BirdCarreau/inlet_0p5"                : 'steelblue',
-        "Newtonian/Re4000"                     : 'red',
-        "BirdCarreau/inlet0p5_impinging"       : 'darkmagenta',
-        "Newtonian/Re4000_impinging"           : 'darkcyan'
-    }
-
-    axis_x1 = np.linspace(0, 1.875, 16)
-    axis_x2 = np.linspace(2, 9.5, 16)
-    axis_x  = np.append(axis_x1, axis_x2)
-    
-    higherOrderStat=dict.fromkeys(casesNonNewtonian)
-    for case in casesNonNewtonian:
-        higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[], 'factor3':[], 'factor4':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
-        #higherOrderStat[case]={'mean':[],'rms':[],'minimum':[],'maximum':[],'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'mean_tail':[], 'rms_tail':[],'minimum_tail':[],'maximum_tail':[]}
-
-    for case in casesNonNewtonian:
-        for i, x in enumerate(axis_x):
-            mean, rms, minimum, maximum, skew, kurt, factor0, factor1, factor2, factor3, factor4, mean_tail, rms_tail, minimum_tail, maximum_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
-            #mean, rms, minimum, maximum, skew, kurt, factor0, factor1, mean_tail, rms_tail, minimum_tail, maximum_tail = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=False)
-            higherOrderStat[case]['mean'].append(mean)
-            higherOrderStat[case]['rms'].append(rms)
-            higherOrderStat[case]['minimum'].append(minimum)
-            higherOrderStat[case]['maximum'].append(maximum)
-            higherOrderStat[case]['skew'].append(skew)
-            higherOrderStat[case]['kurt'].append(kurt)
-            higherOrderStat[case]['factor0'].append(factor0)
-            higherOrderStat[case]['factor1'].append(factor1)
-            higherOrderStat[case]['factor2'].append(factor2)
-            higherOrderStat[case]['factor3'].append(factor3)
-            higherOrderStat[case]['factor4'].append(factor4)
-            higherOrderStat[case]['mean_tail'].append(mean_tail)
-            higherOrderStat[case]['rms_tail'].append(rms_tail)
-            higherOrderStat[case]['minimum_tail'].append(minimum_tail)
-            higherOrderStat[case]['maximum_tail'].append(maximum_tail)
-            print "========================"
-            print "\n"
-    
-    for case in casesNonNewtonian:
-        for key, value in higherOrderStat[case].iteritems():
-            output2Txt(path2Data + "/" + case + "/nu_mean_" + key, axis_x, value) 
-
 def main():
-    writeData_nu_mean_noLog()
-    #writeData_T_mean()
+    writeData_T_mean()
 
 main()
