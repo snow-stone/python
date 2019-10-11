@@ -109,12 +109,19 @@ def slice_T_mean_hist(dataFileName, marker, path2Data, caseName, alias, ifPlotHi
         #fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_New_uniform.png",  bbox_inches='tight')
         fig.savefig(path2Data+"/"+caseName+"/"+"hist_"+dataFileName[:-1]+"_New.png",  bbox_inches='tight')
 
-    import scipy.stats as stats
+    #import scipy.stats as stats
     
-    skew = stats.skew(T)
-    kurt = stats.kurtosis(T)
+    #skew = stats.skew(T)
+    #kurt = stats.kurtosis(T)
+    real_skew = 0.0 
+    real_kurt = 0.0
+    for i in range(len(T)):
+        real_skew = real_skew + (T[i]-real_mean)**3 * dS[i]
+        real_kurt = real_kurt + (T[i]-real_mean)**4 * dS[i]
+    real_skew /= real_rms**3
+    real_kurt /= real_rms**4
 
-    return skew, kurt
+    return real_skew, real_kurt
     
     
 def writeData_T_mean():
