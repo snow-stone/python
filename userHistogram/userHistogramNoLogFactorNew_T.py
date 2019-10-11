@@ -144,16 +144,16 @@ def writeData_T_mean():
                 "Newtonian/Re2400",
                 "Newtonian/Re4000",
                 "Newtonian/Re4000_impinging",
-                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
-                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
+#                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
+#                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"
               ]
     
     casesNonNewtonian=[
                 "BirdCarreau/inlet_0p3",
-#                "BirdCarreau/inlet_0p5",
-#                "BirdCarreau/inlet0p5_impinging",
-#                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
-#                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
+                "BirdCarreau/inlet_0p5",
+                "BirdCarreau/inlet0p5_impinging",
+                "BirdCarreau/inlet_0p3-a_0p5-setT_St_1",
+                "BirdCarreau/inlet_0p3-a_0p5-setT_St_5"    
     ]
               
     aliasDict={
@@ -183,26 +183,12 @@ def writeData_T_mean():
     #axis_x  = np.append(axis_x1, axis_x2)
     axis_x  = np.linspace(0, 8, 3)
     
-    higherOrderStat=dict.fromkeys(casesNonNewtonian)
-    for case in casesNonNewtonian:
-        #higherOrderStat[case]={'skew':[],'kurt':[],'factor0':[], 'factor1':[], 'factor2':[]}
-        higherOrderStat[case]={'skew':[],'kurt':[]}
-
-    for case in casesNonNewtonian:
+    for case in caseList:
         for i, x in enumerate(axis_x):
             #skew, kurt, factor0, factor1, factor2 = slice_nu_mean_hist_noLog("nu_mean_slice_"+str(x)+"D0",str(x)+"D",path2Data, case, aliasDict[case], ifPlotHist=True)
             skew, kurt = slice_T_mean_hist("T_mean_slice_"+str(x)+"D_New",str(x),path2Data, case, aliasDict[case], ifPlotHist=True)
-            higherOrderStat[case]['skew'].append(skew)
-            higherOrderStat[case]['kurt'].append(kurt)
-            #higherOrderStat[case]['factor0'].append(factor0)
-            #higherOrderStat[case]['factor1'].append(factor1)
-            #higherOrderStat[case]['factor2'].append(factor2)
             print "========================"
             print "\n"
-    
-    for case in casesNonNewtonian:
-        for key, value in higherOrderStat[case].iteritems():
-            output2Txt(path2Data + "/" + case + "/T_mean_" + key, axis_x, value) 
 
 def main():
     writeData_T_mean()
