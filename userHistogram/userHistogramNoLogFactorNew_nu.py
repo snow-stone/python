@@ -182,10 +182,10 @@ def plot_nu_mean_Figures(x, higherOrderStat):
             ax[0].plot(x, databaseDict[case]['skew'],label='skew', linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
             ax[1].plot(x, databaseDict[case]['kurt'],label=aliasDict[case], linestyle=linestyleDict[case], linewidth=linewidthDict[case], color=colorDict[case])
     
-        ax[0].set_ylim(0,25)
+        ax[0].set_ylim(0,8)
         ax[0].set_ylabel(r"$\gamma_{\overline{\nu}}$")
         ax[1].axhline(y=0., linestyle='-.', color='black')
-        ax[1].set_ylim(-10,700)
+        ax[1].set_ylim(-10,250)
         ax[1].set_ylabel(r"$\beta_{\overline{\nu}}$")
         ax[1].set_xlabel(r"$x/D$")
     
