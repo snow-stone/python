@@ -71,9 +71,9 @@ def plot_nu_mean():
         "Newtonian/Re4000_impinging"           : 'darkcyan'
     }
 
-    #axis_x1 = np.linspace(0, 1.875, 16)
-    #axis_x2 = np.linspace(2, 9.5, 16)
-    #axis_x  = np.append(axis_x1, axis_x2)
+    axis_x1 = np.linspace(0, 1.875, 16)
+    axis_x2 = np.linspace(2, 9.5, 16)
+    axis_x  = np.append(axis_x1, axis_x2)
     
     higherOrderStat=dict.fromkeys(casesNonNewtonian)
     for case in casesNonNewtonian:
@@ -92,7 +92,7 @@ def plot_nu_mean():
     
     return axis_x, higherOrderStat
     
-def plot_nu_Figures(x, higherOrderDatabase):
+def plot_nu_mean_Figures(x, higherOrderStat):
     # One plot for these cases
     casesNonNewtonian=[
                 "BirdCarreau/inlet_0p3",
@@ -127,6 +127,28 @@ def plot_nu_Figures(x, higherOrderDatabase):
         "Newtonian/Re4000"                     : 1,
         "BirdCarreau/inlet0p5_impinging"       : 4,
         "Newtonian/Re4000_impinging"           : 1
+    }
+
+    aliasDict={
+        "BirdCarreau/inlet_0p3"                :r'$NN^{1}_{d}$',
+        "Newtonian/Re2400"                     :r'$N^{1}_{d}$',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1":r'$NN^{1}_{d,St=1}$',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5":r'$NN^{1}_{d,St=5}$',
+        "BirdCarreau/inlet_0p5"                :r'$NN^{2}_{d}$',
+        "Newtonian/Re4000"                     :r'$N^{2}_{d}$',
+        "BirdCarreau/inlet0p5_impinging"       :r'$NN^{2}_{i}$',
+        "Newtonian/Re4000_impinging"           :r'$N^{2}_{i}$'
+    }
+
+    colorDict={
+        "BirdCarreau/inlet_0p3"                : 'mediumvioletred',
+        "Newtonian/Re2400"                     : 'darkred',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_1": 'red',
+        "BirdCarreau/inlet_0p3-a_0p5-setT_St_5": 'red',
+        "BirdCarreau/inlet_0p5"                : 'steelblue',
+        "Newtonian/Re4000"                     : 'red',
+        "BirdCarreau/inlet0p5_impinging"       : 'darkmagenta',
+        "Newtonian/Re4000_impinging"           : 'darkcyan'
     }
 
     def nu_mean_moment12(x, databaseDict):
@@ -374,19 +396,19 @@ def plot_nu_Figures(x, higherOrderDatabase):
         fig.savefig("./"+"nu_mean_factors.png",  bbox_inches='tight')
 
 
-    nu_mean_moment12(x, higherOrderDatabase)
-    nu_mean_moment34(x, higherOrderDatabase)
-    nu_mean_moment34_ratio(x, higherOrderDatabase)
-    nu_mean_MinMax0(x, higherOrderDatabase)
-    nu_mean_MinMax1(x, higherOrderDatabase)
-    nu_mean_tail0(x, higherOrderDatabase)
-    nu_mean_tail1(x, higherOrderDatabase)
-    nu_mean_tail1a(x, higherOrderDatabase)
-    nu_mean_factors(x, higherOrderDatabase)
+    nu_mean_moment12(x, higherOrderStat)
+    nu_mean_moment34(x, higherOrderStat)
+    nu_mean_moment34_ratio(x, higherOrderStat)
+    nu_mean_MinMax0(x, higherOrderStat)
+    nu_mean_MinMax1(x, higherOrderStat)
+    nu_mean_tail0(x, higherOrderStat)
+    nu_mean_tail1(x, higherOrderStat)
+    nu_mean_tail1a(x, higherOrderStat)
+    nu_mean_factors(x, higherOrderStat)
     
               
 def main():
-    plot_nu_mean()
-    #plot_nu_mean_Figures()
+    x, database = plot_nu_mean()
+    plot_nu_mean_Figures(x, database)
 
 main()
