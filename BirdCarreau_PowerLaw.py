@@ -52,7 +52,7 @@ font = {'family': 'serif',
         'weight': 'normal',
         'size': 25,
         }
-ax.text(5, 1e-5, r'$\nu \propto \dot{\gamma}^{1-n}$', fontdict=font)
+ax.text(5, 1e-5, r'$\nu \propto \dot{\gamma}^{n-1}$', fontdict=font)
 ax.plot(gama,nu,linewidth=4, label='Approx. BirdCarreau')
 ax.plot(gama,nu1,linewidth=4,linestyle='--',color='darkred')
 
