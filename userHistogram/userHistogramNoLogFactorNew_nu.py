@@ -19,15 +19,6 @@ def output2Txt(fileName, x, y):
     
 def plot_nu_mean():
 
-    from matplotlib import rc
-#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
-    ## for Palatino and other serif fonts use:
-    rc('font',**{'family':'serif','serif':['Palatino']})
-    rc('text', usetex=True)    
-    plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 20})
-    plt.rcParams['savefig.dpi'] = 100
-
     path2Data="/store/8simu_tmp/shape_square/2a_3_T"
     
     caseList=[
@@ -362,8 +353,8 @@ def plot_nu_mean_Figures(x, higherOrderStat):
         ax[1].yaxis.set_major_formatter(formatter)
         ax[1].set_ylabel(r"$P(\overline{\nu} \ge \overline{\nu}_{ex}(x=0))$")
     
-        ax[0].text(-0.16, 1.0,'(a)', transform=ax[0].transAxes)
-        ax[1].text(-0.16, 1.0,'(b)', transform=ax[1].transAxes)
+        ax[0].text(-0.16, 1.0,'(c)', transform=ax[0].transAxes, fontsize=30)
+        ax[1].text(-0.16, 1.0,'(d)', transform=ax[1].transAxes, fontsize=30)
         fig.savefig("./"+"nu_mean_tail1a.png",  bbox_inches='tight')
 
     def nu_mean_factors(x, databaseDict):
@@ -408,6 +399,15 @@ def plot_nu_mean_Figures(x, higherOrderStat):
     
               
 def main():
+    from matplotlib import rc
+#    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+    ## for Palatino and other serif fonts use:
+    rc('font',**{'family':'serif','serif':['Palatino']})
+    rc('text', usetex=True)    
+    plt.style.use('seaborn-white') # from defaut
+    plt.rcParams.update({'font.size': 20})
+    plt.rcParams['savefig.dpi'] = 100
+
     x, database = plot_nu_mean()
     plot_nu_mean_Figures(x, database)
 
