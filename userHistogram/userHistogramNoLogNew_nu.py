@@ -18,7 +18,7 @@ def output2Txt(fileName, x, y):
     
 def slice_nu_mean_hist_noLog(dataFileName, marker, path2Data, caseName, alias, ifPlotHist):
     plt.style.use('seaborn-white') # from defaut
-    plt.rcParams.update({'font.size': 20})
+    plt.rcParams.update({'font.size': 40})
     plt.rcParams['savefig.dpi'] = 100
     
     rawData = np.genfromtxt(path2Data+"/"+caseName+"/"+dataFileName+".csv", delimiter=',', skip_header=1)
