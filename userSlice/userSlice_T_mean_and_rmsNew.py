@@ -266,6 +266,7 @@ def Figure_ref_local(caseList, path2Data, saveFigDir):
 #    fig.savefig(path2Data+"/"+saveFigDir+'/mixing.png', bbox_inches='tight')
     axes[0].text(-0.1,3.4,'(a)',size=20, transform=ax.transAxes)
     axes[1].text(-0.1,2.2,'(b)',size=20, transform=ax.transAxes)
+    axes[2].text(-0.1,1.05,'(c)',size=20, transform=ax.transAxes)
     #axes[2].text(-0.1,1,'(c)',size=20, transform=ax.transAxes)
     fig.savefig(path2Data+"/"+saveFigDir+'/mixing_ref_local_1New.png', bbox_inches='tight', fontsize=20)
 
